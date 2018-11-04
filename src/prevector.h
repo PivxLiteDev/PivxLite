@@ -10,6 +10,8 @@
 #include <stdint.h>
 #include <string.h>
 
+#include <algorithm>
+#include <cstddef>
 #include <iterator>
 #include <type_traits>
 
