@@ -134,6 +134,7 @@ public:
     int Zerocoin_DefaultSpendSecurity() const { return nDefaultSecurityLevel; }
     int Zerocoin_HeaderVersion() const { return nZerocoinHeaderVersion; }
     int Zerocoin_RequiredStakeDepth() const { return nZerocoinRequiredStakeDepth; }
+    CAmount MasternodeCollateral() const { return nMasternodeCollateral; }
 
     /** Height or Time Based Activations **/
     int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
@@ -186,6 +187,7 @@ protected:
     int64_t nPivxBadBlockTime;
     unsigned int nPivxBadBlocknBits;
     int nMasternodeCountDrift;
+    CAmount nMasternodeCollateral;
     int nMaturity;
     int nStakeMinDepth;
     int nStakeMinAge;

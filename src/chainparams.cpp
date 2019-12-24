@@ -168,6 +168,7 @@ public:
         nFutureTimeDriftPoW = 7200;
         nFutureTimeDriftPoS = 180;
         nMasternodeCountDrift = 20;
+        nMasternodeCollateral = 100000 * COIN;
         nMaxMoneyOut = 21000000 * COIN;
         nMinColdStakingAmount = 1 * COIN;
 
@@ -323,6 +324,7 @@ public:
         nMaturity = 15;
         nStakeMinDepth = 100;
         nMasternodeCountDrift = 4;
+        nMasternodeCollateral = 1000 * COIN;
         nModifierUpdateBlock = INT_MAX; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
         nZerocoinStartHeight = INT_MAX;
@@ -432,6 +434,7 @@ public:
         nStakeMinAge = 0;
         nStakeMinDepth = 0;
         nMasternodeCountDrift = 4;
+        nMasternodeCollateral = 100 * COIN;
         nModifierUpdateBlock = 0;       //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
         nZerocoinStartHeight = INT_MAX;
