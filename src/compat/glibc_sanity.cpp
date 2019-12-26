@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2009-2017 The Bitcoin Core developers
 // Copyright (c) 2016-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying

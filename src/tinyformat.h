@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // tinyformat.h
 // Copyright (C) 2011, Chris Foster [chris42f (at) gmail (d0t) com]
 //

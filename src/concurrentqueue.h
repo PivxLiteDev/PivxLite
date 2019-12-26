@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 //
 // Copyright (c) 2015-2018 The PIVX developers
 // Distributed under the MIT software license, see the accompanying

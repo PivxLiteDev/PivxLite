@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 /// \file       ParamGeneration.cpp
 ///
 /// \brief      Parameter manipulation routines for the Zerocoin cryptographic
