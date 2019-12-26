@@ -383,8 +383,8 @@ para 'Staking'</translation>
         <translation>Você tem certeza que deseja criptografar sua carteira?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Aviso: se você criptografar sua carteira e perder sua senha você &lt;b&gt;PERDERÁ TODAS AS SUAS PIV&lt;b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIVXL&lt;/b&gt;!</source>
+        <translation>Aviso: se você criptografar sua carteira e perder sua senha você &lt;b&gt;PERDERÁ TODAS AS SUAS PIVXL&lt;b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -469,8 +469,8 @@ para 'Staking'</translation>
         <translation>Rótulo</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
-        <translation>Nem todas as transações serão exibidas. Para visualizar todas as transações você precisa definir txindex=1 no arquivo de configuração (pivx.conf). </translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivxl.conf).</source>
+        <translation>Nem todas as transações serão exibidas. Para visualizar todas as transações você precisa definir txindex=1 no arquivo de configuração (pivxl.conf). </translation>
     </message>
 </context>
 <context>
@@ -542,8 +542,8 @@ para 'Staking'</translation>
         <translation>Aperte o Botão</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -753,8 +753,8 @@ para 'Staking'</translation>
         <translation>Aperte o Botão</translation>
     </message>
     <message>
-        <source>PIV:</source>
-        <translation>PIV:</translation>
+        <source>PIVXL:</source>
+        <translation>PIVXL:</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -890,8 +890,8 @@ para 'Staking'</translation>
         <translation>Estatísticas de Staking</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>zPIV</source>
@@ -926,8 +926,8 @@ para 'Staking'</translation>
         <translation>Você pode ver o histórico da sua conta</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>Quantidade de PIV e zPIV em Staking.</translation>
+        <source>Amount of PIVXL and zPIV staked.</source>
+        <translation>Quantidade de PIVXL e zPIV em Staking.</translation>
     </message>
     <message>
         <source>All</source>
@@ -966,8 +966,8 @@ para 'Staking'</translation>
         <translation>Nenhuma transação ainda</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
-        <translation>Como obter o PIV ou zPIV</translation>
+        <source>How to get PIVXL or zPIV</source>
+        <translation>Como obter o PIVXL ou zPIV</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1416,8 +1416,8 @@ Ele será iniciado automaticamente assim que a carteira tiver confirmações suf
         <translation>Criar novo controlador de nó principal</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>Para criar um Masternode PIVX, você deve dedicar 10.000 PIV (a unidade do PIVX) à rede (no entanto, essas moedas ainda são suas e nunca deixarão sua posse). Você pode desativar o nó e desbloquear as moedas a qualquer momento.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>Para criar um Masternode PIVX, você deve dedicar 10.000 PIVXL (a unidade do PIVX) à rede (no entanto, essas moedas ainda são suas e nunca deixarão sua posse). Você pode desativar o nó e desbloquear as moedas a qualquer momento.</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
@@ -1428,8 +1428,8 @@ Ele será iniciado automaticamente assim que a carteira tiver confirmações suf
         <translation>Definir o nome do Masternode</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>A transação de 10.000 PIV será feita com um novo endereço vazio em sua carteira. O endereço é rotulado com o nome do nó principal.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>A transação de 10.000 PIVXL será feita com um novo endereço vazio em sua carteira. O endereço é rotulado com o nome do nó principal.</translation>
     </message>
     <message>
         <source>Set Master Node’s IP and port</source>
@@ -1618,7 +1618,7 @@ Aguarde mais alguns minutos.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1626,7 +1626,7 @@ this controller wallet (select the Masternode in the list and press "start").
 em um servidor remoto para a área de transferência.
 
 
-Você só precisará transferir os dados no arquivo pivx.conf
+Você só precisará transferir os dados no arquivo pivxl.conf
 do servidor remoto e inicie-o, reinicie o Masternode usando
 esta carteira do controlador (selecione o Masternode na lista e pressione "Iniciar").
 
@@ -1663,8 +1663,8 @@ Você tem certeza?</translation>
         <translation>O arquivo masternode.conf não existe</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 10,000 PIV required.</source>
-        <translation>Não há saldo suficiente para criar um masternode, 10.000 PIV necessários.</translation>
+        <source>Not enough balance to create a masternode, 10,000 PIVXL required.</source>
+        <translation>Não há saldo suficiente para criar um masternode, 10.000 PIVXL necessários.</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -1858,9 +1858,9 @@ Você tem certeza?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>Linguagem não encontrada ou tradução incompleta? Ajude contribuido com traduções aqui:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Connect to the PIVX network through a SOCKS5 proxy.</source>
@@ -2494,8 +2494,8 @@ Endereço: %4
         <translation>Quantidade</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3571,7 +3571,7 @@ Endereço: %4
     </message>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Deletar todas as transações da carteira e somente recuperar aquelas partes da blockchain através de -rescan na inicialização</translation>
@@ -3589,12 +3589,12 @@ Endereço: %4
         <translation>Executar o comando quando uma transação da carteira mudar (%s no cmd será substituído pela TxID)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Taxas (em PIV/Kb) menores que isso serão consideradas taxa zero para propagação (padrão: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Taxas (em PIVXL/Kb) menores que isso serão consideradas taxa zero para propagação (padrão: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Taxas (em PIV/Kb) menores que isso serão consideradas taxa zero para a criação da transação (padrão: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Taxas (em PIVXL/Kb) menores que isso serão consideradas taxa zero para a criação da transação (padrão: %s)</translation>
     </message>
     <message>
         <source>In this mode -genproclimit controls how many blocks are generated immediately.</source>
@@ -3613,8 +3613,8 @@ Endereço: %4
         <translation>Define o tamanho máximo de transações de alta prioridade/taxa baixa em bytes (padrão: %d)</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Incapaz de localizar fundos para esta transação que não são iguais a 10000 PIV.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIVXL.</source>
+        <translation>Incapaz de localizar fundos para esta transação que não são iguais a 10000 PIVXL.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -3785,8 +3785,8 @@ Endereço: %4
         <translation>Falhou em ler o bloco</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Taxa (em PIV/kB) a adicionar em transações que você enviar (padrão: %s)</translation>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
+        <translation>Taxa (em PIVXL/kB) a adicionar em transações que você enviar (padrão: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>

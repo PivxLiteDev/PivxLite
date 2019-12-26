@@ -360,7 +360,7 @@ for staking</source>
         <translation>지갑을 암호화 하시겠습니까?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIVXL&lt;/b&gt;!</source>
         <translation>경고: 지갑 암호화 후 암호를 분실하게 되면 &lt;b&gt;모든 PIV를 잃게 됩니다&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -446,8 +446,8 @@ for staking</source>
         <translation>텍스트라벨</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
-        <translation>모든 트랜잭션이 표시되지는 않습니다. 모든 트랜잭션을 보려면 구성 파일 (pivx.conf)에 txindex = 1을 설정해야합니다.</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivxl.conf).</source>
+        <translation>모든 트랜잭션이 표시되지는 않습니다. 모든 트랜잭션을 보려면 구성 파일 (pivxl.conf)에 txindex = 1을 설정해야합니다.</translation>
     </message>
 </context>
 <context>
@@ -519,8 +519,8 @@ for staking</source>
         <translation>누르기</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0.00 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -718,8 +718,8 @@ for staking</source>
         <translation>누르기</translation>
     </message>
     <message>
-        <source>PIV:</source>
-        <translation>PIV:</translation>
+        <source>PIVXL:</source>
+        <translation>PIVXL:</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -847,8 +847,8 @@ for staking</source>
         <translation>스테이킹 통계</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>zPIV</source>
@@ -875,7 +875,7 @@ for staking</source>
         <translation>당신의 입출금 이력을 확인할 수 있습니다.</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
+        <source>Amount of PIVXL and zPIV staked.</source>
         <translation>스테이킹 된 PIV와 zPIV 양</translation>
     </message>
     <message>
@@ -907,8 +907,8 @@ for staking</source>
         <translation>자신에게</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
-        <translation>PIV 혹은 zPIV를 얻는 법</translation>
+        <source>How to get PIVXL or zPIV</source>
+        <translation>PIVXL 혹은 zPIV를 얻는 법</translation>
     </message>
     <message>
         <source>You have no staking rewards</source>
@@ -1267,8 +1267,8 @@ for staking</source>
         <translation>새로운 마스터노드 컨트롤러 생성</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PIVX 마스터노드 생성을 위해서는 최소 10,000 PIV (PIVX 단위) 가 네트워크 상에 존재해야 합니다. (해당 코인들의 소유권은 그대로 유지되며 사라지지 않습니다) &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; 언제든지 소유하고 있는 노드를 비활성화 시키거나 코인의 잠금상태를 해제할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PIVX 마스터노드 생성을 위해서는 최소 10,000 PIVXL (PIVX 단위) 가 네트워크 상에 존재해야 합니다. (해당 코인들의 소유권은 그대로 유지되며 사라지지 않습니다) &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; 언제든지 소유하고 있는 노드를 비활성화 시키거나 코인의 잠금상태를 해제할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Master Node’s Name</source>
@@ -1415,7 +1415,7 @@ for staking</source>
         <translation>masternode.conf 파일이 생성되지 않았습니다.</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 10,000 PIV required.</source>
+        <source>Not enough balance to create a masternode, 10,000 PIVXL required.</source>
         <translation>마스터노드 생성에 필요한 잔고가 부족합니다. 마스터노드 생성에는 10,000 PIV가 필요합니다.</translation>
     </message>
     </context>
@@ -1586,16 +1586,16 @@ for staking</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>지원 언어가 없거나 번역이 불완전한가요? 번역을 도와주세요 :
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>&amp;UPnp를 사용하여 포트 매핑</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
+        <source>Enable automatic minting of PIVXL units to zPIV</source>
         <translation>보상받은 PIV를 zPIV로 자동변환 활성화</translation>
     </message>
     <message>
@@ -1607,7 +1607,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Automint 주소 사용</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
         <translation>PIV수신시 자동변환 zPIV 비율 (최소값:10%)</translation>
     </message>
     <message>
@@ -1615,7 +1615,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>자동 변환되는 zPIV 비율</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
         <translation>이 디노미네이션의 PIV가 충분해질 때까지 Zerocoin으로 자동전환은 보류됩니다.</translation>
     </message>
     <message>
@@ -1860,7 +1860,7 @@ Address: %4
         <translation>잘못된 결제 주소 %1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
+        <source>Cannot start pivxl: click-to-pay handler</source>
         <translation>PIVX을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
     </message>
     <message>
@@ -1962,8 +1962,8 @@ Address: %4
         <translation>지금은 활성화된 마스터 노드가 없습니다.</translation>
     </message>
     <message>
-        <source>Convert back to PIV</source>
-        <translation>PIV 로 재변환</translation>
+        <source>Convert back to PIVXL</source>
+        <translation>PIVXL 로 재변환</translation>
     </message>
     <message>
         <source>Zerocoin</source>
@@ -2500,8 +2500,8 @@ Address: %4
         <translation>금액</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3426,8 +3426,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>난독화를 통해 수신 됨</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV stake</translation>
+        <source>PIVXL Stake</source>
+        <translation>PIVXL stake</translation>
     </message>
     <message>
         <source>zPIV Stake</source>
@@ -3450,7 +3450,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>난독화 표시 만들기</translation>
     </message>
     <message>
-        <source>Converted PIV to zPIV</source>
+        <source>Converted PIVXL to zPIV</source>
         <translation>PIV를 zPIV로 변환</translation>
     </message>
     <message>
@@ -3458,7 +3458,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>zPIV 사용</translation>
     </message>
     <message>
-        <source>Received PIV from zPIV</source>
+        <source>Received PIVXL from zPIV</source>
         <translation>zPIV를 PIV로 받음</translation>
     </message>
     <message>
@@ -3466,7 +3466,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>zPIV 전송후 남은 zPIV로 잔돈 생성</translation>
     </message>
     <message>
-        <source>Converted zPIV to PIV</source>
+        <source>Converted zPIV to PIVXL</source>
         <translation>zPIV를 PIV로 변환</translation>
     </message>
     <message>
@@ -3575,7 +3575,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>코인 전송 </translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
         <translation>SwiftTX는 아직 높은 값을 전송하는 것을 지원하지 않습니다. 트랜잭션은 현재 %1 PIV로 제한됩니다.</translation>
     </message>
 </context>
@@ -3645,7 +3645,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = tx 메타 데이터 유지 예 : 계정 소유자 및 지불 요청 정보, 2 = tx 메타 데이터 삭제)</translation>
@@ -3703,8 +3703,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Enable automatic wallet backups triggered after each zPIV minting (0-1, default: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
+        <translation>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</source>
@@ -3743,12 +3743,12 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>최고 블록이 변경될 경우 명령을 실행하십시오 (명령 내 %s 는 블록 해시로 대체 되었습니다)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>이것보다 작은 수수료 (PIV/Kb)는 중계 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>이것보다 작은 수수료 (PIVXL/Kb)는 중계 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>이것보다 작은 수수료 (PIV/Kb)는 트랜잭션 생성 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>이것보다 작은 수수료 (PIVXL/Kb)는 트랜잭션 생성 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -3851,11 +3851,11 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>이 트랜잭션를 위해 난독화 표기된 충분한 금액을 찾을 수 없습니다.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIVXL.</source>
         <translation>이 트랜잭션를 위해 난독화 표기가 안된 충분한 금액을 찾을 수 없습니다. 10000 PIV과 일치하지 않음.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIVXL.</source>
         <translation>트랜잭션에 대한 충분한 금액을 찾을 수 없습니다. 10000 PIV와 같지 않음</translation>
     </message>
     <message>
@@ -4131,8 +4131,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>블록을 받아오는데 실패했습니다.</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>당신이 보내는 트랜잭션에 추가 할 수수료 (PIV/kB) (기본값: %s)</translation>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
+        <translation>당신이 보내는 트랜잭션에 추가 할 수수료 (PIVXL/kB) (기본값: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -4231,8 +4231,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>자동생성 zPIV 비율  (1-100, default: %u)</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
-        <translation>PIV 및 zPIV 공급량 다시 색인</translation>
+        <source>Reindex the PIVXL and zPIV money supply statistics</source>
+        <translation>PIVXL 및 zPIV 공급량 다시 색인</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

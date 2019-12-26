@@ -3,15 +3,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/send.h"
-#include "qt/pivx/forms/ui_send.h"
-#include "qt/pivx/addnewcontactdialog.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/sendchangeaddressdialog.h"
-#include "qt/pivx/optionbutton.h"
-#include "qt/pivx/sendconfirmdialog.h"
-#include "qt/pivx/myaddressrow.h"
-#include "qt/pivx/guitransactionsutils.h"
+#include "qt/pivxl/send.h"
+#include "qt/pivxl/forms/ui_send.h"
+#include "qt/pivxl/addnewcontactdialog.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/sendchangeaddressdialog.h"
+#include "qt/pivxl/optionbutton.h"
+#include "qt/pivxl/sendconfirmdialog.h"
+#include "qt/pivxl/myaddressrow.h"
+#include "qt/pivxl/guitransactionsutils.h"
 #include "clientmodel.h"
 #include "optionsmodel.h"
 #include "addresstablemodel.h"
@@ -47,14 +47,14 @@ SendWidget::SendWidget(PIVXGUI* parent) :
     ui->labelTitle->setFont(fontLight);
 
     /* Button Group */
-    ui->pushLeft->setText("PIV");
+    ui->pushLeft->setText("PIVXL");
     setCssProperty(ui->pushLeft, "btn-check-left");
     ui->pushLeft->setChecked(true);
     ui->pushRight->setText("zPIV");
     setCssProperty(ui->pushRight, "btn-check-right");
 
     /* Subtitle */
-    ui->labelSubtitle1->setText(tr("You can transfer public coins (PIV) or private coins (zPIV)"));
+    ui->labelSubtitle1->setText(tr("You can transfer public coins (PIVXL) or private coins (zPIV)"));
     setCssProperty(ui->labelSubtitle1, "text-subtitle");
 
     ui->labelSubtitle2->setText(tr("Select coin type to spend"));
@@ -109,7 +109,7 @@ SendWidget::SendWidget(PIVXGUI* parent) :
     ui->labelTitleTotalSend->setText(tr("Total to send"));
     setCssProperty(ui->labelTitleTotalSend, "text-title");
 
-    ui->labelAmountSend->setText("0.00 PIV");
+    ui->labelAmountSend->setText("0.00 PIVXL");
     setCssProperty(ui->labelAmountSend, "text-body1");
 
     // Total Remaining
@@ -146,7 +146,7 @@ SendWidget::SendWidget(PIVXGUI* parent) :
 void SendWidget::refreshView(){
     QString btnText;
     if(ui->pushLeft->isChecked()){
-        btnText = tr("Send PIV");
+        btnText = tr("Send PIVXL");
         ui->pushButtonAddRecipient->setVisible(true);
     }else{
         btnText = tr("Send zPIV");
@@ -599,7 +599,7 @@ void SendWidget::onCoinControlClicked(){
             ui->btnCoinControl->setActive(CoinControlDialog::coinControl->HasSelected());
             refreshAmounts();
         } else {
-            inform(tr("You don't have any PIV to select."));
+            inform(tr("You don't have any PIVXL to select."));
         }
     }else{
         if (walletModel->getZerocoinBalance() > 0) {

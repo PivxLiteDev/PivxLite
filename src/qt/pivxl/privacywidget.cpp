@@ -3,12 +3,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/privacywidget.h"
-#include "qt/pivx/forms/ui_privacywidget.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/privacywidget.h"
+#include "qt/pivxl/forms/ui_privacywidget.h"
+#include "qt/pivxl/qtutils.h"
 #include "guiutil.h"
-#include "qt/pivx/denomgenerationdialog.h"
-#include "qt/pivx/txviewholder.h"
+#include "qt/pivxl/denomgenerationdialog.h"
+#include "qt/pivxl/txviewholder.h"
 #include "walletmodel.h"
 #include "optionsmodel.h"
 #include "coincontroldialog.h"
@@ -47,15 +47,15 @@ PrivacyWidget::PrivacyWidget(PIVXGUI* parent) :
     setCssProperty(ui->pushRight, "btn-check-right");
 
     /* Subtitle */
-    ui->labelSubtitle1->setText(tr("Minting zPIV anonymizes your PIV by removing any\ntransaction history, making transactions untraceable "));
+    ui->labelSubtitle1->setText(tr("Minting zPIV anonymizes your PIVXL by removing any\ntransaction history, making transactions untraceable "));
     setCssSubtitleScreen(ui->labelSubtitle1);
 
-    ui->labelSubtitle2->setText(tr("Mint new zPIV or convert back to PIV"));
+    ui->labelSubtitle2->setText(tr("Mint new zPIV or convert back to PIVXL"));
     setCssSubtitleScreen(ui->labelSubtitle2);
     ui->labelSubtitle2->setContentsMargins(0,2,0,0);
     setCssProperty(ui->labelSubtitleAmount, "text-title");
 
-    ui->lineEditAmount->setPlaceholderText("0.00 PIV ");
+    ui->lineEditAmount->setPlaceholderText("0.00 PIVXL ");
     ui->lineEditAmount->setValidator(new QRegExpValidator(QRegExp("[0-9]+")));
     initCssEditLine(ui->lineEditAmount);
 
@@ -114,7 +114,7 @@ PrivacyWidget::PrivacyWidget(PIVXGUI* parent) :
     // Buttons
     setCssBtnPrimary(ui->pushButtonSave);
 
-    // Only Convert to PIV enabled.
+    // Only Convert to PIVXL enabled.
     ui->containerViewPrivacyChecks->setVisible(false);
     onMintSelected(false);
 
@@ -123,7 +123,7 @@ PrivacyWidget::PrivacyWidget(PIVXGUI* parent) :
     ui->btnTotalzPIV->setRightIconClass("ic-arrow");
 
     ui->btnCoinControl->setTitleClassAndText("btn-title-grey", "Coin Control");
-    ui->btnCoinControl->setSubTitleClassAndText("text-subtitle", "Select PIV outputs to mint into zPIV.");
+    ui->btnCoinControl->setSubTitleClassAndText("text-subtitle", "Select PIVXL outputs to mint into zPIV.");
 
     ui->btnDenomGeneration->setTitleClassAndText("btn-title-grey", "Denom Generation");
     ui->btnDenomGeneration->setSubTitleClassAndText("text-subtitle", "Select the denomination of the coins.");
@@ -197,11 +197,11 @@ void PrivacyWidget::onMintSelected(bool isMint){
     if(isMint){
         btnText = tr("Mint zPIV");
         ui->btnCoinControl->setVisible(true);
-        ui->labelSubtitleAmount->setText(tr("Enter amount of PIV to mint into zPIV"));
+        ui->labelSubtitleAmount->setText(tr("Enter amount of PIVXL to mint into zPIV"));
     }else{
-        btnText = tr("Convert back to PIV");
+        btnText = tr("Convert back to PIVXL");
         ui->btnCoinControl->setVisible(false);
-        ui->labelSubtitleAmount->setText(tr("Enter amount of zPIV to convert back into PIV"));
+        ui->labelSubtitleAmount->setText(tr("Enter amount of zPIV to convert back into PIVXL"));
     }
     ui->pushButtonSave->setText(btnText);
 }
@@ -297,7 +297,7 @@ void PrivacyWidget::spend(CAmount value){
         inform(receipt.GetStatusMessage().data());
     }else{
         // Spend succeed
-        inform(tr("zPIV converted back to PIV"));
+        inform(tr("zPIV converted back to PIVXL"));
         // clear
         ui->lineEditAmount->clear();
     }
@@ -316,7 +316,7 @@ void PrivacyWidget::onCoinControlClicked(){
             coinControlDialog->exec();
             ui->btnCoinControl->setActive(CoinControlDialog::coinControl->HasSelected());
         } else {
-            inform(tr("You don't have any PIV to select."));
+            inform(tr("You don't have any PIVXL to select."));
         }
     }
 }

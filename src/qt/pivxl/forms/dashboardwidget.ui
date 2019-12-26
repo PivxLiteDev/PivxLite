@@ -694,7 +694,7 @@
                 <item>
                  <widget class="QLabel" name="labelPiv">
                   <property name="text">
-                   <string>PIV</string>
+                   <string>PIVXL</string>
                   </property>
                  </widget>
                 </item>

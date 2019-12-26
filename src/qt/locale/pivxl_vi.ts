@@ -305,7 +305,7 @@
     <name>ZPivControlDialog</name>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     </context>
 <context>
     <name>send</name>

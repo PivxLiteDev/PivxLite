@@ -3,10 +3,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingsconsolewidget.h"
-#include "qt/pivx/settings/forms/ui_settingsconsolewidget.h"
+#include "qt/pivxl/settings/settingsconsolewidget.h"
+#include "qt/pivxl/settings/forms/ui_settingsconsolewidget.h"
 #include "QGraphicsDropShadowEffect"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 #include "clientmodel.h"
 #include "guiutil.h"
@@ -37,7 +37,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QStringList>
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 #include "utilitydialog.h"
 
 const int CONSOLE_HISTORY = 50;
@@ -98,7 +98,7 @@ public:
     }
 };
 
-#include "qt/pivx/settings/moc_settingsconsolewidget.cpp"
+#include "qt/pivxl/settings/moc_settingsconsolewidget.cpp"
 
 /**
  * Split shell command line into a list of arguments. Aims to emulate \c bash and friends.

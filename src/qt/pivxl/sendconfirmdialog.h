@@ -8,7 +8,7 @@
 
 #include <QDialog>
 #include "walletmodeltransaction.h"
-#include "qt/pivx/snackbar.h"
+#include "qt/pivxl/snackbar.h"
 
 class WalletModelTransaction;
 class WalletModel;

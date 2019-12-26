@@ -3,7 +3,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/furabstractlistitemdelegate.h"
+#include "qt/pivxl/furabstractlistitemdelegate.h"
 
 FurAbstractListItemDelegate::FurAbstractListItemDelegate(int _rowHeight, FurListRow<> *_row, QObject *parent) :
     QAbstractItemDelegate(parent), rowHeight(_rowHeight), row(_row){}

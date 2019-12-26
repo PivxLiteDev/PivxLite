@@ -1,8 +1,8 @@
-PIVX Core version *3.1.0* is now available from:  <https://github.com/pivx-project/pivx/releases>
+PIVX Core version *3.1.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
-Please report bugs using the issue tracker at github: <https://github.com/pivx-project/pivx/issues>
+Please report bugs using the issue tracker at github: <https://github.com/pivxl-project/pivxl/issues>
 
 
 Mandatory Update
@@ -15,7 +15,7 @@ Users updating from a previous version after Tuesday, May 8, 2018 12:00:00 AM GM
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxd/pivx-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxld/pivxl-qt (on Linux).
 
 
 Compatibility
@@ -65,23 +65,23 @@ Users will now have the ability to search the blockchain for a specific serial #
 
 
 
-PIV/zPIV Staking and Masternode Rewards
+PIVXL/zPIV Staking and Masternode Rewards
 --------------
 
-### PIV, zPIV and Masternode Payment Schedule
+### PIVXL, zPIV and Masternode Payment Schedule
 
 To encourage the use of zPIV and increase the PIVX zerocoin anonymity set, the PIVX payment schedule has been changed to the following:
 
 If a user staking zPIV wins the reward for their block, the following zPIV reward will be: 
-- 3 zPIV (3 x 1 denominations) rewarded to the staker, 2 PIV rewarded to the masternode owner and 1 PIV available for the budget. This is a total block reward of 6 PIV, up from 5.
+- 3 zPIV (3 x 1 denominations) rewarded to the staker, 2 PIVXL rewarded to the masternode owner and 1 PIVXL available for the budget. This is a total block reward of 6 PIVXL, up from 5.
 
-If a user staking PIV wins the reward, the following amounts will be rewarded: 
-- 2 PIV to the PIV staker, 3 PIV to the Masternode owner and 1 PIV available for the budget. This is a total block reward of 6 PIV, up from 5.
+If a user staking PIVXL wins the reward, the following amounts will be rewarded: 
+- 2 PIVXL to the PIVXL staker, 3 PIVXL to the Masternode owner and 1 PIVXL available for the budget. This is a total block reward of 6 PIVXL, up from 5.
 
 
 ### Return change to sender when minting zPIV
 
-Previously, zPIV minting would send any change to a newly generated "change address". This has caused confusion among some users, and in some cases insufficient backups of the wallet. The wallet will now find the contributing address which contained the most PIV and return the change from a zPIV mint to that address.
+Previously, zPIV minting would send any change to a newly generated "change address". This has caused confusion among some users, and in some cases insufficient backups of the wallet. The wallet will now find the contributing address which contained the most PIVXL and return the change from a zPIV mint to that address.
 
 
 User Experience
@@ -97,9 +97,9 @@ The overview tab has been simplified greatly to display only balances that are a
 ### Wallet Options
 
 There have been a number of changes to the tasks that you are able to perform from the wallet options. Users will now have the ability to do the following: 
--	Enable and disable the auto zPIV minting feature. This is enabled by default and the enablezeromint=0 setting in the pivx.conf file will overwrite the GUI option.
+-	Enable and disable the auto zPIV minting feature. This is enabled by default and the enablezeromint=0 setting in the pivxl.conf file will overwrite the GUI option.
 -	The percentage of autominted zPIV can now be set from 1 to 100, changed from 10 – 100.
--	The stake split threshold can now be set VIA the wallet options. This setting is an advanced feature for those wishing to remain staking regular PIV.
+-	The stake split threshold can now be set VIA the wallet options. This setting is an advanced feature for those wishing to remain staking regular PIVXL.
 -	“Unlock for staking and anonymization only” is now selected by default when unlocking the wallet from the User Interface
 
 
@@ -113,7 +113,7 @@ Backup to external devices / locations
 
 ### Summary
 
- The PIVX wallet can now have user selected directories for automatic backups of the wallet data file (wallet.dat). This can be set by adding the following lines to the pivx.conf file, found in the PIVX data directory.
+ The PIVX wallet can now have user selected directories for automatic backups of the wallet data file (wallet.dat). This can be set by adding the following lines to the pivxl.conf file, found in the PIVX data directory.
 - backuppath = <directory / full path>
 - zpivbackuppath = <directory / full path>
 - custombackupthreshold = <backup limit>
@@ -176,7 +176,7 @@ The PIVX client peer bans now have additional RPC commands to manage peers. Peer
 
 When no `-rpcpassword` is specified, the daemon now uses a special 'cookie' file for authentication. This file is generated with random content when the daemon starts, and deleted when it exits. Its contents are used as authentication token. Read access to this file controls who can access through RPC. By default it is stored in the data directory but its location can be overridden with the option `-rpccookiefile`.
 This is similar to Tor's CookieAuthentication: see https://www.torproject.org/docs/tor-manual.html.en 
-This allows running pivxd without having to do any manual configuration.
+This allows running pivxld without having to do any manual configuration.
 
 
 ### New RPC command
@@ -206,11 +206,11 @@ Network Layer 2 Changes (Proposals / Budgets / SwiftX)
 
 ### Monthly Budget Increase
 
-As voted on by the PIVX masternodes, the monthly budget available to be utilised has been increased to 42,000 PIV / month. This PIV only has the opportunity to be raised once per month (paid to winning proposals) with any unused PIV not created by the blockchain.
+As voted on by the PIVX masternodes, the monthly budget available to be utilised has been increased to 42,000 PIVXL / month. This PIVXL only has the opportunity to be raised once per month (paid to winning proposals) with any unused PIVXL not created by the blockchain.
 
 ### Budget Finalization Fee
 
-The PIVX finalization fee for successful proposals has now been reduced, this fee is now 5 PIV down from 50 PIV. The total fee outlay for a successful proposal is now a total of 55 PIV.
+The PIVX finalization fee for successful proposals has now been reduced, this fee is now 5 PIVXL down from 50 PIVXL. The total fee outlay for a successful proposal is now a total of 55 PIVXL.
 
 
 ### SwiftX Raw Transactions
@@ -280,7 +280,7 @@ The serial troll situation is mitigated in version 2 by requiring that the seria
 Deterministic Zerocoin Generation
 --------------
 
-Zerocoins, or zPIV, are now deterministically generated using a unique 256 bit seed. Each wallet will generate a new seed on its first run. The deterministic seed is used to generate a string of zPIV that can be recalculated at any time using the seed. Deterministic zPIV allows for users to backup all of their future zPIV by simply recording their seed and keeping it in a safe place (similar to backing up a private key for PIV). The zPIV seed needs to remain in the wallet in order to spend the zPIV after it is generated, if the seed is changed then the coins will not be spendable because the wallet will not have the ability to regenerate all of the private zPIV data from the seed. It is important that users record & backup their seed after their first run of the wallet. If the wallet is locked during the first run, then the seed will be generated the first time the wallet is unlocked.
+Zerocoins, or zPIV, are now deterministically generated using a unique 256 bit seed. Each wallet will generate a new seed on its first run. The deterministic seed is used to generate a string of zPIV that can be recalculated at any time using the seed. Deterministic zPIV allows for users to backup all of their future zPIV by simply recording their seed and keeping it in a safe place (similar to backing up a private key for PIVXL). The zPIV seed needs to remain in the wallet in order to spend the zPIV after it is generated, if the seed is changed then the coins will not be spendable because the wallet will not have the ability to regenerate all of the private zPIV data from the seed. It is important that users record & backup their seed after their first run of the wallet. If the wallet is locked during the first run, then the seed will be generated the first time the wallet is unlocked.
 
 Zerocoin Modulus
 --------------
@@ -348,7 +348,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
 ### RPC/REST
  - #562 `772160b1b` [Wallet/RPC] Add argument to mint zerocoin from specific UTXO (warrows)
  - #539 `b6a02e9d6` [RPC] Allow watchonly coins to be shown for listunspent (blondfrogs)
- - #543 `e4522ff07` [RPC] Segfault pivx-cli getinfo while loading block index (Mrs-X)
+ - #543 `e4522ff07` [RPC] Segfault pivxl-cli getinfo while loading block index (Mrs-X)
  - #524 `2541b5001` [RPC] Add blocksizenotify command (Mrs-X)
  - #495 `4946224c1` [RPC] Show script verification errors in signrawtransaction result (Fuzzbawls)
  - #468 `00b8b8e72` [RPC/REST] Migrate to libevent based httpd server (Fuzzbawls)
@@ -405,4 +405,4 @@ Thanks to everyone who directly contributed to this release:
 - PeterL73
 - Anthony Posselli
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivx-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivxl-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.

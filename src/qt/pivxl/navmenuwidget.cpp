@@ -3,10 +3,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/navmenuwidget.h"
-#include "qt/pivx/forms/ui_navmenuwidget.h"
-#include "qt/pivx/pivxgui.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/navmenuwidget.h"
+#include "qt/pivxl/forms/ui_navmenuwidget.h"
+#include "qt/pivxl/pivxlgui.h"
+#include "qt/pivxl/qtutils.h"
 #include "clientversion.h"
 #include "optionsmodel.h"
 

@@ -6,7 +6,7 @@
 
 #include "data/tx_invalid.json.h"
 #include "data/tx_valid.json.h"
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 
 #include "clientversion.h"
 #include "key.h"
@@ -15,7 +15,7 @@
 #include "script/script.h"
 #include "script/script_error.h"
 #include "core_io.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 #include <map>
 #include <string>

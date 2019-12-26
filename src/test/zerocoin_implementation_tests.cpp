@@ -18,7 +18,7 @@
 #include "wallet/wallet.h"
 #include "zpiv/zpivwallet.h"
 #include "zpivchain.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 
 extern bool DecodeHexTx(CTransaction& tx, const std::string& strHexTx);

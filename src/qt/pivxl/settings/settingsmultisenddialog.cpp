@@ -3,11 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingsmultisenddialog.h"
-#include "qt/pivx/settings/forms/ui_settingsmultisenddialog.h"
+#include "qt/pivxl/settings/settingsmultisenddialog.h"
+#include "qt/pivxl/settings/forms/ui_settingsmultisenddialog.h"
 #include <QListView>
 #include <QIntValidator>
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 SettingsMultisendDialog::SettingsMultisendDialog(QWidget *parent) :
     QDialog(parent),

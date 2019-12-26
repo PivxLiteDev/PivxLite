@@ -4,7 +4,7 @@
 <context>
     <name>AddNewAddressDialog</name>
     <message>
-        <location filename="../pivx/forms/addnewaddressdialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/addnewaddressdialog.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -37,7 +37,7 @@
 <context>
     <name>AddNewContactDialog</name>
     <message>
-        <location filename="../pivx/forms/addnewcontactdialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/addnewcontactdialog.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -58,7 +58,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/addnewcontactdialog.cpp" line="+20"/>
+        <location filename="../pivxl/addnewcontactdialog.cpp" line="+20"/>
         <source>Edit Contact</source>
         <translation type="unfinished"></translation>
     </message>
@@ -210,7 +210,7 @@
 <context>
     <name>AddressLabelRow</name>
     <message>
-        <location filename="../pivx/forms/addresslabelrow.ui" line="+20"/>
+        <location filename="../pivxl/forms/addresslabelrow.ui" line="+20"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -251,7 +251,7 @@
 <context>
     <name>AddressesWidget</name>
     <message>
-        <location filename="../pivx/forms/addresseswidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/addresseswidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -272,7 +272,7 @@
     </message>
     <message>
         <location line="+74"/>
-        <location filename="../pivx/addresseswidget.cpp" line="+109"/>
+        <location filename="../pivxl/addresseswidget.cpp" line="+109"/>
         <source>Contact name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -287,7 +287,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/addresseswidget.cpp" line="-28"/>
+        <location filename="../pivxl/addresseswidget.cpp" line="-28"/>
         <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -475,7 +475,7 @@ for staking</source>
     </message>
     <message>
         <location line="+0"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIVXL&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -591,14 +591,14 @@ for staking</source>
     </message>
     <message>
         <location filename="../blockexplorer.cpp" line="+480"/>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivxl.conf).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CSRow</name>
     <message>
-        <location filename="../pivx/forms/csrow.ui" line="+14"/>
+        <location filename="../pivxl/forms/csrow.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -609,7 +609,7 @@ for staking</source>
     </message>
     <message>
         <location line="+20"/>
-        <source>0,00 PIV</source>
+        <source>0,00 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -623,7 +623,7 @@ for staking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/csrow.cpp" line="+27"/>
+        <location filename="../pivxl/csrow.cpp" line="+27"/>
         <source>Own delegation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -708,7 +708,7 @@ for staking</source>
         <location line="+27"/>
         <location line="+72"/>
         <location line="+357"/>
-        <source>0.00 PIV</source>
+        <source>0.00 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -964,7 +964,7 @@ for staking</source>
 <context>
     <name>CoinControlPivWidget</name>
     <message>
-        <location filename="../pivx/forms/coincontrolpivwidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/coincontrolpivwidget.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -980,7 +980,7 @@ for staking</source>
     </message>
     <message>
         <location line="+30"/>
-        <source>PIV:</source>
+        <source>PIVXL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1073,7 +1073,7 @@ for staking</source>
 <context>
     <name>ColdStakingWidget</name>
     <message>
-        <location filename="../pivx/forms/coldstakingwidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/coldstakingwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -1109,7 +1109,7 @@ for staking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/coldstakingwidget.cpp" line="+88"/>
+        <location filename="../pivxl/coldstakingwidget.cpp" line="+88"/>
         <source>Cold Staking</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1136,7 +1136,7 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
     </message>
     <message>
         <location line="+6"/>
-        <source>Delegate or Accept PIV delegation</source>
+        <source>Delegate or Accept PIVXL delegation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1237,7 +1237,7 @@ Do you wish to proceed?</source>
     </message>
     <message>
         <location line="+28"/>
-        <source>You don&apos;t have any PIV to select.</source>
+        <source>You don&apos;t have any PIVXL to select.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1335,7 +1335,7 @@ address</source>
 <context>
     <name>ContactDropdownRow</name>
     <message>
-        <location filename="../pivx/forms/contactdropdownrow.ui" line="+20"/>
+        <location filename="../pivxl/forms/contactdropdownrow.ui" line="+20"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -1353,7 +1353,7 @@ address</source>
 <context>
     <name>DashboardWidget</name>
     <message>
-        <location filename="../pivx/forms/dashboardwidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/dashboardwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -1379,7 +1379,7 @@ address</source>
     </message>
     <message>
         <location line="+93"/>
-        <location filename="../pivx/dashboardwidget.cpp" line="+49"/>
+        <location filename="../pivxl/dashboardwidget.cpp" line="+49"/>
         <source>Staking Rewards</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1398,7 +1398,7 @@ address</source>
     </message>
     <message>
         <location line="+39"/>
-        <source>PIV</source>
+        <source>PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1437,13 +1437,13 @@ address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/dashboardwidget.cpp" line="+5"/>
+        <location filename="../pivxl/dashboardwidget.cpp" line="+5"/>
         <source>You can view your account&apos;s history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Amount of PIV and zPIV staked.</source>
+        <source>Amount of PIVXL and zPIV staked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1513,7 +1513,7 @@ address</source>
     </message>
     <message>
         <location line="+5"/>
-        <source>How to get PIV or zPIV</source>
+        <source>How to get PIVXL or zPIV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1559,7 +1559,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>DefaultDialog</name>
     <message>
-        <location filename="../pivx/forms/defaultdialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/defaultdialog.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -1587,7 +1587,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>DenomGenerationDialog</name>
     <message>
-        <location filename="../pivx/forms/denomgenerationdialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/denomgenerationdialog.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -1728,7 +1728,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>ExpandableButton</name>
     <message>
-        <location filename="../pivx/forms/expandablebutton.ui" line="+26"/>
+        <location filename="../pivxl/forms/expandablebutton.ui" line="+26"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -1964,7 +1964,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>LoadingDialog</name>
     <message>
-        <location filename="../pivx/forms/loadingdialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/loadingdialog.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -1975,7 +1975,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+44"/>
-        <location filename="../pivx/loadingdialog.cpp" line="+43"/>
+        <location filename="../pivxl/loadingdialog.cpp" line="+43"/>
         <source>Loading</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1988,12 +1988,12 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>LockUnlock</name>
     <message>
-        <location filename="../pivx/forms/lockunlock.ui" line="+14"/>
+        <location filename="../pivxl/forms/lockunlock.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
     <message>
-        <location filename="../pivx/lockunlock.cpp" line="+26"/>
+        <location filename="../pivxl/lockunlock.cpp" line="+26"/>
         <source>Unlock Wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2011,7 +2011,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>MNRow</name>
     <message>
-        <location filename="../pivx/forms/mnrow.ui" line="+14"/>
+        <location filename="../pivxl/forms/mnrow.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -2034,7 +2034,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>MasterNodeWizardDialog</name>
     <message>
-        <location filename="../pivx/forms/masternodewizarddialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/masternodewizarddialog.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2075,7 +2075,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+23"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2090,7 +2090,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node&apos;s name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node&apos;s name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2124,7 +2124,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/masternodewizarddialog.cpp" line="+51"/>
+        <location filename="../pivxl/masternodewizarddialog.cpp" line="+51"/>
         <source>e.g user_masternode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2237,7 +2237,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
 <context>
     <name>MasterNodesWidget</name>
     <message>
-        <location filename="../pivx/forms/masternodeswidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/masternodeswidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -2253,7 +2253,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/masternodeswidget.cpp" line="+90"/>
+        <location filename="../pivxl/masternodeswidget.cpp" line="+90"/>
         <source>Masternodes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2316,7 +2316,7 @@ Please wait few more minutes.</source>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press &quot;start&quot;).
 </source>
@@ -2357,7 +2357,7 @@ Are you sure?</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>Not enough balance to create a masternode, 10,000 PIV required.</source>
+        <source>Not enough balance to create a masternode, 10,000 PIVXL required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2369,13 +2369,13 @@ Are you sure?</source>
 <context>
     <name>MnInfoDialog</name>
     <message>
-        <location filename="../pivx/forms/mninfodialog.ui" line="+20"/>
+        <location filename="../pivxl/forms/mninfodialog.ui" line="+20"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location line="+84"/>
-        <location filename="../pivx/mninfodialog.cpp" line="+20"/>
+        <location filename="../pivxl/mninfodialog.cpp" line="+20"/>
         <source>Master Node Information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2434,7 +2434,7 @@ Are you sure?</source>
 <context>
     <name>MyAddressRow</name>
     <message>
-        <location filename="../pivx/forms/myaddressrow.ui" line="+14"/>
+        <location filename="../pivxl/forms/myaddressrow.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -2457,7 +2457,7 @@ Are you sure?</source>
 <context>
     <name>NavMenuWidget</name>
     <message>
-        <location filename="../pivx/forms/navmenuwidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/navmenuwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -2467,7 +2467,7 @@ Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/navmenuwidget.cpp" line="+22"/>
+        <location filename="../pivxl/navmenuwidget.cpp" line="+22"/>
         <source>v%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2521,14 +2521,14 @@ Are you sure?</source>
     </message>
     <message>
         <location line="+6"/>
-        <source>Invalid URI, not starting with &quot;pivx&quot; prefix</source>
+        <source>Invalid URI, not starting with &quot;pivxl&quot; prefix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>OptionButton</name>
     <message>
-        <location filename="../pivx/forms/optionbutton.ui" line="+14"/>
+        <location filename="../pivxl/forms/optionbutton.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -2654,7 +2654,7 @@ Are you sure?</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2664,7 +2664,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     </message>
     <message>
         <location line="-187"/>
-        <source>Enable automatic minting of PIV units to zPIV</source>
+        <source>Enable automatic minting of PIVXL units to zPIV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2684,7 +2684,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2695,7 +2695,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     <message>
         <location line="+30"/>
         <location line="+16"/>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2895,7 +2895,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <location filename="../pivx/pivxgui.cpp" line="+53"/>
+        <location filename="../pivxl/pivxlgui.cpp" line="+53"/>
         <location line="+294"/>
         <location line="+68"/>
         <source>PIVX Core</source>
@@ -2985,7 +2985,7 @@ Address: %4
 </translation>
     </message>
     <message>
-        <location filename="../pivx.cpp" line="+505"/>
+        <location filename="../pivxl.cpp" line="+505"/>
         <source>A fatal error occurred. PIVX can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2993,7 +2993,7 @@ Address: %4
 <context>
     <name>PWidget</name>
     <message>
-        <location filename="../pivx/pwidget.cpp" line="+94"/>
+        <location filename="../pivxl/pwidget.cpp" line="+94"/>
         <source>Wallet locked, you need to unlock it to perform this action</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3034,7 +3034,7 @@ Address: %4
     </message>
     <message>
         <location line="-104"/>
-        <source>Cannot start pivx: click-to-pay handler</source>
+        <source>Cannot start pivxl: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3141,7 +3141,7 @@ Address: %4
 <context>
     <name>PrivacyWidget</name>
     <message>
-        <location filename="../pivx/forms/privacywidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/privacywidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -3187,7 +3187,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/privacywidget.cpp" line="+38"/>
+        <location filename="../pivxl/privacywidget.cpp" line="+38"/>
         <source>Privacy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3203,13 +3203,13 @@ Address: %4
     </message>
     <message>
         <location line="+4"/>
-        <source>Minting zPIV anonymizes your PIV by removing any
+        <source>Minting zPIV anonymizes your PIVXL by removing any
 transaction history, making transactions untraceable </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Mint new zPIV or convert back to PIV</source>
+        <source>Mint new zPIV or convert back to PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3229,17 +3229,17 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Enter amount of PIV to mint into zPIV</source>
+        <source>Enter amount of PIVXL to mint into zPIV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Convert back to PIV</source>
+        <source>Convert back to PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Enter amount of zPIV to convert back into PIV</source>
+        <source>Enter amount of zPIV to convert back into PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3279,12 +3279,12 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <location line="+22"/>
-        <source>zPIV converted back to PIV</source>
+        <source>zPIV converted back to PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>You don&apos;t have any PIV to select.</source>
+        <source>You don&apos;t have any PIVXL to select.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3466,7 +3466,7 @@ transaction history, making transactions untraceable </source>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <location filename="../pivx.cpp" line="+75"/>
+        <location filename="../pivxl.cpp" line="+75"/>
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
@@ -4049,7 +4049,7 @@ transaction history, making transactions untraceable </source>
 <context>
     <name>ReceiveDialog</name>
     <message>
-        <location filename="../pivx/forms/receivedialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/receivedialog.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4077,7 +4077,7 @@ transaction history, making transactions untraceable </source>
 <context>
     <name>ReceiveWidget</name>
     <message>
-        <location filename="../pivx/forms/receivewidget.ui" line="+20"/>
+        <location filename="../pivxl/forms/receivewidget.ui" line="+20"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -4091,36 +4091,36 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <location line="+25"/>
-        <location filename="../pivx/receivewidget.cpp" line="+218"/>
+        <location filename="../pivxl/receivewidget.cpp" line="+218"/>
         <source>No address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+31"/>
-        <location filename="../pivx/receivewidget.cpp" line="-150"/>
+        <location filename="../pivxl/receivewidget.cpp" line="-150"/>
         <source>Add Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <location filename="../pivx/receivewidget.cpp" line="+4"/>
+        <location filename="../pivxl/receivewidget.cpp" line="+4"/>
         <source>Generate Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <location filename="../pivx/receivewidget.cpp" line="+4"/>
+        <location filename="../pivxl/receivewidget.cpp" line="+4"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/receivewidget.cpp" line="-32"/>
+        <location filename="../pivxl/receivewidget.cpp" line="-32"/>
         <source>Receive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Scan the QR code or copy the address to receive PIV.</source>
+        <source>Scan the QR code or copy the address to receive PIVXL.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4227,13 +4227,13 @@ transaction history, making transactions untraceable </source>
 <context>
     <name>RequestDialog</name>
     <message>
-        <location filename="../pivx/forms/requestdialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/requestdialog.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+81"/>
-        <location filename="../pivx/requestdialog.cpp" line="+25"/>
+        <location filename="../pivxl/requestdialog.cpp" line="+25"/>
         <source>New Request Payment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4244,13 +4244,13 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <location line="+43"/>
-        <location filename="../pivx/requestdialog.cpp" line="+17"/>
+        <location filename="../pivxl/requestdialog.cpp" line="+17"/>
         <source>Amount</source>
         <translation type="unfinished">Amount</translation>
     </message>
     <message>
         <location line="+71"/>
-        <source>PIV</source>
+        <source>PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4285,7 +4285,7 @@ transaction history, making transactions untraceable </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/requestdialog.cpp" line="-14"/>
+        <location filename="../pivxl/requestdialog.cpp" line="-14"/>
         <source>Instead of only sharing a PIVX address, you can create a Payment Request message which bundles up more information than is contained in just a PIVX address.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4338,7 +4338,7 @@ transaction history, making transactions untraceable </source>
 <context>
     <name>SendChangeAddressDialog</name>
     <message>
-        <location filename="../pivx/forms/sendchangeaddressdialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/sendchangeaddressdialog.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4363,7 +4363,7 @@ transaction history, making transactions untraceable </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/sendchangeaddressdialog.cpp" line="+21"/>
+        <location filename="../pivxl/sendchangeaddressdialog.cpp" line="+21"/>
         <source>Custom Change Address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4376,7 +4376,7 @@ transaction history, making transactions untraceable </source>
 <context>
     <name>SendCustomFeeDialog</name>
     <message>
-        <location filename="../pivx/forms/sendcustomfeedialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/sendcustomfeedialog.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -4421,7 +4421,7 @@ transaction history, making transactions untraceable </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/sendcustomfeedialog.cpp" line="+25"/>
+        <location filename="../pivxl/sendcustomfeedialog.cpp" line="+25"/>
         <source>Customize Fee</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4454,7 +4454,7 @@ transaction history, making transactions untraceable </source>
 <context>
     <name>SendMultiRow</name>
     <message>
-        <location filename="../pivx/forms/sendmultirow.ui" line="+26"/>
+        <location filename="../pivxl/forms/sendmultirow.ui" line="+26"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -4464,7 +4464,7 @@ transaction history, making transactions untraceable </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/sendmultirow.cpp" line="+22"/>
+        <location filename="../pivxl/sendmultirow.cpp" line="+22"/>
         <source>Add address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4477,13 +4477,13 @@ transaction history, making transactions untraceable </source>
 <context>
     <name>SendWidget</name>
     <message>
-        <location filename="../pivx/send.cpp" line="+44"/>
+        <location filename="../pivxl/send.cpp" line="+44"/>
         <source>Send</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+12"/>
-        <source>You can transfer public coins (PIV) or private coins (zPIV)</source>
+        <source>You can transfer public coins (PIVXL) or private coins (zPIV)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4528,7 +4528,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <location line="+40"/>
-        <source>Send PIV</source>
+        <source>Send PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4676,7 +4676,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <location line="+23"/>
-        <source>You don&apos;t have any PIV to select.</source>
+        <source>You don&apos;t have any PIVXL to select.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4733,7 +4733,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
 <context>
     <name>SettingsBackupWallet</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsbackupwallet.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsbackupwallet.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -4747,7 +4747,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsbackupwallet.cpp" line="+26"/>
+        <location filename="../pivxl/settings/settingsbackupwallet.cpp" line="+26"/>
         <source>Backup Wallet </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4818,7 +4818,7 @@ Remember to write it down and store it safely, otherwise you might lose access t
 <context>
     <name>SettingsBitToolWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsbittoolwidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsbittoolwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -4846,7 +4846,7 @@ Remember to write it down and store it safely, otherwise you might lose access t
     </message>
     <message>
         <location line="+63"/>
-        <location filename="../pivx/settings/settingsbittoolwidget.cpp" line="+74"/>
+        <location filename="../pivxl/settings/settingsbittoolwidget.cpp" line="+74"/>
         <source>Import Address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4857,7 +4857,7 @@ Remember to write it down and store it safely, otherwise you might lose access t
         <translation type="unfinished">Clear</translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsbittoolwidget.cpp" line="-39"/>
+        <location filename="../pivxl/settings/settingsbittoolwidget.cpp" line="-39"/>
         <source>BIP38 Tool</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5034,7 +5034,7 @@ Remember to write it down and store it safely, otherwise you might lose access t
 <context>
     <name>SettingsConsoleWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsconsolewidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsconsolewidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -5044,7 +5044,7 @@ Remember to write it down and store it safely, otherwise you might lose access t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsconsolewidget.cpp" line="+254"/>
+        <location filename="../pivxl/settings/settingsconsolewidget.cpp" line="+254"/>
         <source>Console</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5093,7 +5093,7 @@ Verify that you have installed a predetermined text editor.</source>
 <context>
     <name>SettingsDisplayOptionsWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsdisplayoptionswidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsdisplayoptionswidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -5109,7 +5109,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+58"/>
-        <location filename="../pivx/settings/settingsdisplayoptionswidget.cpp" line="+97"/>
+        <location filename="../pivxl/settings/settingsdisplayoptionswidget.cpp" line="+97"/>
         <source>Reset to default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5119,7 +5119,7 @@ Verify that you have installed a predetermined text editor.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsdisplayoptionswidget.cpp" line="-68"/>
+        <location filename="../pivxl/settings/settingsdisplayoptionswidget.cpp" line="-68"/>
         <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5172,7 +5172,7 @@ Verify that you have installed a predetermined text editor.</source>
 <context>
     <name>SettingsFaqWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsfaqwidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsfaqwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -5195,7 +5195,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+31"/>
-        <source>2) Why are my PIV unspendable?</source>
+        <source>2) Why are my PIVXL unspendable?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5216,12 +5216,12 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+23"/>
-        <source>6) How do I receive PIV/zPIV?</source>
+        <source>6) How do I receive PIVXL/zPIV?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+22"/>
-        <source>7) How do I stake PIV/zPIV?</source>
+        <source>7) How do I stake PIVXL/zPIV?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5274,7 +5274,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+21"/>
-        <source>Why are my PIV unspendable?</source>
+        <source>Why are my PIVXL unspendable?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5348,13 +5348,13 @@ Verify that you have installed a predetermined text editor.</source>
         <location line="+26"/>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
-                           By default the PIVX wallet will convert 10% of your entire PIV
+                           By default the PIVX wallet will convert 10% of your entire PIVXL
                            balance to zPIV to assist the network. If you do not wish to
                            stake zPIV or take advantage of the privacy benefit it brings,
                            you can disable the automatic minting in your PIVX wallet by
                            going to Settings-&gt;Options and deselecting “Enable zPIV Automint”.
                            If you are not making use of the PIVX-QT or GUI you can simply open
-                           your pivx.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
+                           your pivxl.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
                            marks and restart your wallet to disable automint.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
                            You can read more about zPIV in the
@@ -5372,7 +5372,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+21"/>
-        <source>How do I receive PIV/zPIV?</source>
+        <source>How do I receive PIVXL/zPIV?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5394,7 +5394,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>How do I stake PIV/zPIV?</source>
+        <source>How do I stake PIVXL/zPIV?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5412,7 +5412,7 @@ Verify that you have installed a predetermined text editor.</source>
                            &lt;li&gt;
                            Once all those steps are followed staking should be enabled.
                            &lt;li&gt;
-                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &quot;Staking Enabled&quot; to indicate it is staking.  Using the command line interface (pivx-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
+                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &quot;Staking Enabled&quot; to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
                            To Stake zPIV:
@@ -5468,7 +5468,7 @@ Verify that you have installed a predetermined text editor.</source>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            A masternode is a computer running a full node PIVX core wallet with a
-                           requirement of 10,000 PIV secured collateral to provide extra services
+                           requirement of 10,000 PIVXL secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
@@ -5500,7 +5500,7 @@ Verify that you have installed a predetermined text editor.</source>
                            Requirements:
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;10,000 PIVXL per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -5521,11 +5521,11 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+26"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;A Masternode Controller wallet is where the 10,000 PIV collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;A Masternode Controller wallet is where the 10,000 PIVXL collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsfaqwidget.cpp" line="+19"/>
+        <location filename="../pivxl/settings/settingsfaqwidget.cpp" line="+19"/>
         <source>Frequently Asked Questions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5543,7 +5543,7 @@ Verify that you have installed a predetermined text editor.</source>
 <context>
     <name>SettingsInformationWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsinformationwidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsinformationwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -5578,12 +5578,12 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="-536"/>
-        <location filename="../pivx/settings/settingsinformationwidget.cpp" line="+96"/>
+        <location filename="../pivxl/settings/settingsinformationwidget.cpp" line="+96"/>
         <source>Network Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsinformationwidget.cpp" line="-67"/>
+        <location filename="../pivxl/settings/settingsinformationwidget.cpp" line="-67"/>
         <source>Information</source>
         <translation type="unfinished">Information</translation>
     </message>
@@ -5684,7 +5684,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Unable to open pivx.conf with default application</source>
+        <source>Unable to open pivxl.conf with default application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5701,7 +5701,7 @@ Verify that you have installed a predetermined text editor.</source>
 <context>
     <name>SettingsMainOptionsWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsmainoptionswidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsmainoptionswidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -5731,7 +5731,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+40"/>
-        <location filename="../pivx/settings/settingsmainoptionswidget.cpp" line="+81"/>
+        <location filename="../pivxl/settings/settingsmainoptionswidget.cpp" line="+81"/>
         <source>Reset to default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5742,12 +5742,12 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <location line="+38"/>
-        <location filename="../pivx/settings/settingsmainoptionswidget.cpp" line="-1"/>
+        <location filename="../pivxl/settings/settingsmainoptionswidget.cpp" line="-1"/>
         <source>SAVE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsmainoptionswidget.cpp" line="-31"/>
+        <location filename="../pivxl/settings/settingsmainoptionswidget.cpp" line="-31"/>
         <source>Main</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5798,7 +5798,7 @@ Are you sure?
 <context>
     <name>SettingsMultisendDialog</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsmultisenddialog.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsmultisenddialog.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -5825,7 +5825,7 @@ Are you sure?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsmultisenddialog.cpp" line="+24"/>
+        <location filename="../pivxl/settings/settingsmultisenddialog.cpp" line="+24"/>
         <source>New recipient for multisend</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5848,7 +5848,7 @@ Are you sure?
 <context>
     <name>SettingsMultisendWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingsmultisendwidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingsmultisendwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -5870,7 +5870,7 @@ Are you sure?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsmultisendwidget.cpp" line="+156"/>
+        <location filename="../pivxl/settings/settingsmultisendwidget.cpp" line="+156"/>
         <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other PIVX addresses after it matures.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5980,7 +5980,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
 <context>
     <name>SettingsSignMessageWidgets</name>
     <message>
-        <location filename="../pivx/settings/forms/settingssignmessagewidgets.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingssignmessagewidgets.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -6000,7 +6000,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation type="unfinished">Clear</translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingssignmessagewidgets.cpp" line="+35"/>
+        <location filename="../pivxl/settings/settingssignmessagewidgets.cpp" line="+35"/>
         <source>Sign/Verify Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6146,7 +6146,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
 <context>
     <name>SettingsWalletOptionsWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingswalletoptionswidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingswalletoptionswidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -6175,7 +6175,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
     </message>
     <message>
         <location line="+139"/>
-        <location filename="../pivx/settings/settingswalletoptionswidget.cpp" line="+69"/>
+        <location filename="../pivxl/settings/settingswalletoptionswidget.cpp" line="+69"/>
         <source>Reset to default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6185,7 +6185,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingswalletoptionswidget.cpp" line="-43"/>
+        <location filename="../pivxl/settings/settingswalletoptionswidget.cpp" line="-43"/>
         <source>Wallet</source>
         <translation type="unfinished">Wallet</translation>
     </message>
@@ -6258,7 +6258,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
 <context>
     <name>SettingsWalletRepairWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingswalletrepairwidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingswalletrepairwidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -6276,7 +6276,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingswalletrepairwidget.cpp" line="+22"/>
+        <location filename="../pivxl/settings/settingswalletrepairwidget.cpp" line="+22"/>
         <source>Wallet Repair</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6384,7 +6384,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="../pivx/settings/forms/settingswidget.ui" line="+14"/>
+        <location filename="../pivxl/settings/forms/settingswidget.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -6475,7 +6475,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingswidget.cpp" line="+47"/>
+        <location filename="../pivxl/settings/settingswidget.cpp" line="+47"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6560,7 +6560,7 @@ Are you sure?
 <context>
     <name>SnackBar</name>
     <message>
-        <location filename="../pivx/forms/snackbar.ui" line="+26"/>
+        <location filename="../pivxl/forms/snackbar.ui" line="+26"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -6573,7 +6573,7 @@ Are you sure?
 <context>
     <name>Splash</name>
     <message>
-        <location filename="../pivx/forms/splash.ui" line="+26"/>
+        <location filename="../pivxl/forms/splash.ui" line="+26"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -6583,7 +6583,7 @@ Are you sure?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/splash.cpp" line="+29"/>
+        <location filename="../pivxl/splash.cpp" line="+29"/>
         <source>PIVX Core</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6624,7 +6624,7 @@ Are you sure?
 <context>
     <name>TooltipMenu</name>
     <message>
-        <location filename="../pivx/forms/tooltipmenu.ui" line="+26"/>
+        <location filename="../pivxl/forms/tooltipmenu.ui" line="+26"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -6652,14 +6652,14 @@ Are you sure?
 <context>
     <name>TopBar</name>
     <message>
-        <location filename="../pivx/forms/topbar.ui" line="+26"/>
+        <location filename="../pivxl/forms/topbar.ui" line="+26"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location line="+96"/>
         <location line="+279"/>
-        <source>480.0685 PIV</source>
+        <source>480.0685 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6682,7 +6682,7 @@ Are you sure?
     </message>
     <message>
         <location line="-104"/>
-        <source>6.943 PIV</source>
+        <source>6.943 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6693,7 +6693,7 @@ Are you sure?
     </message>
     <message>
         <location line="-104"/>
-        <source>10 PIV</source>
+        <source>10 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6707,7 +6707,7 @@ Are you sure?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/topbar.cpp" line="+240"/>
+        <location filename="../pivxl/topbar.cpp" line="+240"/>
         <source>Wallet Unlocked for staking</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7140,7 +7140,7 @@ Are you sure?
     </message>
     <message>
         <location line="+7"/>
-        <source>PIV Stake</source>
+        <source>PIVXL Stake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7150,12 +7150,12 @@ Are you sure?
     </message>
     <message>
         <location line="+2"/>
-        <source>PIV Cold Stake</source>
+        <source>PIVXL Cold Stake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>PIV Stake in behalf of</source>
+        <source>PIVXL Stake in behalf of</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7185,7 +7185,7 @@ Are you sure?
     </message>
     <message>
         <location line="+4"/>
-        <source>Converted PIV to zPIV</source>
+        <source>Converted PIVXL to zPIV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7195,7 +7195,7 @@ Are you sure?
     </message>
     <message>
         <location line="+2"/>
-        <source>Received PIV from zPIV</source>
+        <source>Received PIVXL from zPIV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7205,7 +7205,7 @@ Are you sure?
     </message>
     <message>
         <location line="+2"/>
-        <source>Converted zPIV to PIV</source>
+        <source>Converted zPIV to PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7287,13 +7287,13 @@ Are you sure?
 <context>
     <name>TxDetailDialog</name>
     <message>
-        <location filename="../pivx/forms/sendconfirmdialog.ui" line="+26"/>
+        <location filename="../pivxl/forms/sendconfirmdialog.ui" line="+26"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location line="+90"/>
-        <location filename="../pivx/sendconfirmdialog.cpp" line="+74"/>
+        <location filename="../pivxl/sendconfirmdialog.cpp" line="+74"/>
         <source>Transaction Details</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7324,7 +7324,7 @@ Are you sure?
     </message>
     <message>
         <location line="+7"/>
-        <source>2 PIV</source>
+        <source>2 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7354,7 +7354,7 @@ Are you sure?
     </message>
     <message>
         <location line="+7"/>
-        <source>0.0001 PIV</source>
+        <source>0.0001 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7423,7 +7423,7 @@ Are you sure?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/sendconfirmdialog.cpp" line="-26"/>
+        <location filename="../pivxl/sendconfirmdialog.cpp" line="-26"/>
         <source>Confirm Your Transaction</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7446,7 +7446,7 @@ Are you sure?
 <context>
     <name>TxRow</name>
     <message>
-        <location filename="../pivx/forms/txrow.ui" line="+20"/>
+        <location filename="../pivxl/forms/txrow.ui" line="+20"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
@@ -7462,7 +7462,7 @@ Are you sure?
     </message>
     <message>
         <location line="+15"/>
-        <source>+0.000585 PIV</source>
+        <source>+0.000585 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7478,14 +7478,14 @@ Are you sure?
     <message>
         <location line="-18"/>
         <location line="+9"/>
-        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
+        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WalletPasswordDialog</name>
     <message>
-        <location filename="../pivx/forms/walletpassworddialog.ui" line="+14"/>
+        <location filename="../pivxl/forms/walletpassworddialog.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7515,7 +7515,7 @@ Are you sure?
 <context>
     <name>WelcomeContentWidget</name>
     <message>
-        <location filename="../pivx/forms/welcomecontentwidget.ui" line="+14"/>
+        <location filename="../pivxl/forms/welcomecontentwidget.ui" line="+14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7596,7 +7596,7 @@ PIVX Core Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/welcomecontentwidget.cpp" line="+173"/>
+        <location filename="../pivxl/welcomecontentwidget.cpp" line="+173"/>
         <source>default</source>
         <translation type="unfinished">default</translation>
     </message>
@@ -7655,9 +7655,9 @@ PIVX Core Wallet</source>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
-        <location filename="../pivxstrings.cpp" line="+15"/>
+        <location filename="../pivxlstrings.cpp" line="+15"/>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation type="unfinished">(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</translation>
     </message>
@@ -7738,7 +7738,7 @@ PIVX Core Wallet</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7788,12 +7788,12 @@ PIVX Core Wallet</source>
     </message>
     <message>
         <location line="+8"/>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7948,12 +7948,12 @@ PIVX Core Wallet</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIVXL.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIVXL.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8328,7 +8328,7 @@ PIVX Core Wallet</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8453,7 +8453,7 @@ PIVX Core Wallet</source>
     </message>
     <message>
         <location line="+9"/>
-        <source>Recalculating PIV supply...</source>
+        <source>Recalculating PIVXL supply...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8468,7 +8468,7 @@ PIVX Core Wallet</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
+        <source>Reindex the PIVXL and zPIV money supply statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9347,7 +9347,7 @@ PIVX Core Wallet</source>
 <context>
     <name>send</name>
     <message>
-        <location filename="../pivx/forms/send.ui" line="+14"/>
+        <location filename="../pivxl/forms/send.ui" line="+14"/>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>

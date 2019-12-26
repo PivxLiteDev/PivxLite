@@ -3,11 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/dashboardwidget.h"
-#include "qt/pivx/forms/ui_dashboardwidget.h"
-#include "qt/pivx/sendconfirmdialog.h"
-#include "qt/pivx/txrow.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/dashboardwidget.h"
+#include "qt/pivxl/forms/ui_dashboardwidget.h"
+#include "qt/pivxl/sendconfirmdialog.h"
+#include "qt/pivxl/txrow.h"
+#include "qt/pivxl/qtutils.h"
 #include "guiutil.h"
 #include "walletmodel.h"
 #include "clientmodel.h"
@@ -56,7 +56,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     setCssSubtitleScreen(ui->labelSubtitle);
 
     // Staking Information
-    ui->labelMessage->setText(tr("Amount of PIV and zPIV staked."));
+    ui->labelMessage->setText(tr("Amount of PIVXL and zPIV staked."));
     setCssSubtitleScreen(ui->labelMessage);
     setCssProperty(ui->labelSquarePiv, "square-chart-piv");
     setCssProperty(ui->labelSquarezPiv, "square-chart-zpiv");
@@ -70,7 +70,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     setCssProperty(ui->labelChart, "legend-chart");
 
     ui->labelAmountZpiv->setText("0 zPIV");
-    ui->labelAmountPiv->setText("0 PIV");
+    ui->labelAmountPiv->setText("0 PIVXL");
     setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
     setCssProperty(ui->labelAmountZpiv, "text-stake-zpiv-disable");
 
@@ -141,7 +141,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     setCssProperty(ui->chartContainer, "container-chart");
     setCssProperty(ui->pushImgEmptyChart, "img-empty-staking-on");
 
-    ui->btnHowTo->setText(tr("How to get PIV or zPIV"));
+    ui->btnHowTo->setText(tr("How to get PIVXL or zPIV"));
     setCssBtnSecondary(ui->btnHowTo);
 
 
@@ -235,7 +235,7 @@ void DashboardWidget::loadWalletModel(){
         loadChart();
 #endif
     }
-    // update the display unit, to not use the default ("PIV")
+    // update the display unit, to not use the default ("PIVXL")
     updateDisplayUnit();
 }
 
@@ -496,7 +496,7 @@ void DashboardWidget::updateStakeFilter() {
     }
 }
 
-// pair PIV, zPIV
+// pair PIVXL, zPIV
 const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
     updateStakeFilter();
     const int size = stakesFilter->rowCount();
@@ -551,7 +551,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames) {
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair PIV, zPIV
+    chartData->amountsByCache = getAmountBy(); // pair PIVXL, zPIV
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {
@@ -632,7 +632,7 @@ void DashboardWidget::onChartRefreshed() {
         axisX->clear();
     }
     // init sets
-    set0 = new QBarSet("PIV");
+    set0 = new QBarSet("PIVXL");
     set1 = new QBarSet("zPIV");
     set0->setColor(QColor(92,75,125));
     set1->setColor(QColor(176,136,255));

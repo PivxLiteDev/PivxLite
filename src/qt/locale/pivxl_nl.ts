@@ -377,15 +377,15 @@ voor bewijs van Inzet</translation>
     </message>
     <message>
         <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX zal nu afsluiten om het versleutelingsproces te voltooien. Onthoud dat het versleutelen van uw portemonnee u niet volledig kan beschermen tegen malware infecties op uw computer die uw PIV's kunnen stelen.</translation>
+        <translation>PIVX zal nu afsluiten om het versleutelingsproces te voltooien. Onthoud dat het versleutelen van uw portemonnee u niet volledig kan beschermen tegen malware infecties op uw computer die uw PIVXL's kunnen stelen.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Weet u zeker dat u uw portemonnee wilt versleutelen?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Waarschuwing: Als u uw portemonnee versleutelt en uw wachtwoord vergeet, zult u &lt;b&gt;AL UW PIV VERLIEZEN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIVXL&lt;/b&gt;!</source>
+        <translation>Waarschuwing: Als u uw portemonnee versleutelt en uw wachtwoord vergeet, zult u &lt;b&gt;AL UW PIVXL VERLIEZEN&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -470,8 +470,8 @@ voor bewijs van Inzet</translation>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
-        <translation>Niet alle transacties zullen worden getoond. Om alle transacties te bekijken moet u txindex=1 instellen in het configuratie bestand (pivx.conf).</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivxl.conf).</source>
+        <translation>Niet alle transacties zullen worden getoond. Om alle transacties te bekijken moet u txindex=1 instellen in het configuratie bestand (pivxl.conf).</translation>
     </message>
 </context>
 <context>
@@ -485,8 +485,8 @@ voor bewijs van Inzet</translation>
         <translation>Besparingen</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0,00 PIV</translation>
+        <source>0,00 PIVXL</source>
+        <translation>0,00 PIVXL</translation>
     </message>
     <message>
         <source>address</source>
@@ -563,8 +563,8 @@ voor bewijs van Inzet</translation>
         <translation>Druk Knop</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0.00 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -774,8 +774,8 @@ voor bewijs van Inzet</translation>
         <translation>Druk Knop</translation>
     </message>
     <message>
-        <source>PIV:</source>
-        <translation>PIV:</translation>
+        <source>PIVXL:</source>
+        <translation>PIVXL:</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -903,8 +903,8 @@ laten staken in jouw naam, waardoor de sleutels in een veilige offline opslag be
         <translation>Eigenaarsadres toevoegen</translation>
     </message>
     <message>
-        <source>Delegate or Accept PIV delegation</source>
-        <translation>Delegeer of Accepteer PIV delegatie</translation>
+        <source>Delegate or Accept PIVXL delegation</source>
+        <translation>Delegeer of Accepteer PIVXL delegatie</translation>
     </message>
     <message>
         <source>Delegate</source>
@@ -947,8 +947,8 @@ laten staken in jouw naam, waardoor de sleutels in een veilige offline opslag be
         <translation>Ongeldige invoer</translation>
     </message>
     <message>
-        <source>Invalid entry, minimum delegable amount is 10 PIV</source>
-        <translation>Ongeldige invoer, de minimum gedelegeerde hoeveelheid is 10 PIV</translation>
+        <source>Invalid entry, minimum delegable amount is 10 PIVXL</source>
+        <translation>Ongeldige invoer, de minimum gedelegeerde hoeveelheid is 10 PIVXL</translation>
     </message>
     <message>
         <source>Owner address invalid</source>
@@ -987,8 +987,8 @@ Wil je verdergaan?</translation>
         <translation>Gedelegeerde Munten</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Je hebt geen PIV om te selecteren</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Je hebt geen PIVXL om te selecteren</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -1118,8 +1118,8 @@ address</source>
         <translation>Staking statistieken</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>zPIV</source>
@@ -1154,8 +1154,8 @@ address</source>
         <translation>U kunt de geschiedenis van uw account bekijken</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>Hoeveelheid aan gestaked PIV en zPIV.</translation>
+        <source>Amount of PIVXL and zPIV staked.</source>
+        <translation>Hoeveelheid aan gestaked PIVXL en zPIV.</translation>
     </message>
     <message>
         <source>All</source>
@@ -1210,8 +1210,8 @@ address</source>
         <translation>Nog geen transacties</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
-        <translation>Hoe PIV of zPIV verkrijgen</translation>
+        <source>How to get PIVXL or zPIV</source>
+        <translation>Hoe PIVXL of zPIV verkrijgen</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1664,8 +1664,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Creëer een Nieuwe Masternode Controller</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Om een PIVX Masternode te maken moet u 10.000 PIV (de eenheid van PIVX) aan het netwerk wijden (deze munten zijn echter nog steeds van u en zullen nooit uw bezit verlaten). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;U kunt de node op elk gewenst moment deactiveren en de munten ontgrendelen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Om een PIVX Masternode te maken moet u 10.000 PIVXL (de eenheid van PIVX) aan het netwerk wijden (deze munten zijn echter nog steeds van u en zullen nooit uw bezit verlaten). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;U kunt de node op elk gewenst moment deactiveren en de munten ontgrendelen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
@@ -1676,8 +1676,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Masternode's Naam instellen</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Een transactie van 10,000 PIV zal gemaakt worden&lt;/p&gt;&lt;p&gt;naar een nieuw leeg adres in uw portemonnee.&lt;/p&gt;&lt;p&gt;Het adres is gelabeld onder de masternode's naam.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Een transactie van 10,000 PIVXL zal gemaakt worden&lt;/p&gt;&lt;p&gt;naar een nieuw leeg adres in uw portemonnee.&lt;/p&gt;&lt;p&gt;Het adres is gelabeld onder de masternode's naam.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Master Node’s IP and port</source>
@@ -1865,7 +1865,7 @@ Gelieve nog enkele minuten te wachten.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1873,7 +1873,7 @@ this controller wallet (select the Masternode in the list and press "start").
 op een externe server aan uw klembord.
 
 
-U hoeft alleen de gegevens in het pivx.conf bestand te plakken
+U hoeft alleen de gegevens in het pivxl.conf bestand te plakken
 van uw externe server en start deze vervolgens de Masternode met
 deze controller portemonnee (selecteer de Masternode in de lijst en druk op "start").</translation>
     </message>
@@ -1908,8 +1908,8 @@ Weet je het zeker?</translation>
         <translation>masternode.conf bestand bestaat niet</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 10,000 PIV required.</source>
-        <translation>Niet genoeg balans om een masternode te creëren, 10,000 PIV vereist.</translation>
+        <source>Not enough balance to create a masternode, 10,000 PIVXL required.</source>
+        <translation>Niet genoeg balans om een masternode te creëren, 10,000 PIVXL vereist.</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -2040,8 +2040,8 @@ Weet je het zeker?</translation>
         <translation>Ingelezen data te groot</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>Ongeldige URI, begint niet met de "pivx" prefix</translation>
+        <source>Invalid URI, not starting with "pivxl" prefix</source>
+        <translation>Ongeldige URI, begint niet met de "pivxl" prefix</translation>
     </message>
 </context>
 <context>
@@ -2147,17 +2147,17 @@ Weet je het zeker?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>Taal ontbreekt of vertaling onvolledig? Help om bij te dragen aan vertalingen:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Map poort gebruikt &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
-        <translation>Schakel automatisch slaan van PIV-eenheden in op zPIV</translation>
+        <source>Enable automatic minting of PIVXL units to zPIV</source>
+        <translation>Schakel automatisch slaan van PIVXL-eenheden in op zPIV</translation>
     </message>
     <message>
         <source>Enable zPIV Automint</source>
@@ -2172,16 +2172,16 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Automint Adressen Inschakelen</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentage inkomende PIV die automatisch wordt omgezet naar zPIV via Zerocoin Protocol (min: 10%)</translation>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentage inkomende PIVXL die automatisch wordt omgezet naar zPIV via Zerocoin Protocol (min: 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zPIV</source>
         <translation>Percentage autominted zPIV</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Wacht met automatische omzetting naar Zerocoin totdat er genoeg PIV voor deze denominatie beschikbaar is</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
+        <translation>Wacht met automatische omzetting naar Zerocoin totdat er genoeg PIVXL voor deze denominatie beschikbaar is</translation>
     </message>
     <message>
         <source>Preferred Automint zPIV Denomination</source>
@@ -2445,8 +2445,8 @@ Adres: %4
         <translation>Ongeldig betalingsadres %1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
-        <translation>Kan pivx niet starten: click-to-pay handler</translation>
+        <source>Cannot start pivxl: click-to-pay handler</source>
+        <translation>Kan pivxl niet starten: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
@@ -2563,14 +2563,14 @@ Adres: %4
         <translation>Munt</translation>
     </message>
     <message>
-        <source>Minting zPIV anonymizes your PIV by removing any
+        <source>Minting zPIV anonymizes your PIVXL by removing any
 transaction history, making transactions untraceable </source>
-        <translation>Munten van zPIV anonimiseert uw PIV door het verwijderen van eender welke
+        <translation>Munten van zPIV anonimiseert uw PIVXL door het verwijderen van eender welke
 transactiegeschiedenis, waardoor transacties niet meer te traceren zijn</translation>
     </message>
     <message>
-        <source>Mint new zPIV or convert back to PIV</source>
-        <translation>Munt nieuwe zPIV of converteer deze terug in PIV</translation>
+        <source>Mint new zPIV or convert back to PIVXL</source>
+        <translation>Munt nieuwe zPIV of converteer deze terug in PIVXL</translation>
     </message>
     <message>
         <source>Last Zerocoin Movements</source>
@@ -2585,16 +2585,16 @@ transactiegeschiedenis, waardoor transacties niet meer te traceren zijn</transla
         <translation>Munt zPIV</translation>
     </message>
     <message>
-        <source>Enter amount of PIV to mint into zPIV</source>
-        <translation>Vul de hoeveelheid PIV in die u omslaan in zPIV</translation>
+        <source>Enter amount of PIVXL to mint into zPIV</source>
+        <translation>Vul de hoeveelheid PIVXL in die u omslaan in zPIV</translation>
     </message>
     <message>
-        <source>Convert back to PIV</source>
-        <translation>Converteer terug naar PIV</translation>
+        <source>Convert back to PIVXL</source>
+        <translation>Converteer terug naar PIVXL</translation>
     </message>
     <message>
-        <source>Enter amount of zPIV to convert back into PIV</source>
-        <translation>Voer de hoeveelheed zPIV in om terug te converteren naar PIV</translation>
+        <source>Enter amount of zPIV to convert back into PIVXL</source>
+        <translation>Voer de hoeveelheed zPIV in om terug te converteren naar PIVXL</translation>
     </message>
     <message>
         <source>Zerocoin</source>
@@ -2625,12 +2625,12 @@ transactiegeschiedenis, waardoor transacties niet meer te traceren zijn</transla
         <translation>zPIV munting succesvol</translation>
     </message>
     <message>
-        <source>zPIV converted back to PIV</source>
-        <translation>zPIV terug geconverteerd naar PIV</translation>
+        <source>zPIV converted back to PIVXL</source>
+        <translation>zPIV terug geconverteerd naar PIVXL</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Je hebt geen PIV om te selecteren</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Je hebt geen PIVXL om te selecteren</translation>
     </message>
     <message>
         <source>Rescan Mints</source>
@@ -3266,8 +3266,8 @@ transactiegeschiedenis, waardoor transacties niet meer te traceren zijn</transla
         <translation>Ontvangen</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive PIV.</source>
-        <translation>Scan de QR code of kopieer het adres om PIV te ontvangen.</translation>
+        <source>Scan the QR code or copy the address to receive PIVXL.</source>
+        <translation>Scan de QR code of kopieer het adres om PIVXL te ontvangen.</translation>
     </message>
     <message>
         <source>No address </source>
@@ -3368,8 +3368,8 @@ transactiegeschiedenis, waardoor transacties niet meer te traceren zijn</transla
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3556,8 +3556,8 @@ transactiegeschiedenis, waardoor transacties niet meer te traceren zijn</transla
         <translation>Zenden</translation>
     </message>
     <message>
-        <source>You can transfer public coins (PIV) or private coins (zPIV)</source>
-        <translation>Je kan publieke munten (PIV) of private munten (zPIV) overdragen</translation>
+        <source>You can transfer public coins (PIVXL) or private coins (zPIV)</source>
+        <translation>Je kan publieke munten (PIVXL) of private munten (zPIV) overdragen</translation>
     </message>
     <message>
         <source>Select coin type to spend</source>
@@ -3592,8 +3592,8 @@ transactiegeschiedenis, waardoor transacties niet meer te traceren zijn</transla
         <translation>Totaal te versturen</translation>
     </message>
     <message>
-        <source>Send PIV</source>
-        <translation>PIV Versturen</translation>
+        <source>Send PIVXL</source>
+        <translation>PIVXL Versturen</translation>
     </message>
     <message>
         <source>Send zPIV</source>
@@ -3716,8 +3716,8 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Aangepaste Kost %1</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Je hebt geen PIV om te selecteren</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Je hebt geen PIVXL om te selecteren</translation>
     </message>
     <message>
         <source>You don't have any zPIV in your balance to select.</source>
@@ -4125,8 +4125,8 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>1) Wat is PIVX?</translation>
     </message>
     <message>
-        <source>2) Why are my PIV unspendable?</source>
-        <translation>2) Waarom is mijn PIV niet besteedbaar?</translation>
+        <source>2) Why are my PIVXL unspendable?</source>
+        <translation>2) Waarom is mijn PIVXL niet besteedbaar?</translation>
     </message>
     <message>
         <source>3) PIVX privacy? What is Zerocoin (zPIV)?</source>
@@ -4143,12 +4143,12 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
     automatisch naar zPIV geconverteerd?</translation>
     </message>
     <message>
-        <source>6) How do I receive PIV/zPIV?</source>
-        <translation>6) Hoe ontvang ik PIV/zPIV?</translation>
+        <source>6) How do I receive PIVXL/zPIV?</source>
+        <translation>6) Hoe ontvang ik PIVXL/zPIV?</translation>
     </message>
     <message>
-        <source>7) How do I stake PIV/zPIV?</source>
-        <translation>7) Hoe stake ik PIV/zPIV?</translation>
+        <source>7) How do I stake PIVXL/zPIV?</source>
+        <translation>7) Hoe stake ik PIVXL/zPIV?</translation>
     </message>
     <message>
         <source>8) Where I should go if I need support?</source>
@@ -4205,8 +4205,8 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my PIV unspendable?</source>
-        <translation>Waarom is mijn PIV niet besteedbaar?</translation>
+        <source>Why are my PIVXL unspendable?</source>
+        <translation>Waarom is mijn PIVXL niet besteedbaar?</translation>
     </message>
     <message>
         <source>
@@ -4291,13 +4291,13 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           By default the PIVX wallet will convert 10% of your entire PIV
+                           By default the PIVX wallet will convert 10% of your entire PIVXL
                            balance to zPIV to assist the network. If you do not wish to
                            stake zPIV or take advantage of the privacy benefit it brings,
                            you can disable the automatic minting in your PIVX wallet by
                            going to Settings-&gt;Options and deselecting “Enable zPIV Automint”.
                            If you are not making use of the PIVX-QT or GUI you can simply open
-                           your pivx.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
+                           your pivxl.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
                            marks and restart your wallet to disable automint.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            You can read more about zPIV in the
@@ -4308,13 +4308,13 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Standaard zal de PIVX portemonnee 10% van uw gehele PIV-balans omzetten
+                           Standaard zal de PIVX portemonnee 10% van uw gehele PIVXL-balans omzetten
                           naar zPIV om het netwerk te helpen. Als u niet wenst om
                            zPIV te staken of voordeel te halen uit het privacyvoordeel dat dit oplevert,
                            kan je deze automatische omzetting uitschakelen in je PIVX portemonnee door
                            naar Instellingen &gt; Opties te gaan en dan “Schakel zPIV Automuntering in” te deselecteren.
                            Als je geen gebruik maakt van de PIVX-QT of GUI kan je simpelweg
-                           je pivx.conf bestand openen en er &lt;i&gt;"enablezeromint=0" aan toevoegen&lt;/i&gt; Zonder de aanhaling
+                           je pivxl.conf bestand openen en er &lt;i&gt;"enablezeromint=0" aan toevoegen&lt;/i&gt; Zonder de aanhaling
                            en je portemonnee herstarten om automuntering uit te schakelen.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            Je kan meer lezen over zPIV in de
@@ -4329,8 +4329,8 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>6</translation>
     </message>
     <message>
-        <source>How do I receive PIV/zPIV?</source>
-        <translation>Hoe ontvang ik PIV/zPIV?</translation>
+        <source>How do I receive PIVXL/zPIV?</source>
+        <translation>Hoe ontvang ik PIVXL/zPIV?</translation>
     </message>
     <message>
         <source>
@@ -4355,8 +4355,8 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>7</translation>
     </message>
     <message>
-        <source>How do I stake PIV/zPIV?</source>
-        <translation>Hoe stakz ik PIV/zPIV?</translation>
+        <source>How do I stake PIVXL/zPIV?</source>
+        <translation>Hoe stakz ik PIVXL/zPIV?</translation>
     </message>
     <message>
         <source>
@@ -4372,7 +4372,7 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
                            &lt;li&gt;
                            Once all those steps are followed staking should be enabled.
                            &lt;li&gt;
-                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivx-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
+                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            To Stake zPIV:
@@ -4400,7 +4400,7 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
                            &lt;li&gt;
                            Zodra al deze stappen zijn gevolgd, zal het staken worden ingeschakeld.
                            &lt;li&gt;
-                           U kunt de status van de staking in de portemonnee zien door op het pictogram in de rij linksboven in de portemonnee-interface te bewegen. Het pakket zal oplichten en zal "Staking Ingeschakeld" aangeven om aan te geven dat het pakket in de portemonnee is geplaatst. Met behulp van de opdrachtregel-interface (pivx-cli); het commando &lt;i&gt;getstakingstatus&lt;/i&gt; zal bevestigen dat de staking actief is.
+                           U kunt de status van de staking in de portemonnee zien door op het pictogram in de rij linksboven in de portemonnee-interface te bewegen. Het pakket zal oplichten en zal "Staking Ingeschakeld" aangeven om aan te geven dat het pakket in de portemonnee is geplaatst. Met behulp van de opdrachtregel-interface (pivxl-cli); het commando &lt;i&gt;getstakingstatus&lt;/i&gt; zal bevestigen dat de staking actief is.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            Om zPIV te Staken:
@@ -4458,7 +4458,7 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            A masternode is a computer running a full node PIVX core wallet with a
-                           requirement of 10,000 PIV secured collateral to provide extra services
+                           requirement of 10,000 PIVXL secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4490,7 +4490,7 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
                            Requirements:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;10,000 PIVXL per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -4500,7 +4500,7 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            Een masternode is een computer met een volledige node PIVX core portemonnee met een
-                           vereiste van 10.000 PIV onderpand om extra diensten te kunnen verlenen
+                           vereiste van 10.000 PIVXL onderpand om extra diensten te kunnen verlenen
                            aan het netwerk en in ruil daarvoor ontvangt u regelmatig een deel van de blokbeloning.
                            Deze diensten omvatten::
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4532,7 +4532,7 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
                            Vereisten:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per Masternode instance&lt;/li&gt;
+                           &lt;li&gt;10,000 PIVXL per Masternode instance&lt;/li&gt;
                            &lt;li&gt;Moet in een kernportemonnee worden opgeborgen&lt;/li&gt;
                            &lt;li&gt;Vereist een vast IP-adres
                            &lt;li&gt;Masternode portemonnee moet online blijven&lt;/li&gt;
@@ -4549,8 +4549,8 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>Wat is een Masternode Controller?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIV collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Een Masternode Controller portemonnee is waar de 10.000 PIV onderpand zich kan bevinden tijdens een Controller-Remote masternode setup. Het is een portemonnee die de remote masternode portemonnee(s) kan activeren en waarmee u uw ondergepande munten offline kunt houden terwijl de remote masternode online blijft. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIVXL collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Een Masternode Controller portemonnee is waar de 10.000 PIVXL onderpand zich kan bevinden tijdens een Controller-Remote masternode setup. Het is een portemonnee die de remote masternode portemonnee(s) kan activeren en waarmee u uw ondergepande munten offline kunt houden terwijl de remote masternode online blijft. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Frequently Asked Questions</source>
@@ -4660,8 +4660,8 @@ Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translatio
         <translation>Kan de back-upmap niet openen</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>Kan pivx.conf niet openen met de standaard applicatie</translation>
+        <source>Unable to open pivxl.conf with default application</source>
+        <translation>Kan pivxl.conf niet openen met de standaard applicatie</translation>
     </message>
     <message>
         <source>In:</source>
@@ -5437,8 +5437,8 @@ Weet je zeker dat?
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>480.0685 PIV</source>
-        <translation>480.0685 PIV</translation>
+        <source>480.0685 PIVXL</source>
+        <translation>480.0685 PIVXL</translation>
     </message>
     <message>
         <source>1,000 zPIV</source>
@@ -5453,16 +5453,16 @@ Weet je zeker dat?
         <translation>In afwachting</translation>
     </message>
     <message>
-        <source>6.943 PIV</source>
-        <translation>6.943 PIV</translation>
+        <source>6.943 PIVXL</source>
+        <translation>6.943 PIVXL</translation>
     </message>
     <message>
         <source>Immature</source>
         <translation>Onverwerkt</translation>
     </message>
     <message>
-        <source>10 PIV</source>
-        <translation>10 PIV</translation>
+        <source>10 PIVXL</source>
+        <translation>10 PIVXL</translation>
     </message>
     <message>
         <source>60 zPIV</source>
@@ -5786,20 +5786,20 @@ Weet je zeker dat?
         <translation>Verkregen via verduistering</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV Stake</translation>
+        <source>PIVXL Stake</source>
+        <translation>PIVXL Stake</translation>
     </message>
     <message>
         <source>zPIV Stake</source>
         <translation>zPIV Stake</translation>
     </message>
     <message>
-        <source>PIV Cold Stake</source>
-        <translation>PIV Cold Stake</translation>
+        <source>PIVXL Cold Stake</source>
+        <translation>PIVXL Cold Stake</translation>
     </message>
     <message>
-        <source>PIV Stake in behalf of</source>
-        <translation>PIV Stake in naam van</translation>
+        <source>PIVXL Stake in behalf of</source>
+        <translation>PIVXL Stake in naam van</translation>
     </message>
     <message>
         <source>Stake delegation</source>
@@ -5822,24 +5822,24 @@ Weet je zeker dat?
         <translation>Verduistering creëert denominaties</translation>
     </message>
     <message>
-        <source>Converted PIV to zPIV</source>
-        <translation>Geconverteerde PIV naar zPIV</translation>
+        <source>Converted PIVXL to zPIV</source>
+        <translation>Geconverteerde PIVXL naar zPIV</translation>
     </message>
     <message>
         <source>Spent zPIV</source>
         <translation>Bestede zPIV</translation>
     </message>
     <message>
-        <source>Received PIV from zPIV</source>
-        <translation>Ontvangen PIV van zPIV</translation>
+        <source>Received PIVXL from zPIV</source>
+        <translation>Ontvangen PIVXL van zPIV</translation>
     </message>
     <message>
         <source>Minted Change as zPIV from zPIV Spend</source>
         <translation>Gemint wisselgeld als zPIV van bestede zPIV</translation>
     </message>
     <message>
-        <source>Converted zPIV to PIV</source>
-        <translation>Geconverteerde zPIV naar PIV</translation>
+        <source>Converted zPIV to PIVXL</source>
+        <translation>Geconverteerde zPIV naar PIVXL</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5933,8 +5933,8 @@ Weet je zeker dat?
         <translation>Totale hoeveelheid</translation>
     </message>
     <message>
-        <source>2 PIV</source>
-        <translation>2 PIV</translation>
+        <source>2 PIVXL</source>
+        <translation>2 PIVXL</translation>
     </message>
     <message>
         <source>Coin inputs:</source>
@@ -5957,8 +5957,8 @@ Weet je zeker dat?
         <translation>Fee:</translation>
     </message>
     <message>
-        <source>0.0001 PIV</source>
-        <translation>0.0001 PIV</translation>
+        <source>0.0001 PIVXL</source>
+        <translation>0.0001 PIVXL</translation>
     </message>
     <message>
         <source>Change address:</source>
@@ -6044,8 +6044,8 @@ Weet je zeker dat?
         <translation>18/05/18</translation>
     </message>
     <message>
-        <source>+0.000585 PIV</source>
-        <translation>+0.000585 PIV</translation>
+        <source>+0.000585 PIVXL</source>
+        <translation>+0.000585 PIVXL</translation>
     </message>
 </context>
 <context>
@@ -6055,8 +6055,8 @@ Weet je zeker dat?
         <translation>Verzend Munten</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>SwiftTX ondersteunt geen verzendwaarden die zo hoog zijn. Transacties zijn momenteel beperkt tot %1 PIV.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
+        <translation>SwiftTX ondersteunt geen verzendwaarden die zo hoog zijn. Transacties zijn momenteel beperkt tot %1 PIVXL.</translation>
     </message>
 </context>
 <context>
@@ -6203,7 +6203,7 @@ PIVX Core Portemonnee</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = houd tx meta data, bijvoorbeeld account eigenaar en betalingsverzoek informatie, 2 = drop tx meta data)</translation>
@@ -6269,8 +6269,8 @@ PIVX Core Portemonnee</translation>
         <translation>Activeer cold staking functionaliteit (0-1, standaard: %u). Uitgeschakeld als staking=0</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>In- of uitschakelen staking functionaliteit voor PIV inputs (0-1, standaard: %u)</translation>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
+        <translation>In- of uitschakelen staking functionaliteit voor PIVXL inputs (0-1, standaard: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</source>
@@ -6309,12 +6309,12 @@ PIVX Core Portemonnee</translation>
         <translation>Uitvoeren commando wanneer het beste blok verandert (%s in cmd is vervangen door block hash)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Kosten (in PIV/Kb) kleiner dan dit worden beschouwd als zero fee voor heruitzending (standaard: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Kosten (in PIVXL/Kb) kleiner dan dit worden beschouwd als zero fee voor heruitzending (standaard: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Kosten (in PIV/Kb) kleiner dan dit worden beschouwd als zero fee voor transactie verrichting (standaard: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Kosten (in PIVXL/Kb) kleiner dan dit worden beschouwd als zero fee voor transactie verrichting (standaard: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -6437,12 +6437,12 @@ PIVX Core Portemonnee</translation>
         <translation>Kan niet genoeg verduistering gedenomineerde fondsen voor deze transactie vinden.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Kan niet genoeg verduistering niet gedenomineerde fondsen voor deze transactie vinden die niet gelijk zijn aan 10000 PIV.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIVXL.</source>
+        <translation>Kan niet genoeg verduistering niet gedenomineerde fondsen voor deze transactie vinden die niet gelijk zijn aan 10000 PIVXL.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Kan niet genoeg fondsen voor deze transactie vinden die niet gelijk zijn aan 10000 PIV.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIVXL.</source>
+        <translation>Kan niet genoeg fondsen voor deze transactie vinden die niet gelijk zijn aan 10000 PIVXL.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -6741,8 +6741,8 @@ PIVX Core Portemonnee</translation>
         <translation>Mislukt om block te lezen</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Fee (in PIV/kB) om toe te voegen aan transacties die je verzendt (standaard: %s)</translation>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
+        <translation>Fee (in PIVXL/kB) om toe te voegen aan transacties die je verzendt (standaard: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -6841,8 +6841,8 @@ PIVX Core Portemonnee</translation>
         <translation>Percentage automatisch geminte Zerocoin (10-100, standaard: %u)</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>Hercalculatie van PIV aanbod...</translation>
+        <source>Recalculating PIVXL supply...</source>
+        <translation>Hercalculatie van PIVXL aanbod...</translation>
     </message>
     <message>
         <source>Recalculating minted ZPIV...</source>
@@ -6853,8 +6853,8 @@ PIVX Core Portemonnee</translation>
         <translation>Herberekenen van bestede ZPIV....</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
-        <translation>Indexeer de PIV- en zPIV-geldvoorraadstatistieken opnieuw</translation>
+        <source>Reindex the PIVXL and zPIV money supply statistics</source>
+        <translation>Indexeer de PIVXL- en zPIV-geldvoorraadstatistieken opnieuw</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

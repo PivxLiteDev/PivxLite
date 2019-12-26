@@ -405,7 +405,7 @@
     </message>
     </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>Information</source>
         <translation>जानकारी</translation>

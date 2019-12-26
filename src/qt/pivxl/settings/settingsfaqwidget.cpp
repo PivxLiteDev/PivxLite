@@ -3,11 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingsfaqwidget.h"
-#include "qt/pivx/settings/forms/ui_settingsfaqwidget.h"
+#include "qt/pivxl/settings/settingsfaqwidget.h"
+#include "qt/pivxl/settings/forms/ui_settingsfaqwidget.h"
 #include <QScrollBar>
 #include <QMetaObject>
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 SettingsFaqWidget::SettingsFaqWidget(QWidget *parent) :
     QDialog(parent),

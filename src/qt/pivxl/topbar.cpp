@@ -3,12 +3,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/topbar.h"
-#include "qt/pivx/forms/ui_topbar.h"
+#include "qt/pivxl/topbar.h"
+#include "qt/pivxl/forms/ui_topbar.h"
 #include <QPixmap>
-#include "qt/pivx/lockunlock.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/receivedialog.h"
+#include "qt/pivxl/lockunlock.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/receivedialog.h"
 #include "askpassphrasedialog.h"
 
 #include "bitcoinunits.h"
@@ -543,7 +543,7 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
         nLockedBalance = walletModel->getLockedBalance();
     }
 
-    // PIV Balance
+    // PIVXL Balance
     //CAmount nTotalBalance = balance + unconfirmedBalance + immatureBalance;
     CAmount pivAvailableBalance = balance + delegatedBalance - nLockedBalance;
 

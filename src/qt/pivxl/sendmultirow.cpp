@@ -3,14 +3,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/sendmultirow.h"
-#include "qt/pivx/forms/ui_sendmultirow.h"
+#include "qt/pivxl/sendmultirow.h"
+#include "qt/pivxl/forms/ui_sendmultirow.h"
 
 #include "optionsmodel.h"
 #include "addresstablemodel.h"
 #include "guiutil.h"
 #include "bitcoinunits.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 SendMultiRow::SendMultiRow(PWidget *parent) :
     PWidget(parent),
@@ -25,7 +25,7 @@ SendMultiRow::SendMultiRow(PWidget *parent) :
     ui->lineEditAddress->setAttribute(Qt::WA_MacShowFocusRect, 0);
     setShadow(ui->stackedAddress);
 
-    ui->lineEditAmount->setPlaceholderText("0.00 PIV ");
+    ui->lineEditAmount->setPlaceholderText("0.00 PIVXL ");
     initCssEditLine(ui->lineEditAmount);
     GUIUtil::setupAmountWidget(ui->lineEditAmount, this);
 

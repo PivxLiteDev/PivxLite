@@ -18,7 +18,7 @@
 #include <QPixmap>
 #include <QStandardPaths>
 #include <initializer_list>
-#include "qt/pivx/pivxgui.h"
+#include "qt/pivxl/pivxlgui.h"
 
 // Repair parameters
 const QString SALVAGEWALLET("-salvagewallet");

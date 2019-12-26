@@ -377,14 +377,14 @@ Stake için kaldırın</translation>
     </message>
     <message>
         <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX şifreleme işlemini tamamlamak için şimdi kapanacaktır. Cüzdanınızı şifrelemenin, PIV'lerinizi bilgisayarınıza bulaşan kötücül yazılımlar tarafından çalınmasına tamamen engelleyemediğini unutmayın</translation>
+        <translation>PIVX şifreleme işlemini tamamlamak için şimdi kapanacaktır. Cüzdanınızı şifrelemenin, PIVXL'lerinizi bilgisayarınıza bulaşan kötücül yazılımlar tarafından çalınmasına tamamen engelleyemediğini unutmayın</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Cüzdanınızı şifrelemek istediğinizden emin misiniz?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIVXL&lt;/b&gt;!</source>
         <translation>Dikkat! Eğer cüzdanınızı şifrelerseniz ve şifrenizi unutursanız &lt;b&gt;Tüm Pıvlerinizi kaybedersiniz&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -470,8 +470,8 @@ Stake için kaldırın</translation>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
-        <translation>Tüm işlemler gösterilmez. Tüm işlemleri görmek için yapılandırma dosyasında txindex = 1 ayarlamanız gerekir (pivx.conf).
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivxl.conf).</source>
+        <translation>Tüm işlemler gösterilmez. Tüm işlemleri görmek için yapılandırma dosyasında txindex = 1 ayarlamanız gerekir (pivxl.conf).
 </translation>
     </message>
 </context>
@@ -486,8 +486,8 @@ Stake için kaldırın</translation>
         <translation>Birikimler</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0,00 PIV</translation>
+        <source>0,00 PIVXL</source>
+        <translation>0,00 PIVXL</translation>
     </message>
     <message>
         <source>address</source>
@@ -564,8 +564,8 @@ Stake için kaldırın</translation>
         <translation>Butona Basın</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0.00 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -775,8 +775,8 @@ Stake için kaldırın</translation>
         <translation>Butona Basın</translation>
     </message>
     <message>
-        <source>PIV:</source>
-        <translation>PIV:</translation>
+        <source>PIVXL:</source>
+        <translation>PIVXL:</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -896,7 +896,7 @@ Stake için kaldırın</translation>
     <message>
         <source>You can delegate your PIVs and let a hot node (24/7 online node)
 stake in your behalf, keeping the keys in a secure place offline.</source>
-        <translation>PIV'lerinizi offline olarak güvenli bir yerde anahtarlarınızı saklarken
+        <translation>PIVXL'lerinizi offline olarak güvenli bir yerde anahtarlarınızı saklarken
 (24/7 online düğüm) olan bir sıcak düğüm ile adınıza stakeletebilirsiniz.</translation>
     </message>
     <message>
@@ -904,8 +904,8 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
         <translation>Sahip adresi ekle</translation>
     </message>
     <message>
-        <source>Delegate or Accept PIV delegation</source>
-        <translation>Delege et veya PIV delegasyonu kabul et</translation>
+        <source>Delegate or Accept PIVXL delegation</source>
+        <translation>Delege et veya PIVXL delegasyonu kabul et</translation>
     </message>
     <message>
         <source>Delegate</source>
@@ -948,8 +948,8 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
         <translation>Geçersiz giriş</translation>
     </message>
     <message>
-        <source>Invalid entry, minimum delegable amount is 10 PIV</source>
-        <translation>Geçersiz giriş, delege edilebilir minimum tutar 10 PIV</translation>
+        <source>Invalid entry, minimum delegable amount is 10 PIVXL</source>
+        <translation>Geçersiz giriş, delege edilebilir minimum tutar 10 PIVXL</translation>
     </message>
     <message>
         <source>Owner address invalid</source>
@@ -988,8 +988,8 @@ Devam etmek istiyor musunuz?</translation>
         <translation>Koinler delege edildi</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Seçebileceğiniz PIV'iniz bulunmuyor</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Seçebileceğiniz PIVXL'iniz bulunmuyor</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -1120,8 +1120,8 @@ kopyala</translation>
         <translation>Stake İstatistikleri</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>zPIV</source>
@@ -1156,8 +1156,8 @@ kopyala</translation>
         <translation>Hesap geçmişinizde görebilirsiniz</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>Stake edilmiş PIV ve zPIV miktarı</translation>
+        <source>Amount of PIVXL and zPIV staked.</source>
+        <translation>Stake edilmiş PIVXL ve zPIV miktarı</translation>
     </message>
     <message>
         <source>All</source>
@@ -1212,8 +1212,8 @@ kopyala</translation>
         <translation>İşlem bulunmuyor</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
-        <translation>PIV veya zPIV nasıl alınır</translation>
+        <source>How to get PIVXL or zPIV</source>
+        <translation>PIVXL veya zPIV nasıl alınır</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1666,8 +1666,8 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>Yeni bir Masternode Kontrolörü Yarat</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yeni bir Masternode yaratmak için ağa 10.000 PIV (PIVX birimi) ayırmanız gerekmektedir (buna rağmen koinler hala size aittir ve sahipliğini kororsunuz). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;İstediğiniz zaman devre dışı bırakabilir ve koinlerinizin kilidini kaldırabilirsiniz.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yeni bir Masternode yaratmak için ağa 10.000 PIVXL (PIVX birimi) ayırmanız gerekmektedir (buna rağmen koinler hala size aittir ve sahipliğini kororsunuz). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;İstediğiniz zaman devre dışı bırakabilir ve koinlerinizin kilidini kaldırabilirsiniz.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
@@ -1678,8 +1678,8 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>Masternode'unuzun Adını Belirleyin</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;10.000 PIV'lik bir transfer &lt;/p&gt;&lt;p&gt;yeni ve boş bir adrese yapılacaktır.&lt;/p&gt;&lt;p&gt;Adres Masternode'unuz ismi ile etiketlenecektir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;10.000 PIVXL'lik bir transfer &lt;/p&gt;&lt;p&gt;yeni ve boş bir adrese yapılacaktır.&lt;/p&gt;&lt;p&gt;Adres Masternode'unuz ismi ile etiketlenecektir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Master Node’s IP and port</source>
@@ -1866,7 +1866,7 @@ Lütfen birkaç dakika bekleyiniz.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1874,7 +1874,7 @@ this controller wallet (select the Masternode in the list and press "start").
 panoya almak üzeresiniz.
 
 
-Bilgiyi uzak sunucunuzdaki pivx.conf dosyasına yapıştırmanız ve
+Bilgiyi uzak sunucunuzdaki pivxl.conf dosyasına yapıştırmanız ve
  başlatmanız gerekecektir, ondan sonra bu kontrol cüzdanını kullanan
 Masternodu başlatın (Listeden Masternodu seçip "başlat" tuşuna basın).
 </translation>
@@ -1910,8 +1910,8 @@ Emin misiniz?</translation>
         <translation> masternode.conf dosyası bulunamadı</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 10,000 PIV required.</source>
-        <translation>Masternode yaratmak için yetersiz bakiye, 10,000 PIV gerekmektedir.</translation>
+        <source>Not enough balance to create a masternode, 10,000 PIVXL required.</source>
+        <translation>Masternode yaratmak için yetersiz bakiye, 10,000 PIVXL gerekmektedir.</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -2042,8 +2042,8 @@ Emin misiniz?</translation>
         <translation>Ayrıştırılmış bilgi çok büyük</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>Geçersiz URI, "pivx" ön adıyla başlamıyor</translation>
+        <source>Invalid URI, not starting with "pivxl" prefix</source>
+        <translation>Geçersiz URI, "pivxl" ön adıyla başlamıyor</translation>
     </message>
 </context>
 <context>
@@ -2149,17 +2149,17 @@ Emin misiniz?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>Dil eksik veya çeviri tamamlanmamış mı? Katkıda bulunan çevirilere yardımcı olun:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
-        <translation>PIV birimlerinin zPIV'e otomatik basımını ektinleştir</translation>
+        <source>Enable automatic minting of PIVXL units to zPIV</source>
+        <translation>PIVXL birimlerinin zPIV'e otomatik basımını ektinleştir</translation>
     </message>
     <message>
         <source>Enable zPIV Automint</source>
@@ -2174,16 +2174,16 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Automint adreslerini etkinleştir</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
-        <translation>Zerocoin Protokolü üzerinden otomatik olarak zPIV'ye dönüştürülen gelen PIV yüzdesi (dakika: 10%)</translation>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <translation>Zerocoin Protokolü üzerinden otomatik olarak zPIV'ye dönüştürülen gelen PIVXL yüzdesi (dakika: 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zPIV</source>
         <translation>Otomatikleştirilmiş zPIV yüzdesi</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Bu bölen için yeterli PIV bulunana kadar Zerocoin'e otomatik dönüştürmede kalın</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
+        <translation>Bu bölen için yeterli PIVXL bulunana kadar Zerocoin'e otomatik dönüştürmede kalın</translation>
     </message>
     <message>
         <source>Preferred Automint zPIV Denomination</source>
@@ -2447,7 +2447,7 @@ Adres: %4
         <translation>Geçersiz ödeme adresi %1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
+        <source>Cannot start pivxl: click-to-pay handler</source>
         <translation>Pivx başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
     </message>
     <message>
@@ -2565,13 +2565,13 @@ Adres: %4
         <translation>Mint</translation>
     </message>
     <message>
-        <source>Minting zPIV anonymizes your PIV by removing any
+        <source>Minting zPIV anonymizes your PIVXL by removing any
 transaction history, making transactions untraceable </source>
-        <translation>zPIV mintleme işlemi PIV'lerinizin işlem geçmişini siler, işlemleri takip edilemez yapar</translation>
+        <translation>zPIV mintleme işlemi PIVXL'lerinizin işlem geçmişini siler, işlemleri takip edilemez yapar</translation>
     </message>
     <message>
-        <source>Mint new zPIV or convert back to PIV</source>
-        <translation>Yeni zPIV mintle veya PIV'e geri dönüştür</translation>
+        <source>Mint new zPIV or convert back to PIVXL</source>
+        <translation>Yeni zPIV mintle veya PIVXL'e geri dönüştür</translation>
     </message>
     <message>
         <source>Last Zerocoin Movements</source>
@@ -2586,16 +2586,16 @@ transaction history, making transactions untraceable </source>
         <translation>Mint ZPIV</translation>
     </message>
     <message>
-        <source>Enter amount of PIV to mint into zPIV</source>
-        <translation>zPIV'e mintlenmek için dönüştürülecek PIV miktarını gir</translation>
+        <source>Enter amount of PIVXL to mint into zPIV</source>
+        <translation>zPIV'e mintlenmek için dönüştürülecek PIVXL miktarını gir</translation>
     </message>
     <message>
-        <source>Convert back to PIV</source>
-        <translation>PIV'e geri dönüştür</translation>
+        <source>Convert back to PIVXL</source>
+        <translation>PIVXL'e geri dönüştür</translation>
     </message>
     <message>
-        <source>Enter amount of zPIV to convert back into PIV</source>
-        <translation>PIV'e geri dönüştürülecek zPIV miktarını gir</translation>
+        <source>Enter amount of zPIV to convert back into PIVXL</source>
+        <translation>PIVXL'e geri dönüştürülecek zPIV miktarını gir</translation>
     </message>
     <message>
         <source>Zerocoin</source>
@@ -2626,12 +2626,12 @@ transaction history, making transactions untraceable </source>
         <translation>zPIV minting başarılı</translation>
     </message>
     <message>
-        <source>zPIV converted back to PIV</source>
-        <translation>zPIV PIV'e dönüştürüldü</translation>
+        <source>zPIV converted back to PIVXL</source>
+        <translation>zPIV PIVXL'e dönüştürüldü</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Seçebileceğiniz PIV'iniz bulunmuyor</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Seçebileceğiniz PIVXL'iniz bulunmuyor</translation>
     </message>
     <message>
         <source>Rescan Mints</source>
@@ -3266,7 +3266,7 @@ transaction history, making transactions untraceable </source>
         <translation>Al</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive PIV.</source>
+        <source>Scan the QR code or copy the address to receive PIVXL.</source>
         <translation>PIVX almak için QR kodunu okutun veya adresi kopyalayın</translation>
     </message>
     <message>
@@ -3368,8 +3368,8 @@ transaction history, making transactions untraceable </source>
         <translation>Miktar</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3464,7 +3464,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" PIVX address</source>
-        <translation>Giriş ve çıkış değerleri arasındaki kalan tutar "fark" PIV adresine gider</translation>
+        <translation>Giriş ve çıkış değerleri arasındaki kalan tutar "fark" PIVXL adresine gider</translation>
     </message>
 </context>
 <context>
@@ -3556,8 +3556,8 @@ transaction history, making transactions untraceable </source>
         <translation>Gönder</translation>
     </message>
     <message>
-        <source>You can transfer public coins (PIV) or private coins (zPIV)</source>
-        <translation>Açık koin PIV veya gizli koin zPIV transfer edebilirsiniz</translation>
+        <source>You can transfer public coins (PIVXL) or private coins (zPIV)</source>
+        <translation>Açık koin PIVXL veya gizli koin zPIV transfer edebilirsiniz</translation>
     </message>
     <message>
         <source>Select coin type to spend</source>
@@ -3592,8 +3592,8 @@ transaction history, making transactions untraceable </source>
         <translation>Gönderilecek toplam</translation>
     </message>
     <message>
-        <source>Send PIV</source>
-        <translation>PIV Gönder</translation>
+        <source>Send PIVXL</source>
+        <translation>PIVXL Gönder</translation>
     </message>
     <message>
         <source>Send zPIV</source>
@@ -3716,8 +3716,8 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
         <translation>Belirlenmiş masraf %1</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Seçebileceğiniz PIV'iniz bulunmuyor</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Seçebileceğiniz PIVXL'iniz bulunmuyor</translation>
     </message>
     <message>
         <source>You don't have any zPIV in your balance to select.</source>
@@ -4125,8 +4125,8 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>1)PIVX nedir?</translation>
     </message>
     <message>
-        <source>2) Why are my PIV unspendable?</source>
-        <translation>2) PIV'lerim neden harcanabilir değil?</translation>
+        <source>2) Why are my PIVXL unspendable?</source>
+        <translation>2) PIVXL'lerim neden harcanabilir değil?</translation>
     </message>
     <message>
         <source>3) PIVX privacy? What is Zerocoin (zPIV)?</source>
@@ -4143,12 +4143,12 @@ Verify that you have installed a predetermined text editor.</source>
 zPIV'e dönüştürdü?</translation>
     </message>
     <message>
-        <source>6) How do I receive PIV/zPIV?</source>
-        <translation>6) Nasıl PIV/zPIV alabilirim?</translation>
+        <source>6) How do I receive PIVXL/zPIV?</source>
+        <translation>6) Nasıl PIVXL/zPIV alabilirim?</translation>
     </message>
     <message>
-        <source>7) How do I stake PIV/zPIV?</source>
-        <translation>7) Nasıl PIV/zPIV staking yapabilirim?</translation>
+        <source>7) How do I stake PIVXL/zPIV?</source>
+        <translation>7) Nasıl PIVXL/zPIV staking yapabilirim?</translation>
     </message>
     <message>
         <source>8) Where I should go if I need support?</source>
@@ -4205,8 +4205,8 @@ bu sayede PIVX sahipleri blok ödülü kazanımına katılabilmektedir
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my PIV unspendable?</source>
-        <translation>PIV'lerim neden harcanabilir değil?</translation>
+        <source>Why are my PIVXL unspendable?</source>
+        <translation>PIVXL'lerim neden harcanabilir değil?</translation>
     </message>
     <message>
         <source>
@@ -4292,13 +4292,13 @@ gizlilik-odaklı opsiyonel bir metoddur. Temel olarak işlemleriniz
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           By default the PIVX wallet will convert 10% of your entire PIV
+                           By default the PIVX wallet will convert 10% of your entire PIVXL
                            balance to zPIV to assist the network. If you do not wish to
                            stake zPIV or take advantage of the privacy benefit it brings,
                            you can disable the automatic minting in your PIVX wallet by
                            going to Settings-&gt;Options and deselecting “Enable zPIV Automint”.
                            If you are not making use of the PIVX-QT or GUI you can simply open
-                           your pivx.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
+                           your pivxl.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
                            marks and restart your wallet to disable automint.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            You can read more about zPIV in the
@@ -4309,7 +4309,7 @@ gizlilik-odaklı opsiyonel bir metoddur. Temel olarak işlemleriniz
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           PIVX cüzdanınız ağa destek olmak için varsayılan olarak tüm PIV bakiyenizin 10% 'unu zPIV'e dönüştürecektir. Getirdiği gizlilik avantajını istemiyor veya zPIV stakelemek istemiyorsanız cüzdanınızın otomint özelliğini Ayarlar-&gt;Seçenekler içindeki “zPIV Otomint etkin” seçeneğini değiştirerek devredışı bırakabilirsiniz. PIVXQT veya GUI kullanmıyorsanız, pivx.conf dosyası içine  &lt;i&gt;enablezeromint=0&lt;/i&gt; ifadesini tırnak işareti olmadan girerek devredışı bırakabilirsiniz. &lt;/p&gt;
+                           PIVX cüzdanınız ağa destek olmak için varsayılan olarak tüm PIVXL bakiyenizin 10% 'unu zPIV'e dönüştürecektir. Getirdiği gizlilik avantajını istemiyor veya zPIV stakelemek istemiyorsanız cüzdanınızın otomint özelliğini Ayarlar-&gt;Seçenekler içindeki “zPIV Otomint etkin” seçeneğini değiştirerek devredışı bırakabilirsiniz. PIVXQT veya GUI kullanmıyorsanız, pivxl.conf dosyası içine  &lt;i&gt;enablezeromint=0&lt;/i&gt; ifadesini tırnak işareti olmadan girerek devredışı bırakabilirsiniz. &lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            Teknik detayları hakkında daha çok bilgi almak için
                            &lt;a style='color: #b088ff' href='https://PIVX.org/zpiv/'&gt; "PIVX Zerocoin (zPIV) Teknik Makalesi"&lt;/a&gt;.
@@ -4323,8 +4323,8 @@ kısmını okuyunuz.
         <translation>6</translation>
     </message>
     <message>
-        <source>How do I receive PIV/zPIV?</source>
-        <translation>Nasıl PIV/zPIV alabilirim?</translation>
+        <source>How do I receive PIVXL/zPIV?</source>
+        <translation>Nasıl PIVXL/zPIV alabilirim?</translation>
     </message>
     <message>
         <source>
@@ -4350,8 +4350,8 @@ zPIV Protokolü ile anonimleştirilmiş olacaktır.
         <translation>7</translation>
     </message>
     <message>
-        <source>How do I stake PIV/zPIV?</source>
-        <translation>Nasıl PIV/zPIV staking yapabilirim?</translation>
+        <source>How do I stake PIVXL/zPIV?</source>
+        <translation>Nasıl PIVXL/zPIV staking yapabilirim?</translation>
     </message>
     <message>
         <source>
@@ -4367,7 +4367,7 @@ zPIV Protokolü ile anonimleştirilmiş olacaktır.
                            &lt;li&gt;
                            Once all those steps are followed staking should be enabled.
                            &lt;li&gt;
-                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivx-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
+                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            To Stake zPIV:
@@ -4395,7 +4395,7 @@ zPIV Protokolü ile anonimleştirilmiş olacaktır.
                            &lt;li&gt;
                            Bu adımlar tamamlanmışsa staking çalışıyor olmalıdır.
                            &lt;li&gt;
-                           Staking durumunu kontrol etmek için fare imlecini cüzdanın sol üst kısmındaki paket ikonu üzerinde tuttuğunuzda görebilirsiniz. Yaptığını göstermek için paket ikonunun ışığı yanacak ve "Staking aktif" yazacaktır. Komut satırı arayüzünden (pivx-cli);  &lt;i&gt;getstakingstatus&lt;/i&gt; komutunu çalıştırarak staking'in etkin olduğunu onaylayabilirsiniz.
+                           Staking durumunu kontrol etmek için fare imlecini cüzdanın sol üst kısmındaki paket ikonu üzerinde tuttuğunuzda görebilirsiniz. Yaptığını göstermek için paket ikonunun ışığı yanacak ve "Staking aktif" yazacaktır. Komut satırı arayüzünden (pivxl-cli);  &lt;i&gt;getstakingstatus&lt;/i&gt; komutunu çalıştırarak staking'in etkin olduğunu onaylayabilirsiniz.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            zPIV Staking yapabilmek için:
@@ -4453,7 +4453,7 @@ zPIV Protokolü ile anonimleştirilmiş olacaktır.
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            A masternode is a computer running a full node PIVX core wallet with a
-                           requirement of 10,000 PIV secured collateral to provide extra services
+                           requirement of 10,000 PIVXL secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4485,7 +4485,7 @@ zPIV Protokolü ile anonimleştirilmiş olacaktır.
                            Requirements:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;10,000 PIVXL per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -4494,7 +4494,7 @@ zPIV Protokolü ile anonimleştirilmiş olacaktır.
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Tam düğüm PIVX core cüzdanını çalıştıran, gereken 10,000 PIV
+                           Tam düğüm PIVX core cüzdanını çalıştıran, gereken 10,000 PIVXL
                            teminat bakiyesini barındırarak ağa ekstra hizmetler sunan ve
                            karşılığında da her blok ödülünden düzenli olarak pay alan bir
                            bilgisayardır.Bu hizmetler aşağıdaki gibidir:
@@ -4527,7 +4527,7 @@ işletim maliyetleri sonrası pasif bir gelir sunar.
                            Gereksinimler:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Her Masternod için ayrı 10,000 PIV
+                           &lt;li&gt;Her Masternod için ayrı 10,000 PIVXL
                            &lt;li&gt;Core cüzdan içinde saklanmalıdır.&lt;/li&gt;
                            &lt;li&gt;Atanmış IP adresi gerekmektedir. &lt;/li&gt;
                            &lt;li&gt;Masternode cüzdanının online olması&lt;/li&gt;
@@ -4544,8 +4544,8 @@ işletim maliyetleri sonrası pasif bir gelir sunar.
         <translation>Masternode Kontrolörü nedir?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIV collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Masternode Kontrol cüzdanı Masternode Uzaktan-Kontrol kurulumu yapırken içinde 10,000 PIV teminatını bulundurur. Bu cüzdan uzak masternode cüzdan/larını etkinleştirebilir, ayrıca masternodlarınız online iken teminatınızı bağlantı dışında tutmanıza imkan sağlar. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIVXL collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Masternode Kontrol cüzdanı Masternode Uzaktan-Kontrol kurulumu yapırken içinde 10,000 PIVXL teminatını bulundurur. Bu cüzdan uzak masternode cüzdan/larını etkinleştirebilir, ayrıca masternodlarınız online iken teminatınızı bağlantı dışında tutmanıza imkan sağlar. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Frequently Asked Questions</source>
@@ -4655,8 +4655,8 @@ işletim maliyetleri sonrası pasif bir gelir sunar.
         <translation>Yedek klasörü açılamadı</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>pivx.conf dosyası uygulama tarafından açılamadı</translation>
+        <source>Unable to open pivxl.conf with default application</source>
+        <translation>pivxl.conf dosyası uygulama tarafından açılamadı</translation>
     </message>
     <message>
         <source>In:</source>
@@ -5432,8 +5432,8 @@ Emin misiniz?
         <translation>Form</translation>
     </message>
     <message>
-        <source>480.0685 PIV</source>
-        <translation>480.0685 PIV</translation>
+        <source>480.0685 PIVXL</source>
+        <translation>480.0685 PIVXL</translation>
     </message>
     <message>
         <source>1,000 zPIV</source>
@@ -5448,16 +5448,16 @@ Emin misiniz?
         <translation>Beklemede</translation>
     </message>
     <message>
-        <source>6.943 PIV</source>
-        <translation>6.943 PIV</translation>
+        <source>6.943 PIVXL</source>
+        <translation>6.943 PIVXL</translation>
     </message>
     <message>
         <source>Immature</source>
         <translation>Olgunlaşmamış</translation>
     </message>
     <message>
-        <source>10 PIV</source>
-        <translation>10 PIV</translation>
+        <source>10 PIVXL</source>
+        <translation>10 PIVXL</translation>
     </message>
     <message>
         <source>60 zPIV</source>
@@ -5781,20 +5781,20 @@ Emin misiniz?
         <translation>Şaşırtma yoluyla Alınan</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV Stake</translation>
+        <source>PIVXL Stake</source>
+        <translation>PIVXL Stake</translation>
     </message>
     <message>
         <source>zPIV Stake</source>
         <translation>zPIV Stake</translation>
     </message>
     <message>
-        <source>PIV Cold Stake</source>
-        <translation>PIV Soğuk Stake</translation>
+        <source>PIVXL Cold Stake</source>
+        <translation>PIVXL Soğuk Stake</translation>
     </message>
     <message>
-        <source>PIV Stake in behalf of</source>
-        <translation>Yerine PIV stake </translation>
+        <source>PIVXL Stake in behalf of</source>
+        <translation>Yerine PIVXL stake </translation>
     </message>
     <message>
         <source>Stake delegation</source>
@@ -5817,24 +5817,24 @@ Emin misiniz?
         <translation>Obfuscation Oluşturma Adları</translation>
     </message>
     <message>
-        <source>Converted PIV to zPIV</source>
-        <translation>PIV'den zPIV'e dönüştürülen</translation>
+        <source>Converted PIVXL to zPIV</source>
+        <translation>PIVXL'den zPIV'e dönüştürülen</translation>
     </message>
     <message>
         <source>Spent zPIV</source>
         <translation>zPIV Harca</translation>
     </message>
     <message>
-        <source>Received PIV from zPIV</source>
-        <translation>zPIV'den PIV olarak alınan</translation>
+        <source>Received PIVXL from zPIV</source>
+        <translation>zPIV'den PIVXL olarak alınan</translation>
     </message>
     <message>
         <source>Minted Change as zPIV from zPIV Spend</source>
         <translation>zPIV harcamasından kaynaklanan zPIV mint farkı</translation>
     </message>
     <message>
-        <source>Converted zPIV to PIV</source>
-        <translation>zPIV'den PIV' dönüştürülen</translation>
+        <source>Converted zPIV to PIVXL</source>
+        <translation>zPIV'den PIVXL' dönüştürülen</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5928,8 +5928,8 @@ Emin misiniz?
         <translation>Toplam Tutar:</translation>
     </message>
     <message>
-        <source>2 PIV</source>
-        <translation>2 PIV</translation>
+        <source>2 PIVXL</source>
+        <translation>2 PIVXL</translation>
     </message>
     <message>
         <source>Coin inputs:</source>
@@ -5952,8 +5952,8 @@ Emin misiniz?
         <translation>Ücret:</translation>
     </message>
     <message>
-        <source>0.0001 PIV</source>
-        <translation>0.0001 PIV</translation>
+        <source>0.0001 PIVXL</source>
+        <translation>0.0001 PIVXL</translation>
     </message>
     <message>
         <source>Change address:</source>
@@ -6039,8 +6039,8 @@ Emin misiniz?
         <translation>18/05/18</translation>
     </message>
     <message>
-        <source>+0.000585 PIV</source>
-        <translation>+0.000585 PIV</translation>
+        <source>+0.000585 PIVXL</source>
+        <translation>+0.000585 PIVXL</translation>
     </message>
 </context>
 <context>
@@ -6050,8 +6050,8 @@ Emin misiniz?
         <translation>Koinleri göder</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>SwiftX yüksek değerler göndermeyi desteklemiyor. İşlemler şu anda %1 PIV ile sınırlıdır.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
+        <translation>SwiftX yüksek değerler göndermeyi desteklemiyor. İşlemler şu anda %1 PIVXL ile sınırlıdır.</translation>
     </message>
 </context>
 <context>
@@ -6198,7 +6198,7 @@ Hoşgeldiniz</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = tx meta verileri, örneğin hesap sahibi ve ödeme talebi bilgileri, 2 = tx meta verileri bırak)</translation>
@@ -6264,8 +6264,8 @@ Hoşgeldiniz</translation>
         <translation>Soğuk stakeleme fonksiyonunu etkinleştirin (0-1, varsayılan: %u). Staking=0 ise etkin değildir</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>PIV girişleri için stake fonksiyonunu aç veya kapat (0-1, varsayılan: %u)</translation>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
+        <translation>PIVXL girişleri için stake fonksiyonunu aç veya kapat (0-1, varsayılan: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</source>
@@ -6304,12 +6304,12 @@ Hoşgeldiniz</translation>
         <translation>En iyi blok değiştirildiğinde komutu yürütün (cmd'deki %s yerine blok karması verilir)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Bundan daha küçük ücretler (PIV / Kb cinsinden), aktarma için sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Bundan daha küçük ücretler (PIVXL / Kb cinsinden), aktarma için sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Bundan daha küçük ücretler (PIV / Kb cinsinden), işlem yaratmada sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Bundan daha küçük ücretler (PIVXL / Kb cinsinden), işlem yaratmada sıfır ücret olarak kabul edilir (varsayılan: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -6432,12 +6432,12 @@ Hoşgeldiniz</translation>
         <translation>Bu işlem için gereken yeterli bölünmüş gizleme fonu bulunamadı.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>10000 PIV'e eşit olmayan bu işlem için gereken yeterli bölünmemiş gizleme fonu bulunamadı.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIVXL.</source>
+        <translation>10000 PIVXL'e eşit olmayan bu işlem için gereken yeterli bölünmemiş gizleme fonu bulunamadı.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>10000 PIV'e eşit olmayan bu işlem için yeterli bakiye tespit edilemedi</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIVXL.</source>
+        <translation>10000 PIVXL'e eşit olmayan bu işlem için yeterli bakiye tespit edilemedi</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -6736,8 +6736,8 @@ Hoşgeldiniz</translation>
         <translation>Blok okuma hatası</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Gönderdiğiniz transfere (PIV/kb cinsinden) bir masraf ekleyin (varsayılan: %s) </translation>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
+        <translation>Gönderdiğiniz transfere (PIVXL/kb cinsinden) bir masraf ekleyin (varsayılan: %s) </translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -6836,8 +6836,8 @@ Hoşgeldiniz</translation>
         <translation>Otomatik olarak mint edilen Zerocoin yüzdesi (1-100, varsayılan: %u)</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>PIV tedariği tekrar hesaplanıyor...</translation>
+        <source>Recalculating PIVXL supply...</source>
+        <translation>PIVXL tedariği tekrar hesaplanıyor...</translation>
     </message>
     <message>
         <source>Recalculating minted ZPIV...</source>
@@ -6848,8 +6848,8 @@ Hoşgeldiniz</translation>
         <translation>Harcanmış zPIV'ler tekrar hesaplanıyor...</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
-        <translation>PIV ve zPIV para tedarik istatistiklerini tekrar endeksle</translation>
+        <source>Reindex the PIVXL and zPIV money supply statistics</source>
+        <translation>PIVXL ve zPIV para tedarik istatistiklerini tekrar endeksle</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

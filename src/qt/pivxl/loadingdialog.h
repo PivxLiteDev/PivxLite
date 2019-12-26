@@ -11,7 +11,7 @@
 #include <QPointer>
 #include <iostream>
 #include <QTimer>
-#include "qt/pivx/prunnable.h"
+#include "qt/pivxl/prunnable.h"
 
 namespace Ui {
 class LoadingDialog;

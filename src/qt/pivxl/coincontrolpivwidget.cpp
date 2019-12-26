@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/coincontrolpivwidget.h"
-#include "qt/pivx/forms/ui_coincontrolpivwidget.h"
+#include "qt/pivxl/coincontrolpivwidget.h"
+#include "qt/pivxl/forms/ui_coincontrolpivwidget.h"
 
 CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
     QDialog(parent),
@@ -28,14 +28,14 @@ CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
 
     // Title
 
-    ui->labelTitle->setText("Select PIV Outputs to Spend");
+    ui->labelTitle->setText("Select PIVXL Outputs to Spend");
     ui->labelTitle->setProperty("cssClass", "text-title-dialog");
 
     // Label Style
 
     ui->labelTitleAfter->setProperty("cssClass", "text-main-purple");
     ui->labelTitleAmount->setProperty("cssClass", "text-main-purple");
-    ui->labelTitleAmount->setText("PIV");
+    ui->labelTitleAmount->setText("PIVXL");
     ui->labelTitleBytes->setProperty("cssClass", "text-main-purple");
     ui->labelTitleBytes->setProperty("cssClass", "text-main-purple");
     ui->labelTitleChange->setProperty("cssClass", "text-main-purple");
@@ -61,12 +61,12 @@ CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
 
     // Values
 
-    ui->labelValueAfter->setText("0.00 PIV");
+    ui->labelValueAfter->setText("0.00 PIVXL");
     ui->labelValueAmount->setText("0");
     ui->labelValueBytes->setText("0");
     ui->labelValueDust->setText("No");
-    ui->labelValueChange->setText("0.00 PIV");
-    ui->labelValueFee->setText("0.00 PIV");
+    ui->labelValueChange->setText("0.00 PIVXL");
+    ui->labelValueFee->setText("0.00 PIVXL");
     ui->labelValueQuantity->setText("0");
 
     // Buttons

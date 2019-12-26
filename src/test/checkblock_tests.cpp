@@ -12,7 +12,7 @@
 #include "clientversion.h"
 #include "main.h"
 #include "utiltime.h"
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 
 #include <cstdio>
 

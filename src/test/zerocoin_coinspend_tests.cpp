@@ -17,7 +17,7 @@
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 #include "txdb.h"
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 

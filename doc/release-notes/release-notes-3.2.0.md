@@ -1,8 +1,8 @@
-PIVX Core version *3.2.0* is now available from:  <https://github.com/pivx-project/pivx/releases>
+PIVX Core version *3.2.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
-Please report bugs using the issue tracker at github: <https://github.com/pivx-project/pivx/issues>
+Please report bugs using the issue tracker at github: <https://github.com/pivxl-project/pivxl/issues>
 
 
 Mandatory Update
@@ -15,7 +15,7 @@ Masternodes will need to be restarted once both the masternode daemon and the co
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxd/pivx-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxld/pivxl-qt (on Linux).
 
 Wallets for existing users upgrading from an earlier version will undergo a supply recalculation the first time v3.2.0 is started. An initial light weight (partial) recalculation will be attempted first, but if that fails then the wallet will do a full recalculation the next time it is started. This recalculation is a one-time event.
 
@@ -46,13 +46,13 @@ Attacks, Exploits, and Mitigations
 
 On Janurary 22 2019, Decentralized Systems Lab out of the University of Illinois published a study entitled “[‘Fake Stake’ attacks on chain-based Proof-of-Stake cryptocurrencies](https://medium.com/@dsl_uiuc/fake-stake-attacks-on-chain-based-proof-of-stake-cryptocurrencies-b8b05723f806)”, which outlined a type of Denial of Service attack that could take place on a number of Proof of Stake based networks by exhausting a client's RAM or Disk resources.
 
-A full report provided by PIVX developers is available on the [PIVX Website](https://pivx.org/fake-stake-official-pivx-report/), which includes additional findings, mitigation details, and resources for testing. This type of attack has no risk to users' privacy and does not affect their holdings.
+A full report provided by PIVX developers is available on the [PIVX Website](https://pivxl.org/fake-stake-official-pivxl-report/), which includes additional findings, mitigation details, and resources for testing. This type of attack has no risk to users' privacy and does not affect their holdings.
 
 ### Wrapped Serials
 
 On March 6th 2019, an attack was detected on the PIVX network zerocoin protocol, or zPIV. The vulnerability allows an attacker to fake serials accepted by the network and thus to spend zerocoins that have never been minted. As severe as it is, it does not harm users’ privacy and does not affect their holdings directly.
 
-As a result of this, all zPIV functionality was disabled via one of our sporks shortly after verification of this exploit. A full report, detailing how this attack was performed, as well as investigation results and mitigation methods is available [On Medium](https://medium.com/@dev.pivx/report-wrapped-serials-attack-5f4bf7b51701).
+As a result of this, all zPIV functionality was disabled via one of our sporks shortly after verification of this exploit. A full report, detailing how this attack was performed, as well as investigation results and mitigation methods is available [On Medium](https://medium.com/@dev.pivxl/report-wrapped-serials-attack-5f4bf7b51701).
 
 zPIV functions will be restored after v3.2.0 is pushed out and the majority of the network has upgraded.
 
@@ -65,7 +65,7 @@ PIVX Core v3.2.0 introduces new consensus rules for scripting pathways to suppor
 
 ### Automint Addresses
 
-A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any PIV funds received by such addresses to zPIV. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
+A new "Automint Addresses" feature has been added to the wallet that allows for the creation of new addresses who's purpose is to automatically convert any PIVXL funds received by such addresses to zPIV. The feature as a whole can be enabled/disabled either at runtime using the `-enableautoconvertaddress` option, via RPC/Console with the `enableautomintaddress` command, or via the GUI's options dialog, with the default being enabled.
 
 Creation of these automint addresses is currently only available via the RPC/Console `createautomintaddress` command, which takes no additional arguments. The command returns a new PIVX address each time, but addresses created by this command can be re-used if desired.
 
@@ -77,7 +77,7 @@ A new UI wallet tab has been introduced that allows users to view the current bu
 
 Support for the ZLN Protocol has been added, which allows for a node to opt-in to providing extended network services for the protocol. By default, this functionality is disabled, but can be enabled by using the `-peerbloomfilterszc` runtime option.
 
-A full technical writeup of the protocol can be found [Here](https://pivx.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf).
+A full technical writeup of the protocol can be found [Here](https://pivxl.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf).
 
 ### Precomputed Zerocoin Proofs
 
@@ -243,7 +243,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
  - #677 `29fab5982f` [Qt] change colors for tx labels in history/overview (random-zebra)
  - #693 `022b58257c` [UI] Add address to the payment request history (warrows)
  - #698 `3f35bc81d8` [Qt] Remove Qt4 build support & code fallbacks (Wladimir J. van der Laan)
- - #655 `de0c4e0888` [Qt] Fix PIV balances on overview page (Fuzzbawls)
+ - #655 `de0c4e0888` [Qt] Fix PIVXL balances on overview page (Fuzzbawls)
  - #680 `71ac5285e5` [Qt] Privacy dialog: hide/show denominations (random-zebra)
  - #675 `8a26ba0b07` [Qt] SwiftX - intuitiveness (random-zebra)
  - #668 `4a68c9ed43` [Qt] Clean up Multisend Dialog UI (Fuzzbawls)
@@ -339,4 +339,4 @@ Thanks to everyone who directly contributed to this release:
 - veilgets
 - warrows
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivx-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivxl-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.

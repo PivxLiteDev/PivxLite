@@ -9,7 +9,7 @@
 #include <QDialog>
 #include <QPixmap>
 #include "walletmodel.h"
-#include "qt/pivx/snackbar.h"
+#include "qt/pivxl/snackbar.h"
 
 class WalletModel;
 class PIVXGUI;

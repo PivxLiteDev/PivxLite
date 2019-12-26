@@ -377,15 +377,15 @@ per lo staking</translation>
     </message>
     <message>
         <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi PIV dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
+        <translation>PIVX verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi PIVXL dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Confermi di voler crittografare il portafoglio?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
-        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI PIV&lt;7b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIVXL&lt;/b&gt;!</source>
+        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI PIVXL&lt;7b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -470,8 +470,8 @@ per lo staking</translation>
         <translation>Etichetta</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
-        <translation>Non tutte le transazioni verranno visualizzate. Per vedere tutte le transazioni è necessario aggiungere txindex=1 nel file di configurazione (pivx.conf)</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivxl.conf).</source>
+        <translation>Non tutte le transazioni verranno visualizzate. Per vedere tutte le transazioni è necessario aggiungere txindex=1 nel file di configurazione (pivxl.conf)</translation>
     </message>
 </context>
 <context>
@@ -485,8 +485,8 @@ per lo staking</translation>
         <translation>Risparmi</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0,00 PIV</translation>
+        <source>0,00 PIVXL</source>
+        <translation>0,00 PIVXL</translation>
     </message>
     <message>
         <source>address</source>
@@ -563,8 +563,8 @@ per lo staking</translation>
         <translation>Premi il bottone</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0.00 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -774,8 +774,8 @@ per lo staking</translation>
         <translation>Premi il bottone</translation>
     </message>
     <message>
-        <source>PIV:</source>
-        <translation>PIV:</translation>
+        <source>PIVXL:</source>
+        <translation>PIVXL:</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -895,7 +895,7 @@ per lo staking</translation>
     <message>
         <source>You can delegate your PIVs and let a hot node (24/7 online node)
 stake in your behalf, keeping the keys in a secure place offline.</source>
-        <translation>Puoi delegare i tuoi PIV e lasciare un nodo attivo (nodo online 24/7) ad
+        <translation>Puoi delegare i tuoi PIVXL e lasciare un nodo attivo (nodo online 24/7) ad
 effettuare lo stake a tuo nome, mantenendo le chiavi in ​​un luogo sicuro offline.</translation>
     </message>
     <message>
@@ -903,8 +903,8 @@ effettuare lo stake a tuo nome, mantenendo le chiavi in ​​un luogo sicuro of
         <translation>Aggiungi indirizzo proprietario</translation>
     </message>
     <message>
-        <source>Delegate or Accept PIV delegation</source>
-        <translation>Delegare o accettare la delega PIV</translation>
+        <source>Delegate or Accept PIVXL delegation</source>
+        <translation>Delegare o accettare la delega PIVXL</translation>
     </message>
     <message>
         <source>Delegate</source>
@@ -947,8 +947,8 @@ effettuare lo stake a tuo nome, mantenendo le chiavi in ​​un luogo sicuro of
         <translation>Valore non valido</translation>
     </message>
     <message>
-        <source>Invalid entry, minimum delegable amount is 10 PIV</source>
-        <translation>Voce non valida, importo minimo delegabile è 10 PIV</translation>
+        <source>Invalid entry, minimum delegable amount is 10 PIVXL</source>
+        <translation>Voce non valida, importo minimo delegabile è 10 PIVXL</translation>
     </message>
     <message>
         <source>Owner address invalid</source>
@@ -987,8 +987,8 @@ Vuoi procedere?</translation>
         <translation>Valute delegate</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Non hai alcun PIV da selezionare.</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Non hai alcun PIVXL da selezionare.</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -1119,8 +1119,8 @@ proprietario</translation>
         <translation>Statistiche dello Staking</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>zPIV</source>
@@ -1155,8 +1155,8 @@ proprietario</translation>
         <translation>Puoi vedere la cronologia del tuo account</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>Quantità di PIV e zPIV dallo stake.</translation>
+        <source>Amount of PIVXL and zPIV staked.</source>
+        <translation>Quantità di PIVXL e zPIV dallo stake.</translation>
     </message>
     <message>
         <source>All</source>
@@ -1211,8 +1211,8 @@ proprietario</translation>
         <translation>Ancora nessuna transazione</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
-        <translation>Come ottenere PIV o zPIV</translation>
+        <source>How to get PIVXL or zPIV</source>
+        <translation>Come ottenere PIVXL o zPIV</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1665,8 +1665,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>Crea nuovo controller Masternode</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Per creare un Masternode PIVX devi dedicare 10.000 PIV (l'unità di PIVX) alla rete (tuttavia, queste valute sono ancora tue e saranno sempre in tuo possesso). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Puoi disattivare il nodo e sbloccare le valute in qualsiasi momento.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Per creare un Masternode PIVX devi dedicare 10.000 PIVXL (l'unità di PIVX) alla rete (tuttavia, queste valute sono ancora tue e saranno sempre in tuo possesso). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Puoi disattivare il nodo e sbloccare le valute in qualsiasi momento.</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
@@ -1677,8 +1677,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>Imposta il nome del Masternode</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Verrà effettuata una transazione di 10.000 PIV&lt;/p&gt;&lt;p&gt;a un nuovo indirizzo vuoto nel tuo portafoglio.&lt;p&gt;L'indirizzo è etichettato con il nome del Masternode.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Verrà effettuata una transazione di 10.000 PIVXL&lt;/p&gt;&lt;p&gt;a un nuovo indirizzo vuoto nel tuo portafoglio.&lt;p&gt;L'indirizzo è etichettato con il nome del Masternode.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Master Node’s IP and port</source>
@@ -1866,7 +1866,7 @@ Per favore, attendi qualche minuto.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1874,7 +1874,7 @@ this controller wallet (select the Masternode in the list and press "start").
 un Masternode su un server remoto .
 
 
-Dovrai solo incollare i dati nel file pivx.conf del server remoto
+Dovrai solo incollare i dati nel file pivxl.conf del server remoto
 e avviarlo, quindi avviare il Masternode utilizzando questo portafoglio
 come controller (selezionare il Masternode nell'elenco e premere "start").
 </translation>
@@ -1910,8 +1910,8 @@ Sei sicuro?</translation>
         <translation>il file masternode.conf non esiste</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 10,000 PIV required.</source>
-        <translation>Saldo insufficiente per creare un masternode, sono necessari 10.000 PIV.</translation>
+        <source>Not enough balance to create a masternode, 10,000 PIVXL required.</source>
+        <translation>Saldo insufficiente per creare un masternode, sono necessari 10.000 PIVXL.</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -2042,8 +2042,8 @@ Sei sicuro?</translation>
         <translation>Dati analizzati troppo grandi</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>URI non valido, che non inizia con il prefisso "pivx"</translation>
+        <source>Invalid URI, not starting with "pivxl" prefix</source>
+        <translation>URI non valido, che non inizia con il prefisso "pivxl"</translation>
     </message>
 </context>
 <context>
@@ -2149,17 +2149,17 @@ Sei sicuro?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>Lingua mancante o traduzione incompleta? Aiutaci a contribuire alle traduzioni qui:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Mappa la porta utilizzando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
-        <translation>Attiva la forgiatura automatica di unità PIV in zPIV</translation>
+        <source>Enable automatic minting of PIVXL units to zPIV</source>
+        <translation>Attiva la forgiatura automatica di unità PIVXL in zPIV</translation>
     </message>
     <message>
         <source>Enable zPIV Automint</source>
@@ -2174,16 +2174,16 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Abilita indirizzi forgiatura automatica</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentuale di PIV in entrata che viene automaticamente convertita in zPIV attraverso il protocollo Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentuale di PIVXL in entrata che viene automaticamente convertita in zPIV attraverso il protocollo Zerocoin (min: 10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zPIV</source>
         <translation>Percentuale di zPIV Percentuale di zPIV da forgiare automaticamente</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Attendere la conversione automatica in Zerocoin fino a quando non saranno disponibili abbastanza PIV per questa denominazione</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
+        <translation>Attendere la conversione automatica in Zerocoin fino a quando non saranno disponibili abbastanza PIVXL per questa denominazione</translation>
     </message>
     <message>
         <source>Preferred Automint zPIV Denomination</source>
@@ -2447,8 +2447,8 @@ Indirizzo: %4
         <translation>Indirizzo di pagamento %1 invalido</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
-        <translation>Impossibile avviare pivx: gestore click-to-pay</translation>
+        <source>Cannot start pivxl: click-to-pay handler</source>
+        <translation>Impossibile avviare pivxl: gestore click-to-pay</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
@@ -2565,14 +2565,14 @@ Indirizzo: %4
         <translation>Forgiatura</translation>
     </message>
     <message>
-        <source>Minting zPIV anonymizes your PIV by removing any
+        <source>Minting zPIV anonymizes your PIVXL by removing any
 transaction history, making transactions untraceable </source>
-        <translation>La forgiatura zPIV anonimizza il tuo PIV rimuovendo qualsiasi
+        <translation>La forgiatura zPIV anonimizza il tuo PIVXL rimuovendo qualsiasi
 cronologia delle transazioni, rendendo le transazioni non rintracciabili</translation>
     </message>
     <message>
-        <source>Mint new zPIV or convert back to PIV</source>
-        <translation>Forgia nuovi zPIV o converti nuovamente in PIV</translation>
+        <source>Mint new zPIV or convert back to PIVXL</source>
+        <translation>Forgia nuovi zPIV o converti nuovamente in PIVXL</translation>
     </message>
     <message>
         <source>Last Zerocoin Movements</source>
@@ -2587,16 +2587,16 @@ cronologia delle transazioni, rendendo le transazioni non rintracciabili</transl
         <translation>Forgiatura zPIV</translation>
     </message>
     <message>
-        <source>Enter amount of PIV to mint into zPIV</source>
-        <translation>Immetti un importo di PIV da convertire in zPIV</translation>
+        <source>Enter amount of PIVXL to mint into zPIV</source>
+        <translation>Immetti un importo di PIVXL da convertire in zPIV</translation>
     </message>
     <message>
-        <source>Convert back to PIV</source>
-        <translation>Converti nuovamente in PIV</translation>
+        <source>Convert back to PIVXL</source>
+        <translation>Converti nuovamente in PIVXL</translation>
     </message>
     <message>
-        <source>Enter amount of zPIV to convert back into PIV</source>
-        <translation>Immetti un importo di zPIV da convertire in PIV</translation>
+        <source>Enter amount of zPIV to convert back into PIVXL</source>
+        <translation>Immetti un importo di zPIV da convertire in PIVXL</translation>
     </message>
     <message>
         <source>Zerocoin</source>
@@ -2627,12 +2627,12 @@ cronologia delle transazioni, rendendo le transazioni non rintracciabili</transl
         <translation>zPIV forgiati con successo</translation>
     </message>
     <message>
-        <source>zPIV converted back to PIV</source>
-        <translation>zPIV riconvertito in PIV</translation>
+        <source>zPIV converted back to PIVXL</source>
+        <translation>zPIV riconvertito in PIVXL</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Non hai alcun PIV da selezionare.</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Non hai alcun PIVXL da selezionare.</translation>
     </message>
     <message>
         <source>Rescan Mints</source>
@@ -3268,8 +3268,8 @@ cronologia delle transazioni, rendendo le transazioni non rintracciabili</transl
         <translation>Ricevi</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive PIV.</source>
-        <translation>Scansiona il codice QR o copia l'indirizzo per ricevere PIV.</translation>
+        <source>Scan the QR code or copy the address to receive PIVXL.</source>
+        <translation>Scansiona il codice QR o copia l'indirizzo per ricevere PIVXL.</translation>
     </message>
     <message>
         <source>No address </source>
@@ -3370,8 +3370,8 @@ cronologia delle transazioni, rendendo le transazioni non rintracciabili</transl
         <translation>Ammontare</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3558,8 +3558,8 @@ cronologia delle transazioni, rendendo le transazioni non rintracciabili</transl
         <translation>Invia</translation>
     </message>
     <message>
-        <source>You can transfer public coins (PIV) or private coins (zPIV)</source>
-        <translation>È possibile trasferire valuta pubblica (PIV) o valuta privata (zPIV)</translation>
+        <source>You can transfer public coins (PIVXL) or private coins (zPIV)</source>
+        <translation>È possibile trasferire valuta pubblica (PIVXL) o valuta privata (zPIV)</translation>
     </message>
     <message>
         <source>Select coin type to spend</source>
@@ -3594,8 +3594,8 @@ cronologia delle transazioni, rendendo le transazioni non rintracciabili</transl
         <translation>Totale da mandare</translation>
     </message>
     <message>
-        <source>Send PIV</source>
-        <translation>Invia PIV</translation>
+        <source>Send PIVXL</source>
+        <translation>Invia PIVXL</translation>
     </message>
     <message>
         <source>Send zPIV</source>
@@ -3718,8 +3718,8 @@ Alternativamente forgia denominazioni più alte (quindi sono necessari meno inpu
         <translation>Tariffa personalizzata %1</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Non hai alcun PIV da selezionare.</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Non hai alcun PIVXL da selezionare.</translation>
     </message>
     <message>
         <source>You don't have any zPIV in your balance to select.</source>
@@ -4127,8 +4127,8 @@ Verifica di aver installato un editor di testo predeterminato.</translation>
         <translation>1) Che cos'è PIVX?</translation>
     </message>
     <message>
-        <source>2) Why are my PIV unspendable?</source>
-        <translation>2) Perché i miei PIV non sono spendibili?</translation>
+        <source>2) Why are my PIVXL unspendable?</source>
+        <translation>2) Perché i miei PIVXL non sono spendibili?</translation>
     </message>
     <message>
         <source>3) PIVX privacy? What is Zerocoin (zPIV)?</source>
@@ -4145,12 +4145,12 @@ Verifica di aver installato un editor di testo predeterminato.</translation>
   in zPIV automaticamente?</translation>
     </message>
     <message>
-        <source>6) How do I receive PIV/zPIV?</source>
-        <translation>6) Come ottenere PIV o zPIV?</translation>
+        <source>6) How do I receive PIVXL/zPIV?</source>
+        <translation>6) Come ottenere PIVXL o zPIV?</translation>
     </message>
     <message>
-        <source>7) How do I stake PIV/zPIV?</source>
-        <translation>7) Come posso fare lo stake di PIV / zPIV?</translation>
+        <source>7) How do I stake PIVXL/zPIV?</source>
+        <translation>7) Come posso fare lo stake di PIVXL / zPIV?</translation>
     </message>
     <message>
         <source>8) Where I should go if I need support?</source>
@@ -4207,8 +4207,8 @@ eseguire Masternode per creare e votare proposte.
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my PIV unspendable?</source>
-        <translation>Perché i miei PIV non sono spendibili?</translation>
+        <source>Why are my PIVXL unspendable?</source>
+        <translation>Perché i miei PIVXL non sono spendibili?</translation>
     </message>
     <message>
         <source>
@@ -4293,13 +4293,13 @@ per diventare idoneo alla spesa.
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           By default the PIVX wallet will convert 10% of your entire PIV
+                           By default the PIVX wallet will convert 10% of your entire PIVXL
                            balance to zPIV to assist the network. If you do not wish to
                            stake zPIV or take advantage of the privacy benefit it brings,
                            you can disable the automatic minting in your PIVX wallet by
                            going to Settings-&gt;Options and deselecting “Enable zPIV Automint”.
                            If you are not making use of the PIVX-QT or GUI you can simply open
-                           your pivx.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
+                           your pivxl.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
                            marks and restart your wallet to disable automint.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            You can read more about zPIV in the
@@ -4311,12 +4311,12 @@ per diventare idoneo alla spesa.
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Come impostazione predefinita, il portafoglio PIVX convertirà il 10% dell'intero
-saldo PIV con zPIV, per supportare la rete. Se non desideri effettuare lo
+saldo PIVXL con zPIV, per supportare la rete. Se non desideri effettuare lo
 staking di zPIV o sfruttare il vantaggio sulla privacy che ne comporta,
 puoi disabilitare la forgiatura automatica nel tuo portafoglio PIVX
 andando su Impostazioni-&gt;Opzioni e deselezionando “Abilita zPIV Automint”.
 Se non si utilizzi PIVX-QT o la GUI, è possibile aprire semplicemente
-il tuo file pivx.conf e aggiungere&lt;i&gt;enablezeromint=0&lt;/i&gt; senza gli apostrofi
+il tuo file pivxl.conf e aggiungere&lt;i&gt;enablezeromint=0&lt;/i&gt; senza gli apostrofi
 e far ripartire il portafoglio per disabilitare la forgiatura automatica.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            Puoi leggere di più su zPIV nel
@@ -4331,8 +4331,8 @@ nella sezione delle FAQ di seguito.
         <translation>6</translation>
     </message>
     <message>
-        <source>How do I receive PIV/zPIV?</source>
-        <translation>Come ottenere PIV o zPIV?</translation>
+        <source>How do I receive PIVXL/zPIV?</source>
+        <translation>Come ottenere PIVXL o zPIV?</translation>
     </message>
     <message>
         <source>
@@ -4357,8 +4357,8 @@ Se desideri più zPIV, dovrai forgiare il saldo nella scheda "Privacy".
         <translation>7</translation>
     </message>
     <message>
-        <source>How do I stake PIV/zPIV?</source>
-        <translation>Come posso fare lo stake di PIV / zPIV?</translation>
+        <source>How do I stake PIVXL/zPIV?</source>
+        <translation>Come posso fare lo stake di PIVXL / zPIV?</translation>
     </message>
     <message>
         <source>
@@ -4374,7 +4374,7 @@ Se desideri più zPIV, dovrai forgiare il saldo nella scheda "Privacy".
                            &lt;li&gt;
                            Once all those steps are followed staking should be enabled.
                            &lt;li&gt;
-                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivx-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
+                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            To Stake zPIV:
@@ -4402,7 +4402,7 @@ Se desideri più zPIV, dovrai forgiare il saldo nella scheda "Privacy".
                            &lt;li&gt;
                            Una volta seguiti tutti questi passaggi, è necessario abilitare lo staking.
                            &lt;li&gt;
-                           Puoi vedere lo stato dello staking nel portafoglio spostando il mouse sull'icona del pacchetto nella riga in alto a sinistra dell'interfaccia del portafoglio. Il pacchetto verrà illuminato e indicherà "Staking Enabled" per indicare che sta effettuando lo staking. Utilizzando l'interfaccia della riga di comando (pivx-cli); il comando&lt;i&gt;getstakingstatus&lt;/i&gt; confermerà che lo staking é attivo.
+                           Puoi vedere lo stato dello staking nel portafoglio spostando il mouse sull'icona del pacchetto nella riga in alto a sinistra dell'interfaccia del portafoglio. Il pacchetto verrà illuminato e indicherà "Staking Enabled" per indicare che sta effettuando lo staking. Utilizzando l'interfaccia della riga di comando (pivxl-cli); il comando&lt;i&gt;getstakingstatus&lt;/i&gt; confermerà che lo staking é attivo.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            Per fare Staking zPIV:
@@ -4460,7 +4460,7 @@ Se desideri più zPIV, dovrai forgiare il saldo nella scheda "Privacy".
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            A masternode is a computer running a full node PIVX core wallet with a
-                           requirement of 10,000 PIV secured collateral to provide extra services
+                           requirement of 10,000 PIVXL secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4492,7 +4492,7 @@ Se desideri più zPIV, dovrai forgiare il saldo nella scheda "Privacy".
                            Requirements:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;10,000 PIVXL per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -4502,7 +4502,7 @@ Se desideri più zPIV, dovrai forgiare il saldo nella scheda "Privacy".
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            Un masternode è un computer che esegue un portafoglio core PIVX a nodo completo
-con un requisito di 10.000 PIV a garanzia per fornire servizi extra
+con un requisito di 10.000 PIVXL a garanzia per fornire servizi extra
 alla rete e, in cambio, riceve una parte del premio del blocco
 regolarmente. Questi servizi includono:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4534,7 +4534,7 @@ regolarmente. Questi servizi includono:
                            Requisiti:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per singolo Masternode
+                           &lt;li&gt;10,000 PIVXL per singolo Masternode
                            &lt;li&gt;Devono essere conservati in un portafoglio core&lt;/li&gt;
                            &lt;li&gt;Necessita un indirizzo IP dedicato&lt;/li&gt;
                            &lt;li&gt;Il portafoglio del Masternode deve rimanere online&lt;/li&gt;
@@ -4551,8 +4551,8 @@ regolarmente. Questi servizi includono:
         <translation>Cos'è un Masternode controller?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIV collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Un portafoglio Masternode Controller è dove i 10.000 PIV collaterali possono risiedere durante l'impostazione del Masternode Controller remoto. È un portafoglio che può attivare uno o più portafogli masternode remoti e ti consente di mantenere offline le tue valute collaterali mentre il masternode remoto rimane online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIVXL collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Un portafoglio Masternode Controller è dove i 10.000 PIVXL collaterali possono risiedere durante l'impostazione del Masternode Controller remoto. È un portafoglio che può attivare uno o più portafogli masternode remoti e ti consente di mantenere offline le tue valute collaterali mentre il masternode remoto rimane online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Frequently Asked Questions</source>
@@ -4662,8 +4662,8 @@ regolarmente. Questi servizi includono:
         <translation>Impossibile aprire la cartella dei backup</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>Impossibile aprire pivx.conf con l'applicazione predefinita</translation>
+        <source>Unable to open pivxl.conf with default application</source>
+        <translation>Impossibile aprire pivxl.conf con l'applicazione predefinita</translation>
     </message>
     <message>
         <source>In:</source>
@@ -5439,8 +5439,8 @@ Sei sicuro?
         <translation>Modulo</translation>
     </message>
     <message>
-        <source>480.0685 PIV</source>
-        <translation>480.0685 PIV</translation>
+        <source>480.0685 PIVXL</source>
+        <translation>480.0685 PIVXL</translation>
     </message>
     <message>
         <source>1,000 zPIV</source>
@@ -5455,16 +5455,16 @@ Sei sicuro?
         <translation>In attesa</translation>
     </message>
     <message>
-        <source>6.943 PIV</source>
-        <translation>6.943 PIV</translation>
+        <source>6.943 PIVXL</source>
+        <translation>6.943 PIVXL</translation>
     </message>
     <message>
         <source>Immature</source>
         <translation>Immaturo</translation>
     </message>
     <message>
-        <source>10 PIV</source>
-        <translation>10 PIV</translation>
+        <source>10 PIVXL</source>
+        <translation>10 PIVXL</translation>
     </message>
     <message>
         <source>60 zPIV</source>
@@ -5788,20 +5788,20 @@ Sei sicuro?
         <translation>Ricevuto tramite offuscamento</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV Stake</translation>
+        <source>PIVXL Stake</source>
+        <translation>PIVXL Stake</translation>
     </message>
     <message>
         <source>zPIV Stake</source>
         <translation>zPIV Stake</translation>
     </message>
     <message>
-        <source>PIV Cold Stake</source>
-        <translation>PIV Cold Stake</translation>
+        <source>PIVXL Cold Stake</source>
+        <translation>PIVXL Cold Stake</translation>
     </message>
     <message>
-        <source>PIV Stake in behalf of</source>
-        <translation>PIV Stake per conto di</translation>
+        <source>PIVXL Stake in behalf of</source>
+        <translation>PIVXL Stake per conto di</translation>
     </message>
     <message>
         <source>Stake delegation</source>
@@ -5824,24 +5824,24 @@ Sei sicuro?
         <translation>L'offuscamento crea denominazioni</translation>
     </message>
     <message>
-        <source>Converted PIV to zPIV</source>
-        <translation>Convertito PIV in zPIV</translation>
+        <source>Converted PIVXL to zPIV</source>
+        <translation>Convertito PIVXL in zPIV</translation>
     </message>
     <message>
         <source>Spent zPIV</source>
         <translation>zPIV spesi</translation>
     </message>
     <message>
-        <source>Received PIV from zPIV</source>
-        <translation>Ricevuto PIV da zPIV</translation>
+        <source>Received PIVXL from zPIV</source>
+        <translation>Ricevuto PIVXL da zPIV</translation>
     </message>
     <message>
         <source>Minted Change as zPIV from zPIV Spend</source>
         <translation>Forgiatura cambiata in zPIV da zPIV spesi</translation>
     </message>
     <message>
-        <source>Converted zPIV to PIV</source>
-        <translation>Convertito zPIV in PIV</translation>
+        <source>Converted zPIV to PIVXL</source>
+        <translation>Convertito zPIV in PIVXL</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5935,8 +5935,8 @@ Sei sicuro?
         <translation>Importo totale</translation>
     </message>
     <message>
-        <source>2 PIV</source>
-        <translation>2 PIV</translation>
+        <source>2 PIVXL</source>
+        <translation>2 PIVXL</translation>
     </message>
     <message>
         <source>Coin inputs:</source>
@@ -5959,8 +5959,8 @@ Sei sicuro?
         <translation>Commissione:</translation>
     </message>
     <message>
-        <source>0.0001 PIV</source>
-        <translation>0.0001 PIV</translation>
+        <source>0.0001 PIVXL</source>
+        <translation>0.0001 PIVXL</translation>
     </message>
     <message>
         <source>Change address:</source>
@@ -6046,8 +6046,8 @@ Sei sicuro?
         <translation>18/05/18</translation>
     </message>
     <message>
-        <source>+0.000585 PIV</source>
-        <translation>+0.000585 PIV</translation>
+        <source>+0.000585 PIVXL</source>
+        <translation>+0.000585 PIVXL</translation>
     </message>
 </context>
 <context>
@@ -6057,8 +6057,8 @@ Sei sicuro?
         <translation>Invia Valuta</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>SwiftX non supporta ancora l'invio di valori così elevati. Le transazioni sono attualmente limitate a %1 PIV.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
+        <translation>SwiftX non supporta ancora l'invio di valori così elevati. Le transazioni sono attualmente limitate a %1 PIVXL.</translation>
     </message>
 </context>
 <context>
@@ -6205,7 +6205,7 @@ Portafoglio PIVX Core.</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = conserva i metadati tx, ad esempio il proprietario dell'account e le informazioni sulla richiesta di pagamento, 2 = elimina i metadati tx)</translation>
@@ -6271,8 +6271,8 @@ Portafoglio PIVX Core.</translation>
         <translation>Abilita la funzionalità di cold staking (0-1, default: %u). Disabilitato se staking=0</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Abilita o disabilita la funzionalità di cold staking per gli input PIV (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
+        <translation>Abilita o disabilita la funzionalità di cold staking per gli input PIVXL (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</source>
@@ -6311,12 +6311,12 @@ Portafoglio PIVX Core.</translation>
         <translation>Esegui comando quando cambia il blocco migliore (%s in cmd è sostituito dall'hash del blocco)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Le commissioni (in PIV/Kb) inferiori a questa sono considerate zero per l'inoltro (impostazione predefinita: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Le commissioni (in PIVXL/Kb) inferiori a questa sono considerate zero per l'inoltro (impostazione predefinita: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Le commissioni (in PIV/Kb) inferiori a questa sono considerate zero per la creazione della transazione (impostazione predefinita: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Le commissioni (in PIVXL/Kb) inferiori a questa sono considerate zero per la creazione della transazione (impostazione predefinita: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -6439,12 +6439,12 @@ Portafoglio PIVX Core.</translation>
         <translation>Impossibile individuare abbastanza fondi denominati di offuscamento per questa transazione.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Impossibile individuare fondi non denominati di offuscamento sufficienti per questa transazione non uguali a 10000 PIV.</translation>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIVXL.</source>
+        <translation>Impossibile individuare fondi non denominati di offuscamento sufficienti per questa transazione non uguali a 10000 PIVXL.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
-        <translation>Impossibile individuare fondi per questa transazione non uguali a 10000 PIV.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIVXL.</source>
+        <translation>Impossibile individuare fondi per questa transazione non uguali a 10000 PIVXL.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -6743,8 +6743,8 @@ Portafoglio PIVX Core.</translation>
         <translation>Lettura del blocco non riuscita</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Commissione (in PIV/kB) da aggiungere alle transazioni inviate (impostazione predefinita: %s)</translation>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
+        <translation>Commissione (in PIVXL/kB) da aggiungere alle transazioni inviate (impostazione predefinita: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -6843,8 +6843,8 @@ Portafoglio PIVX Core.</translation>
         <translation>Percentuale di Zerocoin forgiati automaticamente (1-100, valore predefinito: %u)</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>Ricalcolo della supply PIV...</translation>
+        <source>Recalculating PIVXL supply...</source>
+        <translation>Ricalcolo della supply PIVXL...</translation>
     </message>
     <message>
         <source>Recalculating minted ZPIV...</source>
@@ -6855,8 +6855,8 @@ Portafoglio PIVX Core.</translation>
         <translation>Ricalcolo spese ZPIV...</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
-        <translation>Reindicizza le statistiche sulla supply di PIV e zPIV</translation>
+        <source>Reindex the PIVXL and zPIV money supply statistics</source>
+        <translation>Reindicizza le statistiche sulla supply di PIVXL e zPIV</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>

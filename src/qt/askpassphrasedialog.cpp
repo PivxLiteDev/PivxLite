@@ -12,10 +12,10 @@
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/loadingdialog.h"
-#include "qt/pivx/defaultdialog.h"
-#include "qt/pivx/pivxgui.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/loadingdialog.h"
+#include "qt/pivxl/defaultdialog.h"
+#include "qt/pivxl/pivxlgui.h"
 #include <QDebug>
 
 #include <QKeyEvent>
@@ -184,7 +184,7 @@ void AskPassphraseDialog::accept()
         hide();
         bool ret = openStandardDialog(
                 tr("Confirm wallet encryption"),
-                tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR PIV</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
+                tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR PIVXL</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
         if (ret) {

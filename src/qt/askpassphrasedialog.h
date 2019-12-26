@@ -8,7 +8,7 @@
 #define BITCOIN_QT_ASKPASSPHRASEDIALOG_H
 
 #include <QDialog>
-#include "qt/pivx/prunnable.h"
+#include "qt/pivxl/prunnable.h"
 #include "allocators.h"
 #include <QCheckBox>
 
@@ -44,7 +44,7 @@ public:
         Encrypt,        /** Encrypt unencrypted wallet */
         ToggleLock,     /** Toggle wallet lock state */
         ChangePass,     /** Change passphrase */
-        Send_PIV,       /** Send PIV */
+        Send_PIV,       /** Send PIVXL */
         Send_zPIV,      /** Send zPIV */
         Mint_zPIV,      /** Mint zPIV */
         BIP_38,         /** BIP38 menu */

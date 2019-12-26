@@ -384,7 +384,7 @@ for staking</source>
         <translation>您确定加密您的钱包吗？</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIVXL&lt;/b&gt;!</source>
         <translation>注意：请妥善保管好你的密码，因为在加密后，没有密码将无法打开钱包。这将会让您&lt;b&gt;损失钱包中所有的PIV&lt;/b&gt;！</translation>
     </message>
     <message>
@@ -470,8 +470,8 @@ for staking</source>
         <translation>文本标签</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivx.conf).</source>
-        <translation>并不显示所有的交易。要查看所有交易，您需要在配置文件(pivx.conf)中设置txindex=1。</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (pivxl.conf).</source>
+        <translation>并不显示所有的交易。要查看所有交易，您需要在配置文件(pivxl.conf)中设置txindex=1。</translation>
     </message>
 </context>
 <context>
@@ -485,8 +485,8 @@ for staking</source>
         <translation>存款</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0,00 PIV</translation>
+        <source>0,00 PIVXL</source>
+        <translation>0,00 PIVXL</translation>
     </message>
     <message>
         <source>address</source>
@@ -563,8 +563,8 @@ for staking</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0.00 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -774,8 +774,8 @@ for staking</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <source>PIV:</source>
-        <translation>PIV:</translation>
+        <source>PIVXL:</source>
+        <translation>PIVXL:</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -903,7 +903,7 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
         <translation>添加地址</translation>
     </message>
     <message>
-        <source>Delegate or Accept PIV delegation</source>
+        <source>Delegate or Accept PIVXL delegation</source>
         <translation>授予权限或接受PIV权限</translation>
     </message>
     <message>
@@ -947,8 +947,8 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
         <translation>条目无效</translation>
     </message>
     <message>
-        <source>Invalid entry, minimum delegable amount is 10 PIV</source>
-        <translation>输入无效，最小委托量为10 PIV</translation>
+        <source>Invalid entry, minimum delegable amount is 10 PIVXL</source>
+        <translation>输入无效，最小委托量为10 PIVXL</translation>
     </message>
     <message>
         <source>Owner address invalid</source>
@@ -987,7 +987,7 @@ Do you wish to proceed?</source>
         <translation>委托硬币</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
+        <source>You don't have any PIVXL to select.</source>
         <translation>您没有任何PIV可选择。</translation>
     </message>
     <message>
@@ -1119,8 +1119,8 @@ address</source>
         <translation>加注数据</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>zPIV</source>
@@ -1155,7 +1155,7 @@ address</source>
         <translation>您可以查看您的帐户的历史</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
+        <source>Amount of PIVXL and zPIV staked.</source>
         <translation>已加注的PIV 和 zPIV 金额</translation>
     </message>
     <message>
@@ -1211,7 +1211,7 @@ address</source>
         <translation>暂无交易</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
+        <source>How to get PIVXL or zPIV</source>
         <translation>如何获取PIV 或 zPIV</translation>
     </message>
     <message>
@@ -1665,8 +1665,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>创建新的主节点控制器</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;创建一个PIVX 主节点，你必须奉献给网络10.000 PIV (PIVX的单位)(但是，这些币仍属于你，永远都是属于你的财产)。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 10.000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;创建一个PIVX 主节点，你必须奉献给网络10.000 PIVXL (PIVX的单位)(但是，这些币仍属于你，永远都是属于你的财产)。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
@@ -1677,7 +1677,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>设置主节点名称</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将进行10,000 PIV的交易&lt;/p&gt;&lt;p&gt;到您的钱包空地址&lt;/p&gt;&lt;p&gt;地址被标记在主节点的名称之下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -1866,7 +1866,7 @@ Please wait few more minutes.</source>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1874,7 +1874,7 @@ this controller wallet (select the Masternode in the list and press "start").
 到剪贴板的远程服务器上。
 
 
-您只需将数据粘贴到pivx.conf文件中
+您只需将数据粘贴到pivxl.conf文件中
 ，然后使用主节点启动它
 这个控制器钱包(在列表中选择主节点并按“开始”)。
 </translation>
@@ -1910,8 +1910,8 @@ Are you sure?</source>
         <translation>主节点配置文件不存在</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 10,000 PIV required.</source>
-        <translation>没有足够的余额创建主节点，需要10,000 PIV。</translation>
+        <source>Not enough balance to create a masternode, 10,000 PIVXL required.</source>
+        <translation>没有足够的余额创建主节点，需要10,000 PIVXL。</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -2042,8 +2042,8 @@ Are you sure?</source>
         <translation>解析的数据太大</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>无效的URI，不是以“ pivx”前缀开头</translation>
+        <source>Invalid URI, not starting with "pivxl" prefix</source>
+        <translation>无效的URI，不是以“ pivxl”前缀开头</translation>
     </message>
 </context>
 <context>
@@ -2149,16 +2149,16 @@ Are you sure?</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>语言缺失或翻译不完整?帮助贡献翻译在这里:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>端口使用&amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
+        <source>Enable automatic minting of PIVXL units to zPIV</source>
         <translation>启动自动铸造PIV到zPIV</translation>
     </message>
     <message>
@@ -2174,7 +2174,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>启动自动铸造地址</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
         <translation>通过零币协议自动转换为zPIV的传入PIV的百分比(最小:10%)</translation>
     </message>
     <message>
@@ -2182,7 +2182,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>自动铸造的zPIV百分比</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
         <translation>等待自动转换为零币，直到足够的PIV为这种面额可用</translation>
     </message>
     <message>
@@ -2447,8 +2447,8 @@ Address: %4
         <translation>无效支付地址%1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
-        <translation>无法启动pivx:点击支付处理程序</translation>
+        <source>Cannot start pivxl: click-to-pay handler</source>
+        <translation>无法启动pivxl:点击支付处理程序</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
@@ -2565,13 +2565,13 @@ Address: %4
         <translation>铸造</translation>
     </message>
     <message>
-        <source>Minting zPIV anonymizes your PIV by removing any
+        <source>Minting zPIV anonymizes your PIVXL by removing any
 transaction history, making transactions untraceable </source>
         <translation>铸造zPIV会通过删除任何
 交易历史匿名化您的PIV，使交易无法被跟踪</translation>
     </message>
     <message>
-        <source>Mint new zPIV or convert back to PIV</source>
+        <source>Mint new zPIV or convert back to PIVXL</source>
         <translation>铸造新的zPIV或转换回PIV</translation>
     </message>
     <message>
@@ -2587,15 +2587,15 @@ transaction history, making transactions untraceable </source>
         <translation>铸造zPIV</translation>
     </message>
     <message>
-        <source>Enter amount of PIV to mint into zPIV</source>
+        <source>Enter amount of PIVXL to mint into zPIV</source>
         <translation>输入一定量的PIV铸造成zPIV</translation>
     </message>
     <message>
-        <source>Convert back to PIV</source>
+        <source>Convert back to PIVXL</source>
         <translation>转换回PIV</translation>
     </message>
     <message>
-        <source>Enter amount of zPIV to convert back into PIV</source>
+        <source>Enter amount of zPIV to convert back into PIVXL</source>
         <translation>输入一定量的zPIV转换回PIV</translation>
     </message>
     <message>
@@ -2627,11 +2627,11 @@ transaction history, making transactions untraceable </source>
         <translation>zPIV铸造成功</translation>
     </message>
     <message>
-        <source>zPIV converted back to PIV</source>
+        <source>zPIV converted back to PIVXL</source>
         <translation>zPIV 转换回PIV</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
+        <source>You don't have any PIVXL to select.</source>
         <translation>您没有任何PIV可选择。</translation>
     </message>
     <message>
@@ -3268,7 +3268,7 @@ transaction history, making transactions untraceable </source>
         <translation>接收</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive PIV.</source>
+        <source>Scan the QR code or copy the address to receive PIVXL.</source>
         <translation>扫描二维码或复制地址接收PIV</translation>
     </message>
     <message>
@@ -3370,8 +3370,8 @@ transaction history, making transactions untraceable </source>
         <translation>金额</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3559,8 +3559,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         <translation>发送</translation>
     </message>
     <message>
-        <source>You can transfer public coins (PIV) or private coins (zPIV)</source>
-        <translation>您可以转换公共币(PIV)或私人币(zPIV)</translation>
+        <source>You can transfer public coins (PIVXL) or private coins (zPIV)</source>
+        <translation>您可以转换公共币(PIVXL)或私人币(zPIV)</translation>
     </message>
     <message>
         <source>Select coin type to spend</source>
@@ -3595,7 +3595,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         <translation>花费总金额</translation>
     </message>
     <message>
-        <source>Send PIV</source>
+        <source>Send PIVXL</source>
         <translation>花费PIV</translation>
     </message>
     <message>
@@ -3719,7 +3719,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>定制费用%1</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
+        <source>You don't have any PIVXL to select.</source>
         <translation>您没有任何PIV可供选择。</translation>
     </message>
     <message>
@@ -4128,7 +4128,7 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>1）什么是PIVX?</translation>
     </message>
     <message>
-        <source>2) Why are my PIV unspendable?</source>
+        <source>2) Why are my PIVXL unspendable?</source>
         <translation>2) 我的PIV为什么不能用？</translation>
     </message>
     <message>
@@ -4146,11 +4146,11 @@ Verify that you have installed a predetermined text editor.</source>
 zPIV了?</translation>
     </message>
     <message>
-        <source>6) How do I receive PIV/zPIV?</source>
+        <source>6) How do I receive PIVXL/zPIV?</source>
         <translation>6）如何接收PIV/zPIV?</translation>
     </message>
     <message>
-        <source>7) How do I stake PIV/zPIV?</source>
+        <source>7) How do I stake PIVXL/zPIV?</source>
         <translation>7）如何加注PIV/zPIV?</translation>
     </message>
     <message>
@@ -4206,7 +4206,7 @@ PIVX使用了一个股权证明(PoS)一致系统算法，
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my PIV unspendable?</source>
+        <source>Why are my PIVXL unspendable?</source>
         <translation>我的PIV为什么不能用？</translation>
     </message>
     <message>
@@ -4295,7 +4295,7 @@ PIVX零币(zPIV)技术文件
         <translation>6</translation>
     </message>
     <message>
-        <source>How do I receive PIV/zPIV?</source>
+        <source>How do I receive PIVXL/zPIV?</source>
         <translation>我怎么接收PIV/zPIV?</translation>
     </message>
     <message>
@@ -4320,7 +4320,7 @@ PIVX零币(zPIV)技术文件
         <translation>7</translation>
     </message>
     <message>
-        <source>How do I stake PIV/zPIV?</source>
+        <source>How do I stake PIVXL/zPIV?</source>
         <translation>我怎么加注PIV/zPIV?</translation>
     </message>
     <message>
@@ -4337,7 +4337,7 @@ PIVX零币(zPIV)技术文件
                            &lt;li&gt;
                            Once all those steps are followed staking should be enabled.
                            &lt;li&gt;
-                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivx-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
+                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            To Stake zPIV:
@@ -4365,7 +4365,7 @@ PIVX零币(zPIV)技术文件
 &lt;li&gt;
 一旦所有这些步骤都遵循了，应该就可以启用加注
 &lt;li&gt;
-您可以通过将鼠标移到钱包界面左上角的行中的package图标上来查看在钱包中进行标记的状态。被点亮，并将状态“Staking启用”，以表明它是加注状态。使用命令行接口(pivx-cli);命令getstakingstatus将确认加注是活跃状态。
+您可以通过将鼠标移到钱包界面左上角的行中的package图标上来查看在钱包中进行标记的状态。被点亮，并将状态“Staking启用”，以表明它是加注状态。使用命令行接口(pivxl-cli);命令getstakingstatus将确认加注是活跃状态。
 &lt;/li&gt;&lt;/ol&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 加注zPIV:&lt;/p&gt;&lt;p align="justify"&gt;
@@ -4418,7 +4418,7 @@ PIVX零币(zPIV)技术文件
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            A masternode is a computer running a full node PIVX core wallet with a
-                           requirement of 10,000 PIV secured collateral to provide extra services
+                           requirement of 10,000 PIVXL secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4450,7 +4450,7 @@ PIVX零币(zPIV)技术文件
                            Requirements:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;10,000 PIVXL per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -4492,7 +4492,7 @@ PIVX零币(zPIV)技术文件
 要求：
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;每个主节点实例有10,000 PIV&lt;/li&gt;
+&lt;li&gt;每个主节点实例有10,000 PIVXL&lt;/li&gt;
 &lt;li&gt;必须存储在核心钱包&lt;/li&gt;
 &lt;li&gt;需要专用IP地址&lt;/li&gt;
 主节点钱包保持在线&lt;li&gt;
@@ -4510,7 +4510,7 @@ PIVX零币(zPIV)技术文件
         <translation>什么是主节点控制器？</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIV collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 PIVXL collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;主节点控制器钱包是在控制器-远程主节点设置期间10,000 PIV附属品可以驻留的地方。这是一个可以激活远程主节点钱包的钱包/s，远程主节点保持在线的时候，可以让你的抵押品硬币离线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -4621,8 +4621,8 @@ PIVX零币(zPIV)技术文件
         <translation>无法打开备份文件夹</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>无法使用默认应用程序打开pivx.conf</translation>
+        <source>Unable to open pivxl.conf with default application</source>
+        <translation>无法使用默认应用程序打开pivxl.conf</translation>
     </message>
     <message>
         <source>In:</source>
@@ -5394,8 +5394,8 @@ Are you sure?
         <translation>来自</translation>
     </message>
     <message>
-        <source>480.0685 PIV</source>
-        <translation>480.0685 PIV</translation>
+        <source>480.0685 PIVXL</source>
+        <translation>480.0685 PIVXL</translation>
     </message>
     <message>
         <source>1,000 zPIV</source>
@@ -5410,24 +5410,24 @@ Are you sure?
         <translation>进行当中：</translation>
     </message>
     <message>
-        <source>6.943 PIV</source>
-        <translation>6.943 PIV</translation>
+        <source>6.943 PIVXL</source>
+        <translation>6.943 PIVXL</translation>
     </message>
     <message>
         <source>Immature</source>
         <translation>不成熟</translation>
     </message>
     <message>
-        <source>10 PIV</source>
-        <translation>10 PIV</translation>
+        <source>10 PIVXL</source>
+        <translation>10 PIVXL</translation>
     </message>
     <message>
         <source>60 zPIV</source>
-        <translation>60 PIV</translation>
+        <translation>60 PIVXL</translation>
     </message>
     <message>
         <source>10 zPIV</source>
-        <translation>10 PIV</translation>
+        <translation>10 PIVXL</translation>
     </message>
     <message>
         <source>Wallet Unlocked for staking</source>
@@ -5743,7 +5743,7 @@ Are you sure?
         <translation>模糊接收</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
+        <source>PIVXL Stake</source>
         <translation>PIV加注</translation>
     </message>
     <message>
@@ -5751,11 +5751,11 @@ Are you sure?
         <translation>zPIV 加注</translation>
     </message>
     <message>
-        <source>PIV Cold Stake</source>
+        <source>PIVXL Cold Stake</source>
         <translation>PIV冷饮</translation>
     </message>
     <message>
-        <source>PIV Stake in behalf of</source>
+        <source>PIVXL Stake in behalf of</source>
         <translation>PIV权益代表</translation>
     </message>
     <message>
@@ -5779,7 +5779,7 @@ Are you sure?
         <translation>模糊创建命名</translation>
     </message>
     <message>
-        <source>Converted PIV to zPIV</source>
+        <source>Converted PIVXL to zPIV</source>
         <translation>转换PIV为zPIV</translation>
     </message>
     <message>
@@ -5787,7 +5787,7 @@ Are you sure?
         <translation>已经花费zPIV</translation>
     </message>
     <message>
-        <source>Received PIV from zPIV</source>
+        <source>Received PIVXL from zPIV</source>
         <translation>从zPIV接收PIV</translation>
     </message>
     <message>
@@ -5795,7 +5795,7 @@ Are you sure?
         <translation>铸币的变化，从zPIV花费zPIV</translation>
     </message>
     <message>
-        <source>Converted zPIV to PIV</source>
+        <source>Converted zPIV to PIVXL</source>
         <translation>转换PIV为zPIV</translation>
     </message>
     <message>
@@ -5890,8 +5890,8 @@ Are you sure?
         <translation>总金额</translation>
     </message>
     <message>
-        <source>2 PIV</source>
-        <translation>2 PIV</translation>
+        <source>2 PIVXL</source>
+        <translation>2 PIVXL</translation>
     </message>
     <message>
         <source>Coin inputs:</source>
@@ -5914,8 +5914,8 @@ Are you sure?
         <translation>费用：</translation>
     </message>
     <message>
-        <source>0.0001 PIV</source>
-        <translation>0.0001 PIV</translation>
+        <source>0.0001 PIVXL</source>
+        <translation>0.0001 PIVXL</translation>
     </message>
     <message>
         <source>Change address:</source>
@@ -6001,8 +6001,8 @@ Are you sure?
         <translation>18/05/18</translation>
     </message>
     <message>
-        <source>+0.000585 PIV</source>
-        <translation>+0.000585 PIV</translation>
+        <source>+0.000585 PIVXL</source>
+        <translation>+0.000585 PIVXL</translation>
     </message>
 </context>
 <context>
@@ -6012,8 +6012,8 @@ Are you sure?
         <translation>发送币</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>SwiftX目前还不支持发送这么高的值。当前的交易限制为%1 PIV。</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
+        <translation>SwiftX目前还不支持发送这么高的值。当前的交易限制为%1 PIVXL。</translation>
     </message>
 </context>
 <context>
@@ -6160,7 +6160,7 @@ PIVX核心钱包</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 =保留tx元数据，例如帐户所有者和付款请求信息，2 =删除tx元数据)</translation>
@@ -6226,7 +6226,7 @@ PIVX核心钱包</translation>
         <translation>启用冷堆叠（0-1，默认值：%u）。 如果累计= 0，则禁用</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
         <translation>启用或禁用PIV输入标记功能(0-1，默认值:%u)</translation>
     </message>
     <message>
@@ -6266,11 +6266,11 @@ PIVX核心钱包</translation>
         <translation>当最佳区块更改时执行命令(cmd中的%s被块散列替换)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
         <translation>小于此值的费用(以PIV/Kb为单位)视为零中继费用(默认值:%s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
         <translation>小于此值的费用(以PIV/Kb为单位)被认为是交易创建的零费用(默认值:%s)</translation>
     </message>
     <message>
@@ -6394,11 +6394,11 @@ PIVX核心钱包</translation>
         <translation>无法为这笔交易找到足够的模糊基金。</translation>
     </message>
     <message>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 PIVXL.</source>
         <translation>无法找到不等于10000 PIV的模糊非计价基金来进行这笔交易。</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIV.</source>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 PIVXL.</source>
         <translation>无法为这次交易找到不等于10000 PIV的足够资金。</translation>
     </message>
     <message>
@@ -6698,7 +6698,7 @@ PIVX核心钱包</translation>
         <translation>读取区块失败</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
         <translation>将费用(以PIV/kB为单位)添加到您发送的交易中(默认:%s)</translation>
     </message>
     <message>
@@ -6798,7 +6798,7 @@ PIVX核心钱包</translation>
         <translation>自动铸造零币的百分比(1-100，默认:%u)</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
+        <source>Recalculating PIVXL supply...</source>
         <translation>重新计算PIV供应量……</translation>
     </message>
     <message>
@@ -6810,7 +6810,7 @@ PIVX核心钱包</translation>
         <translation>重新计算ZPIV……</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
+        <source>Reindex the PIVXL and zPIV money supply statistics</source>
         <translation>重新索引PIV和zPIV货币供应统计数据</translation>
     </message>
     <message>
