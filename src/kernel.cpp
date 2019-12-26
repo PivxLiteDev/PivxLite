@@ -268,7 +268,7 @@ bool GetKernelStakeModifier(const uint256& hashBlockFrom, uint64_t& nStakeModifi
 
     // loop to find the stake modifier later by a selection interval
     do {
-        if (!pindexNext) {
+        if (!pindexNext && nStakeModifier) {
             // Should never happen
             return error("%s : Null pindexNext, current block %s ", __func__, pindex->phashBlock->GetHex());
         }
@@ -276,6 +276,7 @@ bool GetKernelStakeModifier(const uint256& hashBlockFrom, uint64_t& nStakeModifi
         if (pindex->GeneratedStakeModifier()) {
             nStakeModifierHeight = pindex->nHeight;
             nStakeModifierTime = pindex->GetBlockTime();
+            nStakeModifier = pindex->nStakeModifier;
         }
         pindexNext = chainActive[pindex->nHeight + 1];
     } while (nStakeModifierTime < pindexFrom->GetBlockTime() + OLD_MODIFIER_INTERVAL);

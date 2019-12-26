@@ -15,13 +15,13 @@
 #define CLIENT_VERSION_IS_RELEASE false
 
 /* Major version */
-#define CLIENT_VERSION_MAJOR 4
+#define CLIENT_VERSION_MAJOR 1
 
 /* Minor version */
 #define CLIENT_VERSION_MINOR 0
 
 /* Build revision */
-#define CLIENT_VERSION_REVISION 99
+#define CLIENT_VERSION_REVISION 0
 
 /* Version is release */
 #define COPYRIGHT_YEAR 2019
@@ -349,10 +349,10 @@
 #define PACKAGE_BUGREPORT "https://github.com/pivxl-project/pivxl/issues"
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "PIVX Core"
+#define PACKAGE_NAME "PIVXL Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "PIVX Core 4.0.99"
+#define PACKAGE_STRING "PIVXL Core 1.0.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "pivxl"
@@ -361,7 +361,7 @@
 #define PACKAGE_URL "https://pivxl.org/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "4.0.99"
+#define PACKAGE_VERSION "1.0.0"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */

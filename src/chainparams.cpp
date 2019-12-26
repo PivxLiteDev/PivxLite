@@ -170,7 +170,7 @@ public:
         nFutureTimeDriftPoS = 180;
         nMasternodeCountDrift = 20;
         nMasternodeCollateral = 100000 * COIN;
-        nMaxMoneyOut = 21000000 * COIN;
+        nMaxMoneyOut = 1000000000 * COIN;
         nMinColdStakingAmount = 1 * COIN;
 
         /** Height or Time Based Activations **/
@@ -327,7 +327,7 @@ public:
         nMasternodeCountDrift = 4;
         nMasternodeCollateral = 1000 * COIN;
         nModifierUpdateBlock = INT_MAX; //approx Mon, 17 Apr 2017 04:00:00 GMT
-        nMaxMoneyOut = 43199500 * COIN;
+        nMaxMoneyOut = 1000000000 * COIN;
         nZerocoinStartHeight = INT_MAX;
         nZerocoinStartTime = INT_MAX;
         nBlockEnforceSerialRange = INT_MAX; //Enforce serial range starting this block
@@ -437,7 +437,7 @@ public:
         nMasternodeCountDrift = 4;
         nMasternodeCollateral = 100 * COIN;
         nModifierUpdateBlock = 0;       //approx Mon, 17 Apr 2017 04:00:00 GMT
-        nMaxMoneyOut = 43199500 * COIN;
+        nMaxMoneyOut = 1000000000 * COIN;
         nZerocoinStartHeight = INT_MAX;
         nBlockZerocoinV2 = INT_MAX;
         nZerocoinStartTime = INT_MAX;

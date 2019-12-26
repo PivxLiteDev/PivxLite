@@ -257,10 +257,10 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("pivxl-core", "(51472 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("pivxl-core", "(8233 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("pivxl-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("pivxl-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("pivxl-core", "(must be 51472 for mainnet)"),
+QT_TRANSLATE_NOOP("pivxl-core", "(must be 8233 for mainnet)"),
 QT_TRANSLATE_NOOP("pivxl-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("pivxl-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("pivxl-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),

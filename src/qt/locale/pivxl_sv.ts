@@ -4512,8 +4512,8 @@ Var vänlig kontrollera adressen och försök igen.</translation>
         <translation>Du måste specifiera en masternodeprivkey i konfigurationen. Var vänlig se dokumentationen för hjälp.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 kunde endast användas på mainnet)</translation>
+        <source>(8233 could be used only on mainnet)</source>
+        <translation>(8233 kunde endast användas på mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4524,8 +4524,8 @@ Var vänlig kontrollera adressen och försök igen.</translation>
         <translation>(standard: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(måste vara 51472 för mainnet)</translation>
+        <source>(must be 8233 for mainnet)</source>
+        <translation>(måste vara 8233 för mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
