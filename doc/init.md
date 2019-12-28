@@ -84,9 +84,9 @@ OpenRC).
 ### macOS
 
 Binary:              `/usr/local/bin/pivxld`
-Configuration file:  `~/Library/Application Support/PIVX/pivxl.conf`
-Data directory:      `~/Library/Application Support/PIVX`
-Lock file:           `~/Library/Application Support/PIVX/.lock`
+Configuration file:  `~/Library/Application Support/PIVXL/pivxl.conf`
+Data directory:      `~/Library/Application Support/PIVXL`
+Lock file:           `~/Library/Application Support/PIVXL/.lock`
 
 Installing Service Configuration
 -----------------------------------
@@ -124,7 +124,7 @@ use old versions of Upstart and do not supply the start-stop-daemon utility.
 Copy pivxld.init to /etc/init.d/pivxld. Test by running `service pivxld start`.
 
 Using this script, you can adjust the path and flags to the pivxld program by
-setting the PIVXD and FLAGS environment variables in the file
+setting the PIVXLD and FLAGS environment variables in the file
 /etc/sysconfig/pivxld. You can also use the DAEMONOPTS environment variable here.
 
 ### macOS

@@ -12,7 +12,7 @@
 #include "qt/pivxl/snackbar.h"
 
 class WalletModel;
-class PIVXGUI;
+class PIVXLGUI;
 
 namespace Ui {
 class RequestDialog;

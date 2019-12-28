@@ -20,7 +20,7 @@ class SettingsBitToolWidget : public PWidget
     Q_OBJECT
 
 public:
-    explicit SettingsBitToolWidget(PIVXGUI* _window, QWidget *parent = nullptr);
+    explicit SettingsBitToolWidget(PIVXLGUI* _window, QWidget *parent = nullptr);
     ~SettingsBitToolWidget();
 protected:
     void resizeEvent(QResizeEvent *event) override;

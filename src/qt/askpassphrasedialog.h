@@ -13,7 +13,7 @@
 #include <QCheckBox>
 
 class WalletModel;
-class PIVXGUI;
+class PIVXLGUI;
 
 namespace Ui
 {

@@ -23,7 +23,7 @@
 #include "guiinterface.h"
 
 
-TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
+TopBar::TopBar(PIVXLGUI* _mainWindow, QWidget *parent) :
     PWidget(_mainWindow, parent),
     ui(new Ui::TopBar)
 {
@@ -483,7 +483,7 @@ void TopBar::loadWalletModel(){
             SLOT(updateBalances(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
     connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
-    // update the display unit, to not use the default ("PIVX")
+    // update the display unit, to not use the default ("PIVXL")
     updateDisplayUnit();
 
     refreshStatus();

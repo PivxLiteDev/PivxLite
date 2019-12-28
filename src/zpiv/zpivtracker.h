@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ZPIVTRACKER_H
-#define PIVX_ZPIVTRACKER_H
+#ifndef PIVXL_ZPIVTRACKER_H
+#define PIVXL_ZPIVTRACKER_H
 
 #include "zerocoin.h"
 #include "witness.h"
@@ -56,4 +56,4 @@ public:
     void Clear();
 };
 
-#endif //PIVX_ZPIVTRACKER_H
+#endif //PIVXL_ZPIVTRACKER_H

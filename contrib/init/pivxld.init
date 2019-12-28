@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  pivxld The PIVX core server.
+#  pivxld The PIVXL core server.
 #
 #
 # chkconfig: 345 80 20

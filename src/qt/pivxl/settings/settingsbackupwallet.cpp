@@ -11,7 +11,7 @@
 #include "qt/pivxl/qtutils.h"
 #include "guiinterface.h"
 #include "qt/pivxl/qtutils.h"
-SettingsBackupWallet::SettingsBackupWallet(PIVXGUI* _window, QWidget *parent) :
+SettingsBackupWallet::SettingsBackupWallet(PIVXLGUI* _window, QWidget *parent) :
     PWidget(_window, parent),
     ui(new Ui::SettingsBackupWallet)
 {

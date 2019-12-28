@@ -33,7 +33,7 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Calculated accumulator checkpoint is not what is recorded by block index"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Cannot obtain a lock on data directory %s. PIVX Core is probably already "
+"Cannot obtain a lock on data directory %s. PIVXL Core is probably already "
 "running."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Change automatic finalized budget voting behavior. mode=auto: Vote for only "
@@ -51,7 +51,7 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 "Delete all zerocoin spends and mints that have been recorded to the "
 "blockchain database and reindex them (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Disable all PIVX specific functionality (Masternodes, Zerocoin, SwiftX, "
+"Disable all PIVXL specific functionality (Masternodes, Zerocoin, SwiftX, "
 "Budgeting) (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Distributed under the MIT software license, see the accompanying file "
@@ -210,7 +210,7 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 "Total length of network version string (%i) exceeds maximum length (%i). "
 "Reduce the number or size of uacomments."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Unable to bind to %s on this computer. PIVX Core is probably already running."),
+"Unable to bind to %s on this computer. PIVXL Core is probably already running."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Unable to locate enough Obfuscation denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
@@ -230,11 +230,11 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 "pay if you send a transaction."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Warning: Peers are being disconnected due time differences. Please check "
-"that your computer's date and time are correct! If your clock is wrong PIVX "
+"that your computer's date and time are correct! If your clock is wrong PIVXL "
 "Core will not work properly."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Warning: Please check that your computer's date and time are correct! If "
-"your clock is wrong PIVX Core will not work properly."),
+"your clock is wrong PIVXL Core will not work properly."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Warning: The network does not appear to fully agree! Some miners appear to "
 "be experiencing issues."),
@@ -288,7 +288,7 @@ QT_TRANSLATE_NOOP("pivxl-core", "Connect to a node to retrieve peer addresses, a
 QT_TRANSLATE_NOOP("pivxl-core", "Connection options:"),
 QT_TRANSLATE_NOOP("pivxl-core", "Copyright (C) 2009-%i The Bitcoin Core Developers"),
 QT_TRANSLATE_NOOP("pivxl-core", "Copyright (C) 2014-%i The Dash Core Developers"),
-QT_TRANSLATE_NOOP("pivxl-core", "Copyright (C) 2015-%i The PIVX Core Developers"),
+QT_TRANSLATE_NOOP("pivxl-core", "Copyright (C) 2015-%i The PIVXL Core Developers"),
 QT_TRANSLATE_NOOP("pivxl-core", "Corrupted block database detected"),
 QT_TRANSLATE_NOOP("pivxl-core", "Could not parse masternode.conf"),
 QT_TRANSLATE_NOOP("pivxl-core", "Couldn't generate the accumulator witness"),
@@ -317,7 +317,7 @@ QT_TRANSLATE_NOOP("pivxl-core", "Error initializing wallet database environment 
 QT_TRANSLATE_NOOP("pivxl-core", "Error loading block database"),
 QT_TRANSLATE_NOOP("pivxl-core", "Error loading wallet.dat"),
 QT_TRANSLATE_NOOP("pivxl-core", "Error loading wallet.dat: Wallet corrupted"),
-QT_TRANSLATE_NOOP("pivxl-core", "Error loading wallet.dat: Wallet requires newer version of PIVX Core"),
+QT_TRANSLATE_NOOP("pivxl-core", "Error loading wallet.dat: Wallet requires newer version of PIVXL Core"),
 QT_TRANSLATE_NOOP("pivxl-core", "Error opening block database"),
 QT_TRANSLATE_NOOP("pivxl-core", "Error reading from database, shutting down."),
 QT_TRANSLATE_NOOP("pivxl-core", "Error writing zerocoinDB to disk"),
@@ -348,7 +348,7 @@ QT_TRANSLATE_NOOP("pivxl-core", "Imports blocks from external blk000??.dat file"
 QT_TRANSLATE_NOOP("pivxl-core", "Include IP addresses in debug output (default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", "Incorrect or no genesis block found. Wrong datadir for network?"),
 QT_TRANSLATE_NOOP("pivxl-core", "Information"),
-QT_TRANSLATE_NOOP("pivxl-core", "Initialization sanity check failed. PIVX Core is shutting down."),
+QT_TRANSLATE_NOOP("pivxl-core", "Initialization sanity check failed. PIVXL Core is shutting down."),
 QT_TRANSLATE_NOOP("pivxl-core", "Insufficient funds"),
 QT_TRANSLATE_NOOP("pivxl-core", "Insufficient funds."),
 QT_TRANSLATE_NOOP("pivxl-core", "Invalid -onion address or hostname: '%s'"),
@@ -490,7 +490,7 @@ QT_TRANSLATE_NOOP("pivxl-core", "Value is below the smallest available denominat
 QT_TRANSLATE_NOOP("pivxl-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Verifying wallet..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Wallet %s resides outside data directory %s"),
-QT_TRANSLATE_NOOP("pivxl-core", "Wallet needed to be rewritten: restart PIVX Core to complete"),
+QT_TRANSLATE_NOOP("pivxl-core", "Wallet needed to be rewritten: restart PIVXL Core to complete"),
 QT_TRANSLATE_NOOP("pivxl-core", "Wallet options:"),
 QT_TRANSLATE_NOOP("pivxl-core", "Wallet window title"),
 QT_TRANSLATE_NOOP("pivxl-core", "Warning"),

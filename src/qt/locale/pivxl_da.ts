@@ -120,11 +120,11 @@
         <translation>Modtageradresse</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your PIVXL addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Dine adresser til at sende betalinger med. Kontroller altid både beløb og modtageradresse før afsendelse.</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your PIVXL addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Dette er dine modtager adresser. Det anbefales at anvende en ny adresse til hver transaktion</translation>
     </message>
     <message>
@@ -233,8 +233,8 @@
         <translation>F.eks John Doe</translation>
     </message>
     <message>
-        <source>Enter a PIVX address</source>
-        <translation>Skriv en PIVX adresse</translation>
+        <source>Enter a PIVXL address</source>
+        <translation>Skriv en PIVXL adresse</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -359,8 +359,8 @@ For Staking</translation>
         <translation>Afslut</translation>
     </message>
     <message>
-        <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX vil lukke ned for at færdiggøre kryptograferingsprocesserne. Husk at kryptering alene ikke sikrer mod tyveri af mønterne fra malware eller virus på computeren.</translation>
+        <source>PIVXL will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <translation>PIVXL vil lukke ned for at færdiggøre kryptograferingsprocesserne. Husk at kryptering alene ikke sikrer mod tyveri af mønterne fra malware eller virus på computeren.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -1053,8 +1053,8 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
         <translation>Ret afsenderadresse</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid PIVX address.</source>
-        <translation>Den indtastede adresse %1 er ikke en gyldig PIVX adresse</translation>
+        <source>The entered address "%1" is not a valid PIVXL address.</source>
+        <translation>Den indtastede adresse %1 er ikke en gyldig PIVXL adresse</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1117,16 +1117,16 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
         <translation>version</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX kerne</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL kerne</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About PIVX Core</source>
-        <translation>om PIVX kerne</translation>
+        <source>About PIVXL Core</source>
+        <translation>om PIVXL kerne</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1176,16 +1176,16 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
         <translation>Velkommen</translation>
     </message>
     <message>
-        <source>Welcome to PIVX Core.</source>
-        <translation>Velkommen til PIVX kerne</translation>
+        <source>Welcome to PIVXL Core.</source>
+        <translation>Velkommen til PIVXL kerne</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where PIVX Core will store its data.</source>
-        <translation>Da det er første gang programmet startes, kan De vælge hvor PIVX kernen skal lagre sine data</translation>
+        <source>As this is the first time the program is launched, you can choose where PIVXL Core will store its data.</source>
+        <translation>Da det er første gang programmet startes, kan De vælge hvor PIVXL kernen skal lagre sine data</translation>
     </message>
     <message>
-        <source>PIVX Core will download and store a copy of the PIVX block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>PIVX kernen vil nu hente og gemme en kopi af PIVX blockchain. Der skal være mindst %1GB ledigt på lagermediet, og behovet vil stige efterhånden som tiden går. Selve tegnebogen vil også blive gemt her.</translation>
+        <source>PIVXL Core will download and store a copy of the PIVXL block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>PIVXL kernen vil nu hente og gemme en kopi af PIVXL blockchain. Der skal være mindst %1GB ledigt på lagermediet, og behovet vil stige efterhånden som tiden går. Selve tegnebogen vil også blive gemt her.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1200,8 +1200,8 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
         <translation>Ok</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX kerne</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL kerne</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1437,8 +1437,8 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
         <translation>Hvis De slår "brug af ubekræftede penge tilbage" vil penge tilbage &lt;br/&gt; ikke kunne benyttes før transaktionen er bekræftet mindst en gang. &lt;br/&gt;Dette har også indflydelse på opgørelsen af saldoen.</translation>
     </message>
     <message>
-        <source>Automatically open the PIVX client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Åbn PIVX klientporten på ruteren automatisk. Virker kun hvis UPnP er slået til i ruteren. </translation>
+        <source>Automatically open the PIVXL client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Åbn PIVXL klientporten på ruteren automatisk. Virker kun hvis UPnP er slået til i ruteren. </translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1457,12 +1457,12 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
         <translation>Ekspert</translation>
     </message>
     <message>
-        <source>Automatically start PIVX after logging in to the system.</source>
-        <translation>Start PIVX automatisk, når der logges på systemet</translation>
+        <source>Automatically start PIVXL after logging in to the system.</source>
+        <translation>Start PIVXL automatisk, når der logges på systemet</translation>
     </message>
     <message>
-        <source>&amp;Start PIVX on system login</source>
-        <translation>&amp;start PIVX når der logges på systemet</translation>
+        <source>&amp;Start PIVXL on system login</source>
+        <translation>&amp;start PIVXL når der logges på systemet</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1489,8 +1489,8 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
         <translation>&amp;netværk</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting PIVX.</source>
-        <translation>Vælg sprog her. Ændringerne træder i kraft næste gang PIVX klienten startes</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting PIVXL.</source>
+        <translation>Vælg sprog her. Ændringerne træder i kraft næste gang PIVXL klienten startes</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1531,8 +1531,8 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
         <translation>Indtastningsgrænse for indsats:</translation>
     </message>
     <message>
-        <source>Connect to the PIVX network through a SOCKS5 proxy.</source>
-        <translation>Tilslut PIVX netværket gennem en SOCKS5 PROXY</translation>
+        <source>Connect to the PIVXL network through a SOCKS5 proxy.</source>
+        <translation>Tilslut PIVXL netværket gennem en SOCKS5 PROXY</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1664,10 +1664,10 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
 </context>
 <context>
-    <name>PIVXGUI</name>
+    <name>PIVXLGUI</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX kerne</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL kerne</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1694,8 +1694,8 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
         <translation>Afslut applikationen</translation>
     </message>
     <message>
-        <source>PIVX Core client</source>
-        <translation>PIVX kerneklient</translation>
+        <source>PIVXL Core client</source>
+        <translation>PIVXL kerneklient</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1761,10 +1761,10 @@ Adresse: %4
     </message>
     <message>
         <source>Cannot start pivxl: click-to-pay handler</source>
-        <translation>Kan ikke starte PIVX "klik for at betale" systemet</translation>
+        <translation>Kan ikke starte PIVXL "klik for at betale" systemet</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid PIVXL address or malformed URI parameters.</source>
         <translation>URl kan ikke fortolkes! Det kan skyldes en ugyldig adresse, eller forkerte URl parametre.</translation>
     </message>
     <message>
@@ -1876,8 +1876,8 @@ Adresse: %4
         <translation>Beløb</translation>
     </message>
     <message>
-        <source>Enter a PIVX address (e.g. %1)</source>
-        <translation>Indtast en PIVX adresse (F.eks. %1)</translation>
+        <source>Enter a PIVXL address (e.g. %1)</source>
+        <translation>Indtast en PIVXL adresse (F.eks. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1920,8 +1920,8 @@ Adresse: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX kerne</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL kerne</translation>
     </message>
     </context>
 <context>
@@ -1995,8 +1995,8 @@ Adresse: %4
         <translation>Block chain</translation>
     </message>
     <message>
-        <source>Open the PIVX debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Åbn PIVX debug logfilen fra den aktuelle datamappe. Det kan godt tage lidt tid hvis filen er meget stor.</translation>
+        <source>Open the PIVXL debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Åbn PIVXL debug logfilen fra den aktuelle datamappe. Det kan godt tage lidt tid hvis filen er meget stor.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2211,8 +2211,8 @@ Adresse: %4
         <translation>Ud:</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Velkommen til PIVX RPC konsollet</translation>
+        <source>Welcome to the PIVXL RPC console.</source>
+        <translation>Velkommen til PIVXL RPC konsollet</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2573,8 +2573,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>&amp;clear</translation>
     </message>
     <message>
-        <source>Enter a PIVX address</source>
-        <translation>Skriv en PIVX adresse</translation>
+        <source>Enter a PIVXL address</source>
+        <translation>Skriv en PIVXL adresse</translation>
     </message>
     <message>
         <source>ENCRYPT</source>
@@ -2640,8 +2640,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Tekstmærke</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Velkommen til PIVX RPC konsollet</translation>
+        <source>Welcome to the PIVXL RPC console.</source>
+        <translation>Velkommen til PIVXL RPC konsollet</translation>
     </message>
     <message>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
@@ -3018,8 +3018,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>PIVX Core is shutting down...</source>
-        <translation>PIVX kernen lukker ned</translation>
+        <source>PIVXL Core is shutting down...</source>
+        <translation>PIVXL kernen lukker ned</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3040,15 +3040,15 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Formular</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX kerne</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL kerne</translation>
     </message>
 </context>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX kerne</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL kerne</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -3063,8 +3063,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>DASH "core" udviklerne</translation>
     </message>
     <message>
-        <source>The PIVX Core developers</source>
-        <translation>PIVX "core" udviklerne</translation>
+        <source>The PIVXL Core developers</source>
+        <translation>PIVXL "core" udviklerne</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -3591,8 +3591,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Beregnet akkumulator kontrolpunkt er ikke det, der er registreret af blok indeks</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. PIVX Core is probably already running.</source>
-        <translation>Kan ikke låse datamappen %s. PIVX core kører sandsynligvis allerede.</translation>
+        <source>Cannot obtain a lock on data directory %s. PIVXL Core is probably already running.</source>
+        <translation>Kan ikke låse datamappen %s. PIVXL core kører sandsynligvis allerede.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -3717,7 +3717,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     </message>
     <message>
         <source>Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.</source>
-        <translation>Tilsløring bruger hele det tilslørede designerede beløb til at sende betalinger. De kan blot tilsløre yderligere PIVX</translation>
+        <translation>Tilsløring bruger hele det tilslørede designerede beløb til at sende betalinger. De kan blot tilsløre yderligere PIVXL</translation>
     </message>
     <message>
         <source>Output debugging information (default: %u, supplying &lt;category&gt; is optional)</source>
@@ -3764,8 +3764,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Dette produkt anvender software udviklet i OpenSSL projektet til brug i OpenSSL værktøjssættet &lt;https://www.openssl.org/&gt; og kryptosoftware skrevet afEric Young og UPnP software skrevet af Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. PIVX Core is probably already running.</source>
-        <translation>Det var ikke muligt at forbinde %s på denne computer. PIVX kører sandsynligvis allerede.</translation>
+        <source>Unable to bind to %s on this computer. PIVXL Core is probably already running.</source>
+        <translation>Det var ikke muligt at forbinde %s på denne computer. PIVXL kører sandsynligvis allerede.</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -3792,8 +3792,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Advarsel! -paytxfee er sat meget højt. Det er dette gebyr De kommer til at betale for transaktionen, hvis De gennemfører. </translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
-        <translation>Advarsel! Kontroller at computerens dato og tid er korrekt indstillet. Hvis tiden ikke er rigtig, vil PIVX core ikke fungere ordentligt.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVXL Core will not work properly.</source>
+        <translation>Advarsel! Kontroller at computerens dato og tid er korrekt indstillet. Hvis tiden ikke er rigtig, vil PIVXL core ikke fungere ordentligt.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -3920,8 +3920,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Copyright (C) 2014-%i The Dash Core Developers </translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
-        <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
+        <source>Copyright (C) 2015-%i The PIVXL Core Developers</source>
+        <translation>Copyright (C) 2015-%i The PIVXL Core Developers</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -4000,8 +4000,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Fejl ved indlæsning af wallet.dat: Tegnebogen er beskadiget</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of PIVX Core</source>
-        <translation>Fejl ved indlæsning af wallet.dat: Tegnebogen kræver en nyere version af PIVX core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of PIVXL Core</source>
+        <translation>Fejl ved indlæsning af wallet.dat: Tegnebogen kræver en nyere version af PIVXL core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -4092,8 +4092,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Info:</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. PIVX Core is shutting down.</source>
-        <translation>Initiering af sanitetskontrollen fejlede. PIVX core lukker ned. </translation>
+        <source>Initialization sanity check failed. PIVXL Core is shutting down.</source>
+        <translation>Initiering af sanitetskontrollen fejlede. PIVXL core lukker ned. </translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -4192,8 +4192,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
 </translation>
     </message>
     <message>
-        <source>Disable all PIVX specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Slå alle PIVX funktioner fra (Masternoder, Tilsløring, SwiftTX, Budgetting)(0-1,default:%u)</translation>
+        <source>Disable all PIVXL specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Slå alle PIVXL funktioner fra (Masternoder, Tilsløring, SwiftTX, Budgetting)(0-1,default:%u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -4756,8 +4756,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Tegnbogen %s befinder sig udenfor datamappen %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart PIVX Core to complete</source>
-        <translation>Tegnebogen måtte genskrives. Genstart PIVX core for at gøre færdig</translation>
+        <source>Wallet needed to be rewritten: restart PIVXL Core to complete</source>
+        <translation>Tegnebogen måtte genskrives. Genstart PIVXL core for at gøre færdig</translation>
     </message>
     <message>
         <source>Wallet options:</source>

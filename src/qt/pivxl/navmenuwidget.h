@@ -9,7 +9,7 @@
 #include <QWidget>
 #include "qt/pivxl/pwidget.h"
 
-class PIVXGUI;
+class PIVXLGUI;
 
 namespace Ui {
 class NavMenuWidget;
@@ -20,7 +20,7 @@ class NavMenuWidget : public PWidget
     Q_OBJECT
 
 public:
-    explicit NavMenuWidget(PIVXGUI* mainWindow, QWidget *parent = nullptr);
+    explicit NavMenuWidget(PIVXLGUI* mainWindow, QWidget *parent = nullptr);
     ~NavMenuWidget();
 
     void loadWalletModel() override;

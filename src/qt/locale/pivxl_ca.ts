@@ -126,12 +126,12 @@
         <translation>Adreces de recepció</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Aquestes són les teves adreces PIVX per fer enviar pagaments. Sempre comprova l'import i l'adreça de recepció abans d'enviar les monedes.</translation>
+        <source>These are your PIVXL addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Aquestes són les teves adreces PIVXL per fer enviar pagaments. Sempre comprova l'import i l'adreça de recepció abans d'enviar les monedes.</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Aquestes són les teves adreces PIVX per rebre pagaments. Es recomana utilitzar noves adreces de recepció per cada transacció.</translation>
+        <source>These are your PIVXL addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Aquestes són les teves adreces PIVXL per rebre pagaments. Es recomana utilitzar noves adreces de recepció per cada transacció.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -235,8 +235,8 @@
         <translation>Per exemple: John Doe</translation>
     </message>
     <message>
-        <source>Enter a PIVX address</source>
-        <translation>Introdueix l'adreça PIVX</translation>
+        <source>Enter a PIVXL address</source>
+        <translation>Introdueix l'adreça PIVXL</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -360,8 +360,8 @@ for staking</source>
         <translation>Cancel·lar</translation>
     </message>
     <message>
-        <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX es tancarà per finalitzar el procés d'encriptació. Recorda que encriptant el teu moneder no protegeix els teus PIVXL de ser robats si el teu ordinador està infectat amb programari maliciós.</translation>
+        <source>PIVXL will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <translation>PIVXL es tancarà per finalitzar el procés d'encriptació. Recorda que encriptant el teu moneder no protegeix els teus PIVXL de ser robats si el teu ordinador està infectat amb programari maliciós.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -844,8 +844,8 @@ for staking</source>
         <translation>Edita l'adreça d'enviament</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid PIVX address.</source>
-        <translation>L'adreça introduïda "%1" no és una adreça PIVX vàlida.</translation>
+        <source>The entered address "%1" is not a valid PIVXL address.</source>
+        <translation>L'adreça introduïda "%1" no és una adreça PIVXL vàlida.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -908,16 +908,16 @@ for staking</source>
         <translation>versió</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About PIVX Core</source>
-        <translation>Sobre PIVX Core</translation>
+        <source>About PIVXL Core</source>
+        <translation>Sobre PIVXL Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -967,12 +967,12 @@ for staking</source>
         <translation>Benvingut</translation>
     </message>
     <message>
-        <source>Welcome to PIVX Core.</source>
-        <translation>Benvingut a PIVX Core.</translation>
+        <source>Welcome to PIVXL Core.</source>
+        <translation>Benvingut a PIVXL Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where PIVX Core will store its data.</source>
-        <translation>Al ser el primer cop que s'inicia el programa, pots escollir on es desaran les dades del PIVX Core.</translation>
+        <source>As this is the first time the program is launched, you can choose where PIVXL Core will store its data.</source>
+        <translation>Al ser el primer cop que s'inicia el programa, pots escollir on es desaran les dades del PIVXL Core.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -987,8 +987,8 @@ for staking</source>
         <translation>D'acord</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1156,8 +1156,8 @@ for staking</source>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start PIVX after logging in to the system.</source>
-        <translation>Inicia PIVX automàticament després d'identificar-te en el sistema.</translation>
+        <source>Automatically start PIVXL after logging in to the system.</source>
+        <translation>Inicia PIVXL automàticament després d'identificar-te en el sistema.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1197,10 +1197,10 @@ for staking</source>
     </message>
     </context>
 <context>
-    <name>PIVXGUI</name>
+    <name>PIVXLGUI</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1223,8 +1223,8 @@ for staking</source>
         <translation>Surt de l'aplicació</translation>
     </message>
     <message>
-        <source>PIVX Core client</source>
-        <translation>Client PIVX core</translation>
+        <source>PIVXL Core client</source>
+        <translation>Client PIVXL core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1305,8 +1305,8 @@ for staking</source>
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     </context>
 <context>
@@ -1590,8 +1590,8 @@ for staking</source>
         <translation>Importa adreça</translation>
     </message>
     <message>
-        <source>Enter a PIVX address</source>
-        <translation>Introdueix l'adreça PIVX</translation>
+        <source>Enter a PIVXL address</source>
+        <translation>Introdueix l'adreça PIVXL</translation>
     </message>
     <message>
         <source>ENCRYPT</source>
@@ -1842,8 +1842,8 @@ for staking</source>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>PIVX Core is shutting down...</source>
-        <translation>PIVX Core s'està tancant...</translation>
+        <source>PIVXL Core is shutting down...</source>
+        <translation>PIVXL Core s'està tancant...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1864,15 +1864,15 @@ for staking</source>
         <translation>Formulari</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
 </context>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>Version %1</source>

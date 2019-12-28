@@ -190,7 +190,7 @@ void AskPassphraseDialog::accept()
         if (ret) {
             if (newpass1 == newpass2) {
                 newpassCache = newpass1;
-                PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
+                PIVXLGUI* window = static_cast<PIVXLGUI*>(parentWidget());
                 LoadingDialog *dialog = new LoadingDialog(window);
                 dialog->execute(this, 1);
                 openDialogWithOpaqueBackgroundFullScreen(dialog, window);
@@ -312,7 +312,7 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
 
 bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn)
 {
-    PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
+    PIVXLGUI* gui = static_cast<PIVXLGUI*>(parentWidget());
     DefaultDialog *confirmDialog = new DefaultDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
     confirmDialog->adjustSize();
@@ -325,11 +325,11 @@ bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QStrin
 void AskPassphraseDialog::warningMessage()
 {
     hide();
-    static_cast<PIVXGUI*>(parentWidget())->showHide(true);
+    static_cast<PIVXLGUI*>(parentWidget())->showHide(true);
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("PIVX will close now to finish the encryption process. "
+            tr("PIVXL will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
                "your PIVs from being stolen by malware infecting your computer.") +
             "<br><br><b>" +

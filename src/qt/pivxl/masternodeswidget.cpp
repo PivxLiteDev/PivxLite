@@ -62,7 +62,7 @@ public:
     MNRow* cachedRow = nullptr;
 };
 
-MasterNodesWidget::MasterNodesWidget(PIVXGUI *parent) :
+MasterNodesWidget::MasterNodesWidget(PIVXLGUI *parent) :
     PWidget(parent),
     ui(new Ui::MasterNodesWidget)
 {

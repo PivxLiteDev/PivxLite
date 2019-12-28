@@ -57,7 +57,7 @@ public:
 };
 
 
-AddressesWidget::AddressesWidget(PIVXGUI* parent) :
+AddressesWidget::AddressesWidget(PIVXLGUI* parent) :
     PWidget(parent),
     ui(new Ui::AddressesWidget)
 {
@@ -113,7 +113,7 @@ AddressesWidget::AddressesWidget(PIVXGUI* parent) :
     setCssEditLine(ui->lineEditName, true);
 
     // Address
-    ui->labelAddress->setText(tr("Enter a PIVX address"));
+    ui->labelAddress->setText(tr("Enter a PIVXL address"));
     setCssProperty(ui->labelAddress, "text-title");
     ui->lineEditAddress->setPlaceholderText("e.g. D7VFR83SQbiezrW72hjc…");
     setCssEditLine(ui->lineEditAddress, true);

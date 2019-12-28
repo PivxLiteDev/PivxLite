@@ -21,7 +21,7 @@
 #include "openuridialog.h"
 #include "zpivcontroldialog.h"
 
-SendWidget::SendWidget(PIVXGUI* parent) :
+SendWidget::SendWidget(PIVXLGUI* parent) :
     PWidget(parent),
     ui(new Ui::send),
     coinIcon(new QPushButton()),
@@ -61,7 +61,7 @@ SendWidget::SendWidget(PIVXGUI* parent) :
     setCssProperty(ui->labelSubtitle2, "text-subtitle");
 
     /* Address */
-    ui->labelSubtitleAddress->setText(tr("Enter a PIVX address or contact label"));
+    ui->labelSubtitleAddress->setText(tr("Enter a PIVXL address or contact label"));
     setCssProperty(ui->labelSubtitleAddress, "text-title");
 
 

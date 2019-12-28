@@ -9,7 +9,7 @@
 #include <QTimer>
 
 
-SnackBar::SnackBar(PIVXGUI* _window, QWidget *parent) :
+SnackBar::SnackBar(PIVXLGUI* _window, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SnackBar),
     window(_window)

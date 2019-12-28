@@ -11,7 +11,7 @@
 #include "qt/pivxl/pwidget.h"
 #include "qt/pivxl/furabstractlistitemdelegate.h"
 
-class PIVXGUI;
+class PIVXLGUI;
 
 namespace Ui {
 class SettingsMultisendWidget;

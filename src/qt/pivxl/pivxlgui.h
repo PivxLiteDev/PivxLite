@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_CORE_NEW_GUI_PIVXGUI_H
-#define PIVX_CORE_NEW_GUI_PIVXGUI_H
+#ifndef PIVXL_CORE_NEW_GUI_PIVXLGUI_H
+#define PIVXL_CORE_NEW_GUI_PIVXLGUI_H
 
 #if defined(HAVE_CONFIG_H)
 #include "config/pivxl-config.h"
@@ -36,18 +36,18 @@ class WalletModel;
 
 
 /**
-  PIVX GUI main class. This class represents the main window of the PIVX UI. It communicates with both the client and
+  PIVXL GUI main class. This class represents the main window of the PIVXL UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
-class PIVXGUI : public QMainWindow
+class PIVXLGUI : public QMainWindow
 {
     Q_OBJECT
 
 public:
     static const QString DEFAULT_WALLET;
 
-    explicit PIVXGUI(const NetworkStyle* networkStyle, QWidget* parent = 0);
-    ~PIVXGUI();
+    explicit PIVXLGUI(const NetworkStyle* networkStyle, QWidget* parent = 0);
+    ~PIVXLGUI();
 
     /** Set the client model.
         The client model represents the part of the core that communicates with the P2P network, and is wallet-agnostic.
@@ -187,4 +187,4 @@ signals:
 };
 
 
-#endif //PIVX_CORE_NEW_GUI_PIVXGUI_H
+#endif //PIVXL_CORE_NEW_GUI_PIVXLGUI_H

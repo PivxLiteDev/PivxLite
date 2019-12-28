@@ -130,7 +130,7 @@ public:
 };
 
 /**
- * PIVX RPC command dispatcher.
+ * PIVXL RPC command dispatcher.
  */
 class CRPCTable
 {

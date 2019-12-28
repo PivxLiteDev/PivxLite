@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "PIVX"
-            VALUE "FileDescription",    "pivxl-tx (CLI PIVX transaction editor utility)"
+            VALUE "CompanyName",        "PIVXL"
+            VALUE "FileDescription",    "pivxl-tx (CLI PIVXL transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "pivxl-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

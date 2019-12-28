@@ -157,7 +157,7 @@
     <name>OptionsDialog</name>
     </context>
 <context>
-    <name>PIVXGUI</name>
+    <name>PIVXLGUI</name>
     </context>
 <context>
     <name>PWidget</name>

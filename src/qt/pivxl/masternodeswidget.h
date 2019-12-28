@@ -13,7 +13,7 @@
 #include "qt/pivxl/tooltipmenu.h"
 #include <QTimer>
 
-class PIVXGUI;
+class PIVXLGUI;
 
 namespace Ui {
 class MasterNodesWidget;
@@ -29,7 +29,7 @@ class MasterNodesWidget : public PWidget
 
 public:
 
-    explicit MasterNodesWidget(PIVXGUI *parent = nullptr);
+    explicit MasterNodesWidget(PIVXLGUI *parent = nullptr);
     ~MasterNodesWidget();
 
     void loadWalletModel() override;

@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=PIVX Core
-Comment=PIVX P2P Cryptocurrency
-Comment[fr]=PIVX, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=PIVX, eşten eşe kriptografik sanal para birimi
+Name=PIVXL Core
+Comment=PIVXL P2P Cryptocurrency
+Comment[fr]=PIVXL, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=PIVXL, eşten eşe kriptografik sanal para birimi
 Exec=pivxl-qt %u
 Terminal=false
 Type=Application

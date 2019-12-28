@@ -8,7 +8,7 @@
 #include "optionsmodel.h"
 #include "qt/pivxl/qtutils.h"
 
-SettingsNetworkWidget::SettingsNetworkWidget(PIVXGUI* _window, QWidget *parent) :
+SettingsNetworkWidget::SettingsNetworkWidget(PIVXLGUI* _window, QWidget *parent) :
     PWidget(_window, parent),
     ui(new Ui::SettingsNetworkWidget)
 {

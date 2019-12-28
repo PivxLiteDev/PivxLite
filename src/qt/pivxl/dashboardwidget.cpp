@@ -24,7 +24,7 @@
 #define REQUEST_LOAD_TASK 1
 #define CHART_LOAD_MIN_TIME_INTERVAL 15
 
-DashboardWidget::DashboardWidget(PIVXGUI* parent) :
+DashboardWidget::DashboardWidget(PIVXLGUI* parent) :
     PWidget(parent),
     ui(new Ui::DashboardWidget)
 {

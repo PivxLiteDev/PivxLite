@@ -29,7 +29,7 @@ class SettingsConsoleWidget : public PWidget
     Q_OBJECT
 
 public:
-    explicit SettingsConsoleWidget(PIVXGUI* _window, QWidget *parent = nullptr);
+    explicit SettingsConsoleWidget(PIVXLGUI* _window, QWidget *parent = nullptr);
     ~SettingsConsoleWidget();
 
     void loadClientModel() override;

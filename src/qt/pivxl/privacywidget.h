@@ -16,7 +16,7 @@
 #include <QLabel>
 #include <QWidget>
 
-class PIVXGUI;
+class PIVXLGUI;
 class WalletModel;
 
 namespace Ui {
@@ -32,7 +32,7 @@ class PrivacyWidget : public PWidget
     Q_OBJECT
 
 public:
-    explicit PrivacyWidget(PIVXGUI* parent);
+    explicit PrivacyWidget(PIVXLGUI* parent);
     ~PrivacyWidget();
 
     void loadWalletModel() override;

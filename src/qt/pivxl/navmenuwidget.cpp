@@ -10,7 +10,7 @@
 #include "clientversion.h"
 #include "optionsmodel.h"
 
-NavMenuWidget::NavMenuWidget(PIVXGUI *mainWindow, QWidget *parent) :
+NavMenuWidget::NavMenuWidget(PIVXLGUI *mainWindow, QWidget *parent) :
     PWidget(mainWindow, parent),
     ui(new Ui::NavMenuWidget)
 {

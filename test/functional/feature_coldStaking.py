@@ -25,7 +25,7 @@ def getDelegatedUtxos(utxos):
     return [x for x in utxos if x["scriptPubKey"][:10] == '76a97b63d1']
 
 
-class PIVX_ColdStakingTest(BitcoinTestFramework):
+class PIVXL_ColdStakingTest(BitcoinTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -520,4 +520,4 @@ class PIVX_ColdStakingTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    PIVX_ColdStakingTest().main()
+    PIVXL_ColdStakingTest().main()

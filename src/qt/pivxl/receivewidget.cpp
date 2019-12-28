@@ -22,7 +22,7 @@
 #define DECORATION_SIZE 70
 #define NUM_ITEMS 3
 
-ReceiveWidget::ReceiveWidget(PIVXGUI* parent) :
+ReceiveWidget::ReceiveWidget(PIVXLGUI* parent) :
     PWidget(parent),
     ui(new Ui::ReceiveWidget)
 {

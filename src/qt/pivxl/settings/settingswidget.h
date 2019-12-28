@@ -19,7 +19,7 @@
 #include "qt/pivxl/settings/settingsinformationwidget.h"
 #include "qt/pivxl/settings/settingsconsolewidget.h"
 
-class PIVXGUI;
+class PIVXLGUI;
 
 QT_BEGIN_NAMESPACE
 class QDataWidgetMapper;
@@ -34,7 +34,7 @@ class SettingsWidget : public PWidget
     Q_OBJECT
 
 public:
-    explicit SettingsWidget(PIVXGUI* parent);
+    explicit SettingsWidget(PIVXLGUI* parent);
     ~SettingsWidget();
 
     void loadClientModel() override;
