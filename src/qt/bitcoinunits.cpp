@@ -63,20 +63,20 @@ QString BitcoinUnits::name(int unit, bool isZpiv)
         case PIVXL:
             return z + QString("PIVXL");
         case mPIV:
-            return z + QString("mPIV");
+            return z + QString("mPIVXL");
         case uPIV:
-            return z + QString::fromUtf8("μPIV");
+            return z + QString::fromUtf8("μPIVXL");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
         case PIVXL:
-            return z + QString("tPIV");
+            return z + QString("tPIVXL");
         case mPIV:
-            return z + QString("mtPIV");
+            return z + QString("mtPIVXL");
         case uPIV:
-            return z + QString::fromUtf8("μtPIV");
+            return z + QString::fromUtf8("μtPIVXL");
         default:
             return QString("???");
         }
