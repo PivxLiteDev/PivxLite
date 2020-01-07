@@ -237,10 +237,9 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0xd0928a9f84607dfd323b5ad288861d658a866f91bb39c3b57de72514ece925a2"));
 
         vSeeds.clear();
-        // vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivxl.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
-        // vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivxl.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
-        // vSeeds.push_back(CDNSSeedData("warrows.dev", "dnsseed.pivxl.warrows.dev"));    // Primery DNS Seeder from warrows
-
+        vSeeds.push_back(CDNSSeedData("pivxlite.com", "seedhost1.pivxlite.com"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("pivxlite.com", "seedhost2.pivxlite.com"));    // Secondary DNS Seeder
+        
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 58);     // starting with 'Q'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
         base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 63);     // starting with 'S'
