@@ -358,7 +358,7 @@
 #define PACKAGE_TARNAME "pivxl"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://pivxl.org/"
+#define PACKAGE_URL "https://pivxlite.com/"
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "1.0.0"

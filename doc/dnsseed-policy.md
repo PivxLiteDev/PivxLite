@@ -44,7 +44,7 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active PIVXL
 Core development team as well as posting on the
-[PIVXL Forum](https://forum.pivxl.org).
+[PIVXL Forum](https://forum.pivxlite.com).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.

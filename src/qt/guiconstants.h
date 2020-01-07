@@ -55,7 +55,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 35
 
 #define QAPP_ORG_NAME "PIVXL"
-#define QAPP_ORG_DOMAIN "pivxl.org"
+#define QAPP_ORG_DOMAIN "pivxlite.com"
 #define QAPP_APP_NAME_DEFAULT "PIVXL-Qt"
 #define QAPP_APP_NAME_TESTNET "PIVXL-Qt-testnet"
 

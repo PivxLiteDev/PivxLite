@@ -347,7 +347,7 @@ void MasterNodesWidget::onDeleteMNClicked(){
 void MasterNodesWidget::onCreateMNClicked(){
     if(verifyWalletUnlocked()) {
         if(walletModel->getBalance() <= (COIN * 10000)){
-            inform(tr("Not enough balance to create a masternode, 10,000 PIVXL required."));
+            inform(tr("Not enough balance to create a masternode, 1,00,000 PIVXL required."));
             return;
         }
         showHideOp(true);

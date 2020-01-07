@@ -20,8 +20,8 @@ Summary:	Peer to Peer Cryptographic Currency
 
 Group:		Applications/System
 License:	MIT
-URL:		https://pivxl.org/
-Source0:	https://pivxl.org/bin/pivxl-core-%{version}/pivxl-%{version}.tar.gz
+URL:		https://pivxlite.com/
+Source0:	https://pivxlite.com/bin/pivxl-core-%{version}/pivxl-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
 Source10:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/contrib/debian/examples/pivxl.conf

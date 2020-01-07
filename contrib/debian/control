@@ -28,7 +28,7 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: http://www.pivxl.org
+Homepage: http://www.pivxlite.com
 Vcs-Git: git://github.com/PIVXL-Project/PIVXL.git
 Vcs-Browser: http://github.com/PIVXL-Project/PIVXL
 
