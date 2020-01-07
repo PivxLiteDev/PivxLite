@@ -148,7 +148,7 @@ public:
         pchMessageStart[1] = 0xab;
         pchMessageStart[2] = 0xed;
         pchMessageStart[3] = 0xcf;
-        vAlertPubKey = ParseHex("0000098d3ba6ba6e7423fa5cbd6a89e0a9a5348f88d332b44a5cb1a8b7ed2c1eaa335fc8dc4f012cb8241cc0bdafd6ca70c5f5448916e4e6f511bcd746ed57dc50");
+        vAlertPubKey = ParseHex("04c71824527cff7dde535017fc15de7ae8038232ef207b8cc824e1ac164a737978143937e3bf7dc3ad9ebd1d455cb8ad4ae4c5070dade82a6d7dc5092f319b7f8f");
         nDefaultPort = 8233;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // PIVXL starting difficulty is 1 / 2^12
         bnProofOfStakeLimit = ~uint256(0) >> 24;
@@ -165,7 +165,7 @@ public:
         nTargetTimespan_V2 = 2 * nTimeSlotLength * 60;  // 30 minutes
         nMaturity = 100;
         nStakeMinAge = 60 * 60;                         // 1 hour
-        nStakeMinDepth = 600;
+        nStakeMinDepth = 300;
         nFutureTimeDriftPoW = 7200;
         nFutureTimeDriftPoS = 180;
         nMasternodeCountDrift = 20;
@@ -174,7 +174,7 @@ public:
         nMinColdStakingAmount = 1 * COIN;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 200;
+        nLastPOWBlock = 600;
         nPivxBadBlockTime = 1471401614; // Skip nBit validation of Block 259201 per PR #915
         nPivxBadBlocknBits = 0x1c056dac; // Skip nBit validation of Block 259201 per PR #915
         nModifierUpdateBlock = INT_MAX;
@@ -188,12 +188,10 @@ public:
         nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = INT_MAX; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
         nBlockDoubleAccumulated = INT_MAX;
-        nEnforceNewSporkKey = INT_MAX; //!> Sporks signed after Monday, August 26, 2019 11:00:00 PM GMT must use the new spork key
-        nRejectOldSporkKey = INT_MAX; //!> Fully reject old spork key after Thursday, September 26, 2019 11:00:00 PM GMT
-        nBlockStakeModifierlV2 = 201;
+        nBlockStakeModifierlV2 = 601;
         nBIP65ActivationHeight = 1;
         // Activation height for TimeProtocolV2, Blocks V7 and newMessageSignatures
-        nBlockTimeProtocolV2 = 201;
+        nBlockTimeProtocolV2 = 601;
 
         // Public coin spend enforcement
         nPublicZCSpends = INT_MAX;
@@ -266,9 +264,8 @@ public:
 
         nPoolMaxTransactions = 3;
         nBudgetCycleBlocks = 43200; //!< Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-        strSporkPubKey = "040F129DE6546FE405995329A887329BED4321325B1A73B0A257423C05C1FCFE9E40EF0678AEF59036A22C42E61DFD29DF7EFB09F56CC73CADF64E05741880E3E7";
-        strSporkPubKeyOld = "0499A7AF4806FC6DE640D23BC5936C29B77ADF2174B4F45492727F897AE63CF8D27B2F05040606E0D14B547916379FA10716E344E745F880EDC037307186AA25B7";
-        strObfuscationPoolDummyAddress = "D87q2gC9j6nNrnzCsg4aY6bHMLsT9nUhEw";
+        strSporkPubKey = "04bc10da9808467708edf1177571c041fc4b6a81300eff228603e813cb37afd37b725c786c7e305415a743a07c2948d0ec1b33a4cc2a852a7d5aa4b8b462c4b846";
+        strObfuscationPoolDummyAddress = "QY2Q5hqcEx94dJj5MFUE3AbpY1oUZcNX6j";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
         /** Zerocoin */
@@ -337,8 +334,6 @@ public:
         nBlockEnforceInvalidUTXO = INT_MAX; //Start enforcing the invalid UTXO's
         nInvalidAmountFiltered = 0; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = INT_MAX; //!> The block that zerocoin v2 becomes active
-        nEnforceNewSporkKey = INT_MAX; //!> Sporks signed after Monday, August 26, 2019 11:00:00 PM GMT must use the new spork key
-        nRejectOldSporkKey = INT_MAX; //!> Reject old spork key after Thursday, September 26, 2019 11:00:00 PM GMT
         nBlockStakeModifierlV2 = 201;
         nBIP65ActivationHeight = 1;
         // Activation height for TimeProtocolV2, Blocks V7 and newMessageSignatures
@@ -394,7 +389,6 @@ public:
         nPoolMaxTransactions = 2;
         nBudgetCycleBlocks = 144; //!< Ten cycles per day on testnet
         strSporkPubKey = "04E88BB455E2A04E65FCC41D88CD367E9CCE1F5A409BE94D8C2B4B35D223DED9C8E2F4E061349BA3A38839282508066B6DC4DB72DD432AC4067991E6BF20176127";
-        strSporkPubKeyOld = "04A8B319388C0F8588D238B9941DC26B26D3F9465266B368A051C5C100F79306A557780101FE2192FE170D7E6DEFDCBEE4C8D533396389C0DAFFDBC842B002243C";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 201; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
