@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
@@ -28,5 +29,5 @@ CAmount CFeeRate::GetFee(size_t nSize) const
 
 std::string CFeeRate::ToString() const
 {
-    return strprintf("%d.%08d PIV/kB", nSatoshisPerK / COIN, nSatoshisPerK % COIN);
+    return strprintf("%d.%08d PIVXL/kB", nSatoshisPerK / COIN, nSatoshisPerK % COIN);
 }

@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2012-2013 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -9,7 +10,7 @@
 #include "uint256.h"
 #include "version.h"
 #include "consensus/merkle.h"
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 
 #include <vector>
 

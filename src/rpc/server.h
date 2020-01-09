@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2019 The PIVX developers
@@ -129,7 +130,7 @@ public:
 };
 
 /**
- * PIVX RPC command dispatcher.
+ * PIVXL RPC command dispatcher.
  */
 class CRPCTable
 {

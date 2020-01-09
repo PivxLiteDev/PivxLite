@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2014 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
@@ -14,7 +15,7 @@
 #include "script/script_error.h"
 #include "script/sign.h"
 #include "util.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 #if defined(HAVE_CONSENSUS_LIB)
 #include "script/bitcoinconsensus.h"

@@ -1,9 +1,10 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ADDRESSBOOK_H
-#define PIVX_ADDRESSBOOK_H
+#ifndef PIVXL_ADDRESSBOOK_H
+#define PIVXL_ADDRESSBOOK_H
 
 #include <map>
 #include <string>
@@ -43,4 +44,4 @@ namespace AddressBook {
 
 }
 
-#endif //PIVX_ADDRESSBOOK_H
+#endif //PIVXL_ADDRESSBOOK_H

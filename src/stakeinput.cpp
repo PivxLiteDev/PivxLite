@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -171,7 +172,7 @@ bool CZPivStake::MarkSpent(CWallet *pwallet, const uint256& txid)
     return true;
 }
 
-//!PIV Stake
+//!PIVXL Stake
 bool CPivStake::SetInput(CTransaction txPrev, unsigned int n)
 {
     this->txFrom = txPrev;
@@ -261,7 +262,7 @@ bool CPivStake::GetModifier(uint64_t& nStakeModifier)
 
 CDataStream CPivStake::GetUniqueness()
 {
-    //The unique identifier for a PIV stake is the outpoint
+    //The unique identifier for a PIVXL stake is the outpoint
     CDataStream ss(SER_NETWORK, 0);
     ss << nPosition << txFrom.GetHash();
     return ss;

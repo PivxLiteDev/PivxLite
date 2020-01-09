@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -28,7 +29,7 @@ UniValue getpoolinfo(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "{\n"
-            "  \"current\": \"addr\",    (string) PIVX address of current masternode\n"
+            "  \"current\": \"addr\",    (string) PIVXL address of current masternode\n"
             "  \"state\": xxxx,        (string) unknown\n"
             "  \"entries\": xxxx,      (numeric) Number of entries\n"
             "  \"accepted\": xxxx,     (numeric) Number of entries accepted\n"
@@ -67,7 +68,7 @@ UniValue listmasternodes(const UniValue& params, bool fHelp)
             "    \"outidx\": n,         (numeric) Collateral transaction output index\n"
             "    \"pubkey\": \"key\",   (string) Masternode public key used for message broadcasting\n"
             "    \"status\": s,         (string) Status (ENABLED/EXPIRED/REMOVE/etc)\n"
-            "    \"addr\": \"addr\",      (string) Masternode PIVX address\n"
+            "    \"addr\": \"addr\",      (string) Masternode PIVXL address\n"
             "    \"version\": v,        (numeric) Masternode protocol version\n"
             "    \"lastseen\": ttt,     (numeric) The time in seconds since epoch (Jan 1 1970 GMT) of the last seen\n"
             "    \"activetime\": ttt,   (numeric) The time in seconds since epoch (Jan 1 1970 GMT) masternode has been active\n"
@@ -138,7 +139,7 @@ UniValue masternodeconnect(const UniValue& params, bool fHelp)
             "1. \"address\"     (string, required) IP or net address to connect to\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("masternodeconnect", "\"192.168.0.6:51472\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:51472\""));
+            HelpExampleCli("masternodeconnect", "\"192.168.0.6:8233\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:8233\""));
 
     std::string strAddress = params[0].get_str();
 
@@ -568,7 +569,7 @@ UniValue getmasternodestatus (const UniValue& params, bool fHelp)
             "  \"txhash\": \"xxxx\",      (string) Collateral transaction hash\n"
             "  \"outputidx\": n,        (numeric) Collateral transaction output index number\n"
             "  \"netaddr\": \"xxxx\",     (string) Masternode network address\n"
-            "  \"addr\": \"xxxx\",        (string) PIVX address for masternode payments\n"
+            "  \"addr\": \"xxxx\",        (string) PIVXL address for masternode payments\n"
             "  \"status\": \"xxxx\",      (string) Masternode status\n"
             "  \"message\": \"xxxx\"      (string) Masternode status message\n"
             "}\n"
@@ -610,7 +611,7 @@ UniValue getmasternodewinners (const UniValue& params, bool fHelp)
             "  {\n"
             "    \"nHeight\": n,           (numeric) block height\n"
             "    \"winner\": {\n"
-            "      \"address\": \"xxxx\",    (string) PIVX MN Address\n"
+            "      \"address\": \"xxxx\",    (string) PIVXL MN Address\n"
             "      \"nVotes\": n,          (numeric) Number of votes for winner\n"
             "    }\n"
             "  }\n"
@@ -623,7 +624,7 @@ UniValue getmasternodewinners (const UniValue& params, bool fHelp)
             "    \"nHeight\": n,           (numeric) block height\n"
             "    \"winner\": [\n"
             "      {\n"
-            "        \"address\": \"xxxx\",  (string) PIVX MN Address\n"
+            "        \"address\": \"xxxx\",  (string) PIVXL MN Address\n"
             "        \"nVotes\": n,        (numeric) Number of votes for winner\n"
             "      }\n"
             "      ,...\n"

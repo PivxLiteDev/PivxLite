@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
@@ -10,7 +11,7 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between pivx-cli and pivxd)
+ * CBaseChainParams defines the base parameters (shared between pivxl-cli and pivxld)
  * of a given instance of the Pivx system.
  */
 class CBaseChainParams

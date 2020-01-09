@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
@@ -8,7 +9,7 @@
 #define BITCOIN_BIGNUM_H
 
 #if defined HAVE_CONFIG_H
-#include "config/pivx-config.h"
+#include "config/pivxl-config.h"
 #endif
 
 #if defined(USE_NUM_OPENSSL)

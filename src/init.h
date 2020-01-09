@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
@@ -29,7 +30,7 @@ void Shutdown();
 void PrepareShutdown();
 bool AppInit2();
 
-/** Initialize PIVX core: Basic context setup.
+/** Initialize PIVXL core: Basic context setup.
  *  @note This can be done before daemonization. Do not call Shutdown() if this function fails.
  *  @pre Parameters should be parsed and config file should be read.
  */

@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2014 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -5,7 +6,7 @@
 
 #include "data/tx_invalid.json.h"
 #include "data/tx_valid.json.h"
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 
 #include "clientversion.h"
 #include "key.h"
@@ -14,7 +15,7 @@
 #include "script/script.h"
 #include "script/script_error.h"
 #include "core_io.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 #include <map>
 #include <string>

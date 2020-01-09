@@ -1,9 +1,10 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2017-2018 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ACCUMULATORMAP_H
-#define PIVX_ACCUMULATORMAP_H
+#ifndef PIVXL_ACCUMULATORMAP_H
+#define PIVXL_ACCUMULATORMAP_H
 
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Coin.h"
@@ -26,4 +27,4 @@ public:
     void Reset();
     void Reset(libzerocoin::ZerocoinParams* params2);
 };
-#endif //PIVX_ACCUMULATORMAP_H
+#endif //PIVXL_ACCUMULATORMAP_H

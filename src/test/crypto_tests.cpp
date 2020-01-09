@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2014 The Bitcoin Core developers
 // Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -13,7 +14,7 @@
 #include "crypto/hmac_sha512.h"
 #include "random.h"
 #include "utilstrencodings.h"
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 
 #include <vector>
 

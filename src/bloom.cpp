@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2012-2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
@@ -124,7 +125,7 @@ bool CBloomFilter::IsWithinSizeConstraints() const
 }
 
 /**
- * Returns true if this filter will match anything. See {@link org.pivxj.core.BloomFilter#setMatchAll()}
+ * Returns true if this filter will match anything. See {@link org.pivxlj.core.BloomFilter#setMatchAll()}
  * for when this can be a useful thing to do.
  */
 bool CBloomFilter::MatchesAll() const {

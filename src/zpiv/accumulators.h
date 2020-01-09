@@ -1,9 +1,10 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ACCUMULATORS_H
-#define PIVX_ACCUMULATORS_H
+#ifndef PIVXL_ACCUMULATORS_H
+#define PIVXL_ACCUMULATORS_H
 
 #include "libzerocoin/Accumulator.h"
 #include "libzerocoin/Coin.h"
@@ -90,5 +91,5 @@ public:
     searchMintHeightException(const std::string &message) : message(message) {}
 };
 
-#endif //PIVX_ACCUMULATORS_H
+#endif //PIVXL_ACCUMULATORS_H
 

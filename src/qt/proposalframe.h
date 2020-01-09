@@ -1,9 +1,10 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2018 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_QT_PROPOSALFRAME_H
-#define PIVX_QT_PROPOSALFRAME_H
+#ifndef PIVXL_QT_PROPOSALFRAME_H
+#define PIVXL_QT_PROPOSALFRAME_H
 
 #include <QFrame>
 #include <QLabel>
@@ -51,4 +52,4 @@ private Q_SLOTS:
     void proposalLink_clicked(const QString &link);
 };
 
-#endif //PIVX_QT_PROPOSALFRAME_H
+#endif //PIVXL_QT_PROPOSALFRAME_H

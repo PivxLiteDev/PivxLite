@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -9,7 +10,7 @@
 
 /****** Thread ********/
 void CLightWorker::ThreadLightZPIVSimplified() {
-    RenameThread("pivx-light-thread");
+    RenameThread("pivxl-light-thread");
     isWorkerRunning = true;
     while (true) {
         try {
@@ -19,7 +20,7 @@ void CLightWorker::ThreadLightZPIVSimplified() {
 
             // TODO: Future: join several similar requests into one calculation if the filter and denom match..
             CGenWit genWit = requestsQueue.pop();
-            LogPrintf("%s pop work for %s \n\n", "pivx-light-thread", genWit.toString());
+            LogPrintf("%s pop work for %s \n\n", "pivxl-light-thread", genWit.toString());
 
             libzerocoin::ZerocoinParams *params = Params().Zerocoin_Params(false);
             CBlockIndex *pIndex = chainActive[genWit.getStartingHeight()];
@@ -27,7 +28,7 @@ void CLightWorker::ThreadLightZPIVSimplified() {
                 // Rejects only the failed height
                 rejectWork(genWit, genWit.getStartingHeight(), NON_DETERMINED);
             } else {
-                LogPrintf("%s calculating work for %s \n\n", "pivx-light-thread", genWit.toString());
+                LogPrintf("%s calculating work for %s \n\n", "pivxl-light-thread", genWit.toString());
                 int blockHeight = pIndex->nHeight;
                 if (blockHeight >= Params().Zerocoin_Block_V2_Start()) {
 
@@ -82,10 +83,10 @@ void CLightWorker::ThreadLightZPIVSimplified() {
                         }
                         ss << heightStop;
                         if (genWit.getPfrom()) {
-                            LogPrintf("%s pushing message to %s \n", "pivx-light-thread", genWit.getPfrom()->addrName);
+                            LogPrintf("%s pushing message to %s \n", "pivxl-light-thread", genWit.getPfrom()->addrName);
                             genWit.getPfrom()->PushMessage("pubcoins", ss);
                         } else
-                            LogPrintf("%s NOT pushing message to %s \n", "pivx-light-thread", genWit.getPfrom()->addrName);
+                            LogPrintf("%s NOT pushing message to %s \n", "pivxl-light-thread", genWit.getPfrom()->addrName);
                     }
                 } else {
                     // Rejects only the failed height
@@ -105,7 +106,7 @@ void CLightWorker::ThreadLightZPIVSimplified() {
 // TODO: Think more the peer misbehaving policy..
 void CLightWorker::rejectWork(CGenWit& wit, int blockHeight, uint32_t errorNumber) {
     if (wit.getStartingHeight() == blockHeight){
-        LogPrintf("%s rejecting work %s , error code: %s\n", "pivx-light-thread", wit.toString(), errorNumber);
+        LogPrintf("%s rejecting work %s , error code: %s\n", "pivxl-light-thread", wit.toString(), errorNumber);
         CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
         ss << wit.getRequestNum();
         ss << errorNumber;

@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2012-2013 The Bitcoin Core developers
 // Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -9,7 +10,7 @@
 #include "script/script.h"
 #include "script/script_error.h"
 #include "script/sign.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 #ifdef ENABLE_WALLET
 #include "wallet/wallet_ismine.h"

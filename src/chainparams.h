@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
@@ -26,7 +27,7 @@ struct CDNSSeedData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * PIVX system. There are three: the main network on which people trade goods
+ * PIVXL system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -114,9 +115,6 @@ public:
 
     /** Spork key and Masternode Handling **/
     std::string SporkPubKey() const { return strSporkPubKey; }
-    std::string SporkPubKeyOld() const { return strSporkPubKeyOld; }
-    int64_t NewSporkStart() const { return nEnforceNewSporkKey; }
-    int64_t RejectOldSporkKey() const { return nRejectOldSporkKey; }
     std::string ObfuscationPoolDummyAddress() const { return strObfuscationPoolDummyAddress; }
     int64_t StartMasternodePayments() const { return nStartMasternodePayments; }
     int64_t Budget_Fee_Confirmations() const { return nBudget_Fee_Confirmations; }
@@ -134,6 +132,7 @@ public:
     int Zerocoin_DefaultSpendSecurity() const { return nDefaultSecurityLevel; }
     int Zerocoin_HeaderVersion() const { return nZerocoinHeaderVersion; }
     int Zerocoin_RequiredStakeDepth() const { return nZerocoinRequiredStakeDepth; }
+    CAmount MasternodeCollateral() const { return nMasternodeCollateral; }
 
     /** Height or Time Based Activations **/
     int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
@@ -186,6 +185,7 @@ protected:
     int64_t nPivxBadBlockTime;
     unsigned int nPivxBadBlocknBits;
     int nMasternodeCountDrift;
+    CAmount nMasternodeCollateral;
     int nMaturity;
     int nStakeMinDepth;
     int nStakeMinAge;
@@ -213,9 +213,6 @@ protected:
     int nPoolMaxTransactions;
     int nBudgetCycleBlocks;
     std::string strSporkPubKey;
-    std::string strSporkPubKeyOld;
-    int64_t nEnforceNewSporkKey;
-    int64_t nRejectOldSporkKey;
     std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
     std::string zerocoinModulus;

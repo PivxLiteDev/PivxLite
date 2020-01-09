@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2013 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -10,7 +11,7 @@
 #include "checkpoints.h"
 
 #include "uint256.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 #include <boost/test/unit_test.hpp>
 

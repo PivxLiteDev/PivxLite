@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2016 The Dash developers
 // Copyright (c) 2016-2019 The PIVX developers
@@ -433,13 +434,13 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
     case TransactionRecord::SendToSelf:
         return tr("Payment to yourself");
     case TransactionRecord::StakeMint:
-        return tr("PIV Stake");
+        return tr("PIVXL Stake");
     case TransactionRecord::StakeZPIV:
         return tr("zPIV Stake");
     case TransactionRecord::StakeDelegated:
-        return tr("PIV Cold Stake");
+        return tr("PIVXL Cold Stake");
     case TransactionRecord::StakeHot:
-        return tr("PIV Stake in behalf of");
+        return tr("PIVXL Stake in behalf of");
     case TransactionRecord::P2CSDelegationSent:
     case TransactionRecord::P2CSDelegation:
         return tr("Stake delegation");
@@ -456,15 +457,15 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
     case TransactionRecord::Obfuscated:
         return tr("Obfuscated");
     case TransactionRecord::ZerocoinMint:
-        return tr("Converted PIV to zPIV");
+        return tr("Converted PIVXL to zPIV");
     case TransactionRecord::ZerocoinSpend:
         return tr("Spent zPIV");
     case TransactionRecord::RecvFromZerocoinSpend:
-        return tr("Received PIV from zPIV");
+        return tr("Received PIVXL from zPIV");
     case TransactionRecord::ZerocoinSpend_Change_zPiv:
         return tr("Minted Change as zPIV from zPIV Spend");
     case TransactionRecord::ZerocoinSpend_FromMe:
-        return tr("Converted zPIV to PIV");
+        return tr("Converted zPIV to PIVXL");
     default:
         return QString();
     }

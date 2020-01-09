@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -54,7 +55,7 @@ private:
     Qt::SortOrder order;
 };
 
-/** Model for list of recently generated payment requests / pivx: URIs.
+/** Model for list of recently generated payment requests / pivxl: URIs.
  * Part of wallet model.
  */
 class RecentRequestsTableModel : public QAbstractTableModel

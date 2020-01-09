@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2012-2014 The Bitcoin Core developers
 // Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -11,7 +12,7 @@
 #include <vector>
 
 #include <boost/test/unit_test.hpp>
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 // how many times to run all the tests to have a chance to catch errors that only show up with particular random shuffles
 #define RUN_TESTS 100

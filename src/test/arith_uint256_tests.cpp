@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2013 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
@@ -13,7 +14,7 @@
 #include "arith_uint256.h"
 #include <string>
 #include "version.h"
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 
 BOOST_FIXTURE_TEST_SUITE(arith_uint256_tests, BasicTestingSetup)
 

@@ -1,0 +1,37 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/pivxl_bg.qm</file>
+        <file alias="ca">locale/pivxl_ca.qm</file>
+        <file alias="cs">locale/pivxl_cs.qm</file>
+        <file alias="da">locale/pivxl_da.qm</file>
+        <file alias="de">locale/pivxl_de.qm</file>
+        <file alias="en">locale/pivxl_en.qm</file>
+        <file alias="en_GB">locale/pivxl_en_GB.qm</file>
+        <file alias="en_US">locale/pivxl_en_US.qm</file>
+        <file alias="eo">locale/pivxl_eo.qm</file>
+        <file alias="es">locale/pivxl_es.qm</file>
+        <file alias="es_ES">locale/pivxl_es_ES.qm</file>
+        <file alias="fi">locale/pivxl_fi.qm</file>
+        <file alias="fr_FR">locale/pivxl_fr_FR.qm</file>
+        <file alias="hi_IN">locale/pivxl_hi_IN.qm</file>
+        <file alias="hr">locale/pivxl_hr.qm</file>
+        <file alias="hr_HR">locale/pivxl_hr_HR.qm</file>
+        <file alias="it">locale/pivxl_it.qm</file>
+        <file alias="ja">locale/pivxl_ja.qm</file>
+        <file alias="ko_KR">locale/pivxl_ko_KR.qm</file>
+        <file alias="lt_LT">locale/pivxl_lt_LT.qm</file>
+        <file alias="nl">locale/pivxl_nl.qm</file>
+        <file alias="pl">locale/pivxl_pl.qm</file>
+        <file alias="pt">locale/pivxl_pt.qm</file>
+        <file alias="pt_BR">locale/pivxl_pt_BR.qm</file>
+        <file alias="ro_RO">locale/pivxl_ro_RO.qm</file>
+        <file alias="ru">locale/pivxl_ru.qm</file>
+        <file alias="sk">locale/pivxl_sk.qm</file>
+        <file alias="sv">locale/pivxl_sv.qm</file>
+        <file alias="tr">locale/pivxl_tr.qm</file>
+        <file alias="uk">locale/pivxl_uk.qm</file>
+        <file alias="vi">locale/pivxl_vi.qm</file>
+        <file alias="zh_CN">locale/pivxl_zh_CN.qm</file>
+        <file alias="zh_TW">locale/pivxl_zh_TW.qm</file>
+    </qresource>
+</RCC>

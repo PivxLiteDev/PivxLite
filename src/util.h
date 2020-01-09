@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
@@ -13,7 +14,7 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/pivxl-config.h"
 #endif
 
 #include "compat.h"
@@ -30,7 +31,7 @@
 #include <boost/thread/exceptions.hpp>
 #include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
 
-//PIVX only features
+//PIVXL only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
@@ -227,7 +228,7 @@ void RenameThread(const char* name);
 template <typename Callable>
 void TraceThread(const char* name, Callable func)
 {
-    std::string s = strprintf("pivx-%s", name);
+    std::string s = strprintf("pivxl-%s", name);
     RenameThread(s.c_str());
     try {
         LogPrintf("%s thread start\n", name);

@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -7,12 +8,12 @@
 #define BITCOIN_QT_ASKPASSPHRASEDIALOG_H
 
 #include <QDialog>
-#include "qt/pivx/prunnable.h"
+#include "qt/pivxl/prunnable.h"
 #include "allocators.h"
 #include <QCheckBox>
 
 class WalletModel;
-class PIVXGUI;
+class PIVXLGUI;
 
 namespace Ui
 {
@@ -43,7 +44,7 @@ public:
         Encrypt,        /** Encrypt unencrypted wallet */
         ToggleLock,     /** Toggle wallet lock state */
         ChangePass,     /** Change passphrase */
-        Send_PIV,       /** Send PIV */
+        Send_PIV,       /** Send PIVXL */
         Send_zPIV,      /** Send zPIV */
         Mint_zPIV,      /** Mint zPIV */
         BIP_38,         /** BIP38 menu */

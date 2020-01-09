@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 /**
  * @file       Benchmark.cpp
  *
@@ -25,7 +26,7 @@
 #include "libzerocoin/Coin.h"
 #include "libzerocoin/CoinSpend.h"
 #include "libzerocoin/Accumulator.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 
 #define COLOR_STR_GREEN   "\033[32m"

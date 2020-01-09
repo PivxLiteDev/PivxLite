@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -32,7 +33,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the PIVX Qt UI.
+/** Utility functions used by the PIVXL Qt UI.
  */
 namespace GUIUtil
 {
@@ -41,7 +42,7 @@ QString dateTimeStr(const QDateTime& datetime);
 QString dateTimeStrWithSeconds(const QDateTime& date);
 QString dateTimeStr(qint64 nTime);
 
-// Render PIVX addresses in monospace font
+// Render PIVXL addresses in monospace font
 QFont bitcoinAddressFont();
 
 // Parse string into a CAmount value
@@ -60,7 +61,7 @@ void setupAmountWidget(QLineEdit* widget, QWidget* parent);
 // Update the cursor of the widget after a text change
 void updateWidgetTextAndCursorPosition(QLineEdit* widget, const QString& str);
 
-// Parse "pivx:" URI into recipient object, return true on successful parsing
+// Parse "pivxl:" URI into recipient object, return true on successful parsing
 bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out);
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out);
 QString formatBitcoinURI(const SendCoinsRecipient& info);
@@ -126,7 +127,7 @@ bool isObscured(QWidget* w);
 // Open debug.log
 bool openDebugLogfile();
 
-// Open pivx.conf
+// Open pivxl.conf
 bool openConfigfile();
 
 // Open masternode.conf

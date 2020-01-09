@@ -1,3 +1,4 @@
+// Copyright (c) 2019-2023 The PIVXL developers
 // Copyright (c) 2014-2016 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -13,7 +14,7 @@
 #include "spork.h"
 
 //
-// Bootup the Masternode, look for a 10000 PIVX input and register on the network
+// Bootup the Masternode, look for a 10000 PIVXL input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {
@@ -468,7 +469,7 @@ std::vector<COutput> CActiveMasternode::SelectCoinsMasternode()
 
     // Filter
     for (const COutput& out : vCoins) {
-        if (out.tx->vout[out.i].nValue == 10000 * COIN) { //exactly
+        if (out.tx->vout[out.i].nValue == Params().MasternodeCollateral()) { //exactly
             filteredCoins.push_back(out);
         }
     }
