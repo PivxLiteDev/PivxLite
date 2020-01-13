@@ -1082,8 +1082,8 @@
         <translation>Obrazac</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Adresa: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:18233</source>
+        <translation>Adresa: 88.26.164.88:18233</translation>
     </message>
     </context>
 <context>

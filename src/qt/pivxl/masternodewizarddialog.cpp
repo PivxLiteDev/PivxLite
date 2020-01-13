@@ -66,7 +66,7 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     ui->lineEditPort->setValidator(new QIntValidator(0, 9999999, ui->lineEditPort));
     if(walletModel->isTestNetwork()){
         ui->lineEditPort->setEnabled(false);
-        ui->lineEditPort->setText("51474");
+        ui->lineEditPort->setText("18233");
     } else {
         ui->lineEditPort->setText("8233");
     }

@@ -1503,8 +1503,8 @@ Il commencera automatiquement dès que le portefeuille aura assez de confirmatio
         <translation>utilisateur de masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Adresse: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:18233</source>
+        <translation>Adresse: 88.26.164.88:18233</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
