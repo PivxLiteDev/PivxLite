@@ -159,17 +159,17 @@ public:
         consensus.nPoolMaxTransactions = 3;
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nStakeMinAge = 60 * 60;
-        consensus.nStakeMinDepth = 600;
+        consensus.nStakeMinDepth = 300;
         consensus.nTargetTimespan = 40 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "040F129DE6546FE405995329A887329BED4321325B1A73B0A257423C05C1FCFE9E40EF0678AEF59036A22C42E61DFD29DF7EFB09F56CC73CADF64E05741880E3E7";
-        consensus.strSporkPubKeyOld = "0499A7AF4806FC6DE640D23BC5936C29B77ADF2174B4F45492727F897AE63CF8D27B2F05040606E0D14B547916379FA10716E344E745F880EDC037307186AA25B7";
-        consensus.nTime_EnforceNewSporkKey = INT_MAX;    //!> August 26, 2019 11:00:00 PM GMT
-        consensus.nTime_RejectOldSporkKey = INT_MAX;     //!> September 26, 2019 11:00:00 PM GMT
+        consensus.strSporkPubKey = "04bc10da9808467708edf1177571c041fc4b6a81300eff228603e813cb37afd37b725c786c7e305415a743a07c2948d0ec1b33a4cc2a852a7d5aa4b8b462c4b846";
+        //consensus.strSporkPubKeyOld = "0499A7AF4806FC6DE640D23BC5936C29B77ADF2174B4F45492727F897AE63CF8D27B2F05040606E0D14B547916379FA10716E344E745F880EDC037307186AA25B7";
+        //consensus.nTime_EnforceNewSporkKey = INT_MAX;    //!> August 26, 2019 11:00:00 PM GMT
+        //consensus.nTime_RejectOldSporkKey = INT_MAX;     //!> September 26, 2019 11:00:00 PM GMT
 
         // height-based activations
         consensus.height_last_PoW = 600;
@@ -177,10 +177,10 @@ public:
         consensus.height_last_ZC_WrappedSerials = INT_MAX;
         consensus.height_start_BIP65 = 1;             // Block v5: 82629b7a9978f5c7ea3f70a12db92633a7d2e436711500db28b97efd48b1e527
         consensus.height_start_InvalidUTXOsCheck = INT_MAX;
-        consensus.height_start_MessSignaturesV2 = 201;  // height_start_TimeProtoV2
+        consensus.height_start_MessSignaturesV2 = 601;  // height_start_TimeProtoV2
         consensus.height_start_StakeModifierNewSelection = INT_MAX;
-        consensus.height_start_StakeModifierV2 = 201;   // Block v6: 0ef2556e40f3b9f6e02ce611b832e0bbfe7734a8ea751c7b555310ee49b61456
-        consensus.height_start_TimeProtoV2 = 201;       // Block v7: 14e477e597d24549cac5e59d97d32155e6ec2861c1003b42d0566f9bf39b65d5
+        consensus.height_start_StakeModifierV2 = 601;   // Block v6: 0ef2556e40f3b9f6e02ce611b832e0bbfe7734a8ea751c7b555310ee49b61456
+        consensus.height_start_TimeProtoV2 = 601;       // Block v7: 14e477e597d24549cac5e59d97d32155e6ec2861c1003b42d0566f9bf39b65d5
         consensus.height_start_ZC = INT_MAX;                 // Block v4: 5b2482eca24caf2a46bb22e0545db7b7037282733faa3a42ec20542509999a64
         consensus.height_start_ZC_InvalidSerials = INT_MAX;
         consensus.height_start_ZC_PublicSpends = INT_MAX;
@@ -280,10 +280,10 @@ public:
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "04E88BB455E2A04E65FCC41D88CD367E9CCE1F5A409BE94D8C2B4B35D223DED9C8E2F4E061349BA3A38839282508066B6DC4DB72DD432AC4067991E6BF20176127";
-        consensus.strSporkPubKeyOld = "04A8B319388C0F8588D238B9941DC26B26D3F9465266B368A051C5C100F79306A557780101FE2192FE170D7E6DEFDCBEE4C8D533396389C0DAFFDBC842B002243C";
-        consensus.nTime_EnforceNewSporkKey = INT_MAX;    //!> August 26, 2019 11:00:00 PM GMT
-        consensus.nTime_RejectOldSporkKey = INT_MAX;     //!> September 26, 2019 11:00:00 PM GMT
+        consensus.strSporkPubKey = "04bc10da9808467708edf1177571c041fc4b6a81300eff228603e813cb37afd37b725c786c7e305415a743a07c2948d0ec1b33a4cc2a852a7d5aa4b8b462c4b846";
+        //consensus.strSporkPubKeyOld = "04A8B319388C0F8588D238B9941DC26B26D3F9465266B368A051C5C100F79306A557780101FE2192FE170D7E6DEFDCBEE4C8D533396389C0DAFFDBC842B002243C";
+        //consensus.nTime_EnforceNewSporkKey = INT_MAX;    //!> August 26, 2019 11:00:00 PM GMT
+        //consensus.nTime_RejectOldSporkKey = INT_MAX;     //!> September 26, 2019 11:00:00 PM GMT
 
         // height based activations
         consensus.height_last_PoW = 200;
@@ -402,9 +402,9 @@ public:
         Address: yCvUVd72w7xpimf981m114FSFbmAmne7j9
         */
         consensus.strSporkPubKey = "043969b1b0e6f327de37f297a015d37e2235eaaeeb3933deecd8162c075cee0207b13537618bde640879606001a8136091c62ec272dd0133424a178704e6e75bb7";
-        consensus.strSporkPubKeyOld = "";
-        consensus.nTime_EnforceNewSporkKey = 0;
-        consensus.nTime_RejectOldSporkKey = 0;
+        //consensus.strSporkPubKeyOld = "";
+        //consensus.nTime_EnforceNewSporkKey = 0;
+        //consensus.nTime_RejectOldSporkKey = 0;
 
         // height based activations
         consensus.height_last_PoW = 250;
