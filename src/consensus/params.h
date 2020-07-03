@@ -38,6 +38,7 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+    CAmount nMasternodeCollateral;
 
     // spork keys
     std::string strSporkPubKey;
