@@ -400,7 +400,7 @@ std::vector<COutput> CActiveMasternode::SelectCoinsMasternode()
 
     // Filter
     for (const COutput& out : vCoins) {
-        if (out.tx->vout[out.i].nValue == Params().GetConsensus().nMasternodeCollateral { //exactly
+        if (out.tx->vout[out.i].nValue == Params().GetConsensus().nMasternodeCollateral) { //exactly
             filteredCoins.push_back(out);
         }
     }

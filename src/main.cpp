@@ -1601,10 +1601,10 @@ int64_t GetBlockValue(int nHeight)
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
 {
     int64_t ret = 0;
-    if nHeight > Params().GetConsensus().height_last_PoW {
+    if (nHeight > Params().GetConsensus().height_last_PoW) {
         ret = blockValue * 0.70; // 70% to masternodes
     }
-    return ret
+    return ret;
 }
 
 bool IsInitialBlockDownload()
@@ -2504,6 +2504,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     }
 
     // A one-time event where the zPIV supply was off (due to serial duplication off-chain on main net)
+/*
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1
             && GetZerocoinSupply() != consensus.ZC_WrappedSerialsSupply + GetWrapppedSerialInflationAmount()) {
         RecalculatePIVSupply(consensus.height_start_ZC, false);
@@ -2517,7 +2518,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         CAmount nLocked = GetInvalidUTXOValue();
         nMoneySupply -= nLocked;
     }
-
+*/
     // Update PIV money supply
     nMoneySupply += (nValueOut - nValueIn);
 
@@ -2535,10 +2536,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint(BCLog::BENCH, "    - Callbacks: %.2fms [%.2fs]\n", 0.001 * (nTime4 - nTime3), nTimeCallbacks * 0.000001);
 
     //Continue tracking possible movement of fraudulent funds until they are completely frozen
+/*
     if (pindex->nHeight >= consensus.height_start_ZC_InvalidSerials &&
             pindex->nHeight <= consensus.height_ZC_RecalcAccumulators + 1)
         AddInvalidSpendsToMap(block);
-
+*/
     if (pindex->nHeight >= consensus.height_start_ZC_SerialsV2 && pindex->nHeight < consensus.height_last_ZC_AccumCheckpoint) {
         // Legacy Zerocoin DB: If Accumulators Checkpoint is changed, database the checksums
         DataBaseAccChecksum(pindex, true);
@@ -3385,7 +3387,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
         return state.DoS(50, error("CheckBlockHeader() : proof of work failed"),
             REJECT_INVALID, "high-hash");
-
+/*
     if (Params().IsRegTestNet()) return true;
 
     // Version 4 header must be used after consensus.ZC_TimeStart. And never before.
@@ -3398,7 +3400,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
             return state.DoS(50, error("CheckBlockHeader() : block version must be below 4 before ZerocoinStartHeight"),
             REJECT_INVALID, "block-version");
     }
-
+*/
     return true;
 }
 
