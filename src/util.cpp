@@ -87,7 +87,7 @@ namespace fs = boost::filesystem;
 #include <openssl/rand.h>
 
 
-// PIVX only features
+// PIVXL only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -287,13 +287,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVX
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVX
-// Mac: ~/Library/Application Support/PIVX
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVXL
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVXL
+// Mac: ~/Library/Application Support/PIVXL
 // Unix: ~/.pivxl
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVX";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVXL";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -305,7 +305,7 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "PIVX";
+    return pathRet / "PIVXL";
 #else
     // Unix
     return pathRet / ".pivxl";

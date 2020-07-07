@@ -591,7 +591,7 @@ def mine_large_block(node, utxos=None):
     create_lots_of_big_transactions(node, txouts, utxos, num, fee=fee)
     node.generate(1)
 
-### PIVX specific utils ###
+### PIVXL specific utils ###
 vZC_DENOMS = [1, 5, 10, 50, 100, 500, 1000, 5000]
 DEFAULT_FEE = 0.01
 SPORK_ACTIVATION_TIME = 1563253447
