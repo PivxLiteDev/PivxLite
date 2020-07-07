@@ -58,9 +58,9 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Enable or disable staking functionality for PIV inputs (0-1, default: %u)"),
+"Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Enable or disable staking functionality for zPIV inputs (0-1, default: %u)"),
+"Enable or disable staking functionality for zPIVXL inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Enable spork administration functionality with the appropriate private key."),
 QT_TRANSLATE_NOOP("pivxl-core", ""
@@ -98,10 +98,10 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Failed to find coin set amongst held coins with less than maxNumber of Spends"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Fees (in PIV/Kb) smaller than this are considered zero fee for relaying "
+"Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying "
 "(default: %s)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Fees (in PIV/Kb) smaller than this are considered zero fee for transaction "
+"Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction "
 "creation (default: %s)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Flush database activity from memory pool to disk log every <n> megabytes "
@@ -302,7 +302,7 @@ QT_TRANSLATE_NOOP("pivxl-core", "Failed to read block"),
 QT_TRANSLATE_NOOP("pivxl-core", "Failed to select a zerocoin"),
 QT_TRANSLATE_NOOP("pivxl-core", "Failed to wipe zerocoinDB"),
 QT_TRANSLATE_NOOP("pivxl-core", "Failed to write coin serial number into wallet"),
-QT_TRANSLATE_NOOP("pivxl-core", "Fee (in PIV/kB) to add to transactions you send (default: %s)"),
+QT_TRANSLATE_NOOP("pivxl-core", "Fee (in PIVXL/kB) to add to transactions you send (default: %s)"),
 QT_TRANSLATE_NOOP("pivxl-core", "Force safe mode (default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", "Generate coins (default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", "How many blocks to check at startup (default: %u, 0 = all)"),
@@ -364,8 +364,8 @@ QT_TRANSLATE_NOOP("pivxl-core", "RPC server options:"),
 QT_TRANSLATE_NOOP("pivxl-core", "Randomly drop 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("pivxl-core", "Randomly fuzz 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("pivxl-core", "Rebuild block chain index from current blk000??.dat files"),
-QT_TRANSLATE_NOOP("pivxl-core", "Recalculating PIV supply..."),
-QT_TRANSLATE_NOOP("pivxl-core", "Reindex the PIV and zPIV money supply statistics"),
+QT_TRANSLATE_NOOP("pivxl-core", "Recalculating PIVXL supply..."),
+QT_TRANSLATE_NOOP("pivxl-core", "Reindex the PIVXL and zPIVXL money supply statistics"),
 QT_TRANSLATE_NOOP("pivxl-core", "Reindexing zerocoin database..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Reindexing zerocoin failed"),
 QT_TRANSLATE_NOOP("pivxl-core", "Relay and mine data carrier transactions (default: %u)"),
@@ -408,7 +408,7 @@ QT_TRANSLATE_NOOP("pivxl-core", "Synchronizing budgets..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Synchronizing masternode winners..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Synchronizing masternodes..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Synchronizing sporks..."),
-QT_TRANSLATE_NOOP("pivxl-core", "Syncing zPIV wallet..."),
+QT_TRANSLATE_NOOP("pivxl-core", "Syncing zPIVXL wallet..."),
 QT_TRANSLATE_NOOP("pivxl-core", "This help message"),
 QT_TRANSLATE_NOOP("pivxl-core", "This is experimental software."),
 QT_TRANSLATE_NOOP("pivxl-core", "This is intended for regression testing tools and app development."),
@@ -440,7 +440,7 @@ QT_TRANSLATE_NOOP("pivxl-core", "Use block spam filter (default: %u)"),
 QT_TRANSLATE_NOOP("pivxl-core", "Use the test network"),
 QT_TRANSLATE_NOOP("pivxl-core", "User Agent comment (%s) contains unsafe characters."),
 QT_TRANSLATE_NOOP("pivxl-core", "Username for JSON-RPC connections"),
-QT_TRANSLATE_NOOP("pivxl-core", "Value is below the smallest available denomination (= 1) of zPIV"),
+QT_TRANSLATE_NOOP("pivxl-core", "Value is below the smallest available denomination (= 1) of zPIVXL"),
 QT_TRANSLATE_NOOP("pivxl-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Verifying wallet..."),
 QT_TRANSLATE_NOOP("pivxl-core", "Wallet %s resides outside data directory %s"),

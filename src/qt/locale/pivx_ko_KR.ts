@@ -377,7 +377,7 @@ for staking</source>
         <translation>지갑 암호화 후 암호를 분실하게 되면</translation>
     </message>
     <message>
-        <source>LOSE ALL OF YOUR PIV</source>
+        <source>LOSE ALL OF YOUR PIVXL</source>
         <translation>모든 PIV를 잃게 됩니다</translation>
     </message>
     <message>
@@ -463,8 +463,8 @@ for staking</source>
         <translation>계좌</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0,00 PIV</translation>
+        <source>0,00 PIVXL</source>
+        <translation>0,00 PIVXL</translation>
     </message>
     <message>
         <source>address</source>
@@ -505,8 +505,8 @@ for staking</source>
         <translation>코인 선택</translation>
     </message>
     <message>
-        <source>Select PIV Outputs to Spend</source>
-        <translation>사용할 PIV 아웃풋 선택</translation>
+        <source>Select PIVXL Outputs to Spend</source>
+        <translation>사용할 PIVXL 아웃풋 선택</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -533,8 +533,8 @@ for staking</source>
         <translation>금액</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0.00 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -802,15 +802,15 @@ for staking</source>
     <message>
         <source>You can delegate your PIVs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>안전히 개인 프라이빗 키를 오프라인으로 보관한 상태로, 가지고 계신 PIV 를 매일 24시간 온라인으로 돌아가는 핫 노드로 위임하여, 대신 스테이킹을 하게 할수 있습니다. </translation>
+        <translation>안전히 개인 프라이빗 키를 오프라인으로 보관한 상태로, 가지고 계신 PIVXL 를 매일 24시간 온라인으로 돌아가는 핫 노드로 위임하여, 대신 스테이킹을 하게 할수 있습니다. </translation>
     </message>
     <message>
         <source>Enter owner address</source>
         <translation>Owner 주소 입력</translation>
     </message>
     <message>
-        <source>Accept PIV delegation / Delegate PIV</source>
-        <translation>PIV 위임권 수락하기 / PIV 위임 하기</translation>
+        <source>Accept PIVXL delegation / Delegate PIVXL</source>
+        <translation>PIVXL 위임권 수락하기 / PIVXL 위임 하기</translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -876,7 +876,7 @@ Do you wish to proceed?</source>
         <translation>위임된 코인</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
+        <source>You don't have any PIVXL to select.</source>
         <translation>선택할 PIV를 가지고 있지 않습니다.</translation>
     </message>
     <message>
@@ -1008,12 +1008,12 @@ address</source>
         <translation>스테이킹 통계</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
-        <source>zPIV</source>
-        <translation>zPIV</translation>
+        <source>zPIVXL</source>
+        <translation>zPIVXL</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1044,8 +1044,8 @@ address</source>
         <translation>당신의 입출금 이력을 확인할 수 있습니다.</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>스테이킹 된 PIV와 zPIV 양</translation>
+        <source>Amount of PIVXL and zPIVXL staked.</source>
+        <translation>스테이킹 된 PIV와 zPIVXL 양</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1056,8 +1056,8 @@ address</source>
         <translation>아직 전송기록 없음</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
-        <translation>PIV 혹은 zPIV를 얻는 법</translation>
+        <source>How to get PIVXL or zPIVXL</source>
+        <translation>PIVXL 혹은 zPIV를 얻는 법</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1395,8 +1395,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>새로운 마스터노드 컨트롤러 만들기</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 100,000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PIVX 마스터노드를 생성하기 위해서는 100,000 PIV (PIVX 단위)를 네트워크에 예치해야 합니다. (예치한 코인은 계속 본인의 소유입니다.) &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;언제든지 노드를 비활성화 시키고 코인을 잠금해제할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 100,000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PIVX 마스터노드를 생성하기 위해서는 100,000 PIVXL (PIVX 단위)를 네트워크에 예치해야 합니다. (예치한 코인은 계속 본인의 소유입니다.) &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;언제든지 노드를 비활성화 시키고 코인을 잠금해제할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1415,7 +1415,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>이만큼의 코인을 보유하고 있는지 확인하십시오.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 100,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 100,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;100,000 PIV의 트랜잭션은&lt;/p&gt;&lt;p&gt;지갑의 새로운 빈 주소로 만들어질 것입니다.&lt;/p&gt;&lt;p&gt;그 주소는 마스터노드 이름에 따라 레이블링됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -1656,7 +1656,7 @@ Are you sure?</source>
         <translation>마스터노드 컨트롤러를 생성할 수 없습니다. 지갑이 잠겨 있습니다.</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 100,000 PIV required.</source>
+        <source>Not enough balance to create a masternode, 100,000 PIVXL required.</source>
         <translation>마스터노드 생성에 필요한 잔고가 부족합니다. 마스터노드 생성에는 100,000 PIV가 필요합니다.</translation>
     </message>
     <message>
@@ -1904,36 +1904,36 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
         <translation>&amp;UPnp를 사용하여 포트 매핑</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
+        <source>Enable automatic minting of PIVXL units to zPIVXL</source>
         <translation>보상받은 PIV를 zPIV로 자동변환 활성화</translation>
     </message>
     <message>
-        <source>Enable zPIV Automint</source>
-        <translation>zPIV 자동생성 활성화</translation>
+        <source>Enable zPIVXL Automint</source>
+        <translation>zPIVXL 자동생성 활성화</translation>
     </message>
     <message>
-        <source>Enable automatic zPIV minting from specific addresses</source>
-        <translation>특정 주소들로부터 자동으로 zPIV 민트되는 것을 허용</translation>
+        <source>Enable automatic zPIVXL minting from specific addresses</source>
+        <translation>특정 주소들로부터 자동으로 zPIVXL 민트되는 것을 허용</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Automint 주소 사용</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
-        <translation>PIV수신시 자동변환 zPIV 비율 (최소값:10%)</translation>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIVXL via Zerocoin Protocol (min: 10%)</source>
+        <translation>PIV수신시 자동변환 zPIVXL 비율 (최소값:10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zPIV</source>
-        <translation>자동 변환되는 zPIV 비율</translation>
+        <source>Percentage of autominted zPIVXL</source>
+        <translation>자동 변환되는 zPIVXL 비율</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
         <translation>이 디노미네이션의 PIV가 충분해질 때까지 Zerocoin으로 자동전환은 보류됩니다.</translation>
     </message>
     <message>
-        <source>Preferred Automint zPIV Denomination</source>
-        <translation>선호하는 자동생성 zPIV 디노미네이션 </translation>
+        <source>Preferred Automint zPIVXL Denomination</source>
+        <translation>선호하는 자동생성 zPIVXL 디노미네이션 </translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2308,19 +2308,19 @@ Address: %4
         <translation>아직 전송기록 없음</translation>
     </message>
     <message>
-        <source>Mint zPIV</source>
-        <translation>zPIV 생성</translation>
+        <source>Mint zPIVXL</source>
+        <translation>zPIVXL 생성</translation>
     </message>
     <message>
-        <source>Enter amount of PIV to mint into zPIV</source>
-        <translation>zPIV 로 바꿀 PIV의 양을 넣으세요.</translation>
+        <source>Enter amount of PIVXL to mint into zPIVXL</source>
+        <translation>zPIVXL 로 바꿀 PIV의 양을 넣으세요.</translation>
     </message>
     <message>
-        <source>Convert back to PIV</source>
-        <translation>PIV 로 재변환</translation>
+        <source>Convert back to PIVXL</source>
+        <translation>PIVXL 로 재변환</translation>
     </message>
     <message>
-        <source>Enter amount of zPIV to convert back into PIV</source>
+        <source>Enter amount of zPIVXL to convert back into PIVXL</source>
         <translation>PIV로 바꿀 zPIV의 양을 넣으세요.</translation>
     </message>
     <message>
@@ -2328,7 +2328,7 @@ Address: %4
         <translation>제로코인</translation>
     </message>
     <message>
-        <source>zPIV is currently undergoing maintenance</source>
+        <source>zPIVXL is currently undergoing maintenance</source>
         <translation>zPIV는 현재 점검중입니다</translation>
     </message>
     <message>
@@ -2344,15 +2344,15 @@ Address: %4
         <translation>유효하지 않은 값</translation>
     </message>
     <message>
-        <source>zPIV minted successfully</source>
-        <translation>zPIV 생성 성공</translation>
+        <source>zPIVXL minted successfully</source>
+        <translation>zPIVXL 생성 성공</translation>
     </message>
     <message>
-        <source>zPIV converted back to PIV</source>
-        <translation>PIV 로 zPIV 변환됨</translation>
+        <source>zPIVXL converted back to PIVXL</source>
+        <translation>PIVXL 로 zPIVXL 변환됨</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
+        <source>You don't have any PIVXL to select.</source>
         <translation>선택할 PIV를 가지고 있지 않습니다.</translation>
     </message>
     <message>
@@ -2360,8 +2360,8 @@ Address: %4
         <translation>민트를 재탐색</translation>
     </message>
     <message>
-        <source>Reset Spent zPIV</source>
-        <translation>전송된 zPIV 초기화</translation>
+        <source>Reset Spent zPIVXL</source>
+        <translation>전송된 zPIVXL 초기화</translation>
     </message>
     <message>
         <source>Total %1</source>
@@ -2730,8 +2730,8 @@ Address: %4
         <translation>맞춤 백업 경로 :</translation>
     </message>
     <message>
-        <source>Custom zPIV Backup Path:</source>
-        <translation>맞춤 zPIV 백업 경로 :</translation>
+        <source>Custom zPIVXL Backup Path:</source>
+        <translation>맞춤 zPIVXL 백업 경로 :</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2977,8 +2977,8 @@ Address: %4
         <translation>받기</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive PIV.</source>
-        <translation>PIV 를 받기 위해 QR 코드를 스캔하거나 주소를 복사 하십시요.</translation>
+        <source>Scan the QR code or copy the address to receive PIVXL.</source>
+        <translation>PIVXL 를 받기 위해 QR 코드를 스캔하거나 주소를 복사 하십시요.</translation>
     </message>
     <message>
         <source>No address </source>
@@ -3087,8 +3087,8 @@ Address: %4
         <translation>금액</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3197,8 +3197,8 @@ Address: %4
         <translation>권장</translation>
     </message>
     <message>
-        <source>PIV/kilobyte</source>
-        <translation>PIV/Kilobyte</translation>
+        <source>PIVXL/kilobyte</source>
+        <translation>PIVXL/Kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3291,12 +3291,12 @@ Address: %4
         <translation>전송할 총 액수</translation>
     </message>
     <message>
-        <source>Send PIV</source>
-        <translation>PIV 보내기</translation>
+        <source>Send PIVXL</source>
+        <translation>PIVXL 보내기</translation>
     </message>
     <message>
-        <source>Send zPIV</source>
-        <translation>zPIV 전송하기</translation>
+        <source>Send zPIVXL</source>
+        <translation>zPIVXL 전송하기</translation>
     </message>
     <message>
         <source>Total remaining from the selected UTXO</source>
@@ -3351,7 +3351,7 @@ Cold-staking 중인 코인을 사용하여 전송하며, 무효화됩니다.
         <translation>제로코인 보내기</translation>
     </message>
     <message>
-        <source>zPIV is currently undergoing maintenance.</source>
+        <source>zPIVXL is currently undergoing maintenance.</source>
         <translation>zPIV는 현재 점검중입니다.</translation>
     </message>
     <message>
@@ -3367,12 +3367,12 @@ Cold-staking 중인 코인을 사용하여 전송하며, 무효화됩니다.
 %2</translation>
     </message>
     <message>
-        <source>zPIV transaction sent!</source>
+        <source>zPIVXL transaction sent!</source>
         <translation>zPIVX 전송 완료!</translation>
     </message>
     <message>
-        <source>Version 1 zPIV require a security level of 100 to successfully spend.</source>
-        <translation>zPIV 버전 1은 성공적으로 보내기 위해서 100 시큐리티 레벨이 필요합니다.</translation>
+        <source>Version 1 zPIVXL require a security level of 100 to successfully spend.</source>
+        <translation>zPIVXL 버전 1은 성공적으로 보내기 위해서 100 시큐리티 레벨이 필요합니다.</translation>
     </message>
     <message>
         <source>Too much inputs (</source>
@@ -3406,7 +3406,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>커스텀 수수료 %1</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
+        <source>You don't have any PIVXL to select.</source>
         <translation>선택할 수 있는 PIV를 가지고 있지 않습니다.</translation>
     </message>
     <message>
@@ -5100,39 +5100,39 @@ NOTE: 업그레이드 이후에는
         <translation>수신됨</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV stake</translation>
+        <source>PIVXL Stake</source>
+        <translation>PIVXL stake</translation>
     </message>
     <message>
-        <source>zPIV Stake</source>
-        <translation>zPIV stake</translation>
+        <source>zPIVXL Stake</source>
+        <translation>zPIVXL stake</translation>
     </message>
     <message>
-        <source>PIV Cold Stake</source>
-        <translation>PIV Cold Stake</translation>
+        <source>PIVXL Cold Stake</source>
+        <translation>PIVXL Cold Stake</translation>
     </message>
     <message>
         <source>Stake delegation</source>
         <translation>Stake delegation</translation>
     </message>
     <message>
-        <source>Converted PIV to zPIV</source>
+        <source>Converted PIVXL to zPIVXL</source>
         <translation>PIV를 zPIV로 변환</translation>
     </message>
     <message>
-        <source>Spent zPIV</source>
-        <translation>zPIV 사용</translation>
+        <source>Spent zPIVXL</source>
+        <translation>zPIVXL 사용</translation>
     </message>
     <message>
-        <source>Received PIV from zPIV</source>
+        <source>Received PIVXL from zPIVXL</source>
         <translation>zPIV를 PIV로 받음</translation>
     </message>
     <message>
-        <source>Minted Change as zPIV from zPIV Spend</source>
-        <translation>zPIV 전송후 남은 zPIV로 잔돈 생성</translation>
+        <source>Minted Change as zPIVXL from zPIVXL Spend</source>
+        <translation>zPIVXL 전송후 남은 zPIV로 잔돈 생성</translation>
     </message>
     <message>
-        <source>Converted zPIV to PIV</source>
+        <source>Converted zPIVXL to PIVXL</source>
         <translation>zPIV를 PIV로 변환</translation>
     </message>
     <message>
@@ -5294,8 +5294,8 @@ NOTE: 업그레이드 이후에는
         <translation>18/05/18</translation>
     </message>
     <message>
-        <source>+0.000585 PIV</source>
-        <translation>+0.000585 PIV</translation>
+        <source>+0.000585 PIVXL</source>
+        <translation>+0.000585 PIVXL</translation>
     </message>
 </context>
 <context>
@@ -5305,7 +5305,7 @@ NOTE: 업그레이드 이후에는
         <translation>코인 전송 </translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
         <translation>SwiftTX는 아직 높은 값을 전송하는 것을 지원하지 않습니다. 트랜잭션은 현재 %1 PIV로 제한됩니다.</translation>
     </message>
 </context>
@@ -5377,8 +5377,8 @@ PIVX Core Wallet</translation>
 <context>
     <name>ZPivControlDialog</name>
     <message>
-        <source>Select zPIV to Spend</source>
-        <translation>사용할 zPIV 선택</translation>
+        <source>Select zPIVXL to Spend</source>
+        <translation>사용할 zPIVXL 선택</translation>
     </message>
     <message>
         <source>Coin Control</source>
@@ -5464,12 +5464,12 @@ PIVX Core Wallet</translation>
         <translation>MIT 소프트웨어 라이센스에 따라 배포, 첨부 파일 COPYING 또는 &lt;http://www.opensource.org/licenses/mit-license.php&gt; 를 참조하십시오.</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
+        <translation>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</source>
-        <translation>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for zPIVXL inputs (0-1, default: %u)</source>
+        <translation>Enable or disable staking functionality for zPIVXL inputs (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5504,12 +5504,12 @@ PIVX Core Wallet</translation>
         <translation>최고 블록이 변경될 경우 명령을 실행하십시오 (명령 내 %s 는 블록 해시로 대체 되었습니다)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>이것보다 작은 수수료 (PIV/Kb)는 중계 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>이것보다 작은 수수료 (PIVXL/Kb)는 중계 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>이것보다 작은 수수료 (PIV/Kb)는 트랜잭션 생성 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>이것보다 작은 수수료 (PIVXL/Kb)는 트랜잭션 생성 수수료가 없는 것으로 간주됩니다 (기본값: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -5856,8 +5856,8 @@ PIVX Core Wallet</translation>
         <translation>블록을 받아오는데 실패했습니다.</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>당신이 보내는 트랜잭션에 추가 할 수수료 (PIV/kB) (기본값: %s)</translation>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
+        <translation>당신이 보내는 트랜잭션에 추가 할 수수료 (PIVXL/kB) (기본값: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -5932,12 +5932,12 @@ PIVX Core Wallet</translation>
         <translation>masternode.conf 에서 유효하지 않은 포트가 감지되었습니다</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>PIV 공급 재계산중...</translation>
+        <source>Recalculating PIVXL supply...</source>
+        <translation>PIVXL 공급 재계산중...</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
-        <translation>PIV 및 zPIV 공급량 다시 색인</translation>
+        <source>Reindex the PIVXL and zPIVXL money supply statistics</source>
+        <translation>PIVXL 및 zPIVXL 공급량 다시 색인</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -6404,8 +6404,8 @@ PIVX Core Wallet</translation>
         <translation>sporks와 동기화 중입니다...</translation>
     </message>
     <message>
-        <source>Syncing zPIV wallet...</source>
-        <translation>zPIV 지갑 동기화중...</translation>
+        <source>Syncing zPIVXL wallet...</source>
+        <translation>zPIVXL 지갑 동기화중...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -6512,8 +6512,8 @@ PIVX Core Wallet</translation>
         <translation>JSON-RPC 연결 사용자 이름</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zPIV</source>
-        <translation>Value is below the smallest available denomination (= 1) of zPIV</translation>
+        <source>Value is below the smallest available denomination (= 1) of zPIVXL</source>
+        <translation>Value is below the smallest available denomination (= 1) of zPIVXL</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6557,7 +6557,7 @@ PIVX Core Wallet</translation>
     </message>
     <message>
         <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>지갑에 zPIV 가 부족합니다.</translation>
+        <translation>지갑에 zPIVXL 가 부족합니다.</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>

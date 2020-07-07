@@ -633,16 +633,16 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     }
     ui->labelTitle1->setText(nLockedBalance > 0 ? tr("Available (Locked included)") : tr("Available"));
 
-    // PIV Total
+    // PIVXL Total
     CAmount pivAvailableBalance = balance;
-    // zPIV Balance
+    // zPIVXL Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
     // Set
     QString totalPiv = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
     QString totalzPiv = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit, true);
 
-    // PIV
+    // PIVXL
     // Top
     ui->labelAmountTopPiv->setText(totalPiv);
     // Expanded
@@ -650,10 +650,10 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     ui->labelPendingPiv->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
     ui->labelImmaturePiv->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
 
-    // Update display state and/or values for zPIV balances as necessary
+    // Update display state and/or values for zPIVXL balances as necessary
     bool fHaveZerocoins = zerocoinBalance > 0;
 
-    // Set visibility of zPIV label titles/values
+    // Set visibility of zPIVXL label titles/values
     ui->typeSpacerTop->setVisible(fHaveZerocoins);
     ui->typeSpacerExpanded->setVisible(fHaveZerocoins);
     ui->labelAmountTopzPiv->setVisible(fHaveZerocoins);

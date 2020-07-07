@@ -380,8 +380,8 @@ za staking</translation>
         <translation>Ako napravite enkripciju Vašeg novčanika i izgubite lozinku, tada ćete</translation>
     </message>
     <message>
-        <source>LOSE ALL OF YOUR PIV</source>
-        <translation>IZGUBITI SVE VAŠE PIV-ove</translation>
+        <source>LOSE ALL OF YOUR PIVXL</source>
+        <translation>IZGUBITI SVE VAŠE PIVXL-ove</translation>
     </message>
     <message>
         <source>ENCRYPT</source>
@@ -397,7 +397,7 @@ za staking</translation>
     </message>
     <message>
         <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX će se sada zatvoriti kako bi se dovršio proces šifriranja. Ne zaboravite da šifriranje Vašeg novčanika ne može u potpunosti zaštititi vaše PIV od krađje zlonamjernog softvera koji zarazi vaše računalo.</translation>
+        <translation>PIVX će se sada zatvoriti kako bi se dovršio proces šifriranja. Ne zaboravite da šifriranje Vašeg novčanika ne može u potpunosti zaštititi vaše PIVXL od krađje zlonamjernog softvera koji zarazi vaše računalo.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -466,8 +466,8 @@ za staking</translation>
         <translation>Ušteđjevina</translation>
     </message>
     <message>
-        <source>0,00 PIV</source>
-        <translation>0,00 PIV</translation>
+        <source>0,00 PIVXL</source>
+        <translation>0,00 PIVXL</translation>
     </message>
     <message>
         <source>address</source>
@@ -508,8 +508,8 @@ za staking</translation>
         <translation>Odabir novčića</translation>
     </message>
     <message>
-        <source>Select PIV Outputs to Spend</source>
-        <translation>Odaberi PIV za potrošiti</translation>
+        <source>Select PIVXL Outputs to Spend</source>
+        <translation>Odaberi PIVXL za potrošiti</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -536,8 +536,8 @@ za staking</translation>
         <translation>Iznos</translation>
     </message>
     <message>
-        <source>0.00 PIV</source>
-        <translation>0.00 PIV</translation>
+        <source>0.00 PIVXL</source>
+        <translation>0.00 PIVXL</translation>
     </message>
     <message>
         <source>0</source>
@@ -805,15 +805,15 @@ za staking</translation>
     <message>
         <source>You can delegate your PIVs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Možete delegirati svoje PIV-ove, dopuštajući hot node-u (24/7 online node) da stake-a za Vas, dok su Vaši ključevi offline na sigurnom.</translation>
+        <translation>Možete delegirati svoje PIVXL-ove, dopuštajući hot node-u (24/7 online node) da stake-a za Vas, dok su Vaši ključevi offline na sigurnom.</translation>
     </message>
     <message>
         <source>Enter owner address</source>
         <translation>Unesi adresu vlasnika</translation>
     </message>
     <message>
-        <source>Accept PIV delegation / Delegate PIV</source>
-        <translation>Prihvati PIV delegaciju / Delegiraj PIV</translation>
+        <source>Accept PIVXL delegation / Delegate PIVXL</source>
+        <translation>Prihvati PIVXL delegaciju / Delegiraj PIVXL</translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -879,8 +879,8 @@ Potrošnja ovih novčića morat će se obaviti iz novčanika ili uredjaja koji s
         <translation>Novčići delegirani</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Nemate PIV-a za odabrati</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Nemate PIVXL-a za odabrati</translation>
     </message>
     <message>
         <source>Cannot perform operation, wallet locked</source>
@@ -1011,12 +1011,12 @@ vlasnika</translation>
         <translation>Statistika stakinga</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
-        <source>zPIV</source>
-        <translation>zPIV</translation>
+        <source>zPIVXL</source>
+        <translation>zPIVXL</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1047,8 +1047,8 @@ vlasnika</translation>
         <translation>Možete pregledati povijest računa</translation>
     </message>
     <message>
-        <source>Amount of PIV and zPIV staked.</source>
-        <translation>Iznos PIV i zPIV koji se stakea.</translation>
+        <source>Amount of PIVXL and zPIVXL staked.</source>
+        <translation>Iznos PIVXL i zPIVXL koji se stakea.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1059,8 +1059,8 @@ vlasnika</translation>
         <translation>Nema još transakcija</translation>
     </message>
     <message>
-        <source>How to get PIV or zPIV</source>
-        <translation>Kako nabaviti PIV ili zPIV</translation>
+        <source>How to get PIVXL or zPIVXL</source>
+        <translation>Kako nabaviti PIVXL ili zPIVXL</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1399,8 +1399,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Stvori novi Masternode Controller</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 100,000 PIV (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Da biste stvoriti PIVX Masternode, morate odvojiti 100,000 PIV (jedinica PIVX-a) prema mreži (međjutim, ti novčići su i dalje vaši i nikad neće napustiti vaše vlasništvo). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; Možete isključiti node i otključati novčiće u bilo kojem trenutku.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVX Masternode you must dedicate 100,000 PIVXL (the unit of PIVX) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Da biste stvoriti PIVX Masternode, morate odvojiti 100,000 PIVXL (jedinica PIVX-a) prema mreži (međjutim, ti novčići su i dalje vaši i nikad neće napustiti vaše vlasništvo). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; Možete isključiti node i otključati novčiće u bilo kojem trenutku.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1419,8 +1419,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Obavezno imajte tu količinu novčića.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 100,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Transakcija od 100,000 PIV će biti napravljena&lt;/p&gt;&lt;p&gt;u novu praznu adresu u Vašem novčaniku.&lt;/p&gt;&lt;p&gt;Adresa je označena pod imenom Masternode-a.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 100,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Transakcija od 100,000 PIVXL će biti napravljena&lt;/p&gt;&lt;p&gt;u novu praznu adresu u Vašem novčaniku.&lt;/p&gt;&lt;p&gt;Adresa je označena pod imenom Masternode-a.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1662,8 +1662,8 @@ Jeste li sigurni?</translation>
         <translation>Ne može se kreirati Masternode controller, novčanik je zaključan</translation>
     </message>
     <message>
-        <source>Not enough balance to create a masternode, 100,000 PIV required.</source>
-        <translation>Nema dovoljno novčića za stvaranje Masternodea, potrebno je 10000 PIV.</translation>
+        <source>Not enough balance to create a masternode, 100,000 PIVXL required.</source>
+        <translation>Nema dovoljno novčića za stvaranje Masternodea, potrebno je 10000 PIVXL.</translation>
     </message>
     <message>
         <source>Error creating masternode</source>
@@ -1910,36 +1910,36 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
         <translation>Mapiranje porta koristeći &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PIV units to zPIV</source>
-        <translation>Omogući automatsko stvaranje PIV jedinica na zPIV</translation>
+        <source>Enable automatic minting of PIVXL units to zPIVXL</source>
+        <translation>Omogući automatsko stvaranje PIVXL jedinica na zPIVXL</translation>
     </message>
     <message>
-        <source>Enable zPIV Automint</source>
-        <translation>Omogući automatsko stvaranje zPIV-a</translation>
+        <source>Enable zPIVXL Automint</source>
+        <translation>Omogući automatsko stvaranje zPIVXL-a</translation>
     </message>
     <message>
-        <source>Enable automatic zPIV minting from specific addresses</source>
-        <translation>Omogući automatsko stvaranje zPIV-a s određjenih adresa</translation>
+        <source>Enable automatic zPIVXL minting from specific addresses</source>
+        <translation>Omogući automatsko stvaranje zPIVXL-a s određjenih adresa</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Omogući Automint adrese</translation>
     </message>
     <message>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
-        <translation>Postotak dolaznih PIV koji se automatski pretvara u zPIV putem Zerocoin Protokola (min: 10%)</translation>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIVXL via Zerocoin Protocol (min: 10%)</source>
+        <translation>Postotak dolaznih PIVXL koji se automatski pretvara u zPIVXL putem Zerocoin Protokola (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted zPIV</source>
-        <translation>Postotak automatski stvorenog zPIV-a</translation>
+        <source>Percentage of autominted zPIVXL</source>
+        <translation>Postotak automatski stvorenog zPIVXL-a</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
-        <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno PIV-a za ovu denominaciju</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
+        <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno PIVXL-a za ovu denominaciju</translation>
     </message>
     <message>
-        <source>Preferred Automint zPIV Denomination</source>
-        <translation>Preferirana denominacija za automatsko stvaranje zPIV-a</translation>
+        <source>Preferred Automint zPIVXL Denomination</source>
+        <translation>Preferirana denominacija za automatsko stvaranje zPIVXL-a</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2310,50 +2310,50 @@ Adresa: %4
         <translation>Stvori</translation>
     </message>
     <message>
-        <source>Minting zPIV anonymizes your PIV by removing any
+        <source>Minting zPIVXL anonymizes your PIVXL by removing any
 transaction history, making transactions untraceable </source>
-        <translation>Stvaranje zPIV-a anonimizira Vaš PIV brišući cijelu
+        <translation>Stvaranje zPIVXL-a anonimizira Vaš PIVXL brišući cijelu
 povijest transakcija, čineći transakcije nepratljivima</translation>
     </message>
     <message>
-        <source>Mint new zPIV or convert back to PIV</source>
-        <translation>Stvori novi zPIV ili pretvori natrag u PIV</translation>
+        <source>Mint new zPIVXL or convert back to PIVXL</source>
+        <translation>Stvori novi zPIVXL ili pretvori natrag u PIVXL</translation>
     </message>
     <message>
-        <source>Last zPIV Movements</source>
-        <translation>Posljednja zPIV kretanja</translation>
+        <source>Last zPIVXL Movements</source>
+        <translation>Posljednja zPIVXL kretanja</translation>
     </message>
     <message>
         <source>No transactions yet</source>
         <translation>Nema još transakcija</translation>
     </message>
     <message>
-        <source>Mint zPIV</source>
-        <translation>Stvori zPIV</translation>
+        <source>Mint zPIVXL</source>
+        <translation>Stvori zPIVXL</translation>
     </message>
     <message>
-        <source>Enter amount of PIV to mint into zPIV</source>
-        <translation>Unesite iznos PIV-a za pretvorbu u zPIV</translation>
+        <source>Enter amount of PIVXL to mint into zPIVXL</source>
+        <translation>Unesite iznos PIVXL-a za pretvorbu u zPIVXL</translation>
     </message>
     <message>
-        <source>Convert back to PIV</source>
-        <translation>Pretvori natrag u PIV</translation>
+        <source>Convert back to PIVXL</source>
+        <translation>Pretvori natrag u PIVXL</translation>
     </message>
     <message>
-        <source>Enter amount of zPIV to convert back into PIV</source>
-        <translation>Upišite iznos zPIV za konverziju natrag u PIV</translation>
+        <source>Enter amount of zPIVXL to convert back into PIVXL</source>
+        <translation>Upišite iznos zPIVXL za konverziju natrag u PIVXL</translation>
     </message>
     <message>
         <source>Zerocoin</source>
         <translation>Zerocoin</translation>
     </message>
     <message>
-        <source>zPIV is currently undergoing maintenance</source>
-        <translation>zPIV se trenutno održava</translation>
+        <source>zPIVXL is currently undergoing maintenance</source>
+        <translation>zPIVXL se trenutno održava</translation>
     </message>
     <message>
-        <source>You need to unlock the wallet to be able to %1 zPIV</source>
-        <translation>Morate otključati novčanik kako biste mogli %1 zPIV</translation>
+        <source>You need to unlock the wallet to be able to %1 zPIVXL</source>
+        <translation>Morate otključati novčanik kako biste mogli %1 zPIVXL</translation>
     </message>
     <message>
         <source>convert</source>
@@ -2368,16 +2368,16 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Nevažeća vrijednost</translation>
     </message>
     <message>
-        <source>zPIV minted successfully</source>
-        <translation>zPIV uspješno stvoren</translation>
+        <source>zPIVXL minted successfully</source>
+        <translation>zPIVXL uspješno stvoren</translation>
     </message>
     <message>
-        <source>zPIV converted back to PIV</source>
-        <translation>zPIV pretvoren natrag u PIV</translation>
+        <source>zPIVXL converted back to PIVXL</source>
+        <translation>zPIVXL pretvoren natrag u PIVXL</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Nemate PIV-a za odabrati</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Nemate PIVXL-a za odabrati</translation>
     </message>
     <message>
         <source>Rescan Mints</source>
@@ -2388,8 +2388,8 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Vaši zerocoin novčići skenirat će se iz blockchaina od samog početka</translation>
     </message>
     <message>
-        <source>Reset Spent zPIV</source>
-        <translation>Resetiraj potrošeni zPIV</translation>
+        <source>Reset Spent zPIVXL</source>
+        <translation>Resetiraj potrošeni zPIVXL</translation>
     </message>
     <message>
         <source>Your zerocoin spends are going to be scanned from the blockchain from scratch</source>
@@ -2802,8 +2802,8 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Put prilagođenog sigurnosnog kopiranja:</translation>
     </message>
     <message>
-        <source>Custom zPIV Backup Path:</source>
-        <translation>Prilagođeni put zPIV sigurnosne kopije:</translation>
+        <source>Custom zPIVXL Backup Path:</source>
+        <translation>Prilagođeni put zPIVXL sigurnosne kopije:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3048,8 +3048,8 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Primi</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive PIV.</source>
-        <translation>Skenirajte QR kod ili kopirajte adresu da biste primili PIV.</translation>
+        <source>Scan the QR code or copy the address to receive PIVXL.</source>
+        <translation>Skenirajte QR kod ili kopirajte adresu da biste primili PIVXL.</translation>
     </message>
     <message>
         <source>No address </source>
@@ -3158,8 +3158,8 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Iznos</translation>
     </message>
     <message>
-        <source>PIV</source>
-        <translation>PIV</translation>
+        <source>PIVXL</source>
+        <translation>PIVXL</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3292,8 +3292,8 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Preporučeno</translation>
     </message>
     <message>
-        <source>PIV/kilobyte</source>
-        <translation>PIV/kilobajt</translation>
+        <source>PIVXL/kilobyte</source>
+        <translation>PIVXL/kilobajt</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3370,8 +3370,8 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Pošalji</translation>
     </message>
     <message>
-        <source>You can transfer public coins (PIV) or private coins (zPIV)</source>
-        <translation>Mogućnost prijenosa javnih novčića (PIV) ili anonimnih novčića (zPIV)</translation>
+        <source>You can transfer public coins (PIVXL) or private coins (zPIVXL)</source>
+        <translation>Mogućnost prijenosa javnih novčića (PIVXL) ili anonimnih novčića (zPIVXL)</translation>
     </message>
     <message>
         <source>Select coin type to spend</source>
@@ -3402,12 +3402,12 @@ povijest transakcija, čineći transakcije nepratljivima</translation>
         <translation>Ukupno za slanje</translation>
     </message>
     <message>
-        <source>Send PIV</source>
-        <translation>Pošalji PIV</translation>
+        <source>Send PIVXL</source>
+        <translation>Pošalji PIVXL</translation>
     </message>
     <message>
-        <source>Send zPIV</source>
-        <translation>Pošalji zPIV</translation>
+        <source>Send zPIVXL</source>
+        <translation>Pošalji zPIVXL</translation>
     </message>
     <message>
         <source>Total remaining from the selected UTXO</source>
@@ -3482,8 +3482,8 @@ Ovi novčići više neće biti cold-stakeani.</translation>
         <translation>Potroši Zerocoin</translation>
     </message>
     <message>
-        <source>zPIV is currently undergoing maintenance.</source>
-        <translation>Radovi u tijeku na zPIV.</translation>
+        <source>zPIVXL is currently undergoing maintenance.</source>
+        <translation>Radovi u tijeku na zPIVXL.</translation>
     </message>
     <message>
         <source>Coin control mint not found</source>
@@ -3502,12 +3502,12 @@ Ovi novčići više neće biti cold-stakeani.</translation>
 %2</translation>
     </message>
     <message>
-        <source>zPIV transaction sent!</source>
-        <translation>zPIV transakcija poslana!</translation>
+        <source>zPIVXL transaction sent!</source>
+        <translation>zPIVXL transakcija poslana!</translation>
     </message>
     <message>
-        <source>Version 1 zPIV require a security level of 100 to successfully spend.</source>
-        <translation>Verzija 1 zPIV zahtjeva sigurnosnu razinu 100 da se uspješno utroši.</translation>
+        <source>Version 1 zPIVXL require a security level of 100 to successfully spend.</source>
+        <translation>Verzija 1 zPIVXL zahtjeva sigurnosnu razinu 100 da se uspješno utroši.</translation>
     </message>
     <message>
         <source>Too much inputs (</source>
@@ -3542,12 +3542,12 @@ Ili mintaj više vrijedne denominacije (tako da je potrebno manje ulaza) ili sma
         <translation>Prilagođjena naknada %1</translation>
     </message>
     <message>
-        <source>You don't have any PIV to select.</source>
-        <translation>Nemate PIV-a za odabrati</translation>
+        <source>You don't have any PIVXL to select.</source>
+        <translation>Nemate PIVXL-a za odabrati</translation>
     </message>
     <message>
-        <source>You don't have any zPIV in your balance to select.</source>
-        <translation>Nemate zPIV u svom saldu za odabir.</translation>
+        <source>You don't have any zPIVXL in your balance to select.</source>
+        <translation>Nemate zPIVXL u svom saldu za odabir.</translation>
     </message>
     <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
@@ -4050,30 +4050,30 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>1) Što je PIVX?</translation>
     </message>
     <message>
-        <source>2) Why are my PIV unspendable?</source>
-        <translation>2) Zašto se moji PIV ne mogu potrošiti?</translation>
+        <source>2) Why are my PIVXL unspendable?</source>
+        <translation>2) Zašto se moji PIVXL ne mogu potrošiti?</translation>
     </message>
     <message>
-        <source>3) PIVX privacy? What is Zerocoin (zPIV)?</source>
-        <translation>3) PIVX privatnost? Što je Zerocoin (zPIV)?</translation>
+        <source>3) PIVX privacy? What is Zerocoin (zPIVXL)?</source>
+        <translation>3) PIVX privatnost? Što je Zerocoin (zPIVXL)?</translation>
     </message>
     <message>
-        <source>4) Why are my zPIV unspendable?</source>
-        <translation>4) Zašto se moji zPIV ne mogu potrošiti?</translation>
+        <source>4) Why are my zPIVXL unspendable?</source>
+        <translation>4) Zašto se moji zPIVXL ne mogu potrošiti?</translation>
     </message>
     <message>
         <source>5) Why did my wallet convert the balance
-    into zPIV automatically?</source>
+    into zPIVXL automatically?</source>
         <translation>5) Zašto je moj novčanik pretvorio saldo
-u zPIV automatski?</translation>
+u zPIVXL automatski?</translation>
     </message>
     <message>
-        <source>6) How do I receive PIV/zPIV?</source>
-        <translation>6) Kako mogu primiti PIV/zPIV?</translation>
+        <source>6) How do I receive PIVXL/zPIVXL?</source>
+        <translation>6) Kako mogu primiti PIVXL/zPIVXL?</translation>
     </message>
     <message>
-        <source>7) How do I stake PIV/zPIV?</source>
-        <translation>7) Kako stakeam PIV/zPIV?</translation>
+        <source>7) How do I stake PIVXL/zPIVXL?</source>
+        <translation>7) Kako stakeam PIVXL/zPIVXL?</translation>
     </message>
     <message>
         <source>8) Where I should go if I need support?</source>
@@ -4102,7 +4102,7 @@ u zPIV automatski?</translation>
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  PIVX incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zPIV) and Zerocoin staking.
+                           to implement ZeroCoin(zPIVXL) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            PIVX utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of PIVX to participate in earning block rewards
@@ -4116,7 +4116,7 @@ PIVX je oblik digitalnog online novca koji koristi blockchain tehnologiju
 koji se lako može slati i primati globalno, trenutno, i gotovo bez naknade.
 PIVX uključuje vodeću sigurnost  i privatnost na tržištu
 i takođjer je prva PoS (Proof of Stake) kriptovaluta
-koja je implementirala ZeroCoin (zPIV) i Zerocoin staking.
+koja je implementirala ZeroCoin (zPIVXL) i Zerocoin staking.
 &lt;/p&gt;&lt;p align="justify"&gt;
 PIVX koristi algoritam konsenzusa Proof of Stake (PoS),
 omogućujući svim vlasnicima PIVX-a sudjelovanje u zarađi blokovih nagrada
@@ -4130,8 +4130,8 @@ vodjenje Masternode-ova za stvaranje i glasanje o prijedlozima.
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my PIV unspendable?</source>
-        <translation>Zašto se moji PIV ne mogu potrošiti?</translation>
+        <source>Why are my PIVXL unspendable?</source>
+        <translation>Zašto se moji PIVXL ne mogu potrošiti?</translation>
     </message>
     <message>
         <source>
@@ -4158,25 +4158,25 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
         <translation>3</translation>
     </message>
     <message>
-        <source>PIVX privacy? What is Zerocoin (zPIV)?</source>
-        <translation>PIVX privatnost? Što je Zerocoin (zPIV)?</translation>
+        <source>PIVX privacy? What is Zerocoin (zPIVXL)?</source>
+        <translation>PIVX privatnost? Što je Zerocoin (zPIVXL)?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           zPIV is an optional privacy-centric method of coin mixing on the
+                           zPIVXL is an optional privacy-centric method of coin mixing on the
                            PIVX blockchain. Basically all your transactions cannot be tracked
                            on to any block explorer. You can read more about the technicals in the
                            &lt;a style='color: #b088ff' href='https://PIVX.org/zpiv/'&gt;
-                           "PIVX Zerocoin (zPIV) Technical Paper"&lt;/a&gt;.
+                           "PIVX Zerocoin (zPIVXL) Technical Paper"&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-zPIV je opcionalna metoda miješanja novčića usmjerena na privatnost
+zPIVXL je opcionalna metoda miješanja novčića usmjerena na privatnost
 na PIVX blockchainu. Sve transakcije ne mogu biti praćene na bilo kojem block exploreru. Više o tehničkim detaljima možete pročitati na
 &lt;a style='color: #b088ff' href='https://PIVX.org/zpiv/'&gt;
-"PIVX Zerocoin (zPIV) Technical Paper"&lt;/a&gt;.
+"PIVX Zerocoin (zPIVXL) Technical Paper"&lt;/a&gt;.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
     </message>
@@ -4185,20 +4185,20 @@ na PIVX blockchainu. Sve transakcije ne mogu biti praćene na bilo kojem block e
         <translation>4</translation>
     </message>
     <message>
-        <source>Why are my zPIV unspendable?</source>
-        <translation>Zašto se moji zPIV ne mogu potrošiti?</translation>
+        <source>Why are my zPIVXL unspendable?</source>
+        <translation>Zašto se moji zPIVXL ne mogu potrošiti?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           After minting, zPIV will require 20 confirmations as well as 1
+                           After minting, zPIVXL will require 20 confirmations as well as 1
                            additional mint of the same denomination on the network to
                            become eligible for spending.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Nakon stvaranja, zPIV će zahtjevati 20 potvrda kao i 1
+Nakon stvaranja, zPIVXL će zahtjevati 20 potvrda kao i 1
 dodatno stvaranje iste denominacije na mreži
 da bi se mogli potrošiti.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
@@ -4209,39 +4209,39 @@ da bi se mogli potrošiti.
         <translation>5</translation>
     </message>
     <message>
-        <source>Why did my wallet convert the balance into zPIV automatically?</source>
-        <translation>Zašto je moj novčanik automatski pretvorio saldo u zPIV?</translation>
+        <source>Why did my wallet convert the balance into zPIVXL automatically?</source>
+        <translation>Zašto je moj novčanik automatski pretvorio saldo u zPIVXL?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           By default the PIVX wallet will convert 10% of your entire PIV
-                           balance to zPIV to assist the network. If you do not wish to
-                           stake zPIV or take advantage of the privacy benefit it brings,
+                           By default the PIVX wallet will convert 10% of your entire PIVXL
+                           balance to zPIVXL to assist the network. If you do not wish to
+                           stake zPIVXL or take advantage of the privacy benefit it brings,
                            you can disable the automatic minting in your PIVX wallet by
-                           going to Settings-&gt;Options and deselecting “Enable zPIV Automint”.
+                           going to Settings-&gt;Options and deselecting “Enable zPIVXL Automint”.
                            If you are not making use of the PIVX-QT or GUI you can simply open
                            your pivxl.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
                            marks and restart your wallet to disable automint.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           You can read more about zPIV in the
-                           &lt;a style='color: #b088ff' href='https://PIVX.org/zpiv/'&gt; "PIVX Zerocoin (zPIV) Technical Paper"&lt;/a&gt;.
-                           If you would like to keep and stake your zPIV, please read the "How do I stake"
+                           You can read more about zPIVXL in the
+                           &lt;a style='color: #b088ff' href='https://PIVX.org/zpiv/'&gt; "PIVX Zerocoin (zPIVXL) Technical Paper"&lt;/a&gt;.
+                           If you would like to keep and stake your zPIVXL, please read the "How do I stake"
                            section of the FAQ below.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Prema početno zadanom PIVX novčanik će pretvoriti 10% vaših PIV sredstava u zPIV da pomognu mreži. Ako ne želite stake-ati zPIV ili iskoristiti prednosti privatnosti koje donosi,
+Prema početno zadanom PIVX novčanik će pretvoriti 10% vaših PIVXL sredstava u zPIVXL da pomognu mreži. Ako ne želite stake-ati zPIVXL ili iskoristiti prednosti privatnosti koje donosi,
 možete onemogućiti autoamtsko stvaranje u vašem PIVX novčaniku tako da
-odete u Postavke -&gt; Mogućnosti i odznačite "Omogući automatsko stvaranje zPIV-a".
+odete u Postavke -&gt; Mogućnosti i odznačite "Omogući automatsko stvaranje zPIVXL-a".
 Ako ne koristite PIVX-QT ili grafičko sučelje, jednostavno možete otvoriti
 vašu pivxl.conf datoteku i dodati &lt;i&gt;enablezeromint=0&lt;/i&gt; bez navodnika
 i ponovno pokrenuti novčanik da biste onemogućili automatsko stvaranje.&lt;/p&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
-Više o zPIV-u možete pročitati u
-&lt;a style='color: #b088ff' href='https://PIVX.org/zpiv/'&gt;"PIVX Zerocoin (zPIV) Technical Paper"&lt;/a&gt;.
-Ako želite zadržati i stake-ati vaš zPIV, molimo pročitajte "Kako mogu stake-ati"
+Više o zPIVXL-u možete pročitati u
+&lt;a style='color: #b088ff' href='https://PIVX.org/zpiv/'&gt;"PIVX Zerocoin (zPIVXL) Technical Paper"&lt;/a&gt;.
+Ako želite zadržati i stake-ati vaš zPIVXL, molimo pročitajte "Kako mogu stake-ati"
 odjeljak u najčešće postavljenim pitanjima ispod.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -4250,24 +4250,24 @@ odjeljak u najčešće postavljenim pitanjima ispod.
         <translation>6</translation>
     </message>
     <message>
-        <source>How do I receive PIV/zPIV?</source>
-        <translation>Kako mogu primiti PIV/zPIV?</translation>
+        <source>How do I receive PIVXL/zPIVXL?</source>
+        <translation>Kako mogu primiti PIVXL/zPIVXL?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           zPIV can be spent and sent to any PIVX address. The receiver will
-                           receive standard PIVX but the origin of the PIVX is anonymized by the zPIV Protocol.
+                           zPIVXL can be spent and sent to any PIVX address. The receiver will
+                           receive standard PIVX but the origin of the PIVX is anonymized by the zPIVXL Protocol.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           If you want more zPIV you will need to mint your balance in the “Privacy” tab.
+                           If you want more zPIVXL you will need to mint your balance in the “Privacy” tab.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-zPIV se može trošiti i slati na bilo koju PIVX adresu. Primatelj će
-primiti standardni PIVX, ali podrijetlo PIVX-a je postalo anonimno zPIV Protokolom.
+zPIVXL se može trošiti i slati na bilo koju PIVX adresu. Primatelj će
+primiti standardni PIVX, ali podrijetlo PIVX-a je postalo anonimno zPIVXL Protokolom.
 &lt;/p&gt;&lt;p align="justify"&gt;
-Ako želite više zPIV-a, morat ćete stvoriti svoj saldo u kartici "Privatnost" .
+Ako želite više zPIVXL-a, morat ćete stvoriti svoj saldo u kartici "Privatnost" .
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
     </message>
@@ -4276,8 +4276,8 @@ Ako želite više zPIV-a, morat ćete stvoriti svoj saldo u kartici "Privatnost"
         <translation>7</translation>
     </message>
     <message>
-        <source>How do I stake PIV/zPIV?</source>
-        <translation>Kako stakeam PIV/zPIV?</translation>
+        <source>How do I stake PIVXL/zPIVXL?</source>
+        <translation>Kako stakeam PIVXL/zPIVXL?</translation>
     </message>
     <message>
         <source>
@@ -4296,12 +4296,12 @@ Ako želite više zPIV-a, morat ćete stvoriti svoj saldo u kartici "Privatnost"
                            You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           To Stake zPIV:
+                           To Stake zPIVXL:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ol&gt;&lt;li&gt;
                            Make sure your wallet is completely synchronized and you are using the latest release.
                            &lt;li&gt;
-                           Your newly minted or existing zPIV balance must have a minimum of 200 confirmations.
+                           Your newly minted or existing zPIVXL balance must have a minimum of 200 confirmations.
                            &lt;li&gt;
                            Your wallet must stay online and be unlocked for anonymization and staking purposes.
                            Staking should now be enabled.
@@ -4324,11 +4324,11 @@ Kada su svi navedeni koraci napravljeni, tada će staking biti omogućen.
 Status stakinga možete vidjeti u vašem novčaniku prelaskom miša preko Staking ikone u gornjem desnom kutu. Ikona će zasvjetliti i ispisati "Staking omogućen" i potvrditi staking. Koristeći sučelje naredbene linije (pivxl-cli); naredba &lt;i&gt;getstakingstatus&lt;/i&gt;će potvrditi da je staking aktivan.
 &lt;/li&gt;&lt;/ol&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
-Da biste stake-ali zPIV:&lt;/p&gt;&lt;p align="justify"&gt;
+Da biste stake-ali zPIVXL:&lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ol&gt;&lt;li&gt;
 Provjerite da je vaš wallet u potpunosti sinkroniziran i koristite li najnoviju verziju.
 &lt;li&gt;
-Vaši novostvoreni ili postojeći zPIV saldo mora imati najmanje 200 potvrda.
+Vaši novostvoreni ili postojeći zPIVXL saldo mora imati najmanje 200 potvrda.
 &lt;li&gt;
 Vaš novčanik mora ostati online i biti otključan za staking.
 Sada bi staking trebao biti omogućen.
@@ -4349,8 +4349,8 @@ Sada bi staking trebao biti omogućen.
         <translation>Što je Masternode Controller?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 100,000 PIV collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Masternode Controller novčanik je mjesto gdje zalog od 100,000 PIV može stajati tijekom Controller-Remote podešavanja masternode-a. To je novčanik koji može aktivirati Remote masternode novčanik(e) i omogućiti Vam držanje zaloga novčića offline dok Remote masternode novčanik ostaje online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 100,000 PIVXL collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Masternode Controller novčanik je mjesto gdje zalog od 100,000 PIVXL može stajati tijekom Controller-Remote podešavanja masternode-a. To je novčanik koji može aktivirati Remote masternode novčanik(e) i omogućiti Vam držanje zaloga novčića offline dok Remote masternode novčanik ostaje online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>8</source>
@@ -4386,7 +4386,7 @@ na našoj Freshdesk stranici za podršku&lt;/a&gt;.
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            A masternode is a computer running a full node PIVX core wallet with a
-                           requirement of 100,000 PIV secured collateral to provide extra services
+                           requirement of 100,000 PIVXL secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4418,7 +4418,7 @@ na našoj Freshdesk stranici za podršku&lt;/a&gt;.
                            Requirements:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;100,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;100,000 PIVXL per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -4428,7 +4428,7 @@ na našoj Freshdesk stranici za podršku&lt;/a&gt;.
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Masternode je računalo koje pokreće full node PIVX Core novčanik sa
-zahtjevanih 100,000 PIV-a osiguranog zaloga da pruži dodatne usluge
+zahtjevanih 100,000 PIVXL-a osiguranog zaloga da pruži dodatne usluge
 mreži, i zauzvrat redovito primi dio nagrade blokova.
 Te usluge uključuju:
 &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4460,7 +4460,7 @@ Povlastice masternode-ova:
 Zahtjevi:
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;100,000 PIV po svakom Masternode-u&lt;/li&gt;
+&lt;li&gt;100,000 PIVXL po svakom Masternode-u&lt;/li&gt;
 &lt;li&gt;Mora biti pohranjem u Core novčaniku&lt;/li&gt;
 &lt;li&gt;Mora biti jedinstvena IP adresa&lt;/li&gt;
 &lt;li&gt;Masternode novčanik treba ostati online&lt;/li&gt;
@@ -5754,40 +5754,40 @@ se nova sigurnosna kopija.
         <translation>Zaprimljeno s</translation>
     </message>
     <message>
-        <source>PIV Stake</source>
-        <translation>PIV Stake</translation>
+        <source>PIVXL Stake</source>
+        <translation>PIVXL Stake</translation>
     </message>
     <message>
-        <source>zPIV Stake</source>
-        <translation>zPIV Stake</translation>
+        <source>zPIVXL Stake</source>
+        <translation>zPIVXL Stake</translation>
     </message>
     <message>
-        <source>PIV Cold Stake</source>
-        <translation>PIV Cold Stake</translation>
+        <source>PIVXL Cold Stake</source>
+        <translation>PIVXL Cold Stake</translation>
     </message>
     <message>
         <source>Stake delegation</source>
         <translation>Stake delegacija</translation>
     </message>
     <message>
-        <source>Converted PIV to zPIV</source>
-        <translation>Pretvoreni PIV u zPIV</translation>
+        <source>Converted PIVXL to zPIVXL</source>
+        <translation>Pretvoreni PIVXL u zPIVXL</translation>
     </message>
     <message>
-        <source>Spent zPIV</source>
-        <translation>Potrošeni zPIV</translation>
+        <source>Spent zPIVXL</source>
+        <translation>Potrošeni zPIVXL</translation>
     </message>
     <message>
-        <source>Received PIV from zPIV</source>
-        <translation>Primljeni PIV od zPIV</translation>
+        <source>Received PIVXL from zPIVXL</source>
+        <translation>Primljeni PIVXL od zPIVXL</translation>
     </message>
     <message>
-        <source>Minted Change as zPIV from zPIV Spend</source>
-        <translation>Mintana razlika zPIV od zPIV Utroška</translation>
+        <source>Minted Change as zPIVXL from zPIVXL Spend</source>
+        <translation>Mintana razlika zPIVXL od zPIVXL Utroška</translation>
     </message>
     <message>
-        <source>Converted zPIV to PIV</source>
-        <translation>Pretvoreni zPIV u PIV</translation>
+        <source>Converted zPIVXL to PIVXL</source>
+        <translation>Pretvoreni zPIVXL u PIVXL</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5802,8 +5802,8 @@ se nova sigurnosna kopija.
         <translation>Plaćanje sebi</translation>
     </message>
     <message>
-        <source>PIV Stake on behalf of</source>
-        <translation>PIV Stake u korist</translation>
+        <source>PIVXL Stake on behalf of</source>
+        <translation>PIVXL Stake u korist</translation>
     </message>
     <message>
         <source>Stake delegation spent by</source>
@@ -5968,8 +5968,8 @@ se nova sigurnosna kopija.
         <translation>18/05/18</translation>
     </message>
     <message>
-        <source>+0.000585 PIV</source>
-        <translation>+0.000585 PIV</translation>
+        <source>+0.000585 PIVXL</source>
+        <translation>+0.000585 PIVXL</translation>
     </message>
 </context>
 <context>
@@ -5979,8 +5979,8 @@ se nova sigurnosna kopija.
         <translation>Šalji novčiće</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIV.</source>
-        <translation>SwiftX ne podržava slanje visokih vrijednosti. Transakcije su trenutačno ograničene na %1 PIV.</translation>
+        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 PIVXL.</source>
+        <translation>SwiftX ne podržava slanje visokih vrijednosti. Transakcije su trenutačno ograničene na %1 PIVXL.</translation>
     </message>
 </context>
 <context>
@@ -6055,8 +6055,8 @@ PIVX temeljni novčanik</translation>
 <context>
     <name>ZPivControlDialog</name>
     <message>
-        <source>Select zPIV to Spend</source>
-        <translation>Odabrani zPIV za utrošiti</translation>
+        <source>Select zPIVXL to Spend</source>
+        <translation>Odabrani zPIVXL za utrošiti</translation>
     </message>
     <message>
         <source>Coin Control</source>
@@ -6091,8 +6091,8 @@ PIVX temeljni novčanik</translation>
         <translation>Odaberite/poništi odabir za Sve</translation>
     </message>
     <message>
-        <source>Select zPIV Denominations to Spend</source>
-        <translation>Odaberite zPIV denominacije za potrošnju</translation>
+        <source>Select zPIVXL Denominations to Spend</source>
+        <translation>Odaberite zPIVXL denominacije za potrošnju</translation>
     </message>
 </context>
 <context>
@@ -6150,12 +6150,12 @@ PIVX temeljni novčanik</translation>
         <translation>Omogući cold staking funkcionalnost (0-1, zadano: %u). Onemogućeno ako je staking=0</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for PIV inputs (0-1, default: %u)</source>
-        <translation>Omogući ili onemogući staking funkcionalnosti za PIV unose (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for PIVXL inputs (0-1, default: %u)</source>
+        <translation>Omogući ili onemogući staking funkcionalnosti za PIVXL unose (0-1, default: %u)</translation>
     </message>
     <message>
-        <source>Enable or disable staking functionality for zPIV inputs (0-1, default: %u)</source>
-        <translation>Omogući ili onemogući staking funkcionalnosti za zPIV unose (0-1, default: %u)</translation>
+        <source>Enable or disable staking functionality for zPIVXL inputs (0-1, default: %u)</source>
+        <translation>Omogući ili onemogući staking funkcionalnosti za zPIVXL unose (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -6194,12 +6194,12 @@ PIVX temeljni novčanik</translation>
         <translation>Izvrši naredbu kada se promijeni najbolji blok (%s u cmd zamjenjuje se blokovskim raspršivanjem)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Naknade (u PIV / Kb) manje od toga smatraju se nulom naknadom za prosljeđivanje (zadano: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Naknade (u PIVXL / Kb) manje od toga smatraju se nulom naknadom za prosljeđivanje (zadano: %s)</translation>
     </message>
     <message>
-        <source>Fees (in PIV/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Naknade (u PIV / Kb) manje od toga smatraju se nulom naknadom za izradu transakcija (zadano: %s)</translation>
+        <source>Fees (in PIVXL/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Naknade (u PIVXL / Kb) manje od toga smatraju se nulom naknadom za izradu transakcija (zadano: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -6567,8 +6567,8 @@ PIVX temeljni novčanik</translation>
         <translation>Greška čitanja bloka</translation>
     </message>
     <message>
-        <source>Fee (in PIV/kB) to add to transactions you send (default: %s)</source>
-        <translation>Naknada (u PIV / kB) za dodavanje transakcija koje šaljete (zadano: %s)</translation>
+        <source>Fee (in PIVXL/kB) to add to transactions you send (default: %s)</source>
+        <translation>Naknada (u PIVXL / kB) za dodavanje transakcija koje šaljete (zadano: %s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -6643,12 +6643,12 @@ PIVX temeljni novčanik</translation>
         <translation>Nevažeći port otkriven u masternode.conf</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>Preračunavanje PIV-a u optjecaju...</translation>
+        <source>Recalculating PIVXL supply...</source>
+        <translation>Preračunavanje PIVXL-a u optjecaju...</translation>
     </message>
     <message>
-        <source>Reindex the PIV and zPIV money supply statistics</source>
-        <translation>Ponovno indeksirati statistiku PIV i zPIV ponude novca</translation>
+        <source>Reindex the PIVXL and zPIVXL money supply statistics</source>
+        <translation>Ponovno indeksirati statistiku PIVXL i zPIVXL ponude novca</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -7147,8 +7147,8 @@ PIVX temeljni novčanik</translation>
         <translation>Sinkronizacija sporkova...</translation>
     </message>
     <message>
-        <source>Syncing zPIV wallet...</source>
-        <translation>Sinkronizacija zPIV novčanika...</translation>
+        <source>Syncing zPIVXL wallet...</source>
+        <translation>Sinkronizacija zPIVXL novčanika...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -7263,8 +7263,8 @@ PIVX temeljni novčanik</translation>
         <translation>Korisničko ime za JSON-RPC veze</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zPIV</source>
-        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zPIV-a</translation>
+        <source>Value is below the smallest available denomination (= 1) of zPIVXL</source>
+        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zPIVXL-a</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>

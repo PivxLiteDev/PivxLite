@@ -42,7 +42,7 @@ ReceiveWidget::ReceiveWidget(PIVXGUI* parent) :
 
     // Title
     ui->labelTitle->setText(tr("Receive"));
-    ui->labelSubtitle1->setText(tr("Scan the QR code or copy the address to receive PIV."));
+    ui->labelSubtitle1->setText(tr("Scan the QR code or copy the address to receive PIVXL."));
     setCssTitleScreen(ui->labelTitle);
     setCssSubtitleScreen(ui->labelSubtitle1);
 
