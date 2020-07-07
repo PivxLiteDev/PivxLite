@@ -2590,7 +2590,7 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <location filename="../pivxl/pivxgui.cpp" line="+70"/>
+        <location filename="../pivxl/pivxlgui.cpp" line="+70"/>
         <location line="+292"/>
         <location line="+68"/>
         <source>PIVXL Core</source>

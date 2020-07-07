@@ -5,7 +5,7 @@
 #include "qt/pivxl/tooltipmenu.h"
 #include "qt/pivxl/forms/ui_tooltipmenu.h"
 
-#include "qt/pivxl/pivxgui.h"
+#include "qt/pivxl/pivxlgui.h"
 #include "qt/pivxl/qtutils.h"
 #include <QTimer>
 

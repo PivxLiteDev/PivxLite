@@ -9,7 +9,7 @@
 #include "config/pivxl-config.h"
 #endif
 
-#include "qt/pivxl/pivxgui.h"
+#include "qt/pivxl/pivxlgui.h"
 
 #include "clientmodel.h"
 #include "guiconstants.h"

@@ -15,7 +15,7 @@
 #include "qt/pivxl/qtutils.h"
 #include "qt/pivxl/loadingdialog.h"
 #include "qt/pivxl/defaultdialog.h"
-#include "qt/pivxl/pivxgui.h"
+#include "qt/pivxl/pivxlgui.h"
 #include <QDebug>
 
 #include <QKeyEvent>

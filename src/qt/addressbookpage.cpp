@@ -13,7 +13,7 @@
 #include "ui_addressbookpage.h"
 
 #include "addresstablemodel.h"
-#include "qt/pivxl/pivxgui.h"
+#include "qt/pivxl/pivxlgui.h"
 #include "csvmodelwriter.h"
 #include "editaddressdialog.h"
 #include "guiutil.h"

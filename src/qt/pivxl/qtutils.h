@@ -6,7 +6,7 @@
 #ifndef QTUTILS_H
 #define QTUTILS_H
 
-#include "qt/pivxl/pivxgui.h"
+#include "qt/pivxl/pivxlgui.h"
 
 #include <QAbstractAnimation>
 #include <QColor>

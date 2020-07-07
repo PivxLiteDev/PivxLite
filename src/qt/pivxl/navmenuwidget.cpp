@@ -5,7 +5,7 @@
 
 #include "qt/pivxl/navmenuwidget.h"
 #include "qt/pivxl/forms/ui_navmenuwidget.h"
-#include "qt/pivxl/pivxgui.h"
+#include "qt/pivxl/pivxlgui.h"
 #include "qt/pivxl/qtutils.h"
 #include "clientversion.h"
 #include "optionsmodel.h"
