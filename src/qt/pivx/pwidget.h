@@ -8,7 +8,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QString>
-#include "qt/pivx/prunnable.h"
+#include "qt/pivxl/prunnable.h"
 #include "walletmodel.h"
 
 class PIVXGUI;

@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingsnetworkwidget.h"
-#include "qt/pivx/settings/forms/ui_settingsnetworkwidget.h"
+#include "qt/pivxl/settings/settingsnetworkwidget.h"
+#include "qt/pivxl/settings/forms/ui_settingsnetworkwidget.h"
 #include "optionsmodel.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 SettingsNetworkWidget::SettingsNetworkWidget(PIVXGUI* _window, QWidget *parent) :
     PWidget(_window, parent),

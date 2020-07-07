@@ -7,9 +7,9 @@
 
 #include <QDialog>
 #include "walletmodel.h"
-#include "qt/pivx/snackbar.h"
+#include "qt/pivxl/snackbar.h"
 #include "masternodeconfig.h"
-#include "qt/pivx/pwidget.h"
+#include "qt/pivxl/pwidget.h"
 
 class WalletModel;
 

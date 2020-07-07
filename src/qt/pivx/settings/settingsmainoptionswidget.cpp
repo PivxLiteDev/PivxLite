@@ -2,19 +2,19 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingsmainoptionswidget.h"
-#include "qt/pivx/settings/forms/ui_settingsmainoptionswidget.h"
+#include "qt/pivxl/settings/settingsmainoptionswidget.h"
+#include "qt/pivxl/settings/forms/ui_settingsmainoptionswidget.h"
 #include "QListView"
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/pivxl-config.h"
 #endif
 
 #include "bitcoinunits.h"
 #include "guiutil.h"
 #include "optionsmodel.h"
 #include "clientmodel.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 #include "main.h" // for MAX_SCRIPTCHECK_THREADS
 #include "netbase.h"

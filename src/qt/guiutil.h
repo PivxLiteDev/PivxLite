@@ -67,7 +67,7 @@ void setupAmountWidget(QLineEdit* widget, QWidget* parent);
 // Update the cursor of the widget after a text change
 void updateWidgetTextAndCursorPosition(QLineEdit* widget, const QString& str);
 
-// Parse "pivx:" URI into recipient object, return true on successful parsing
+// Parse "pivxl:" URI into recipient object, return true on successful parsing
 bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out);
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out);
 QString formatBitcoinURI(const SendCoinsRecipient& info);
@@ -136,7 +136,7 @@ bool isObscured(QWidget* w);
 // Open debug.log
 bool openDebugLogfile();
 
-// Open pivx.conf
+// Open pivxl.conf
 bool openConfigfile();
 
 // Open masternode.conf

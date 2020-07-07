@@ -2,15 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingsinformationwidget.h"
-#include "qt/pivx/settings/forms/ui_settingsinformationwidget.h"
+#include "qt/pivxl/settings/settingsinformationwidget.h"
+#include "qt/pivxl/settings/forms/ui_settingsinformationwidget.h"
 
 #include "clientmodel.h"
 #include "chainparams.h"
 #include "db.h"
 #include "util.h"
 #include "guiutil.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 #include <QDir>
 
@@ -100,7 +100,7 @@ SettingsInformationWidget::SettingsInformationWidget(PIVXGUI* _window,QWidget *p
     });
     connect(ui->pushButtonFile, &QPushButton::clicked, [this](){
         if (!GUIUtil::openConfigfile())
-            inform(tr("Unable to open pivx.conf with default application"));
+            inform(tr("Unable to open pivxl.conf with default application"));
     });
     connect(ui->pushButtonNetworkMonitor, &QPushButton::clicked, this, &SettingsInformationWidget::openNetworkMonitor);
 }

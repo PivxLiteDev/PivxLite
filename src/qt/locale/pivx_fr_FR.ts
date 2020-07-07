@@ -1618,7 +1618,7 @@ S'il vous plaît attendez quelques minutes de plus (le dépôt de garantie du ma
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1626,7 +1626,7 @@ this controller wallet (select the Masternode in the list and press "start").
 sur un serveur distant vers votre presse-papiers.
 
 
-Il vous suffira de coller les données dans le fichier pivx.conf
+Il vous suffira de coller les données dans le fichier pivxl.conf
 de votre serveur distant, le démarrer, puis de lancer le masternode en utilisant
 ce portefeuille (sélectionnez le masternode dans la liste et appuyez sur "Démarrer").</translation>
     </message>
@@ -1792,8 +1792,8 @@ Confirmez-vous?</translation>
         <translation>Données traitées trop grandes</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>URI invalide, ne commence pas par "pivx"</translation>
+        <source>Invalid URI, not starting with "pivxl" prefix</source>
+        <translation>URI invalide, ne commence pas par "pivxl"</translation>
     </message>
 </context>
 <context>
@@ -1899,9 +1899,9 @@ Confirmez-vous?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>Langue manquante ou traduction incomplète? Aidez-nous à traduire ce projet ici:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -2190,8 +2190,8 @@ Adresse : %4
         <translation>Adresse de paiement invalide %1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
-        <translation>Impossible de démarrer pivx: gestionnaire click-to-pay</translation>
+        <source>Cannot start pivxl: click-to-pay handler</source>
+        <translation>Impossible de démarrer pivxl: gestionnaire click-to-pay</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
@@ -4217,7 +4217,7 @@ mon solde en zPIV?</translation>
                            you can disable the automatic minting in your PIVX wallet by
                            going to Settings-&gt;Options and deselecting “Enable zPIV Automint”.
                            If you are not making use of the PIVX-QT or GUI you can simply open
-                           your pivx.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
+                           your pivxl.conf file and add &lt;i&gt;enablezeromint=0&lt;/i&gt; Without the quotation
                            marks and restart your wallet to disable automint.&lt;/p&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            You can read more about zPIV in the
@@ -4233,7 +4233,7 @@ conserver des zPIV ou profiter de ses propriétés en matière de confidentialit
 vous pouvez désactiver cette fonctionnalité dans votre portefeuille PIVX en
 allant dans Paramètres-&gt;Options et décocher “Activer l'atuto-monnayage zPIV”.
 Si vous n'utilisez pas PIVX-QT ou le GUI vous pouvez simplement ouvrir
-votre fichier pivx.conf et ajouter &lt;i&gt; enablezeromint=0&lt;/i&gt; sans guillements
+votre fichier pivxl.conf et ajouter &lt;i&gt; enablezeromint=0&lt;/i&gt; sans guillements
 et redémarrer votre portefeuille.&lt;/p&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 Vous pouvez en savoir plus sur zPIV dans
@@ -4290,7 +4290,7 @@ Si vous désirez obtenir plus de zPIV vous devez créer cette monnaie à partir 
                            &lt;li&gt;
                            Once all those steps are followed staking should be enabled.
                            &lt;li&gt;
-                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivx-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
+                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            To Stake zPIV:
@@ -4318,7 +4318,7 @@ Votre portefeuille doit rester en ligne et dévérouillé pour le staking.
 &lt;li&gt;
 Une fois ces étapes accomplies le staking devrait être activé.
 &lt;li&gt;
- Vous pouvez voir le statut du staking dans le portefeuille en survolant l'icône du package dans la rangée en haut à gauche de l'interface du portefeuille. Le package sera allumé et indiquera "Staking Enabled" pour confirmer qu'il est effectivement activé. Dans le cas de l'utilisation de l'interface en ligne de commande (pivx-cli); La commande &lt;i&gt;getstakingstatus&lt;/i&gt; confirmera que le staking est actif.
+ Vous pouvez voir le statut du staking dans le portefeuille en survolant l'icône du package dans la rangée en haut à gauche de l'interface du portefeuille. Le package sera allumé et indiquera "Staking Enabled" pour confirmer qu'il est effectivement activé. Dans le cas de l'utilisation de l'interface en ligne de commande (pivxl-cli); La commande &lt;i&gt;getstakingstatus&lt;/i&gt; confirmera que le staking est actif.
 &lt;/li&gt;&lt;/ol&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 Pour faire du Stake avec vos zPIV:
@@ -4576,8 +4576,8 @@ Exigences:
         <translation>Impossible d'ouvrir le répertoire de backups</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>Impossible d'ouvrir pivx.conf avec l'application par défaut</translation>
+        <source>Unable to open pivxl.conf with default application</source>
+        <translation>Impossible d'ouvrir pivxl.conf avec l'application par défaut</translation>
     </message>
     <message>
         <source>In:</source>
@@ -6088,7 +6088,7 @@ Portefeuille PIVX Core</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = conserve les métadonnées de transaction, par exemple le propriétaire du compte et les informations de demande de paiement, 2 = supprime les métadonnées)</translation>

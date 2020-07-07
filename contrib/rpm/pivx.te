@@ -1,4 +1,4 @@
-policy_module(pivx, 1.100.1)
+policy_module(pivxl, 1.100.1)
 
 ########################################
 #
@@ -28,7 +28,7 @@ corenet_port(pivx_port_t)
 
 ########################################
 #
-# pivx local policy
+# pivxl local policy
 #
 allow pivx_t self:process { fork };
 

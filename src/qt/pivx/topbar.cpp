@@ -2,12 +2,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/topbar.h"
-#include "qt/pivx/forms/ui_topbar.h"
-#include "qt/pivx/lockunlock.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/receivedialog.h"
-#include "qt/pivx/loadingdialog.h"
+#include "qt/pivxl/topbar.h"
+#include "qt/pivxl/forms/ui_topbar.h"
+#include "qt/pivxl/lockunlock.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/receivedialog.h"
+#include "qt/pivxl/loadingdialog.h"
 #include "askpassphrasedialog.h"
 
 #include "bitcoinunits.h"

@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/tooltipmenu.h"
-#include "qt/pivx/forms/ui_tooltipmenu.h"
+#include "qt/pivxl/tooltipmenu.h"
+#include "qt/pivxl/forms/ui_tooltipmenu.h"
 
-#include "qt/pivx/pivxgui.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/pivxgui.h"
+#include "qt/pivxl/qtutils.h"
 #include <QTimer>
 
 TooltipMenu::TooltipMenu(PIVXGUI *_window, QWidget *parent) :

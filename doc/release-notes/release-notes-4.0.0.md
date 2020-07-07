@@ -1,8 +1,8 @@
-PIVX Core version *v4.0.0* is now available from:  <https://github.com/pivx-project/pivx/releases>
+PIVX Core version *v4.0.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
-Please report bugs using the issue tracker at github: <https://github.com/pivx-project/pivx/issues>
+Please report bugs using the issue tracker at github: <https://github.com/pivxl-project/pivxl/issues>
 
 
 Mandatory Update
@@ -21,7 +21,7 @@ Masternodes will need to be restarted once both the masternode daemon and the co
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxd/pivx-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxld/pivxl-qt (on Linux).
 
 
 Compatibility
@@ -164,7 +164,7 @@ Arguments:
 1. "account"        (string, optional) The account name for the address to be linked to. if not provided, the default account "" is used. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.
 
 Result:
-"pivxaddress"    (string) The new pivx address
+"pivxaddress"    (string) The new pivxl address
 ```
 
 `delegatestake` sends a cold staking delegation transaction:
@@ -176,9 +176,9 @@ Delegate an amount to a given address for cold staking. The amount is a real and
 Requires wallet passphrase to be set with walletpassphrase call.
 
 Arguments:
-1. "stakingaddress"      (string, required) The pivx staking address to delegate.
+1. "stakingaddress"      (string, required) The pivxl staking address to delegate.
 2. "amount"              (numeric, required) The amount in PIV to delegate for staking. eg 100
-3. "owneraddress"        (string, optional) The pivx address corresponding to the key that will be able to spend the stake.
+3. "owneraddress"        (string, optional) The pivxl address corresponding to the key that will be able to spend the stake.
                                If not provided, or empty string, a new wallet address is generated.
 4. "fExternalOwner"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.
                                WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.
@@ -202,9 +202,9 @@ Delegate transaction is returned as json object.
 Requires wallet passphrase to be set with walletpassphrase call.
 
 Arguments:
-1. "stakingaddress"      (string, required) The pivx staking address to delegate.
+1. "stakingaddress"      (string, required) The pivxl staking address to delegate.
 2. "amount"              (numeric, required) The amount in PIV to delegate for staking. eg 100
-3. "owneraddress"        (string, optional) The pivx address corresponding to the key that will be able to spend the stake.
+3. "owneraddress"        (string, optional) The pivxl address corresponding to the key that will be able to spend the stake.
                                If not provided, or empty string, a new wallet address is generated.
 4. "fExternalOwner"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.
                                WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.
@@ -238,7 +238,7 @@ Result:
          "reqSigs" : n,            (numeric) The required sigs
          "type" : "pubkeyhash",  (string) The type, eg 'pubkeyhash'
          "addresses" : [           (json array of string)
-           "pivxaddress"        (string) pivx address
+           "pivxaddress"        (string) pivxl address
            ,...
          ]
        }
@@ -352,7 +352,7 @@ Result:
 Snapcraft Packages
 ------------------
 
-For our linux users, in addition to the [Ubuntu PPA](https://launchpad.net/~pivx) repository, we are now offering a [Snap package](https://snapcraft.io/pivx-core) as quick way to install and update a PIVX wallet.
+For our linux users, in addition to the [Ubuntu PPA](https://launchpad.net/~pivxl) repository, we are now offering a [Snap package](https://snapcraft.io/pivxl-core) as quick way to install and update a PIVX wallet.
 
 Release versions are available via the `Stable` branch, and (for testing-only purposes) nightly builds are available in the `Beta` branch.
 
@@ -446,7 +446,7 @@ Detailed release notes follow. For convenience in locating the code changes and 
 - #1122 `641b1d6bbe` [GUI][Backport] Explicitly disable "Dark Mode" appearance on macOS (fanquake)
 - #1123 `a4fb368d39` [GUI] Prevent worker constant creation and invalid removal (furszy)
 - #1124 `bbb0125077` [GUI] Use QRegexValidator instead of the QDoubleValidator. (furszy)
-- #1125 `c6e238ca4d` [GUI] Inform if open pivx.conf and/or backups folder fail. (furszy)
+- #1125 `c6e238ca4d` [GUI] Inform if open pivxl.conf and/or backups folder fail. (furszy)
 - #1126 `c910490c53` [BUG] Fix send transaction detail destinations (furszy)
 - #1130 `c582cabbd3` [UI] Copy correct data from mninfo dialog (Akshay)
 - #1131 `8ca5db691b` [Bug] URI read from file coded properly.. (furszy)
@@ -572,4 +572,4 @@ Thanks to everyone who directly contributed to this release:
 - presstab
 - random-zebra
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivx-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivxl-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.

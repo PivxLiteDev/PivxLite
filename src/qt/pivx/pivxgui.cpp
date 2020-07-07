@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/pivxgui.h"
+#include "qt/pivxl/pivxgui.h"
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
@@ -14,9 +14,9 @@
 #include "networkstyle.h"
 #include "notificator.h"
 #include "guiinterface.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/defaultdialog.h"
-#include "qt/pivx/settings/settingsfaqwidget.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/defaultdialog.h"
+#include "qt/pivxl/settings/settingsfaqwidget.h"
 
 #include "init.h"
 #include "util.h"

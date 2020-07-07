@@ -1620,7 +1620,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1796,8 +1796,8 @@ Are you sure?</source>
         <translation>解析的数据太大</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>无效的URI，不是以“ pivx”前缀开头</translation>
+        <source>Invalid URI, not starting with "pivxl" prefix</source>
+        <translation>无效的URI，不是以“ pivxl”前缀开头</translation>
     </message>
 </context>
 <context>
@@ -1903,9 +1903,9 @@ Are you sure?</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>语言缺失或翻译不完整?帮助贡献翻译在这里:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -2194,7 +2194,7 @@ Address: %4
         <translation>无效支付地址%1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
+        <source>Cannot start pivxl: click-to-pay handler</source>
         <translation>无法启动pivx:点击支付处理程序</translation>
     </message>
     <message>
@@ -4254,7 +4254,7 @@ PIVX零币(zPIV)技术文件
                            &lt;li&gt;
                            Once all those steps are followed staking should be enabled.
                            &lt;li&gt;
-                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivx-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
+                           You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state "Staking Enabled" to indicate it is staking.  Using the command line interface (pivxl-cli); the command &lt;i&gt;getstakingstatus&lt;/i&gt; will confirm that staking is active.
                            &lt;/li&gt;&lt;/ol&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            To Stake zPIV:
@@ -4282,7 +4282,7 @@ PIVX零币(zPIV)技术文件
 &lt;li&gt;
 所有这些步骤都完成后应该就可以启用加注了。
 &lt;li&gt;
-您可以将鼠标移到钱包界面左上角的行中的包图标上来查看在钱包加注的状态。加注状态的时候，包会被点亮且状态显示“加注启用”。使用命令行接口(pivx-cli);命令&lt;i&gt;getstakingstatus&lt;/i&gt;将确认加注是激活状态。
+您可以将鼠标移到钱包界面左上角的行中的包图标上来查看在钱包加注的状态。加注状态的时候，包会被点亮且状态显示“加注启用”。使用命令行接口(pivxl-cli);命令&lt;i&gt;getstakingstatus&lt;/i&gt;将确认加注是激活状态。
 &lt;/li&gt;&lt;/ol&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 加注zPIV:
@@ -4547,7 +4547,7 @@ PIVX零币(zPIV)技术文件
         <translation>无法打开备份文件夹</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
+        <source>Unable to open pivxl.conf with default application</source>
         <translation>无法使用默认应用程序打开pivx.conf</translation>
     </message>
     <message>
@@ -6055,7 +6055,7 @@ PIVX核心钱包</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 =保留tx元数据，例如帐户所有者和付款请求信息，2 =删除tx元数据)</translation>

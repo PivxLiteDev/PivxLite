@@ -7,7 +7,7 @@
 
 #include <QDialog>
 #include "amount.h"
-#include "qt/pivx/snackbar.h"
+#include "qt/pivxl/snackbar.h"
 
 class PIVXGUI;
 class WalletModel;

@@ -2,13 +2,13 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/masternodeswidget.h"
-#include "qt/pivx/forms/ui_masternodeswidget.h"
+#include "qt/pivxl/masternodeswidget.h"
+#include "qt/pivxl/forms/ui_masternodeswidget.h"
 
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/mnrow.h"
-#include "qt/pivx/mninfodialog.h"
-#include "qt/pivx/masternodewizarddialog.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/mnrow.h"
+#include "qt/pivxl/mninfodialog.h"
+#include "qt/pivxl/masternodewizarddialog.h"
 
 #include "activemasternode.h"
 #include "clientmodel.h"
@@ -21,7 +21,7 @@
 #include "wallet/wallet.h"
 #include "askpassphrasedialog.h"
 #include "util.h"
-#include "qt/pivx/optionbutton.h"
+#include "qt/pivxl/optionbutton.h"
 #include <boost/filesystem.hpp>
 #include <iostream>
 #include <fstream>
@@ -355,7 +355,7 @@ void MasterNodesWidget::onInfoMNClicked()
     if (dialog->exportMN) {
         if (ask(tr("Remote Masternode Data"),
                 tr("You are just about to export the required data to run a Masternode\non a remote server to your clipboard.\n\n\n"
-                   "You will only have to paste the data in the pivx.conf file\nof your remote server and start it, "
+                   "You will only have to paste the data in the pivxl.conf file\nof your remote server and start it, "
                    "then start the Masternode using\nthis controller wallet (select the Masternode in the list and press \"start\").\n"
                 ))) {
             // export data

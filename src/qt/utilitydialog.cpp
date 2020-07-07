@@ -13,7 +13,7 @@
 #include "intro.h"
 #include "guiutil.h"
 
-#include "qt/pivx/qtutils.cpp"
+#include "qt/pivxl/qtutils.cpp"
 
 #include "clientversion.h"
 #include "init.h"
@@ -71,7 +71,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget* parent, bool about) : QDialog(pare
     } else {
         setWindowTitle(tr("Command-line options"));
         QString header = tr("Usage:") + "\n" +
-                         "  pivx-qt [" + tr("command-line options") + "]                     " + "\n";
+                         "  pivxl-qt [" + tr("command-line options") + "]                     " + "\n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();

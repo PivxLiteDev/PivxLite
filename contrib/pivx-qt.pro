@@ -78,7 +78,7 @@ HEADERS += src/activemasternode.h \
            src/crypter.h \
            src/obfuscation-relay.h \
            src/obfuscation.h \
-           src/pivx-config.h \
+           src/pivxl-config.h \
            src/db.h \
            src/eccryptoverify.h \
            src/ecwrapper.h \
@@ -131,7 +131,7 @@ HEADERS += src/activemasternode.h \
            src/wallet_ismine.h \
            src/walletdb.h \
            src/compat/sanity.h \
-           src/config/pivx-config.h \
+           src/config/pivxl-config.h \
            src/crypto/common.h \
            src/crypto/hmac_sha256.h \
            src/crypto/hmac_sha512.h \
@@ -332,7 +332,7 @@ HEADERS += src/activemasternode.h \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h \
            src/crypto/aes_helper.c \
            src/qt/bitcoinamountfield.moc \
-           src/qt/pivx.moc \
+           src/qt/pivxl.moc \
            src/qt/intro.moc \
            src/qt/overviewpage.moc \
            src/qt/rpcconsole.moc \
@@ -373,9 +373,9 @@ SOURCES += src/activemasternode.cpp \
            src/crypter.cpp \
            src/obfuscation-relay.cpp \
            src/obfuscation.cpp \
-           src/pivx-cli.cpp \
-           src/pivx-tx.cpp \
-           src/pivx.cpp \
+           src/pivxl-cli.cpp \
+           src/pivxl-tx.cpp \
+           src/pivxl.cpp \
            src/db.cpp \
            src/eccryptoverify.cpp \
            src/ecwrapper.cpp \
@@ -470,7 +470,7 @@ SOURCES += src/activemasternode.cpp \
            src/qt/coincontroltreewidget.cpp \
            src/qt/csvmodelwriter.cpp \
            src/qt/obfuscationconfig.cpp \
-           src/qt/pivx.cpp \
+           src/qt/pivxl.cpp \
            src/qt/pivxstrings.cpp \
            src/qt/editaddressdialog.cpp \
            src/qt/guiutil.cpp \
@@ -640,7 +640,7 @@ SOURCES += src/activemasternode.cpp \
            src/leveldb/helpers/memenv/memenv.cc \
            src/leveldb/helpers/memenv/memenv_test.cc \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c
-RESOURCES += src/qt/pivx.qrc src/qt/pivx_locale.qrc
+RESOURCES += src/qt/pivxl.qrc src/qt/pivx_locale.qrc
 
 TRANSLATIONS += src/qt/locale/pivx_bg.ts \
                 src/qt/locale/pivx_de.ts \

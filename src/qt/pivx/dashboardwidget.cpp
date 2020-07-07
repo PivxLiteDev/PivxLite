@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/dashboardwidget.h"
-#include "qt/pivx/forms/ui_dashboardwidget.h"
-#include "qt/pivx/sendconfirmdialog.h"
-#include "qt/pivx/txrow.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/dashboardwidget.h"
+#include "qt/pivxl/forms/ui_dashboardwidget.h"
+#include "qt/pivxl/sendconfirmdialog.h"
+#include "qt/pivxl/txrow.h"
+#include "qt/pivxl/qtutils.h"
 #include "guiutil.h"
 #include "walletmodel.h"
 #include "clientmodel.h"

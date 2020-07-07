@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/sendchangeaddressdialog.h"
-#include "qt/pivx/forms/ui_sendchangeaddressdialog.h"
+#include "qt/pivxl/sendchangeaddressdialog.h"
+#include "qt/pivxl/forms/ui_sendchangeaddressdialog.h"
 
 #include "coincontrol.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 SendChangeAddressDialog::SendChangeAddressDialog(QWidget* parent, WalletModel* model) :
     QDialog(parent),

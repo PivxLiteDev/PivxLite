@@ -1,10 +1,10 @@
 
-## <summary>policy for pivx</summary>
+## <summary>policy for pivxl</summary>
 
 
 ########################################
 ## <summary>
-##	Transition to pivx.
+##	Transition to pivxl.
 ## </summary>
 ## <param name="domain">
 ## <summary>
@@ -24,7 +24,7 @@ interface(`pivx_domtrans',`
 
 ########################################
 ## <summary>
-##	Execute pivx server in the pivx domain.
+##	Execute pivxl server in the pivxl domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -43,7 +43,7 @@ interface(`pivx_initrc_domtrans',`
 
 ########################################
 ## <summary>
-##	Search pivx lib directories.
+##	Search pivxl lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -62,7 +62,7 @@ interface(`pivx_search_lib',`
 
 ########################################
 ## <summary>
-##	Read pivx lib files.
+##	Read pivxl lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -81,7 +81,7 @@ interface(`pivx_read_lib_files',`
 
 ########################################
 ## <summary>
-##	Manage pivx lib files.
+##	Manage pivxl lib files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -100,7 +100,7 @@ interface(`pivx_manage_lib_files',`
 
 ########################################
 ## <summary>
-##	Manage pivx lib directories.
+##	Manage pivxl lib directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -121,7 +121,7 @@ interface(`pivx_manage_lib_dirs',`
 ########################################
 ## <summary>
 ##	All of the rules required to administrate
-##	a pivx environment
+##	a pivxl environment
 ## </summary>
 ## <param name="domain">
 ##	<summary>

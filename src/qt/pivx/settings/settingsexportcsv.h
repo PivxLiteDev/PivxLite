@@ -6,7 +6,7 @@
 #define SETTINGSEXPORTCSV_H
 
 #include <QWidget>
-#include "qt/pivx/pwidget.h"
+#include "qt/pivxl/pwidget.h"
 #include "transactionfilterproxy.h"
 #include <QSortFilterProxyModel>
 

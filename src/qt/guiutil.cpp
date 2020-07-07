@@ -76,7 +76,7 @@ extern double NSAppKitVersionNumber;
 #endif
 #endif
 
-#define URI_SCHEME "pivx"
+#define URI_SCHEME "pivxl"
 
 #if defined(Q_OS_MAC)
 #pragma GCC diagnostic push
@@ -212,9 +212,9 @@ bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out)
 {
-    // Convert pivx:// to pivx:
+    // Convert pivxl:// to pivxl:
     //
-    //    Cannot handle this later, because pivx:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because pivxl:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
     if (uri.startsWith(URI_SCHEME "://", Qt::CaseInsensitive)) {
         uri.replace(0, std::strlen(URI_SCHEME) + 3, URI_SCHEME ":");
@@ -416,7 +416,7 @@ bool openConfigfile()
 {
     boost::filesystem::path pathConfig = GetConfigFile();
 
-    /* Open pivx.conf with the associated application */
+    /* Open pivxl.conf with the associated application */
     if (boost::filesystem::exists(pathConfig))
         return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
     return false;
@@ -716,7 +716,7 @@ boost::filesystem::path static GetAutostartDir()
 
 boost::filesystem::path static GetAutostartFilePath()
 {
-    return GetAutostartDir() / "pivx.desktop";
+    return GetAutostartDir() / "pivxl.desktop";
 }
 
 bool GetStartOnSystemStartup()
@@ -752,7 +752,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         boost::filesystem::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out | std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a pivx.desktop file to the autostart directory:
+        // Write a pivxl.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         optionFile << "Name=PIVX\n";
@@ -771,7 +771,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl);
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl)
 {
-    // loop through the list of startup items and try to find the pivx app
+    // loop through the list of startup items and try to find the pivxl app
     CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, NULL);
     for (int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
@@ -816,7 +816,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if (fAutoStart && !foundItem) {
-        // add pivx app to startup item list
+        // add pivxl app to startup item list
         LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, bitcoinAppUrl, NULL, NULL);
     } else if (!fAutoStart && foundItem) {
         // remove item
