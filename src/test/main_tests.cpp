@@ -7,7 +7,7 @@
 
 #include "primitives/transaction.h"
 #include "main.h"
-#include "test_pivx.h"
+#include "test_pivxl.h"
 
 #include <boost/test/unit_test.hpp>
 

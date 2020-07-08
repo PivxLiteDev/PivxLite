@@ -14,7 +14,7 @@ See the [Transifex PIVXL project](https://www.transifex.com/pivxl-project/pivxl-
 We use automated scripts to help extract translations in both Qt, and non-Qt source files. It is rarely necessary to manually edit the files in `src/qt/locale/`. The translation source files must adhere to the following format:
 `pivx_xx_YY.ts or pivx_xx.ts`
 
-`src/qt/locale/pivx_en.ts` is treated in a special way. It is used as the source for all other translations. Whenever a string in the source code is changed, this file must be updated to reflect those changes. A custom script is used to extract strings from the non-Qt parts. This script makes use of `gettext`, so make sure that utility is installed (ie, `apt-get install gettext` on Ubuntu/Debian). Once this has been updated, `lupdate` (included in the Qt SDK) is used to update `pivx_en.ts`.
+`src/qt/locale/pivxl_en.ts` is treated in a special way. It is used as the source for all other translations. Whenever a string in the source code is changed, this file must be updated to reflect those changes. A custom script is used to extract strings from the non-Qt parts. This script makes use of `gettext`, so make sure that utility is installed (ie, `apt-get install gettext` on Ubuntu/Debian). Once this has been updated, `lupdate` (included in the Qt SDK) is used to update `pivx_en.ts`.
 
 To automatically regenerate the `pivx_en.ts` file, run the following commands:
 ```sh
@@ -36,7 +36,7 @@ When an updated source file is merged into the GitHub repo, Transifex will autom
 
 To create the pull-request, use the following commands:
 ```
-git add src/qt/pivxstrings.cpp src/qt/locale/pivx_en.ts
+git add src/qt/pivxlstrings.cpp src/qt/locale/pivxl_en.ts
 git commit
 ```
 
@@ -96,7 +96,7 @@ To create a new language template, you will need to edit the languages manifest 
 
 ```xml
 <qresource prefix="/translations">
-    <file alias="en">locale/pivx_en.qm</file>
+    <file alias="en">locale/pivxl_en.qm</file>
     ...
 </qresource>
 ```

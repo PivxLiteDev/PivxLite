@@ -10,7 +10,7 @@ import operator
 import os
 import sys
 
-OUT_CPP="qt/pivxstrings.cpp"
+OUT_CPP="qt/pivxlstrings.cpp"
 EMPTY=['""']
 
 def parse_po(text):

@@ -471,7 +471,7 @@ SOURCES += src/activemasternode.cpp \
            src/qt/csvmodelwriter.cpp \
            src/qt/obfuscationconfig.cpp \
            src/qt/pivxl.cpp \
-           src/qt/pivxstrings.cpp \
+           src/qt/pivxlstrings.cpp \
            src/qt/editaddressdialog.cpp \
            src/qt/guiutil.cpp \
            src/qt/intro.cpp \
@@ -549,7 +549,7 @@ SOURCES += src/activemasternode.cpp \
            src/test/sighash_tests.cpp \
            src/test/sigopcount_tests.cpp \
            src/test/skiplist_tests.cpp \
-           src/test/test_pivx.cpp \
+           src/test/test_pivxl.cpp \
            src/test/timedata_tests.cpp \
            src/test/transaction_tests.cpp \
            src/test/uint256_tests.cpp \
@@ -642,22 +642,22 @@ SOURCES += src/activemasternode.cpp \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c
 RESOURCES += src/qt/pivxl.qrc src/qt/pivx_locale.qrc
 
-TRANSLATIONS += src/qt/locale/pivx_bg.ts \
-                src/qt/locale/pivx_de.ts \
-                src/qt/locale/pivx_en.ts \
-                src/qt/locale/pivx_es.ts \
-                src/qt/locale/pivx_fi.ts \
-                src/qt/locale/pivx_fr.ts \
-                src/qt/locale/pivx_it.ts \
-                src/qt/locale/pivx_ja.ts \
-                src/qt/locale/pivx_pl.ts \
-                src/qt/locale/pivx_pt.ts \
-                src/qt/locale/pivx_ru.ts \
-                src/qt/locale/pivx_sk.ts \
-                src/qt/locale/pivx_sv.ts \
-                src/qt/locale/pivx_vi.ts \
-                src/qt/locale/pivx_zh_CN.ts \
-                src/qt/locale/pivx_zh_TW.ts
+TRANSLATIONS += src/qt/locale/pivxl_bg.ts \
+                src/qt/locale/pivxl_de.ts \
+                src/qt/locale/pivxl_en.ts \
+                src/qt/locale/pivxl_es.ts \
+                src/qt/locale/pivxl_fi.ts \
+                src/qt/locale/pivxl_fr.ts \
+                src/qt/locale/pivxl_it.ts \
+                src/qt/locale/pivxl_ja.ts \
+                src/qt/locale/pivxl_pl.ts \
+                src/qt/locale/pivxl_pt.ts \
+                src/qt/locale/pivxl_ru.ts \
+                src/qt/locale/pivxl_sk.ts \
+                src/qt/locale/pivxl_sv.ts \
+                src/qt/locale/pivxl_vi.ts \
+                src/qt/locale/pivxl_zh_CN.ts \
+                src/qt/locale/pivxl_zh_TW.ts
 
 DISTFILES += \
     README.md
