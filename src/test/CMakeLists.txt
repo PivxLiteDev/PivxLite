@@ -127,6 +127,7 @@ set(BITCOIN_TESTS
         ${CMAKE_CURRENT_SOURCE_DIR}/uint256_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/univalue_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/util_tests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/validation_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/sha256compress_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/upgrades_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/librust/sapling_rpc_wallet_tests.cpp
