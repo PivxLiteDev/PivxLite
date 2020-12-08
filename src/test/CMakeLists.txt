@@ -173,6 +173,10 @@ if(MINIUPNP_FOUND)
     target_include_directories(test_pivx PRIVATE ${MINIUPNP_INCLUDE_DIR})
 endif()
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(test_pivx PRIVATE "-framework Cocoa")
+endif()
+
 target_link_libraries(test_pivx PRIVATE ${sodium_LIBRARY_RELEASE} -ldl -lpthread)
 
 enable_testing()
