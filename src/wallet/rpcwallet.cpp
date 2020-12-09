@@ -380,14 +380,14 @@ UniValue upgradewallet(const JSONRPCRequest& request)
         );
 
     EnsureWallet();
-    EnsureWalletIsUnlocked();
-
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // Do not do anything to non-HD wallets
-    if (pwalletMain->HasSaplingSPKM()) {
+    // Do not do anything to wallets already upgraded
+    if (pwalletMain->CanSupportFeature(FEATURE_LATEST)) {
         throw JSONRPCError(RPC_WALLET_ERROR, "Cannot upgrade the wallet. The wallet is already running the latest version");
     }
+
+    EnsureWalletIsUnlocked();
 
     // Get version
     int prev_version = pwalletMain->GetVersion();
