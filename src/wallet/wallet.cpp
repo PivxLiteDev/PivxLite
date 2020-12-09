@@ -86,6 +86,11 @@ bool CWallet::ActivateSaplingWallet(bool memOnly)
 {
     if (m_sspk_man->SetupGeneration(m_spk_man->GetHDChain().GetID(), true, memOnly)) {
         LogPrintf("%s : sapling spkm setup completed\n", __func__);
+        // Just to be triple sure, if the version isn't updated, set it.
+        if (!SetMinVersion(WalletFeature::FEATURE_SAPLING)) {
+            LogPrintf("%s : ERROR: wallet cannot upgrade to sapling features. Try to upgrade using the 'upgradewallet' RPC command\n", __func__);
+            return false;
+        }
         return true;
     }
     return false;
@@ -4002,7 +4007,8 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
 
     // Forced upgrade
     const bool fLegacyWallet = gArgs.GetBoolArg("-legacywallet", false);
-    if (gArgs.GetBoolArg("-upgradewallet", fFirstRun && !fLegacyWallet)) {
+    if (gArgs.GetBoolArg("-upgradewallet", fFirstRun && !fLegacyWallet) ||
+            (!walletInstance->IsLocked() && prev_version == FEATURE_PRE_SPLIT_KEYPOOL)) {
         if (prev_version <= FEATURE_PRE_PIVX && walletInstance->IsLocked()) {
             // Cannot upgrade a locked wallet
             UIError("Cannot upgrade a locked wallet.");
