@@ -285,9 +285,9 @@ OperationResult SaplingOperation::loadUtxos(TxValues& txValues)
         return errorOut("Insufficient funds, no available UTXO to spend");
     }
 
-    // sort in ascending order, so smaller utxos appear first
+    // sort in descending order, so higher utxos appear first
     std::sort(transInputs.begin(), transInputs.end(), [](const COutput& i, const COutput& j) -> bool {
-        return i.Value() < j.Value();
+        return i.Value() > j.Value();
     });
 
     // Final step, append utxo to the transaction
