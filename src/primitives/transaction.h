@@ -235,7 +235,7 @@ public:
     /** Transaction Versions */
     enum TxVersion: int16_t {
         LEGACY      = 1,
-        SAPLING     = 2,
+        SAPLING     = 3,
         TOOHIGH
     };
 

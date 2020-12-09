@@ -4130,6 +4130,11 @@ bool CWallet::InitLoadWallet()
         return true;
     }
 
+    // Assume sapling active during initialization of the wallet for proper v3 deserialization
+    // before reindex/resync
+    const bool wasSaplingActive = g_IsSaplingActive;
+    if (!wasSaplingActive) g_IsSaplingActive = true;
+
     std::string walletFile = gArgs.GetArg("-wallet", DEFAULT_WALLET_DAT);
 
     CWallet * const pwallet = CreateWalletFromFile(walletFile);
@@ -4138,6 +4143,8 @@ bool CWallet::InitLoadWallet()
     }
     pwalletMain = pwallet;
 
+    // restore global flag to previous state
+    g_IsSaplingActive = wasSaplingActive;
     return true;
 }
 

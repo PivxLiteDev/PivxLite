@@ -1465,9 +1465,6 @@ bool AppInit2()
 
     fReindex = gArgs.GetBoolArg("-reindex", false);
 
-    // Assume sapling active during reindex for proper v2 deserialization when loading the wallet
-    if (fReindex) g_IsSaplingActive = true;
-
     // Create blocks directory if it doesn't already exist
     fs::create_directories(GetDataDir() / "blocks");
 
