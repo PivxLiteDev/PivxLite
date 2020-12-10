@@ -120,6 +120,11 @@ class ListReceivedTest (PivxTestFramework):
         # Now can check that the information is the same
         assert_equal(r, r2)
 
+        # Get the note nullifier
+        lsu = self.nodes[1].listshieldedunspent();
+        assert_equal(len(lsu), 1)
+        nullifier = lsu[0]["nullifier"]
+
         # Generate some change by sending part of shield_addr1 to shield_addr2
         txidPrev = txid
         shield_addr2 = self.nodes[1].getnewshieldedaddress()
@@ -128,6 +133,10 @@ class ListReceivedTest (PivxTestFramework):
                                                1, fee) # change 0.9
         self.sync_all()
         self.generate_and_sync(height+4)
+
+        # Verify the spent nullifier
+        tx_json = self.nodes[1].getrawtransaction(txid, True)
+        assert_equal(nullifier, tx_json["vShieldedSpend"][0]["nullifier"])
 
         # Decrypted transaction details should be correct
         pt = self.nodes[1].viewshieldedtransaction(txid)
