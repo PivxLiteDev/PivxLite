@@ -552,6 +552,7 @@ UniValue listshieldedunspent(const JSONRPCRequest& request)
                 "    \"amount\": xxxxx,          (numeric) the amount of value in the note\n"
                 "    \"memo\": xxxxx,            (string) hexademical string representation of memo field\n"
                 "    \"change\": true|false,     (boolean) true if the address that received the note is also one of the sending addresses\n"
+                "    \"nullifier\": xxxxx,       (string) the note's nullifier, hex encoded"
                 "  }\n"
                 "  ,...\n"
                 "]\n"
@@ -638,6 +639,10 @@ UniValue listshieldedunspent(const JSONRPCRequest& request)
             obj.pushKV("memo", HexStrTrimmed(entry.memo));
             if (hasSaplingSpendingKey) {
                 obj.pushKV("change", pwalletMain->GetSaplingScriptPubKeyMan()->IsNoteSaplingChange(nullifierSet, entry.address, entry.op));
+            }
+            const auto& nd = pwalletMain->mapWallet.at(entry.op.hash).mapSaplingNoteData.at(entry.op);
+            if (nd.nullifier) {
+                obj.pushKV("nullifier", nd.nullifier->ToString());
             }
             results.push_back(obj);
         }
