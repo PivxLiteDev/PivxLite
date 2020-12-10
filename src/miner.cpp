@@ -164,8 +164,14 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     // Make sure to create the correct block version
     const Consensus::Params& consensus = Params().GetConsensus();
 
-    //!> Block v7: Removes accumulator checkpoints
-    pblock->nVersion = CBlockHeader::CURRENT_VERSION;
+    bool fSaplingActive = NetworkUpgradeActive(nHeight, consensus, Consensus::UPGRADE_V5_0);
+
+    if (fSaplingActive) {
+        //!> Block v8: Sapling / tx v2
+        pblock->nVersion = CBlockHeader::CURRENT_VERSION;
+    } else {
+        pblock->nVersion = 7;
+    }
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (Params().IsRegTestNet()) {
@@ -391,8 +397,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         LogPrintf("%s : total size %u\n", __func__, nBlockSize);
 
         // Sapling
-        if (NetworkUpgradeActive(nHeight, consensus, Consensus::UPGRADE_V5_0)) {
-            pblock->nVersion = 8;
+        if (fSaplingActive) {
             SaplingMerkleTree sapling_tree;
             assert(view.GetSaplingAnchorAt(view.GetBestAnchor(), sapling_tree));
 
