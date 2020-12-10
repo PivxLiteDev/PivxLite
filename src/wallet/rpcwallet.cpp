@@ -938,6 +938,8 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew)
         throw JSONRPCError(RPC_WALLET_ERROR, res.ToString());
 }
 
+static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request);
+
 UniValue sendtoaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
@@ -963,22 +965,60 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
             HelpExampleCli("sendtoaddress", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.1 \"donation\" \"seans outpost\"") +
             HelpExampleRpc("sendtoaddress", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\", 0.1, \"donation\", \"seans outpost\""));
 
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    bool isStaking = false;
-    CTxDestination address = DecodeDestination(request.params[0].get_str(), isStaking);
-    if (!IsValidDestination(address) || isStaking)
+    bool isStaking = false, isShielded = false;
+    const std::string addrStr = request.params[0].get_str();
+    const CWDestination& destination = Standard::DecodeDestination(addrStr, isStaking, isShielded);
+    if (!Standard::IsValidDestination(destination) || isStaking)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+    const std::string commentStr = (request.params.size() > 2 && !request.params[2].isNull()) ?
+                                   request.params[2].get_str() : "";
+    const std::string toStr = (request.params.size() > 3 && !request.params[3].isNull()) ?
+                                   request.params[3].get_str() : "";
+
+    if (isShielded) {
+        // convert params to 'shieldedsendmany' format
+        JSONRPCRequest req;
+        req.params = UniValue(UniValue::VARR);
+        req.params.push_back(UniValue("from_transparent"));
+        UniValue recipients(UniValue::VARR);
+        UniValue recipient(UniValue::VOBJ);
+        recipient.pushKV("address", addrStr);
+        recipient.pushKV("amount", request.params[1]);
+        recipients.push_back(recipient);
+        req.params.push_back(recipients);
+
+        // send
+        SaplingOperation operation = CreateShieldedTransaction(req);
+        std::string txid;
+        auto res = operation.send(txid);
+        if (!res)
+            throw JSONRPCError(RPC_WALLET_ERROR, res.getError());
+
+        // add comment
+        const uint256 txHash(txid);
+        assert(pwalletMain->mapWallet.count(txHash));
+        if (!commentStr.empty()) {
+            pwalletMain->mapWallet[txHash].mapValue["comment"] = commentStr;
+        }
+        if (!toStr.empty()) {
+            pwalletMain->mapWallet[txHash].mapValue["to"] = toStr;
+        }
+
+        return txid;
+    }
+
+    const CTxDestination& address = *Standard::GetTransparentDestination(destination);
+    LOCK2(cs_main, pwalletMain->cs_wallet);
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
 
     // Wallet comments
     CWalletTx wtx;
-    if (request.params.size() > 2 && !request.params[2].isNull() && !request.params[2].get_str().empty())
-        wtx.mapValue["comment"] = request.params[2].get_str();
-    if (request.params.size() > 3 && !request.params[3].isNull() && !request.params[3].get_str().empty())
-        wtx.mapValue["to"] = request.params[3].get_str();
+    if (!commentStr.empty())
+        wtx.mapValue["comment"] = commentStr;
+    if (!toStr.empty())
+        wtx.mapValue["to"] = toStr;
 
     EnsureWalletIsUnlocked();
 
