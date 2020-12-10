@@ -324,7 +324,31 @@ class WalletSaplingTest(PivxTestFramework):
         # Balance of node 0 is: prev_balance - 1 PIV (+fee) sent externally +  250 PIV matured coinbase
         assert_equal(self.nodes[0].getbalance(), satoshi_round(prev_balance + Decimal('249') - Decimal(fee)))
 
+        # Now shield some funds using sendtoaddress
+        self.log.info("TX12: Shielding coins with sendtoaddress RPC...")
+        prev_balance = self.nodes[0].getbalance()
+        mytxid12 = self.nodes[0].sendtoaddress(saplingAddr0, Decimal('10'))
+        self.check_tx_priority([mytxid12])
+        self.log.info("Done. Checking details and balances...")
+
+        # Decrypted transaction details should be correct
+        pt = self.nodes[0].viewshieldedtransaction(mytxid12)
+        fee = pt["fee"]
+        assert_equal(pt['txid'], mytxid12)
+        assert_equal(len(pt['spends']), 0)
+        assert_equal(len(pt['outputs']), 1)
+        out = pt['outputs'][0]
+        assert_equal(out['address'], saplingAddr0)
+        assert_equal(out['outgoing'], False)
+        assert_equal(out['value'], Decimal('10'))
+
+        # Verify balance
+        self.nodes[2].generate(1)
+        self.sync_all()
+        assert_equal(self.nodes[0].getshieldedbalance(saplingAddr0), Decimal('29'))  # 19 prev balance + 10 received
+
         self.log.info("All good.")
+
 
 if __name__ == '__main__':
     WalletSaplingTest().main()
