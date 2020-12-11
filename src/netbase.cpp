@@ -312,7 +312,7 @@ struct ProxyCredentials
 bool static Socks5(std::string strDest, int port, const ProxyCredentials *auth, SOCKET& hSocket)
 {
     IntrRecvError recvr;
-    LogPrintf("SOCKS5 connecting %s\n", strDest);
+    LogPrint(BCLog::NET, "SOCKS5 connecting %s\n", strDest);
     if (strDest.size() > 255) {
         CloseSocket(hSocket);
         return error("Hostname too long");
@@ -454,7 +454,7 @@ bool static Socks5(std::string strDest, int port, const ProxyCredentials *auth, 
         CloseSocket(hSocket);
         return error("Error reading from proxy");
     }
-    LogPrintf("SOCKS5 connected %s\n", strDest);
+    LogPrint(BCLog::NET, "SOCKS5 connected %s\n", strDest);
     return true;
 }
 
