@@ -232,3 +232,13 @@ bool CActiveMasternode::EnableHotColdMasterNode(CTxIn& newVin, CService& newServ
 
     return true;
 }
+
+bool CActiveMasternode::GetKeys(CKey& _privKeyMasternode, CPubKey& _pubKeyMasternode)
+{
+    if (!privKeyMasternode.IsValid() || !pubKeyMasternode.IsValid()) {
+        return error("Error trying to get masternode keys");
+    }
+    _privKeyMasternode = privKeyMasternode;
+    _pubKeyMasternode = pubKeyMasternode;
+    return true;
+}

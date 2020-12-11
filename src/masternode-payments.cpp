@@ -680,11 +680,8 @@ bool CMasternodePayments::ProcessBlock(int nBlockHeight)
         }
     }
 
-    std::string errorMessage;
-    CPubKey pubKeyMasternode;
-    CKey keyMasternode;
-
-    if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
+    CPubKey pubKeyMasternode; CKey keyMasternode;
+    if (!activeMasternode.GetKeys(keyMasternode, pubKeyMasternode)) {
         LogPrint(BCLog::MASTERNODE,"CMasternodePayments::ProcessBlock() - Error upon calling GetKeysFromSecret.\n");
         return false;
     }
