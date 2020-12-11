@@ -33,7 +33,6 @@ OperationResult initMasternode(const std::string& _strMasterNodePrivKey, const s
 
     // Global params set
     strMasterNodeAddr = _strMasterNodeAddr;
-    strMasterNodePrivKey = _strMasterNodePrivKey;
 
     // Address parsing.
     const CChainParams& params = Params();
@@ -56,7 +55,7 @@ OperationResult initMasternode(const std::string& _strMasterNodePrivKey, const s
 
     CKey key;
     CPubKey pubkey;
-    if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, key, pubkey)) {
+    if (!CMessageSigner::GetKeysFromSecret(_strMasterNodePrivKey, key, pubkey)) {
         return errorOut(_("Invalid masternodeprivkey. Please see the documentation."));
     }
 
