@@ -940,6 +940,53 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew)
 
 static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request);
 
+/*
+ * redirect sendtoaddress/sendmany inputs to shieldedsendmany implementation (CreateShieldedTransaction)
+ */
+static UniValue ShieldedSendManyTo(const UniValue& sendTo,
+                                   const std::string& commentStr,
+                                   const std::string& toStr,
+                                   int nMinDepth,
+                                   bool fIncludeDelegated)
+{
+    // convert params to 'shieldedsendmany' format
+    JSONRPCRequest req;
+    req.params = UniValue(UniValue::VARR);
+    if (!fIncludeDelegated) {
+        req.params.push_back(UniValue("from_transparent"));
+    } else {
+        req.params.push_back(UniValue("from_trans_cold"));
+    }
+    UniValue recipients(UniValue::VARR);
+    for (const std::string& key : sendTo.getKeys()) {
+        UniValue recipient(UniValue::VOBJ);
+        recipient.pushKV("address", key);
+        recipient.pushKV("amount", sendTo[key]);
+        recipients.push_back(recipient);
+    }
+    req.params.push_back(recipients);
+    req.params.push_back(nMinDepth);
+
+    // send
+    SaplingOperation operation = CreateShieldedTransaction(req);
+    std::string txid;
+    auto res = operation.send(txid);
+    if (!res)
+        throw JSONRPCError(RPC_WALLET_ERROR, res.getError());
+
+    // add comments
+    const uint256 txHash(txid);
+    assert(pwalletMain->mapWallet.count(txHash));
+    if (!commentStr.empty()) {
+        pwalletMain->mapWallet[txHash].mapValue["comment"] = commentStr;
+    }
+    if (!toStr.empty()) {
+        pwalletMain->mapWallet[txHash].mapValue["to"] = toStr;
+    }
+
+    return txid;
+}
+
 UniValue sendtoaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
@@ -976,35 +1023,9 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
                                    request.params[3].get_str() : "";
 
     if (isShielded) {
-        // convert params to 'shieldedsendmany' format
-        JSONRPCRequest req;
-        req.params = UniValue(UniValue::VARR);
-        req.params.push_back(UniValue("from_transparent"));
-        UniValue recipients(UniValue::VARR);
-        UniValue recipient(UniValue::VOBJ);
-        recipient.pushKV("address", addrStr);
-        recipient.pushKV("amount", request.params[1]);
-        recipients.push_back(recipient);
-        req.params.push_back(recipients);
-
-        // send
-        SaplingOperation operation = CreateShieldedTransaction(req);
-        std::string txid;
-        auto res = operation.send(txid);
-        if (!res)
-            throw JSONRPCError(RPC_WALLET_ERROR, res.getError());
-
-        // add comment
-        const uint256 txHash(txid);
-        assert(pwalletMain->mapWallet.count(txHash));
-        if (!commentStr.empty()) {
-            pwalletMain->mapWallet[txHash].mapValue["comment"] = commentStr;
-        }
-        if (!toStr.empty()) {
-            pwalletMain->mapWallet[txHash].mapValue["to"] = toStr;
-        }
-
-        return txid;
+        UniValue sendTo(UniValue::VOBJ);
+        sendTo.pushKV(addrStr, request.params[1]);
+        return ShieldedSendManyTo(sendTo, commentStr, toStr, 1, false);
     }
 
     const CTxDestination& address = *Standard::GetTransparentDestination(destination);
@@ -2173,39 +2194,7 @@ UniValue sendmany(const JSONRPCRequest& request)
     }
 
     if (fShieldSend) {
-        // convert params to 'shieldedsendmany' format
-        JSONRPCRequest req;
-        req.params = UniValue(UniValue::VARR);
-        if (!fIncludeDelegated) {
-            req.params.push_back(UniValue("from_transparent"));
-        } else {
-            req.params.push_back(UniValue("from_trans_cold"));
-        }
-        UniValue recipients(UniValue::VARR);
-        for (const std::string& key : sendTo.getKeys()) {
-            UniValue recipient(UniValue::VOBJ);
-            recipient.pushKV("address", key);
-            recipient.pushKV("amount", sendTo[key]);
-            recipients.push_back(recipient);
-        }
-        req.params.push_back(recipients);
-        req.params.push_back(nMinDepth);
-
-        // send
-        SaplingOperation operation = CreateShieldedTransaction(req);
-        std::string txid;
-        auto res = operation.send(txid);
-        if (!res)
-            throw JSONRPCError(RPC_WALLET_ERROR, res.getError());
-
-        // add comment
-        if (!comment.empty()) {
-            const uint256 txHash(txid);
-            assert(pwalletMain->mapWallet.count(txHash));
-            pwalletMain->mapWallet[txHash].mapValue["comment"] = comment;
-        }
-
-        return txid;
+        return ShieldedSendManyTo(sendTo, comment, "", nMinDepth, fIncludeDelegated);
     }
 
     // All recipients are transparent: use Legacy sendmany t->t
