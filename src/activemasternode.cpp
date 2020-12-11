@@ -56,11 +56,12 @@ OperationResult initMasternode(const std::string& _strMasterNodePrivKey, const s
 
     CKey key;
     CPubKey pubkey;
-
     if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, key, pubkey)) {
         return errorOut(_("Invalid masternodeprivkey. Please see the documentation."));
     }
+
     activeMasternode.pubKeyMasternode = pubkey;
+    activeMasternode.privKeyMasternode = key;
     fMasterNode = true;
     return OperationResult(true);
 }
