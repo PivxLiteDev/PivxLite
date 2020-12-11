@@ -170,11 +170,8 @@ bool CActiveMasternode::SendMasternodePing(std::string& errorMessage)
         return false;
     }
 
-    CPubKey pubKeyMasternode;
-    CKey keyMasternode;
-
-    if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
-        errorMessage = "Error upon calling GetKeysFromSecret.\n";
+    if (!privKeyMasternode.IsValid() || !pubKeyMasternode.IsValid()) {
+        errorMessage = "Error upon masternode key.\n";
         return false;
     }
 
@@ -182,7 +179,7 @@ bool CActiveMasternode::SendMasternodePing(std::string& errorMessage)
 
     const uint256& nBlockHash = mnodeman.GetBlockHashToPing();
     CMasternodePing mnp(*vin, nBlockHash);
-    if (!mnp.Sign(keyMasternode, pubKeyMasternode)) {
+    if (!mnp.Sign(privKeyMasternode, pubKeyMasternode)) {
         errorMessage = "Couldn't sign Masternode Ping";
         return false;
     }
