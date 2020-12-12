@@ -206,7 +206,7 @@ CMasternodeBroadcast::CMasternodeBroadcast() :
         CMasternode()
 { }
 
-CMasternodeBroadcast::CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubKey pubKeyCollateralAddressNew, CPubKey pubKeyMasternodeNew, int protocolVersionIn) :
+CMasternodeBroadcast::CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubKey pubKeyCollateralAddressNew, CPubKey pubKeyMasternodeNew, int protocolVersionIn, const CMasternodePing& _lastPing) :
         CMasternode()
 {
     vin = newVin;
@@ -214,6 +214,8 @@ CMasternodeBroadcast::CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubK
     pubKeyCollateralAddress = pubKeyCollateralAddressNew;
     pubKeyMasternode = pubKeyMasternodeNew;
     protocolVersion = protocolVersionIn;
+    lastPing = _lastPing;
+    sigTime = lastPing.sigTime;
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast(const CMasternode& mn) :
@@ -294,7 +296,7 @@ bool CMasternodeBroadcast::Create(const CTxIn& txin,
         return false;
     }
 
-    mnbRet = CMasternodeBroadcast(service, txin, pubKeyCollateralAddressNew, pubKeyMasternodeNew, PROTOCOL_VERSION);
+    mnbRet = CMasternodeBroadcast(service, txin, pubKeyCollateralAddressNew, pubKeyMasternodeNew, PROTOCOL_VERSION, mnp);
 
     if (!mnbRet.IsValidNetAddr()) {
         strErrorRet = strprintf("Invalid IP address %s, masternode=%s", mnbRet.addr.ToStringIP (), txin.prevout.hash.ToString());
@@ -303,7 +305,6 @@ bool CMasternodeBroadcast::Create(const CTxIn& txin,
         return false;
     }
 
-    mnbRet.lastPing = mnp;
     if (!mnbRet.Sign(keyCollateralAddressNew, pubKeyCollateralAddressNew)) {
         strErrorRet = strprintf("Failed to sign broadcast, masternode=%s", txin.prevout.hash.ToString());
         LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strErrorRet);
