@@ -331,7 +331,6 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
 
 /** Reprocess a number of blocks to try and get on the correct chain again **/
 bool DisconnectBlocks(int nBlocks, const CChainParams& chainparams);
-void ReprocessBlocks(int nBlocks, const CChainParams& chainparams);
 
 /** Apply the effects of this block (with given index) on the UTXO set represented by coins */
 bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex, CCoinsViewCache& coins, bool fJustCheck, bool fAlreadyChecked = false);
