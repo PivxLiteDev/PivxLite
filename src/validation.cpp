@@ -2095,19 +2095,6 @@ bool static ConnectTip(CValidationState& state, CBlockIndex* pindexNew, const st
     return true;
 }
 
-bool DisconnectBlocks(int nBlocks, const CChainParams& chainparams)
-{
-    LOCK(cs_main);
-
-    CValidationState state;
-
-    LogPrintf("%s: Got command to replay %d blocks\n", __func__, nBlocks);
-    for (int i = 0; i <= nBlocks; i++)
-        DisconnectTip(state, chainparams);
-
-    return true;
-}
-
 /**
  * Return the tip of the chain with the most work in it, that isn't
  * known to be invalid (it's however far from certain to be valid).
