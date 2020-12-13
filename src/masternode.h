@@ -41,7 +41,7 @@ public:
     int64_t sigTime; //mnb message times
 
     CMasternodePing();
-    CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash);
+    CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash, uint64_t _sigTime);
 
     ADD_SERIALIZE_METHODS;
 

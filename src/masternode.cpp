@@ -73,7 +73,7 @@ CMasternode::CMasternode() :
     addr = CService();
     pubKeyCollateralAddress = CPubKey();
     pubKeyMasternode = CPubKey();
-    sigTime = GetAdjustedTime();
+    sigTime = 0;
     lastPing = CMasternodePing();
     protocolVersion = PROTOCOL_VERSION;
     nScanningErrorCount = 0;
@@ -288,7 +288,7 @@ bool CMasternodeBroadcast::Create(const CTxIn& txin,
 
     // Get block hash to ping (TODO: move outside of this function)
     const uint256& nBlockHashToPing = mnodeman.GetBlockHashToPing();
-    CMasternodePing mnp(txin, nBlockHashToPing);
+    CMasternodePing mnp(txin, nBlockHashToPing, GetAdjustedTime());
     if (!mnp.Sign(keyMasternodeNew, pubKeyMasternodeNew)) {
         strErrorRet = strprintf("Failed to sign ping, masternode=%s", txin.prevout.hash.ToString());
         LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strErrorRet);
@@ -564,14 +564,14 @@ CMasternodePing::CMasternodePing() :
         CSignedMessage(),
         vin(),
         blockHash(),
-        sigTime(GetAdjustedTime())
+        sigTime(0)
 { }
 
-CMasternodePing::CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash) :
+CMasternodePing::CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash, uint64_t _sigTime) :
         CSignedMessage(),
         vin(newVin),
         blockHash(nBlockHash),
-        sigTime(GetAdjustedTime())
+        sigTime(_sigTime)
 { }
 
 uint256 CMasternodePing::GetHash() const
