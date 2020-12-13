@@ -295,6 +295,9 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         int nBlockSigOps = 100;
         bool fSortedByFee = (nBlockPrioritySize <= 0);
 
+        // Keep track of block space used for shielded txes
+        unsigned int nSizeShielded = 0;
+
         TxPriorityCompare comparer(fSortedByFee);
         std::make_heap(vecPriority.begin(), vecPriority.end(), comparer);
 
@@ -311,6 +314,10 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             // Size limits
             unsigned int nTxSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
             if (nBlockSize + nTxSize >= nBlockMaxSize)
+                continue;
+
+            const bool isShielded = tx.IsShieldedTx();
+            if (isShielded && nSizeShielded + nTxSize > MAX_BLOCK_SHIELDED_TXES_SIZE)
                 continue;
 
             // Legacy limits on sigOps:
@@ -364,6 +371,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             ++nBlockTx;
             nBlockSigOps += nTxSigOps;
             nFees += nTxFees;
+            if (isShielded) nSizeShielded += nTxSize;
 
             if (fPrintPriority) {
                 LogPrintf("priority %.1f fee %s txid %s\n",
