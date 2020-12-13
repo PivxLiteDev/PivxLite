@@ -2680,6 +2680,16 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     return true;
 }
 
+// cumulative size of all shielded txes inside a block
+static unsigned int GetTotalShieldedTxSize(const CBlock& block)
+{
+    unsigned int nSizeShielded = 0;
+    for (const auto& tx : block.vtx) {
+        if (tx->IsShieldedTx()) nSizeShielded += tx->GetTotalSize();
+    }
+    return nSizeShielded;
+}
+
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     if (block.fChecked)
@@ -2713,8 +2723,13 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
     // Size limits
     unsigned int nMaxBlockSize = MAX_BLOCK_SIZE_CURRENT;
-    if (block.vtx.empty() || block.vtx.size() > nMaxBlockSize || ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION) > nMaxBlockSize)
+    const unsigned int nBlockSize = ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION);
+    if (block.vtx.empty() || block.vtx.size() > nMaxBlockSize || nBlockSize > nMaxBlockSize)
         return state.DoS(100, false, REJECT_INVALID, "bad-blk-length", false, "size limits failed");
+
+    // Check shielded txes limits (no need to check if the block size is already under 750kB)
+    if (nBlockSize > MAX_BLOCK_SHIELDED_TXES_SIZE && GetTotalShieldedTxSize(block) > MAX_BLOCK_SHIELDED_TXES_SIZE)
+        return state.DoS(100, false, REJECT_INVALID, "bad-blk-shielded-size", false, "shielded size limits failed");
 
     // First transaction must be coinbase, the rest must not be
     if (block.vtx.empty() || !block.vtx[0]->IsCoinBase())

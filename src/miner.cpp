@@ -312,7 +312,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             vecPriority.pop_back();
 
             // Size limits
-            unsigned int nTxSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
+            unsigned int nTxSize = tx.GetTotalSize();
             if (nBlockSize + nTxSize >= nBlockMaxSize)
                 continue;
 
