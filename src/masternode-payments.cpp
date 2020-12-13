@@ -681,10 +681,7 @@ bool CMasternodePayments::ProcessBlock(int nBlockHeight)
     }
 
     CPubKey pubKeyMasternode; CKey keyMasternode;
-    if (!activeMasternode.GetKeys(keyMasternode, pubKeyMasternode)) {
-        LogPrint(BCLog::MASTERNODE,"CMasternodePayments::ProcessBlock() - Error upon calling GetKeysFromSecret.\n");
-        return false;
-    }
+    activeMasternode.GetKeys(keyMasternode, pubKeyMasternode);
 
     LogPrint(BCLog::MASTERNODE,"CMasternodePayments::ProcessBlock() - Signing Winner\n");
     if (newWinner.Sign(keyMasternode, pubKeyMasternode)) {
