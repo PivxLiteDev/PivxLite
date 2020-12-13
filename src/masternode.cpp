@@ -602,6 +602,14 @@ bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireAvailable, bool fCh
         return false;
     }
 
+    // Check if the ping block hash exists and it's within 24 blocks from the tip
+    if (!mnodeman.IsWithinDepth(blockHash, 2 * MNPING_DEPTH)) {
+        LogPrint(BCLog::MNPING,"%s: Masternode %s block hash %s is too old or has an invalid block hash\n",
+                                        __func__, vin.prevout.hash.ToString(), blockHash.ToString());
+        nDos = 33;
+        return false;
+    }
+
     // see if we have this Masternode
     CMasternode* pmn = mnodeman.Find(vin.prevout);
     const bool isMasternodeFound = (pmn != nullptr);
@@ -629,14 +637,6 @@ bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireAvailable, bool fCh
         // last ping was more then MASTERNODE_MIN_MNP_SECONDS-60 ago comparing to this one
         if (!pmn->IsPingedWithin(MasternodeMinPingSeconds() - 60, sigTime)) {
             if (!isSignatureValid) {
-                nDos = 33;
-                return false;
-            }
-
-            // Check if the ping block hash exists and it's within 24 blocks from the tip
-            if (!mnodeman.IsWithinDepth(blockHash, 2 * MNPING_DEPTH)) {
-                LogPrint(BCLog::MNPING,"%s: Masternode %s block hash %s is too old or has an invalid block hash\n",
-                                                __func__, vin.prevout.hash.ToString(), blockHash.ToString());
                 nDos = 33;
                 return false;
             }
