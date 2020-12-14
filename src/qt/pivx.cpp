@@ -33,6 +33,7 @@
 #include "rpc/server.h"
 #include "guiinterface.h"
 #include "util.h"
+#include "warnings.h"
 
 #ifdef ENABLE_WALLET
 #include "wallet/wallet.h"

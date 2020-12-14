@@ -57,8 +57,6 @@ extern std::string strBudgetMode;
 
 extern CTranslationInterface translationInterface;
 
-static const bool DEFAULT_TESTSAFEMODE = false;
-
 /**
  * Translation function: Call Translate signal on UI interface, which returns a Optional result.
  * If no translation slot is registered, nothing is returned, and simply return the input.
@@ -262,12 +260,5 @@ void TraceThread(const char* name, Callable func)
 }
 
 fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific = true);
-
-void SetMiscWarning(const std::string& strWarning);
-void SetfLargeWorkForkFound(bool flag);
-bool GetfLargeWorkForkFound();
-void SetfLargeWorkInvalidChainFound(bool flag);
-bool GetfLargeWorkInvalidChainFound();
-std::string GetWarnings(const std::string& strFor);
 
 #endif // BITCOIN_UTIL_H

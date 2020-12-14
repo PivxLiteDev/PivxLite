@@ -400,6 +400,7 @@ set(COMMON_SOURCES
         ./src/script/script_error.cpp
         ./src/spork.cpp
         ./src/sporkdb.cpp
+        ./src/warnings.cpp
         )
 add_library(COMMON_A STATIC ${BitcoinHeaders} ${COMMON_SOURCES})
 target_include_directories(COMMON_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src

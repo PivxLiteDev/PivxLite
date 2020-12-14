@@ -10,7 +10,7 @@
 #include "netaddress.h"
 #include "sync.h"
 #include "util.h"
-#include "utilstrencodings.h"
+#include "warnings.h"
 
 
 static RecursiveMutex cs_nTimeOffset;

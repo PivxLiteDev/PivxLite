@@ -20,6 +20,7 @@
 #include "wallet/db.h"
 #include "wallet/wallet.h"
 #endif
+#include "warnings.h"
 
 #include <stdint.h>
 

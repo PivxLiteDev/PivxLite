@@ -66,6 +66,7 @@
 #include "wallet/rpcwallet.h"
 
 #endif
+#include "warnings.h"
 
 #include <atomic>
 #include <fstream>
