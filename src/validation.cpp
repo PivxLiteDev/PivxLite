@@ -874,7 +874,7 @@ void CheckForkWarningConditions()
         pindexBestForkTip = nullptr;
 
     if (pindexBestForkTip || (pindexBestInvalid && pindexBestInvalid->nChainWork > pChainTip->nChainWork + (GetBlockProof(*pChainTip) * 6))) {
-        if (!fLargeWorkForkFound && pindexBestForkBase) {
+        if (!GetfLargeWorkForkFound() && pindexBestForkBase) {
             if (pindexBestForkBase->phashBlock) {
                 std::string warning = std::string("'Warning: Large-work fork detected, forking after block ") +
                                       pindexBestForkBase->phashBlock->ToString() + std::string("'");
@@ -886,15 +886,15 @@ void CheckForkWarningConditions()
                 LogPrintf("CheckForkWarningConditions: Warning: Large valid fork found\n  forking the chain at height %d (%s)\n  lasting to height %d (%s).\nChain state database corruption likely.\n",
                     pindexBestForkBase->nHeight, pindexBestForkBase->phashBlock->ToString(),
                     pindexBestForkTip->nHeight, pindexBestForkTip->phashBlock->ToString());
-                fLargeWorkForkFound = true;
+                SetfLargeWorkForkFound(true);
             }
         } else {
             LogPrintf("CheckForkWarningConditions: Warning: Found invalid chain at least ~6 blocks longer than our best chain.\nChain state database corruption likely.\n");
-            fLargeWorkInvalidChainFound = true;
+            SetfLargeWorkInvalidChainFound(true);
         }
     } else {
-        fLargeWorkForkFound = false;
-        fLargeWorkInvalidChainFound = false;
+        SetfLargeWorkForkFound(false);
+        SetfLargeWorkInvalidChainFound(false);
     }
 }
 
@@ -1184,7 +1184,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState &state, const CCoinsVi
 /** Abort with a message */
 static bool AbortNode(const std::string& strMessage, const std::string& userMessage="")
 {
-    strMiscWarning = strMessage;
+    SetMiscWarning(strMessage);
     LogPrintf("*** %s\n", strMessage);
     uiInterface.ThreadSafeMessageBox(
         userMessage.empty() ? _("Error: A fatal internal error occured, see debug.log for details") : userMessage,
@@ -1924,10 +1924,12 @@ void static UpdateTip(CBlockIndex* pindexNew)
         if (nUpgraded > 0)
             LogPrintf("SetBestChain: %d of last 100 blocks above version %d\n", nUpgraded, (int)CBlock::CURRENT_VERSION);
         if (nUpgraded > 100 / 2) {
-            // strMiscWarning is read by GetWarnings(), called by Qt and the JSON-RPC code to warn the user:
-            strMiscWarning = _("Warning: This version is obsolete, upgrade required!");
-            AlertNotify(strMiscWarning);
-            fWarned = true;
+            std::string strWarning = _("Warning: This version is obsolete, upgrade required!");
+            SetMiscWarning(strWarning);
+            if (!fWarned) {
+                AlertNotify(strWarning);
+                fWarned = true;
+            }
         }
     }
 }

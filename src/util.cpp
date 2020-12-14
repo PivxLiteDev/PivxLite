@@ -100,6 +100,7 @@ ArgsManager gArgs;
 bool fDaemon = false;
 CTranslationInterface translationInterface;
 
+RecursiveMutex cs_warnings;
 std::string strMiscWarning;
 bool fLargeWorkForkFound = false;
 bool fLargeWorkInvalidChainFound = false;
@@ -843,10 +844,42 @@ int GetNumCores()
     return std::thread::hardware_concurrency();
 }
 
+void SetMiscWarning(const std::string& strWarning)
+{
+    LOCK(cs_warnings);
+    strMiscWarning = strWarning;
+}
+
+void SetfLargeWorkForkFound(bool flag)
+{
+    LOCK(cs_warnings);
+    fLargeWorkForkFound = flag;
+}
+
+bool GetfLargeWorkForkFound()
+{
+    LOCK(cs_warnings);
+    return fLargeWorkForkFound;
+}
+
+void SetfLargeWorkInvalidChainFound(bool flag)
+{
+    LOCK(cs_warnings);
+    fLargeWorkInvalidChainFound = flag;
+}
+
+bool GetfLargeWorkInvalidChainFound()
+{
+    LOCK(cs_warnings);
+    return fLargeWorkInvalidChainFound;
+}
+
 std::string GetWarnings(const std::string& strFor)
 {
     std::string strStatusBar;
     std::string strRPC;
+
+    LOCK(cs_warnings);
 
     if (!CLIENT_VERSION_IS_RELEASE)
         strStatusBar = _("This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!");

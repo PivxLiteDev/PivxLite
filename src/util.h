@@ -58,9 +58,6 @@ extern std::string strBudgetMode;
 extern CTranslationInterface translationInterface;
 
 static const bool DEFAULT_TESTSAFEMODE = false;
-extern std::string strMiscWarning;
-extern bool fLargeWorkForkFound;
-extern bool fLargeWorkInvalidChainFound;
 
 /**
  * Translation function: Call Translate signal on UI interface, which returns a Optional result.
@@ -266,6 +263,11 @@ void TraceThread(const char* name, Callable func)
 
 fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific = true);
 
+void SetMiscWarning(const std::string& strWarning);
+void SetfLargeWorkForkFound(bool flag);
+bool GetfLargeWorkForkFound();
+void SetfLargeWorkInvalidChainFound(bool flag);
+bool GetfLargeWorkInvalidChainFound();
 std::string GetWarnings(const std::string& strFor);
 
 #endif // BITCOIN_UTIL_H
