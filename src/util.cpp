@@ -98,8 +98,11 @@ std::string strBudgetMode = "";
 ArgsManager gArgs;
 
 bool fDaemon = false;
-std::string strMiscWarning;
 CTranslationInterface translationInterface;
+
+std::string strMiscWarning;
+bool fLargeWorkForkFound = false;
+bool fLargeWorkInvalidChainFound = false;
 
 /** Init OpenSSL library multithreading support */
 static RecursiveMutex** ppmutexOpenSSL;
@@ -838,4 +841,34 @@ void SetThreadPriority(int nPriority)
 int GetNumCores()
 {
     return std::thread::hardware_concurrency();
+}
+
+std::string GetWarnings(const std::string& strFor)
+{
+    std::string strStatusBar;
+    std::string strRPC;
+
+    if (!CLIENT_VERSION_IS_RELEASE)
+        strStatusBar = _("This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!");
+
+    if (gArgs.GetBoolArg("-testsafemode", DEFAULT_TESTSAFEMODE))
+        strStatusBar = strRPC = "testsafemode enabled";
+
+    // Misc warnings like out of disk space and clock is wrong
+    if (strMiscWarning != "") {
+        strStatusBar = strMiscWarning;
+    }
+
+    if (fLargeWorkForkFound) {
+        strStatusBar = strRPC = _("Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.");
+    } else if (fLargeWorkInvalidChainFound) {
+        strStatusBar = strRPC = _("Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.");
+    }
+
+    if (strFor == "statusbar")
+        return strStatusBar;
+    else if (strFor == "rpc")
+        return strRPC;
+    assert(!"GetWarnings() : invalid parameter");
+    return "error";
 }

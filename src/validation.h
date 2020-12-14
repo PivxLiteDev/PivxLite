@@ -66,8 +66,6 @@ static const unsigned int DEFAULT_MEMPOOL_EXPIRY = 72;
 /** Default for -txindex */
 static const bool DEFAULT_TXINDEX = true;
 static const bool DEFAULT_CHECKPOINTS_ENABLED = true;
-/** Default for -testsafemode */
-static const bool DEFAULT_TESTSAFEMODE = false;
 /** Default for -relaypriority */
 static const bool DEFAULT_RELAYPRIORITY = true;
 /** Default for -limitfeerelay */
@@ -200,8 +198,6 @@ void ThreadScriptCheck();
 
 /** Check whether we are doing an initial block download (synchronizing from disk or network) */
 bool IsInitialBlockDownload();
-/** Format a string that describes several potential problems detected by the core */
-std::string GetWarnings(std::string strFor);
 /** Retrieve a transaction (from memory pool, or from disk, if possible) */
 bool GetTransaction(const uint256& hash, CTransaction& tx, uint256& hashBlock, bool fAllowSlow = false, CBlockIndex* blockIndex = nullptr);
 /** Retrieve an output (from memory pool, or from disk, if possible) */

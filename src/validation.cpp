@@ -836,8 +836,6 @@ bool IsInitialBlockDownload()
     return state;
 }
 
-bool fLargeWorkForkFound = false;
-bool fLargeWorkInvalidChainFound = false;
 CBlockIndex *pindexBestForkTip = NULL, *pindexBestForkBase = NULL;
 
 static void AlertNotify(const std::string& strMessage)
@@ -4085,37 +4083,6 @@ void static CheckBlockIndex()
 
     // Check that we actually traversed the entire map.
     assert(nNodes == forward.size());
-}
-
-
-std::string GetWarnings(std::string strFor)
-{
-    std::string strStatusBar;
-    std::string strRPC;
-
-    if (!CLIENT_VERSION_IS_RELEASE)
-        strStatusBar = _("This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!");
-
-    if (gArgs.GetBoolArg("-testsafemode", DEFAULT_TESTSAFEMODE))
-        strStatusBar = strRPC = "testsafemode enabled";
-
-    // Misc warnings like out of disk space and clock is wrong
-    if (strMiscWarning != "") {
-        strStatusBar = strMiscWarning;
-    }
-
-    if (fLargeWorkForkFound) {
-        strStatusBar = strRPC = _("Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.");
-    } else if (fLargeWorkInvalidChainFound) {
-        strStatusBar = strRPC = _("Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.");
-    }
-
-    if (strFor == "statusbar")
-        return strStatusBar;
-    else if (strFor == "rpc")
-        return strRPC;
-    assert(!"GetWarnings() : invalid parameter");
-    return "error";
 }
 
 // Note: whenever a protocol update is needed toggle between both implementations (comment out the formerly active one)
