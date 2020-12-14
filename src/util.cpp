@@ -92,11 +92,7 @@ const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 std::atomic<bool> fMasterNode{false};
 std::string strMasterNodeAddr = "";
 bool fLiteMode = false;
-
-
-/** Spork enforcement enabled time */
-int64_t enforceMasternodePaymentsTime = 4085657524;
-bool fSucessfullyLoaded = false;
+// budget finalization
 std::string strBudgetMode = "";
 
 ArgsManager gArgs;
