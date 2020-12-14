@@ -13,7 +13,6 @@
 #include "primitives/transaction.h"
 #include "script/script.h"
 #include "script/sign.h"
-#include "guiinterface.h" // for _(...)
 #include <univalue.h>
 #include "util.h"
 #include "utilmoneystr.h"
@@ -27,7 +26,6 @@
 
 static bool fCreateBlank;
 static std::map<std::string, UniValue> registers;
-CClientUIInterface uiInterface;
 
 static bool AppInitRawTx(int argc, char* argv[])
 {

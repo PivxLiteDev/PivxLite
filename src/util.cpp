@@ -99,6 +99,7 @@ ArgsManager gArgs;
 
 bool fDaemon = false;
 std::string strMiscWarning;
+CTranslationInterface translationInterface;
 
 /** Init OpenSSL library multithreading support */
 static RecursiveMutex** ppmutexOpenSSL;

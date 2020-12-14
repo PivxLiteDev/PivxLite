@@ -32,7 +32,16 @@
 #include <unordered_set>
 #include <vector>
 
+#include <boost/signals2/signal.hpp>
 #include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
+
+/** Signals for translation. */
+class CTranslationInterface
+{
+public:
+    /** Translate a message to the native language of the user. */
+    boost::signals2::signal<std::string (const char* psz)> Translate;
+};
 
 extern const char * const PIVX_CONF_FILENAME;
 extern const char * const PIVX_PID_FILENAME;
@@ -47,6 +56,18 @@ extern std::string strMasterNodeAddr;
 extern std::string strBudgetMode;
 
 extern std::string strMiscWarning;
+extern CTranslationInterface translationInterface;
+
+/**
+ * Translation function: Call Translate signal on UI interface, which returns a Optional result.
+ * If no translation slot is registered, nothing is returned, and simply return the input.
+ */
+inline std::string _(const char* psz)
+{
+    // todo: this boost::optional is needed for now. Will get removed moving forward
+    boost::optional<std::string> rv = translationInterface.Translate(psz);
+    return rv ? (*rv) : psz;
+}
 
 
 void SetupEnvironment();
