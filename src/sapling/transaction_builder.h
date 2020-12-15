@@ -120,9 +120,13 @@ public:
 
     void SendChangeTo(CTxDestination& changeAddr);
 
-    TransactionBuilderResult Build();
+    TransactionBuilderResult Build(bool fDummySig = false);
     // Add Sapling Spend/Output descriptions, binding sig, and transparent signatures
     TransactionBuilderResult ProveAndSign();
+    // Add dummy Sapling Spend/Output descriptions, binding sig, and transparent signatures
+    TransactionBuilderResult AddDummySignatures();
+    // Remove Sapling Spend/Output descriptions, binding sig, and transparent signatures
+    void ClearProofsAndSignatures();
 };
 
 #endif /* TRANSACTION_BUILDER_H */

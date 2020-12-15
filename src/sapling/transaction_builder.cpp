@@ -324,7 +324,66 @@ TransactionBuilderResult TransactionBuilder::ProveAndSign()
     return TransactionBuilderResult(CTransaction(mtx));
 }
 
-TransactionBuilderResult TransactionBuilder::Build()
+TransactionBuilderResult TransactionBuilder::AddDummySignatures()
+{
+    if (!spends.empty() || !outputs.empty()) {
+        // Add Dummy Sapling OutputDescriptions
+        OutputDescription dummyOD;
+        dummyOD.cv = UINT256_MAX;
+        dummyOD.cmu = UINT256_MAX;
+        dummyOD.ephemeralKey = UINT256_MAX;
+        dummyOD.encCiphertext = {{0xff}};
+        dummyOD.outCiphertext = {{0xff}};
+        dummyOD.zkproof = {{0xff}};
+        for (unsigned int i = 0; i < outputs.size(); i++) {
+            mtx.sapData->vShieldedOutput.push_back(dummyOD);
+        }
+        // Add Dummy Sapling SpendDescriptions
+        SpendDescription dummySD;
+        dummySD.cv = UINT256_MAX;
+        dummySD.anchor = UINT256_MAX;
+        dummySD.nullifier = UINT256_MAX;
+        dummySD.rk = UINT256_MAX;
+        dummySD.zkproof = {{0xff}};
+        dummySD.spendAuthSig = {{0xff}};
+        for (unsigned int i = 0; i < spends.size(); i++) {
+            mtx.sapData->vShieldedSpend.push_back(dummySD);
+        }
+        // Add Dummy Binding sig
+        mtx.sapData->bindingSig = {{0xff}};
+    }
+
+    // Add Dummmy Transparent signatures
+    CTransaction txNewConst(mtx);
+    for (int nIn = 0; nIn < (int) mtx.vin.size(); nIn++) {
+        auto tIn = tIns[nIn];
+        SignatureData sigdata;
+        if (!ProduceSignature(DummySignatureCreator(keystore), tIn.scriptPubKey, sigdata, SIGVERSION_SAPLING, false)) {
+            return TransactionBuilderResult("Failed to sign transaction");
+        } else {
+            UpdateTransaction(mtx, nIn, sigdata);
+        }
+    }
+
+    return TransactionBuilderResult(CTransaction(mtx));
+}
+
+void TransactionBuilder::ClearProofsAndSignatures()
+{
+    // Clear Sapling output descriptions
+    mtx.sapData->vShieldedOutput.clear();
+
+    // Clear Sapling spend descriptions
+    mtx.sapData->vShieldedSpend.clear();
+
+    // Clear Binding sig
+    mtx.sapData->bindingSig = {{0}};
+
+    // Clear Transparent signatures
+    for (CTxIn& in : mtx.vin) in.scriptSig = CScript();
+}
+
+TransactionBuilderResult TransactionBuilder::Build(bool fDummySig)
 {
     //
     // Consistency checks
@@ -378,5 +437,5 @@ TransactionBuilderResult TransactionBuilder::Build()
         }
     }
 
-    return ProveAndSign();
+    return fDummySig ? AddDummySignatures() : ProveAndSign();
 }

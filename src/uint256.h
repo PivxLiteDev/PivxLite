@@ -139,5 +139,6 @@ arith_uint512 UintToArith512(const uint512 &);
 /** constant uint256 instances */
 const uint256 UINT256_ZERO = uint256();
 const uint256 UINT256_ONE = uint256("0000000000000000000000000000000000000000000000000000000000000001");
+const uint256 UINT256_MAX = uint256("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
 #endif // PIVX_UINT256_H
