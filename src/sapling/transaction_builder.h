@@ -121,6 +121,8 @@ public:
     void SendChangeTo(CTxDestination& changeAddr);
 
     TransactionBuilderResult Build();
+    // Add Sapling Spend/Output descriptions, binding sig, and transparent signatures
+    TransactionBuilderResult ProveAndSign();
 };
 
 #endif /* TRANSACTION_BUILDER_H */
