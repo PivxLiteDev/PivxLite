@@ -1670,8 +1670,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         UpdateCoins(tx, view, i == 0 ? undoDummy : blockundo.vtxundo.back(), pindex->nHeight);
 
         // Sapling update tree
-        for(const OutputDescription &outputDescription : tx.sapData->vShieldedOutput) {
-            sapling_tree.append(outputDescription.cmu);
+        if (tx.IsShieldedTx() && !tx.sapData->vShieldedOutput.empty()) {
+            for(const OutputDescription &outputDescription : tx.sapData->vShieldedOutput) {
+                sapling_tree.append(outputDescription.cmu);
+            }
         }
 
         vPos.emplace_back(tx.GetHash(), pos);
