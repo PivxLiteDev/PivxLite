@@ -2812,6 +2812,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 // Sign
                 int nIn = 0;
                 CTransaction txNewConst(txNew);
+                SigVersion sigversion = txNewConst.GetRequiredSigVersion();
                 for (const std::pair<const CWalletTx*, unsigned int> & coin : setCoins) {
                     bool signSuccess;
                     const CScript& scriptPubKey = coin.first->vout[coin.second].scriptPubKey;
@@ -2822,11 +2823,12 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                                 TransactionSignatureCreator(this, &txNewConst, nIn, coin.first->vout[coin.second].nValue, SIGHASH_ALL),
                                 scriptPubKey,
                                 sigdata,
+                                sigversion,
                                 !haveKey // fColdStake = false
                         );
                     } else {
                         signSuccess = ProduceSignature(
-                                DummySignatureCreator(this), scriptPubKey, sigdata, false);
+                                DummySignatureCreator(this), scriptPubKey, sigdata, sigversion, false);
                     }
 
                     if (!signSuccess) {

@@ -21,6 +21,12 @@
 
 class CTransaction;
 
+enum SigVersion
+{
+    SIGVERSION_BASE = 0,
+    SIGVERSION_SAPLING = 1,
+};
+
 // contextual flag to guard the serialization for v5 upgrade.
 // can be removed once v5 enforcement is activated.
 extern std::atomic<bool> g_IsSaplingActive;
@@ -322,6 +328,12 @@ public:
         return isSaplingVersion() && nType != TxType::NORMAL && hasExtraPayload();
     }
 
+    // Ensure that special and sapling fields are signed
+    SigVersion GetRequiredSigVersion() const
+    {
+        return isSaplingVersion() ? SIGVERSION_SAPLING : SIGVERSION_BASE;
+    }
+
     /*
      * Context for the two methods below:
      * We can think of the Sapling shielded part of the transaction as an input
@@ -421,6 +433,17 @@ struct CMutableTransaction
      * fly, as opposed to GetHash() in CTransaction, which uses a cached result.
      */
     uint256 GetHash() const;
+
+    bool isSaplingVersion() const
+    {
+        return nVersion >= CTransaction::TxVersion::SAPLING;
+    }
+
+    // Ensure that special and sapling fields are signed
+    SigVersion GetRequiredSigVersion() const
+    {
+        return isSaplingVersion() ? SIGVERSION_SAPLING : SIGVERSION_BASE;
+    }
 };
 
 typedef std::shared_ptr<const CTransaction> CTransactionRef;

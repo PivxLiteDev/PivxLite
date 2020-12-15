@@ -364,7 +364,7 @@ TransactionBuilderResult TransactionBuilder::Build()
         bool signSuccess = ProduceSignature(
             TransactionSignatureCreator(
                 keystore, &txNewConst, nIn, tIn.value, SIGHASH_ALL),
-            tIn.scriptPubKey, sigdata, false);
+            tIn.scriptPubKey, sigdata, SIGVERSION_SAPLING, false);
 
         if (!signSuccess) {
             return TransactionBuilderResult("Failed to sign transaction");
