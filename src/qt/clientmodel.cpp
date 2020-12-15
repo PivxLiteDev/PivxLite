@@ -20,6 +20,7 @@
 #include "netbase.h"
 #include "guiinterface.h"
 #include "util.h"
+#include "warnings.h"
 
 #include <stdint.h>
 
