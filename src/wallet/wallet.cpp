@@ -2697,6 +2697,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
     coinFilter.nCoinType = coin_type;
 
     {
+        std::set<std::pair<const CWalletTx*,unsigned int> > setCoins;
         LOCK2(cs_main, cs_wallet);
         {
             std::vector<COutput> vAvailableCoins;
@@ -2722,8 +2723,8 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 }
 
                 // Choose coins to use
-                std::set<std::pair<const CWalletTx*, unsigned int> > setCoins;
                 CAmount nValueIn = 0;
+                setCoins.clear();
 
                 if (!SelectCoinsToSpend(vAvailableCoins, nTotalValue, setCoins, nValueIn, coinControl)) {
                     if (coin_type == ALL_COINS) {
@@ -2809,29 +2810,12 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                     txNew.vin.emplace_back(coin.first->GetHash(), coin.second);
                 }
 
-                // Sign
+                // Fill in dummy signatures for fee calculation.
                 int nIn = 0;
-                CTransaction txNewConst(txNew);
-                SigVersion sigversion = txNewConst.GetRequiredSigVersion();
-                for (const std::pair<const CWalletTx*, unsigned int> & coin : setCoins) {
-                    bool signSuccess;
+                for (const auto & coin : setCoins) {
                     const CScript& scriptPubKey = coin.first->vout[coin.second].scriptPubKey;
                     SignatureData sigdata;
-                    bool haveKey = coin.first->GetStakeDelegationCredit() > 0;
-                    if (sign) {
-                        signSuccess = ProduceSignature(
-                                TransactionSignatureCreator(this, &txNewConst, nIn, coin.first->vout[coin.second].nValue, SIGHASH_ALL),
-                                scriptPubKey,
-                                sigdata,
-                                sigversion,
-                                !haveKey // fColdStake = false
-                        );
-                    } else {
-                        signSuccess = ProduceSignature(
-                                DummySignatureCreator(this), scriptPubKey, sigdata, sigversion, false);
-                    }
-
-                    if (!signSuccess) {
+                    if (!ProduceSignature(DummySignatureCreator(this), scriptPubKey, sigdata, txNew.GetRequiredSigVersion(), false)) {
                         strFailReason = _("Signing transaction failed");
                         return false;
                     } else {
@@ -2840,24 +2824,13 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                     nIn++;
                 }
 
-                unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
-
-                // Remove scriptSigs if we used dummy signatures for fee calculation
-                if (!sign) {
-                    for (CTxIn& vin : txNew.vin)
-                        vin.scriptSig = CScript();
-                }
-
-                // Embed the constructed transaction data in wtxNew.
-                *static_cast<CTransaction*>(wtxNew) = CTransaction(txNew);
-
-                // Limit size
-                if (nBytes >= MAX_STANDARD_TX_SIZE) {
-                    strFailReason = _("Transaction too large");
-                    return false;
-                }
-
+                const unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
                 CAmount nFeeNeeded = std::max(nFeePay, GetMinimumFee(nBytes, nTxConfirmTarget, mempool));
+
+                // Remove scriptSigs to eliminate the fee calculation dummy signatures
+                for (CTxIn& vin : txNew.vin) {
+                    vin.scriptSig = CScript();
+                }
 
                 if (coinControl && nFeeNeeded > 0 && coinControl->nMinimumTotalFee > nFeeNeeded) {
                     nFeeNeeded = coinControl->nMinimumTotalFee;
@@ -2885,6 +2858,39 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 return false;
             }
         }
+
+        if (sign) {
+            CTransaction txNewConst(txNew);
+            int nIn = 0;
+            for (const auto& coin : setCoins) {
+                const CScript& scriptPubKey = coin.first->vout[coin.second].scriptPubKey;
+                SignatureData sigdata;
+                bool haveKey = coin.first->GetStakeDelegationCredit() > 0;
+
+                if (!ProduceSignature(
+                        TransactionSignatureCreator(this, &txNewConst, nIn, coin.first->vout[coin.second].nValue, SIGHASH_ALL),
+                        scriptPubKey,
+                        sigdata,
+                        txNewConst.GetRequiredSigVersion(),
+                        !haveKey    // fColdStake
+                        )) {
+                    strFailReason = _("Signing transaction failed");
+                    return false;
+                } else {
+                    UpdateTransaction(txNew, nIn, sigdata);
+                }
+                nIn++;
+            }
+        }
+
+        // Limit size
+        if (::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION) >= MAX_STANDARD_TX_SIZE) {
+            strFailReason = _("Transaction too large");
+            return false;
+        }
+
+        // Embed the constructed transaction data in wtxNew.
+        *static_cast<CTransaction*>(wtxNew) = CTransaction(txNew);
     }
     return true;
 }
