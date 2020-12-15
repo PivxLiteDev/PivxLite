@@ -135,6 +135,9 @@ void ReceiveWidget::loadWalletModel()
 void ReceiveWidget::refreshView(const QModelIndex& tl, const QModelIndex& br)
 {
     const QModelIndex& index = tl.sibling(tl.row(), AddressTableModel::Address);
+    const QString& typeRole = index.data(AddressTableModel::TypeRole).toString();
+    if (shieldedMode && typeRole != AddressTableModel::ShieldedReceive) return;
+    if (!shieldedMode && typeRole != AddressTableModel::Receive) return;
     return refreshView(index.data(Qt::DisplayRole).toString());
 }
 
