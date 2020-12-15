@@ -11,7 +11,7 @@ from test_framework.messages import (
 )
 from test_framework.util import (
     assert_equal,
-    assert_greater_than,
+    assert_raises_rpc_error,
     bytes_to_hex_str,
     hex_str_to_bytes,
 )
@@ -31,9 +31,6 @@ class MalleableSigsTest(PivxTestFramework):
         node.generate(2)
         assert_equal(node.getblockcount(), 202)
 
-        t_balance = node.getbalance()
-        z_balance = node.getshieldedbalance()
-
         z_addr = node.getnewshieldedaddress()
         shield_to = [{"address": z_addr, "amount": Decimal('10')}]
 
@@ -49,24 +46,9 @@ class MalleableSigsTest(PivxTestFramework):
         new_tx.sapData = b""
         new_rawtx = bytes_to_hex_str(new_tx.serialize())
         self.log.info("Sending malleated tx...")
-        txid = node.sendrawtransaction(new_rawtx, True)
-        assert(txid is not None)
-        self.log.info("Tx accepted in mempool")
-
-        # No notes minted
-        assert_equal(node.getshieldedbalance(), z_balance)
-        # But 10 PIV have been effectively burned
-        fee = - Decimal(node.gettransaction(txid)['fee'])
-        assert_greater_than(fee, Decimal('10'))
-        assert_equal(node.getbalance(), t_balance - fee)
-
-        hashes = node.generate(1)
-        assert_equal(len(hashes), 1)
-        chain_tx = node.gettransaction(txid)
-        assert_equal(chain_tx['confirmations'], 1)
-        self.log.info("Malleated Tx accepted on chain")
-
-
+        assert_raises_rpc_error(-26, "mandatory-script-verify-flag-failed",
+                                node.sendrawtransaction, new_rawtx, True)
+        self.log.info("Good. Tx NOT accepted in mempool")
 
 
 

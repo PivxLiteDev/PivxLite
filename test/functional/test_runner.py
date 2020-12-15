@@ -154,6 +154,7 @@ SAPLING_SCRIPTS = [
     'sapling_mempool.py',                       # ~ 98 sec
     'sapling_wallet_persistence.py',            # ~ 90 sec
     'sapling_supply.py',                        # ~ 58 sec
+    'sapling_malleable_sigs.py',                # ~ 44 sec
 ]
 
 EXTENDED_SCRIPTS = [
