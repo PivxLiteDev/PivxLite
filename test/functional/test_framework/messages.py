@@ -370,8 +370,8 @@ class CTransaction():
             self.nVersion = tx.nVersion
             self.vin = copy.deepcopy(tx.vin)
             self.vout = copy.deepcopy(tx.vout)
-            self.sapData = tx.sapData
             self.nLockTime = tx.nLockTime
+            self.sapData = tx.sapData
             self.sha256 = tx.sha256
             self.hash = tx.hash
 
@@ -379,9 +379,9 @@ class CTransaction():
         self.nVersion = struct.unpack("<i", f.read(4))[0]
         self.vin = deser_vector(f, CTxIn)
         self.vout = deser_vector(f, CTxOut)
+        self.nLockTime = struct.unpack("<I", f.read(4))[0]
         if self.nVersion >= 2:
             self.sapData = deser_string(f)
-        self.nLockTime = struct.unpack("<I", f.read(4))[0]
         self.sha256 = None
         self.hash = None
 
@@ -390,9 +390,9 @@ class CTransaction():
         r += struct.pack("<i", self.nVersion)
         r += ser_vector(self.vin)
         r += ser_vector(self.vout)
+        r += struct.pack("<I", self.nLockTime)
         if self.nVersion >= 2:
             r += ser_string(self.sapData)
-        r += struct.pack("<I", self.nLockTime)
         return r
 
     # Regular serialization is with witness -- must explicitly
