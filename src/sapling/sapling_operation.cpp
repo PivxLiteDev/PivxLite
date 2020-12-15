@@ -170,7 +170,7 @@ OperationResult SaplingOperation::build()
 
         // Build the transaction
         txBuilder.SetFee(nFeeRet);
-        TransactionBuilderResult txResult = txBuilder.Build();
+        TransactionBuilderResult txResult = txBuilder.Build(true);
         auto opTx = txResult.GetTx();
 
         // Check existent tx
@@ -213,6 +213,16 @@ OperationResult SaplingOperation::build()
     }
     // Done
     fee = nFeeRet;
+
+    // Clear dummy signatures/proofs and add real ones
+    txBuilder.ClearProofsAndSignatures();
+    TransactionBuilderResult txResult = txBuilder.ProveAndSign();
+    auto opTx = txResult.GetTx();
+    // Check existent tx
+    if (!opTx) {
+        return errorOut("Failed to build transaction: " + txResult.GetError());
+    }
+    finalTx = *opTx;
     return OperationResult(true);
 }
 
