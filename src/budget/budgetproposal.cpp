@@ -79,10 +79,10 @@ void CBudgetProposal::SyncVotes(CNode* pfrom, bool fPartial, int& nInvCount) con
     }
 }
 
-bool CBudgetProposal::IsHeavilyDownvoted()
+bool CBudgetProposal::IsHeavilyDownvoted(bool fNewRules)
 {
-    if (GetNays() - GetYeas() > mnodeman.CountEnabled(ActiveProtocol()) / 10) {
-        strInvalid = "Active removal";
+    if (GetNays() - GetYeas() > (fNewRules ? 3 : 1) * mnodeman.CountEnabled(ActiveProtocol()) / 10) {
+        strInvalid = "Heavily Downvoted";
         return true;
     }
     return false;
@@ -162,8 +162,12 @@ bool CBudgetProposal::UpdateValid(int nCurrentHeight)
 {
     fValid = false;
 
-    if (IsHeavilyDownvoted()) {
-        return false;
+    // !TODO: remove after v5 enforcement and use fixed multiplier (3)
+    bool fNewRules = Params().GetConsensus().NetworkUpgradeActive(nCurrentHeight, Consensus::UPGRADE_V5_0);
+
+    // Never kill a proposal before the first superblock
+    if (!fNewRules || nCurrentHeight > nBlockStart) {
+        if (IsHeavilyDownvoted(fNewRules)) return false;
     }
 
     if (IsExpired(nCurrentHeight)) {
