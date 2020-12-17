@@ -792,7 +792,7 @@ CAmount GetBlockValue(int nHeight)
         return 250000 * COIN;
     }
     // Mainnet/Testnet block reward reduction schedule
-    const int nLast = isTestnet ? 648000 : Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight;
+    const int nLast = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight;
     if (nHeight > nLast)   return 5    * COIN;
     if (nHeight > 648000)  return 4.5  * COIN;
     if (nHeight > 604800)  return 9    * COIN;
@@ -803,8 +803,7 @@ CAmount GetBlockValue(int nHeight)
     if (nHeight > 388800)  return 31.5 * COIN;
     if (nHeight > 345600)  return 36   * COIN;
     if (nHeight > 302400)  return 40.5 * COIN;
-    const int nSecond = isTestnet ? 145000 : 151200;
-    if (nHeight > nSecond) return 45   * COIN;
+    if (nHeight > 151200)  return 45   * COIN;
     if (nHeight > 86400)   return 225  * COIN;
     if (nHeight !=1)       return 250  * COIN;
     // Premine for 6 masternodes at block 1
