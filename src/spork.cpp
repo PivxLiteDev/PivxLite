@@ -268,9 +268,8 @@ bool CSporkManager::SetPrivKey(std::string strPrivKey)
 
     spork.Sign(strPrivKey);
 
-    const bool fRequireNew = GetTime() >= Params().GetConsensus().nTime_EnforceNewSporkKey;
     bool fValidSig = spork.CheckSignature();
-    if (!fValidSig && !fRequireNew) {
+    if (!fValidSig) {
         // See if window is open that allows for old spork key to sign messages
         if (GetAdjustedTime() < Params().GetConsensus().nTime_RejectOldSporkKey) {
             CPubKey pubkeyold = spork.GetPublicKeyOld();
