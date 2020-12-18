@@ -68,6 +68,35 @@ Optional<OutputDescription> OutputDescriptionInfo::Build(void* ctx) {
     return odesc;
 }
 
+// Dummy constants used during fee-calculation loop
+static OutputDescription CreateDummyOD()
+{
+    OutputDescription dummyOD;
+    dummyOD.cv = UINT256_MAX;
+    dummyOD.cmu = UINT256_MAX;
+    dummyOD.ephemeralKey = UINT256_MAX;
+    dummyOD.encCiphertext = {{0xff}};
+    dummyOD.outCiphertext = {{0xff}};
+    dummyOD.zkproof = {{0xff}};
+    return dummyOD;
+}
+static SpendDescription CreateDummySD()
+{
+    SpendDescription dummySD;
+    dummySD.cv = UINT256_MAX;
+    dummySD.anchor = UINT256_MAX;
+    dummySD.nullifier = UINT256_MAX;
+    dummySD.rk = UINT256_MAX;
+    dummySD.zkproof = {{0xff}};
+    dummySD.spendAuthSig = {{0xff}};
+    return dummySD;
+}
+
+const OutputDescription DUMMY_SHIELD_OUT = CreateDummyOD();
+const SpendDescription DUMMY_SHIELD_SPEND = CreateDummySD();
+const SaplingTxData::binding_sig_t DUMMY_SHIELD_BINDSIG = {{0xff}};
+
+
 TransactionBuilderResult::TransactionBuilderResult(const CTransaction& tx) : maybeTx(tx) {}
 
 TransactionBuilderResult::TransactionBuilderResult(const std::string& error) : maybeError(error) {}
@@ -328,29 +357,15 @@ TransactionBuilderResult TransactionBuilder::AddDummySignatures()
 {
     if (!spends.empty() || !outputs.empty()) {
         // Add Dummy Sapling OutputDescriptions
-        OutputDescription dummyOD;
-        dummyOD.cv = UINT256_MAX;
-        dummyOD.cmu = UINT256_MAX;
-        dummyOD.ephemeralKey = UINT256_MAX;
-        dummyOD.encCiphertext = {{0xff}};
-        dummyOD.outCiphertext = {{0xff}};
-        dummyOD.zkproof = {{0xff}};
         for (unsigned int i = 0; i < outputs.size(); i++) {
-            mtx.sapData->vShieldedOutput.push_back(dummyOD);
+            mtx.sapData->vShieldedOutput.push_back(DUMMY_SHIELD_OUT);
         }
         // Add Dummy Sapling SpendDescriptions
-        SpendDescription dummySD;
-        dummySD.cv = UINT256_MAX;
-        dummySD.anchor = UINT256_MAX;
-        dummySD.nullifier = UINT256_MAX;
-        dummySD.rk = UINT256_MAX;
-        dummySD.zkproof = {{0xff}};
-        dummySD.spendAuthSig = {{0xff}};
         for (unsigned int i = 0; i < spends.size(); i++) {
-            mtx.sapData->vShieldedSpend.push_back(dummySD);
+            mtx.sapData->vShieldedSpend.push_back(DUMMY_SHIELD_SPEND);
         }
         // Add Dummy Binding sig
-        mtx.sapData->bindingSig = {{0xff}};
+        mtx.sapData->bindingSig = DUMMY_SHIELD_BINDSIG;
     }
 
     // Add Dummmy Transparent signatures
