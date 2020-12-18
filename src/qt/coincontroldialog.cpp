@@ -165,7 +165,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool _forDelegation) : QDi
     // Toggle lock state
     connect(ui->pushButtonToggleLock, &QPushButton::clicked, this, &CoinControlDialog::buttonToggleLockClicked);
 
-    ui->treeWidget->setColumnWidth(COLUMN_CHECKBOX, 100);
+    ui->treeWidget->setColumnWidth(COLUMN_CHECKBOX, colCheckBoxWidth_treeMode);
     ui->treeWidget->setColumnWidth(COLUMN_AMOUNT, 110);
     ui->treeWidget->setColumnWidth(COLUMN_LABEL, 160);
     ui->treeWidget->setColumnWidth(COLUMN_ADDRESS, 310);
@@ -795,6 +795,13 @@ void CoinControlDialog::updateView()
         for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++)
             if (ui->treeWidget->topLevelItem(i)->checkState(COLUMN_CHECKBOX) == Qt::PartiallyChecked)
                 ui->treeWidget->topLevelItem(i)->setExpanded(true);
+        // restore saved width for COLUMN_CHECKBOX
+        ui->treeWidget->setColumnWidth(COLUMN_CHECKBOX, colCheckBoxWidth_treeMode);
+    } else {
+        // save COLUMN_CHECKBOX width for tree-mode
+        colCheckBoxWidth_treeMode = std::max(110, ui->treeWidget->columnWidth(COLUMN_CHECKBOX));
+        // minimize COLUMN_CHECKBOX width in list-mode (need to display only the check box)
+        ui->treeWidget->resizeColumnToContents(COLUMN_CHECKBOX);
     }
 
     // sort view
