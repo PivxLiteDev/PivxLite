@@ -242,7 +242,7 @@ void DashboardWidget::onTxArrived(const QString& hash, const bool& isCoinStake, 
 
 void DashboardWidget::showList()
 {
-    if (filter->rowCount() == 0) {
+    if (txModel->size() == 0) {
         ui->emptyContainer->setVisible(true);
         ui->listTransactions->setVisible(false);
         ui->comboBoxSortType->setVisible(false);
