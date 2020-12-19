@@ -96,9 +96,9 @@ class ReorgStakeTest(PivxTestFramework):
 
         # The stake input was unspent 1 block ago, now it's not
         res, utxo = findUtxoInList(stakeinput["txid"], stakeinput["vout"], initial_unspent_0)
-        assert (res and utxo["spendable"])
+        assert (res)
         res, utxo = findUtxoInList(stakeinput["txid"], stakeinput["vout"], self.nodes[0].listunspent())
-        assert (not res or not utxo["spendable"])
+        assert (not res)
         self.log.info("Coinstake input %s...%s-%d is no longer spendable." % (
             stakeinput["txid"][:9], stakeinput["txid"][-4:], stakeinput["vout"]))
 
@@ -123,17 +123,11 @@ class ReorgStakeTest(PivxTestFramework):
             {"xxncEuJK27ygNh7imNfaX8JV6ZQUnoBqzN": (stakeinput_amount-0.01)})
         rawtx = self.nodes[0].signrawtransaction(rawtx_unsigned)
         assert(rawtx["complete"])
-        try:
-            self.nodes[0].sendrawtransaction(rawtx["hex"])
-        except JSONRPCException as e:
-            # JSONRPCException was thrown as expected. Check the code and message values are correct.
-            if e.error["code"] not in [-26, -25]:
-                raise AssertionError("Unexpected JSONRPC error code %i" % e.error["code"])
-            if ([x for x in ["bad-txns-inputs-spent", "Missing inputs"] if x in e.error['message']] == []):
-                raise e
-        except Exception as e:
-            raise AssertionError("Unexpected exception raised: " + type(e).__name__)
-        self.log.info("GOOD: v2 spend was not possible.")
+        assert_raises_rpc_error(-25, "Missing inputs", self.nodes[0].sendrawtransaction, rawtx["hex"])
+        txid = self.nodes[0].decoderawtransaction(rawtx["hex"])["txid"]
+        assert_raises_rpc_error(-5, "No such mempool or blockchain transaction",
+                                self.nodes[0].getrawtransaction, txid)
+        self.log.info("GOOD: spending the stake input was not possible.")
 
         # Stake 12 blocks with node-1
         set_node_times(self.nodes, block_time_1)
