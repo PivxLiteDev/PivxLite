@@ -13,7 +13,7 @@ bench_bench_pivx_SOURCES = \
   bench/crypto_hash.cpp \
   bench/perf.cpp \
   bench/perf.h \
-  bench/prevector_destructor.cpp
+  bench/prevector.cpp
 
 bench_bench_pivx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
 bench_bench_pivx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
