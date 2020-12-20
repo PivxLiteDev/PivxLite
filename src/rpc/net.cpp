@@ -431,7 +431,7 @@ UniValue setban(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 2 ||
         (strCommand != "add" && strCommand != "remove"))
         throw std::runtime_error(
-            "setban \"ip(/netmask)\" \"add|remove\" (bantime) (absolute)\n"
+            "setban \"ip(/netmask)\" \"add|remove\" ( bantime absolute )\n"
             "\nAttempts add or remove a IP/Subnet from the banned list.\n"
 
             "\nArguments:\n"

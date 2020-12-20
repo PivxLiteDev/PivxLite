@@ -548,8 +548,8 @@ UniValue verifymessage(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"pivxaddress\"  (string, required) The pivx address to use for the signature.\n"
-            "2. \"signature\"       (string, required) The signature provided by the signer in base 64 encoding (see signmessage).\n"
-            "3. \"message\"         (string, required) The message that was signed.\n"
+            "2. \"signature\"    (string, required) The signature provided by the signer in base 64 encoding (see signmessage).\n"
+            "3. \"message\"      (string, required) The message that was signed.\n"
 
             "\nResult:\n"
             "true|false   (boolean) If the signature is verified or not.\n"
@@ -604,7 +604,7 @@ UniValue setmocktime(const JSONRPCRequest& request)
             "\nSet the local time to given timestamp (-regtest only)\n"
 
             "\nArguments:\n"
-            "1. timestamp  (integer, required) Unix seconds-since-epoch timestamp\n"
+            "1. timestamp  (numeric, required) Unix seconds-since-epoch timestamp\n"
             "   Pass 0 to go back to using the system time.");
 
     if (!Params().IsRegTestNet())
@@ -646,16 +646,23 @@ UniValue logging(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 2) {
         throw std::runtime_error(
-            "logging [include,...] <exclude>\n"
+            "logging [include,...] ( [exclude,...] )\n"
             "Gets and sets the logging configuration.\n"
             "When called without an argument, returns the list of categories that are currently being debug logged.\n"
             "When called with arguments, adds or removes categories from debug logging.\n"
             "The valid logging categories are: " + ListLogCategories() + "\n"
             "libevent logging is configured on startup and cannot be modified by this RPC during runtime."
+
             "Arguments:\n"
             "1. \"include\" (array of strings) add debug logging for these categories.\n"
             "2. \"exclude\" (array of strings) remove debug logging for these categories.\n"
-            "\nResult: <categories>  (string): a list of the logging categories that are active.\n"
+
+            "\nResult:\n"
+            "{                            (object): a JSON object of the logging categories that are active.\n"
+            "  \"category\": fEnabled,    (key/value) Key is the category name, value is a boolean of it's active state.\n"
+            "  ...,\n"
+            "}\n"
+
             "\nExamples:\n"
             + HelpExampleCli("logging", "\"[\\\"all\\\"]\" \"[\\\"http\\\"]\"")
             + HelpExampleRpc("logging", "[\"all\"], \"[libevent]\"")
