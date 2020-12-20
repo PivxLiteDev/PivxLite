@@ -14,10 +14,10 @@
 #include "script/script.h"
 #include "script/standard.h"
 #include "uint256.h"
-#include "sapling/address.hpp"
-#include "sapling/incrementalmerkletree.hpp"
-#include "sapling/note.hpp"
-#include "sapling/noteencryption.hpp"
+#include "sapling/address.h"
+#include "sapling/incrementalmerkletree.h"
+#include "sapling/note.h"
+#include "sapling/noteencryption.h"
 
 struct SpendDescriptionInfo {
     libzcash::SaplingExpandedSpendingKey expsk;

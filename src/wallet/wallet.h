@@ -22,7 +22,7 @@
 #include "policy/feerate.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "sapling/address.hpp"
+#include "sapling/address.h"
 #include "guiinterface.h"
 #include "util.h"
 #include "util/memory.h"

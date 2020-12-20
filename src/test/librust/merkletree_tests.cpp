@@ -19,7 +19,7 @@
 #include "serialize.h"
 #include "streams.h"
 
-#include "sapling/incrementalmerkletree.hpp"
+#include "sapling/incrementalmerkletree.h"
 #include "sapling/sapling_util.h"
 
 #include "json_test_vectors.h"

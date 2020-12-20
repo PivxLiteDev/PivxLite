@@ -1,10 +1,10 @@
 #ifndef ZC_NOTE_H_
 #define ZC_NOTE_H_
 
-#include "uint256.h"
+#include "sapling/address.h"
+#include "sapling/noteencryption.h"
 #include "sapling/sapling.h"
-#include "sapling/address.hpp"
-#include "sapling/noteencryption.hpp"
+#include "uint256.h"
 
 #include <array>
 #include <boost/optional.hpp>

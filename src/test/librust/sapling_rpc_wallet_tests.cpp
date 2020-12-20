@@ -16,7 +16,7 @@
 #include "wallet/wallet.h"
 
 #include "sapling/key_io_sapling.h"
-#include "sapling/address.hpp"
+#include "sapling/address.h"
 #include "sapling/sapling_operation.h"
 
 #include <unordered_set>

@@ -1,4 +1,4 @@
-#include "sapling/note.hpp"
+#include "sapling/note.h"
 
 #include "sapling/prf.h"
 #include "sapling/sapling_util.h"

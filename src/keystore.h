@@ -9,7 +9,7 @@
 
 #include "key.h"
 #include "pubkey.h"
-#include "sapling/address.hpp"
+#include "sapling/address.h"
 #include "sapling/zip32.h"
 #include "sync.h"
 

@@ -6,10 +6,10 @@
 #ifndef PIVX_UTIL_TEST_H
 #define PIVX_UTIL_TEST_H
 
-#include "sapling/address.hpp"
-#include "sapling/incrementalmerkletree.hpp"
-#include "sapling/note.hpp"
-#include "sapling/noteencryption.hpp"
+#include "sapling/address.h"
+#include "sapling/incrementalmerkletree.h"
+#include "sapling/note.h"
+#include "sapling/noteencryption.h"
 #include "wallet/wallet.h"
 
 struct TestSaplingNote {

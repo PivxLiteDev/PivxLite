@@ -1,4 +1,4 @@
-#include "sapling/proof.hpp"
+#include "sapling/proof.h"
 
 namespace libzcash {
 

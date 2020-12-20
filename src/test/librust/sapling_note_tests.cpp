@@ -5,8 +5,8 @@
 
 #include "test/test_pivx.h"
 
-#include "sapling/address.hpp"
-#include "sapling/note.hpp"
+#include "sapling/address.h"
+#include "sapling/note.h"
 #include "sapling/sapling_util.h"
 
 #include "amount.h"
@@ -14,6 +14,7 @@
 #include <librustzcash.h>
 
 #include <array>
+
 #include <boost/test/unit_test.hpp>
 
 BOOST_FIXTURE_TEST_SUITE(sapling_note_tests, BasicTestingSetup)

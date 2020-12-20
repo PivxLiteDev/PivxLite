@@ -131,13 +131,13 @@ LIBSAPLING_H = \
   sapling/sapling_core_write.h \
   sapling/sapling_util.h \
   sapling/prf.h \
-  sapling/noteencryption.hpp \
-  sapling/address.hpp \
-  sapling/note.hpp \
+  sapling/noteencryption.h \
+  sapling/address.h \
+  sapling/note.h \
   sapling/zip32.h \
   sapling/saplingscriptpubkeyman.h \
-  sapling/incrementalmerkletree.hpp \
-  sapling/proof.hpp \
+  sapling/incrementalmerkletree.h \
+  sapling/proof.h \
   sapling/sapling_transaction.h \
   sapling/transaction_builder.h \
   sapling/sapling_operation.h

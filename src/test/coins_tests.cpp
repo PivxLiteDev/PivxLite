@@ -12,7 +12,7 @@
 #include "utilstrencodings.h"
 #include "random.h"
 
-#include "sapling/incrementalmerkletree.hpp"
+#include "sapling/incrementalmerkletree.h"
 
 #include <vector>
 #include <map>

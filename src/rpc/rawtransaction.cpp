@@ -20,8 +20,8 @@
 #include "uint256.h"
 #include "utilmoneystr.h"
 #ifdef ENABLE_WALLET
+#include "sapling/address.h"
 #include "sapling/key_io_sapling.h"
-#include "sapling/address.hpp"
 #include "wallet/wallet.h"
 #endif
 

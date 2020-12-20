@@ -8,7 +8,7 @@
 #define BITCOIN_VALIDATIONINTERFACE_H
 
 #include "optional.h"
-#include "sapling/incrementalmerkletree.hpp"
+#include "sapling/incrementalmerkletree.h"
 
 #include <boost/signals2/signal.hpp>
 
