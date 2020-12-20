@@ -3890,10 +3890,10 @@ unsigned int sumMultiSend()
     return sum;
 }
 
+/* disable multisend
 UniValue multisend(const JSONRPCRequest& request)
 {
     throw std::runtime_error("Multisend is disabled in this wallet version");
-    /* disable multisend
     CWalletDB walletdb(pwalletMain->strWalletFile);
     bool fFileBacked;
     //MultiSend Commands
@@ -4042,8 +4042,8 @@ UniValue multisend(const JSONRPCRequest& request)
         }
     }
     return printMultiSend();
-    */
 }
+*/
 
 
 UniValue getsaplingnotescount(const JSONRPCRequest& request)
@@ -4145,7 +4145,7 @@ static const CRPCCommand commands[] =
     { "wallet",             "delegatorremove",          &delegatorremove,          true  },
     { "wallet",             "bip38encrypt",             &bip38encrypt,             true  },
     { "wallet",             "bip38decrypt",             &bip38decrypt,             true  },
-    { "wallet",             "multisend",                &multisend,                false },
+    //{ "wallet",             "multisend",                &multisend,                false },
 
     /** Sapling functions */
     { "wallet",             "getnewshieldedaddress",         &getnewshieldedaddress,          true  },
