@@ -634,7 +634,7 @@ Optional<std::pair<
             ovks.emplace(getCommonOVK());
         } catch (...) {
             LogPrintf("WARNING: No CommonOVK found. Some notes might not be correctly recovered. "
-                      "Unlock the wallet and call 'viewshieldedtransaction %s' to fix.\n", txId.ToString());
+                      "Unlock the wallet and call 'viewshieldtransaction %s' to fix.\n", txId.ToString());
         }
     } else {
         for (const auto& spend : tx.sapData->vShieldedSpend) {
@@ -762,7 +762,7 @@ bool SaplingScriptPubKeyMan::IsNoteSaplingChange(const std::set<std::pair<libzca
     // also spent Notes in the same transaction. This will catch,
     // for instance:
     // - Change created by spending fractions of Notes (because
-    //   shieldedsendmany sends change to the originating shielded address).
+    //   shieldsendmany sends change to the originating shielded address).
     // - Notes sent from one address to itself.
     const auto& tx = wallet->mapWallet[op.hash];
     if (tx.sapData) {

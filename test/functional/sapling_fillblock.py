@@ -74,7 +74,7 @@ class SaplingFillBlockTest(PivxTestFramework):
     def send_shielded(self, node, n_txes, from_address, shield_to):
         txids = []
         for i in range(n_txes):
-            txids.append(node.shieldedsendmany(from_address, shield_to))
+            txids.append(node.shieldsendmany(from_address, shield_to))
             if (i + 1) % 200 == 0:
                 self.log.info("...%d Transactions created..." % (i + 1))
         return txids
@@ -104,7 +104,7 @@ class SaplingFillBlockTest(PivxTestFramework):
 
         # Now alice shields the new utxos individually (fixed 0.2 PIV fee --> ~2.3 PIV notes)
         self.log.info("Shielding utxos...")
-        alice_z_addr = alice.getnewshieldedaddress()
+        alice_z_addr = alice.getnewshieldaddress()
         shield_to = [{"address": alice_z_addr, "amount": new_utxos[0]["amount"] - Decimal("0.2")}]
         txids = self.send_shielded(alice, UTXOS_TO_SHIELD, "from_transparent", shield_to)
 
