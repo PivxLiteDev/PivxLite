@@ -401,17 +401,12 @@ int CBudgetManager::GetHighestVoteCount(int chainHeight) const
 
 bool CBudgetManager::GetPayeeAndAmount(int chainHeight, CScript& payeeRet, CAmount& nAmountRet) const
 {
-    const CFinalizedBudget* pfb = GetBudgetWithHighestVoteCount(chainHeight);
-    if (!pfb) return false;
-
-    // Check that there are enough votes
-    int mnCount = mnodeman.CountEnabled(ActiveProtocol());
-    int nFivePercent = mnCount / 20;
-    if ((nFivePercent == 0 && !(Params().IsRegTestNet() && mnCount > 0) ) ||
-        pfb->GetVoteCount() < nFivePercent)
+    int nCountThreshold;
+    if (!IsBudgetPaymentBlock(chainHeight, nCountThreshold))
         return false;
 
-    return pfb->GetPayeeAndAmount(chainHeight, payeeRet, nAmountRet);
+    const CFinalizedBudget* pfb = GetBudgetWithHighestVoteCount(chainHeight);
+    return pfb && pfb->GetPayeeAndAmount(chainHeight, payeeRet, nAmountRet) && pfb->GetVoteCount() > nCountThreshold;
 }
 
 bool CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, const int nHeight, bool fProofOfStake) const
