@@ -1677,7 +1677,7 @@ UniValue shieldsendmany(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
         throw std::runtime_error(
-                "shieldsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf ) ( fee )\n"
+                "shieldsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf fee )\n"
                 "\nSend to many recipients. Amounts are decimal numbers with at most 8 digits of precision."
                 "\nChange generated from a transparent addr flows to a new  transparent addr address, while change generated from a shield addr returns to itself."
                 "\nWhen sending coinbase UTXOs to a shield addr, change is not allowed. The entire value of the UTXO(s) must be consumed."
@@ -1719,7 +1719,7 @@ UniValue rawshieldsendmany(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
         throw std::runtime_error(
-                "rawshieldsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf ) ( fee )\n"
+                "rawshieldsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf fee )\n"
                 "\nCreates a transaction sending to many recipients (without committing it), and returns the hex string."
                 "\nAmounts are decimal numbers with at most 8 digits of precision."
                 "\nChange generated from a transparent addr flows to a new  transparent addr address, while change generated from a shield addr returns to itself."
