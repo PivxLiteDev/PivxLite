@@ -4050,7 +4050,7 @@ UniValue getsaplingnotescount(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
-                "getsaplingnodescount ( minconf )\n"
+                "getsaplingnotescount ( minconf )\n"
                 "Returns the number of sapling notes available in the wallet.\n"
                 "\nArguments:\n"
                 "1. minconf      (numeric, optional, default=1) Only include notes in transactions confirmed at least this many times.\n"
