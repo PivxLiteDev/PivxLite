@@ -44,7 +44,7 @@ class SaplingMempoolTest(PivxTestFramework):
         # Alice creates (but doesn't send) tx_A to transparent address tadd_A
         self.log.info("Alice creating tx_A...")
         tadd_A = alice.getnewaddress()
-        rawTx = alice.rawshieldsendmany(alice_zaddr, [{"address": tadd_A, "amount": Decimal('9.00')}], 1, fee)
+        rawTx_hex = alice.rawshieldsendmany(alice_zaddr, [{"address": tadd_A, "amount": Decimal('9.00')}], 1, fee)
 
         # Alice creates and sends tx_B, unshielding the same note to tadd_B
         self.log.info("Alice creating and sending tx_B...")
@@ -59,7 +59,7 @@ class SaplingMempoolTest(PivxTestFramework):
 
         # Now tx_A would double-spend the sapling note in the memory pool
         assert_raises_rpc_error(-26, "bad-txns-nullifier-double-spent",
-                                alice.sendrawtransaction, rawTx['hex'])
+                                alice.sendrawtransaction, rawTx_hex)
         self.log.info("tx_A NOT accepted in the mempool. Good.")
 
         # Mine tx_B and try to send tx_A again
@@ -70,7 +70,7 @@ class SaplingMempoolTest(PivxTestFramework):
         assert("blockhash" in txB_json)
         self.log.info("trying to relay tx_A again...")
         assert_raises_rpc_error(-26, "bad-txns-shielded-requirements-not-met",
-                                alice.sendrawtransaction, rawTx['hex'])
+                                alice.sendrawtransaction, rawTx_hex)
         self.log.info("tx_A NOT accepted in the mempool. Good.")
 
         # miner sends another 10 PIV note to Alice
@@ -83,8 +83,8 @@ class SaplingMempoolTest(PivxTestFramework):
         # Alice creates and sends tx_C, unshielding the note to tadd_C
         self.log.info("Alice creating and sending tx_C...")
         tadd_C = alice.getnewaddress()
-        txC_json = alice.rawshieldsendmany(alice_zaddr, [{"address": tadd_C, "amount": Decimal('9.00')}], 1, fee)
-        txid_C = alice.sendrawtransaction(txC_json['hex'])
+        txC_hex = alice.rawshieldsendmany(alice_zaddr, [{"address": tadd_C, "amount": Decimal('9.00')}], 1, fee)
+        txid_C = alice.sendrawtransaction(txC_hex)
 
         # Miner receives tx_C and accepts it in the mempool
         sync_mempools(self.nodes)
@@ -94,7 +94,7 @@ class SaplingMempoolTest(PivxTestFramework):
         # Now disconnect the block with the note's anchor,
         # and check that the tx is removed from the mempool
         self.log.info("Disconnect the last block to change the sapling anchor")
-        anchor = txC_json['vShieldSpend'][0]['anchor']
+        anchor = alice.decoderawtransaction(txC_hex)['vShieldSpend'][0]['anchor']
         assert_equal(anchor, miner.getbestsaplinganchor())
         miner.invalidateblock(miner.getbestblockhash())
         assert (anchor != miner.getbestsaplinganchor())

@@ -36,13 +36,13 @@ class MalleableSigsTest(PivxTestFramework):
 
         # Create rawtx shielding 10 PIV
         self.log.info("Shielding 10 PIV...")
-        rawtx = node.rawshieldsendmany("from_transparent", shield_to)["hex"]
+        rawtx_hex = node.rawshieldsendmany("from_transparent", shield_to)
         self.log.info("Raw tx created")
 
         # Creating malleated tx
         self.log.info("Removing sapling data...")
         new_tx = CTransaction()
-        new_tx.deserialize(BytesIO(hex_str_to_bytes(rawtx)))
+        new_tx.deserialize(BytesIO(hex_str_to_bytes(rawtx_hex)))
         new_tx.sapData = b""
         new_rawtx = bytes_to_hex_str(new_tx.serialize())
         self.log.info("Sending malleated tx...")

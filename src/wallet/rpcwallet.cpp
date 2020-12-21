@@ -1742,7 +1742,7 @@ UniValue rawshieldsendmany(const JSONRPCRequest& request)
                 "                            If not specified, the wallet will try to compute the minimum possible fee for a shield TX,\n"
                 "                            based on the expected transaction size and the current value of -minRelayTxFee.\n"
                 "\nResult:\n"
-                "{tx_json}                (json object) decoded transaction\n"
+                "\"transaction\"            (string) hex string of the transaction\n"
                 "\nExamples:\n"
                 + HelpExampleCli("rawshieldsendmany",
                                  "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" '[{\"address\": \"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\" ,\"amount\": 5.0}]'")
@@ -1751,9 +1751,7 @@ UniValue rawshieldsendmany(const JSONRPCRequest& request)
         );
 
     CTransaction tx = CreateShieldedTransaction(request).getFinalTx();
-    UniValue tx_json(UniValue::VOBJ);
-    TxToUniv(tx, UINT256_ZERO, tx_json);
-    return tx_json;
+    return EncodeHexTx(tx);
 }
 
 UniValue listaddressgroupings(const JSONRPCRequest& request)

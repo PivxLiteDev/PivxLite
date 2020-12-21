@@ -75,11 +75,11 @@ class WalletSaplingTest(PivxTestFramework):
         # Trying to send a rawtx with low fee directly
         self.log.info("Good. It was not possible. Now try with a raw tx...")
         self.restart_node(0, extra_args=self.extra_args[0]+['-minrelaytxfee=0.0000001'])
-        rawtx = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1)["hex"]
+        rawtx_hex = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1)
         self.restart_node(0, extra_args=self.extra_args[0])
         connect_nodes(self.nodes[0], 1)
         assert_raises_rpc_error(-26, "insufficient fee",
-                                self.nodes[0].sendrawtransaction, rawtx)
+                                self.nodes[0].sendrawtransaction, rawtx_hex)
         self.log.info("Good. Not accepted in the mempool.")
 
         # Fixed fee
@@ -103,14 +103,14 @@ class WalletSaplingTest(PivxTestFramework):
 
         # shield more funds creating and then sending a raw transaction
         self.log.info("TX 3: shield funds creating and sending raw transaction.")
-        tx_json = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1, fee)
+        tx_hex = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1, fee)
 
         # Check SPORK_20 for sapling maintenance mode
         SPORK_20 = "SPORK_20_SAPLING_MAINTENANCE"
         self.activate_spork(0, SPORK_20)
         self.wait_for_spork(True, SPORK_20)
         assert_raises_rpc_error(-26, "bad-tx-sapling-maintenance",
-                                self.nodes[0].sendrawtransaction, tx_json["hex"])
+                                self.nodes[0].sendrawtransaction, tx_hex)
         self.log.info("Good. Not accepted when SPORK_20 is active.")
 
         # Try with RPC...
@@ -121,7 +121,7 @@ class WalletSaplingTest(PivxTestFramework):
         sleep(5)
         self.deactivate_spork(0, SPORK_20)
         self.wait_for_spork(False, SPORK_20)
-        mytxid3 = self.nodes[0].sendrawtransaction(tx_json["hex"])
+        mytxid3 = self.nodes[0].sendrawtransaction(tx_hex)
         self.log.info("Good. Accepted when SPORK_20 is not active.")
 
         # Verify priority of tx is INF_PRIORITY, defined as 1E+25 (10000000000000000000000000)
@@ -181,8 +181,8 @@ class WalletSaplingTest(PivxTestFramework):
 
         # Send more shield funds (with create + send raw transaction)
         self.log.info("TX 6: shield raw transaction.")
-        tx_json = self.nodes[0].rawshieldsendmany("from_shield", recipients5, 1, fee)
-        mytxid6 = self.nodes[0].sendrawtransaction(tx_json["hex"])
+        tx_hex = self.nodes[0].rawshieldsendmany("from_shield", recipients5, 1, fee)
+        mytxid6 = self.nodes[0].sendrawtransaction(tx_hex)
         self.check_tx_priority([mytxid6])
 
         self.nodes[2].generate(1)
