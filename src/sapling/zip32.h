@@ -10,7 +10,7 @@
 #include "blob_uint256.h"
 #include "key.h"
 #include "uint256.h"
-#include "sapling/address.hpp"
+#include "sapling/address.h"
 
 #include <boost/optional.hpp>
 

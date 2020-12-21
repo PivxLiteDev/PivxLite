@@ -380,14 +380,14 @@ UniValue upgradewallet(const JSONRPCRequest& request)
         );
 
     EnsureWallet();
-    EnsureWalletIsUnlocked();
-
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // Do not do anything to non-HD wallets
-    if (pwalletMain->HasSaplingSPKM()) {
+    // Do not do anything to wallets already upgraded
+    if (pwalletMain->CanSupportFeature(FEATURE_LATEST)) {
         throw JSONRPCError(RPC_WALLET_ERROR, "Cannot upgrade the wallet. The wallet is already running the latest version");
     }
+
+    EnsureWalletIsUnlocked();
 
     // Get version
     int prev_version = pwalletMain->GetVersion();
@@ -501,18 +501,18 @@ UniValue getnewstakingaddress(const JSONRPCRequest& request)
     return EncodeDestination(GetNewAddressFromLabel("coldstaking", request.params, CChainParams::STAKING_ADDRESS), CChainParams::STAKING_ADDRESS);
 }
 
-UniValue getnewshieldedaddress(const JSONRPCRequest& request)
+UniValue getnewshieldaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
-                "getnewshieldedaddress\n"
-                "\nReturns a new shielded address for receiving payments.\n"
+                "getnewshieldaddress\n"
+                "\nReturns a new shield address for receiving payments.\n"
                 "\nArguments:\n"
                 "\nResult:\n"
-                "\"address\"    (string) The new shielded address.\n"
+                "\"address\"    (string) The new shield address.\n"
                 "\nExamples:\n"
-                + HelpExampleCli("getnewshieldedaddress", "")
-                + HelpExampleRpc("getnewshieldedaddress", "")
+                + HelpExampleCli("getnewshieldaddress", "")
+                + HelpExampleRpc("getnewshieldaddress", "")
         );
 
     EnsureWallet();
@@ -524,21 +524,21 @@ UniValue getnewshieldedaddress(const JSONRPCRequest& request)
     return KeyIO::EncodePaymentAddress(pwalletMain->GenerateNewSaplingZKey());
 }
 
-UniValue listshieldedunspent(const JSONRPCRequest& request)
+UniValue listshieldunspent(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 4)
         throw std::runtime_error(
-                "listshieldedunspent ( minconf maxconf includeWatchonly [\"shield_addr\",...] )\n"
-                "\nReturns array of unspent shielded notes with between minconf and maxconf (inclusive) confirmations.\n"
+                "listshieldunspent ( minconf maxconf includeWatchonly [\"shield_addr\",...] )\n"
+                "\nReturns array of unspent shield notes with between minconf and maxconf (inclusive) confirmations.\n"
                 "Optionally filter to only include notes sent to specified addresses.\n"
                 "When minconf is 0, unspent notes with zero confirmations are returned, even though they are not immediately spendable.\n"
                 "\nArguments:\n"
                 "1. minconf          (numeric, optional, default=1) The minimum confirmations to filter\n"
                 "2. maxconf          (numeric, optional, default=9999999) The maximum confirmations to filter\n"
                 "3. includeWatchonly (bool, optional, default=false) Also include watchonly addresses (see 'importsaplingviewingkey')\n"
-                "4. \"addresses\"      (string) A json array of shielded addrs to filter on.  Duplicate addresses not allowed.\n"
+                "4. \"addresses\"      (string) A json array of shield addrs to filter on.  Duplicate addresses not allowed.\n"
                 "    [\n"
-                "      \"address\"     (string) shielded addr\n"
+                "      \"address\"     (string) shield addr\n"
                 "      ,...\n"
                 "    ]\n"
                 "\nResult:\n"
@@ -548,18 +548,19 @@ UniValue listshieldedunspent(const JSONRPCRequest& request)
                 "    \"outindex\" (sapling) : n,       (numeric) the output index\n"
                 "    \"confirmations\" : n,       (numeric) the number of confirmations\n"
                 "    \"spendable\" : true|false,  (boolean) true if note can be spent by wallet, false if address is watchonly\n"
-                "    \"address\" : \"address\",    (string) the shielded address\n"
+                "    \"address\" : \"address\",    (string) the shield address\n"
                 "    \"amount\": xxxxx,          (numeric) the amount of value in the note\n"
                 "    \"memo\": xxxxx,            (string) hexademical string representation of memo field\n"
                 "    \"change\": true|false,     (boolean) true if the address that received the note is also one of the sending addresses\n"
+                "    \"nullifier\": xxxxx,       (string) the note's nullifier, hex encoded"
                 "  }\n"
                 "  ,...\n"
                 "]\n"
 
                 "\nExamples\n"
-                + HelpExampleCli("listshieldedunspent", "")
-                + HelpExampleCli("listshieldedunspent", "6 9999999 false \"[\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\",\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\"]\"")
-                + HelpExampleRpc("listshieldedunspent", "6 9999999 false \"[\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\",\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\"]\"")
+                + HelpExampleCli("listshieldunspent", "")
+                + HelpExampleCli("listshieldunspent", "6 9999999 false \"[\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\",\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\"]\"")
+                + HelpExampleRpc("listshieldunspent", "6 9999999 false \"[\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\",\\\"ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh\\\"]\"")
         );
 
     EnsureWallet();
@@ -581,7 +582,7 @@ UniValue listshieldedunspent(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // User has supplied shielded addrs to filter on
+    // User has supplied shield addrs to filter on
     if (request.params.size() > 3) {
         UniValue addresses = request.params[3].get_array();
         if (addresses.size()==0)
@@ -613,7 +614,7 @@ UniValue listshieldedunspent(const JSONRPCRequest& request)
             setAddress.insert(address);
         }
     } else {
-        // User did not provide shielded addrs, so use default i.e. all addresses
+        // User did not provide shield addrs, so use default i.e. all addresses
         std::set<libzcash::SaplingPaymentAddress> saplingzaddrs = {};
         pwalletMain->GetSaplingPaymentAddresses(saplingzaddrs);
         shieldAddrs.insert(saplingzaddrs.begin(), saplingzaddrs.end());
@@ -638,6 +639,10 @@ UniValue listshieldedunspent(const JSONRPCRequest& request)
             obj.pushKV("memo", HexStrTrimmed(entry.memo));
             if (hasSaplingSpendingKey) {
                 obj.pushKV("change", pwalletMain->GetSaplingScriptPubKeyMan()->IsNoteSaplingChange(nullifierSet, entry.address, entry.op));
+            }
+            const auto& nd = pwalletMain->mapWallet.at(entry.op.hash).mapSaplingNoteData.at(entry.op);
+            if (nd.nullifier) {
+                obj.pushKV("nullifier", nd.nullifier->ToString());
             }
             results.push_back(obj);
         }
@@ -797,22 +802,22 @@ UniValue liststakingaddresses(const JSONRPCRequest& request)
     return ListaddressesForPurpose(AddressBook::AddressBookPurpose::COLD_STAKING);
 }
 
-UniValue listshieldedaddresses(const JSONRPCRequest& request)
+UniValue listshieldaddresses(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
-                "listshieldedaddresses ( includeWatchonly )\n"
-                "\nReturns the list of shielded addresses belonging to the wallet.\n"
+                "listshieldaddresses ( includeWatchonly )\n"
+                "\nReturns the list of shield addresses belonging to the wallet.\n"
                 "\nArguments:\n"
                 "1. includeWatchonly (bool, optional, default=false) Also include watchonly addresses (see 'importviewingkey')\n"
                 "\nResult:\n"
                 "[                     (json array of string)\n"
-                "  \"addr\"           (string) a shielded address belonging to the wallet\n"
+                "  \"addr\"           (string) a shield address belonging to the wallet\n"
                 "  ,...\n"
                 "]\n"
                 "\nExamples:\n"
-                + HelpExampleCli("listshieldedaddresses", "")
-                + HelpExampleRpc("listshieldedaddresses", "")
+                + HelpExampleCli("listshieldaddresses", "")
+                + HelpExampleRpc("listshieldaddresses", "")
         );
 
     EnsureWallet();
@@ -933,6 +938,55 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew)
         throw JSONRPCError(RPC_WALLET_ERROR, res.ToString());
 }
 
+static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request);
+
+/*
+ * redirect sendtoaddress/sendmany inputs to shieldsendmany implementation (CreateShieldedTransaction)
+ */
+static UniValue ShieldSendManyTo(const UniValue& sendTo,
+                                   const std::string& commentStr,
+                                   const std::string& toStr,
+                                   int nMinDepth,
+                                   bool fIncludeDelegated)
+{
+    // convert params to 'shieldsendmany' format
+    JSONRPCRequest req;
+    req.params = UniValue(UniValue::VARR);
+    if (!fIncludeDelegated) {
+        req.params.push_back(UniValue("from_transparent"));
+    } else {
+        req.params.push_back(UniValue("from_trans_cold"));
+    }
+    UniValue recipients(UniValue::VARR);
+    for (const std::string& key : sendTo.getKeys()) {
+        UniValue recipient(UniValue::VOBJ);
+        recipient.pushKV("address", key);
+        recipient.pushKV("amount", sendTo[key]);
+        recipients.push_back(recipient);
+    }
+    req.params.push_back(recipients);
+    req.params.push_back(nMinDepth);
+
+    // send
+    SaplingOperation operation = CreateShieldedTransaction(req);
+    std::string txid;
+    auto res = operation.send(txid);
+    if (!res)
+        throw JSONRPCError(RPC_WALLET_ERROR, res.getError());
+
+    // add comments
+    const uint256 txHash(txid);
+    assert(pwalletMain->mapWallet.count(txHash));
+    if (!commentStr.empty()) {
+        pwalletMain->mapWallet[txHash].mapValue["comment"] = commentStr;
+    }
+    if (!toStr.empty()) {
+        pwalletMain->mapWallet[txHash].mapValue["to"] = toStr;
+    }
+
+    return txid;
+}
+
 UniValue sendtoaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
@@ -958,22 +1012,34 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
             HelpExampleCli("sendtoaddress", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.1 \"donation\" \"seans outpost\"") +
             HelpExampleRpc("sendtoaddress", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\", 0.1, \"donation\", \"seans outpost\""));
 
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    bool isStaking = false;
-    CTxDestination address = DecodeDestination(request.params[0].get_str(), isStaking);
-    if (!IsValidDestination(address) || isStaking)
+    bool isStaking = false, isShielded = false;
+    const std::string addrStr = request.params[0].get_str();
+    const CWDestination& destination = Standard::DecodeDestination(addrStr, isStaking, isShielded);
+    if (!Standard::IsValidDestination(destination) || isStaking)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+    const std::string commentStr = (request.params.size() > 2 && !request.params[2].isNull()) ?
+                                   request.params[2].get_str() : "";
+    const std::string toStr = (request.params.size() > 3 && !request.params[3].isNull()) ?
+                                   request.params[3].get_str() : "";
+
+    if (isShielded) {
+        UniValue sendTo(UniValue::VOBJ);
+        sendTo.pushKV(addrStr, request.params[1]);
+        return ShieldSendManyTo(sendTo, commentStr, toStr, 1, false);
+    }
+
+    const CTxDestination& address = *Standard::GetTransparentDestination(destination);
+    LOCK2(cs_main, pwalletMain->cs_wallet);
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
 
     // Wallet comments
     CWalletTx wtx;
-    if (request.params.size() > 2 && !request.params[2].isNull() && !request.params[2].get_str().empty())
-        wtx.mapValue["comment"] = request.params[2].get_str();
-    if (request.params.size() > 3 && !request.params[3].isNull() && !request.params[3].get_str().empty())
-        wtx.mapValue["to"] = request.params[3].get_str();
+    if (!commentStr.empty())
+        wtx.mapValue["comment"] = commentStr;
+    if (!toStr.empty())
+        wtx.mapValue["to"] = toStr;
 
     EnsureWalletIsUnlocked();
 
@@ -1071,7 +1137,7 @@ UniValue CreateColdStakeDelegation(const UniValue& params, CWalletTx& wtxNew, CR
             throw JSONRPCError(RPC_WALLET_ERROR, strError);
         }
     } else {
-        // Delegate shielded coins
+        // Delegate shield coins
         const Consensus::Params& consensus = Params().GetConsensus();
         // Check network status
         int nextBlockHeight = chainActive.Height() + 1;
@@ -1098,7 +1164,7 @@ UniValue delegatestake(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 7)
         throw std::runtime_error(
-            "delegatestake \"stakingaddress\" amount ( \"owneraddress\" fExternalOwner fUseDelegated fForceNotEnabled )\n"
+            "delegatestake \"stakingaddress\" amount ( \"owneraddress\" fExternalOwner fUseDelegated fFromShield fForceNotEnabled )\n"
             "\nDelegate an amount to a given address for cold staking. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
@@ -1110,7 +1176,7 @@ UniValue delegatestake(const JSONRPCRequest& request)
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
             "                               WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.\n"
             "5. \"fUseDelegated\"       (boolean, optional, default = false) include already delegated inputs if needed.\n"
-            "6. \"fFromShielded\"       (boolean, optional, default = false) delegate shielded funds.\n"
+            "6. \"fFromShield\"         (boolean, optional, default = false) delegate shield funds.\n"
             "7. \"fForceNotEnabled\"    (boolean, optional, default = false) ONLY FOR TESTING: force the creation even if SPORK 17 is disabled.\n"
 
             "\nResult:\n"
@@ -1143,7 +1209,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 7)
         throw std::runtime_error(
-            "rawdelegatestake \"stakingaddress\" amount ( \"owneraddress\" fExternalOwner fUseDelegated )\n"
+            "rawdelegatestake \"stakingaddress\" amount ( \"owneraddress\" fExternalOwner fUseDelegated fFromShield )\n"
             "\nDelegate an amount to a given address for cold staking. The amount is a real and is rounded to the nearest 0.00000001\n"
             "\nDelegate transaction is returned as json object." +
             HelpRequiringPassphrase() + "\n"
@@ -1156,7 +1222,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
             "                               WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.\n"
             "5. \"fUseDelegated\"       (boolean, optional, default = false) include already delegated inputs if needed.\n"
-            "6. \"fFromShielded\"       (boolean, optional, default = false) delegate shielded funds.\n"
+            "6. \"fFromShield\"         (boolean, optional, default = false) delegate shield funds.\n"
             "7. \"fForceNotEnabled\"    (boolean, optional, default = false) ONLY FOR TESTING: force the creation even if SPORK 17 is disabled (for tests).\n"
 
             "\nResult:\n"
@@ -1229,16 +1295,16 @@ CAmount getBalanceShieldedAddr(Optional<libzcash::SaplingPaymentAddress>& filter
     return balance;
 }
 
-UniValue getshieldedbalance(const JSONRPCRequest& request)
+UniValue getshieldbalance(const JSONRPCRequest& request)
 {
     if (!pwalletMain)
         return NullUniValue;
 
     if (request.fHelp || request.params.size() > 3)
         throw std::runtime_error(
-                "getshieldedbalance \"address\" ( minconf includeWatchonly )\n"
-                "\nReturn the total shielded value of funds stored in the node's wallet or if an address was given,"
-                "\nreturns the balance of the shielded addr belonging to the node's wallet.\n"
+                "getshieldbalance \"address\" ( minconf includeWatchonly )\n"
+                "\nReturn the total shield value of funds stored in the node's wallet or if an address was given,"
+                "\nreturns the balance of the shield addr belonging to the node's wallet.\n"
                 "\nCAUTION: If the wallet contains any addresses for which it only has incoming viewing keys,"
                 "\nthe returned private balance may be larger than the actual balance, because spends cannot"
                 "\nbe detected with incoming viewing keys.\n"
@@ -1247,15 +1313,15 @@ UniValue getshieldedbalance(const JSONRPCRequest& request)
                 "2. minconf          (numeric, optional, default=1) Only include private and transparent transactions confirmed at least this many times.\n"
                 "3. includeWatchonly (bool, optional, default=false) Also include balance in watchonly addresses (see 'importaddress' and 'importsaplingviewingkey')\n"
                 "\nResult:\n"
-                "amount              (numeric) the total balance of shielded funds (in Sapling addresses)\n"
+                "amount              (numeric) the total balance of shield funds (in Sapling addresses)\n"
                 "\nExamples:\n"
                 "\nThe total amount in the wallet\n"
-                + HelpExampleCli("getshieldedbalance", "")
-                + HelpExampleCli("getshieldedbalance", "ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh") +
+                + HelpExampleCli("getshieldbalance", "")
+                + HelpExampleCli("getshieldbalance", "ptestsapling1h0w73csah2aq0a32h42kr7tq4htlt5wfn4ejxfnm56f6ehjvek7k4e244g6v8v3pgylmz5ea8jh") +
                 "\nThe total amount in the wallet at least 5 blocks confirmed\n"
-                + HelpExampleCli("getshieldedbalance", "\"*\" \"5\"") +
+                + HelpExampleCli("getshieldbalance", "\"*\" \"5\"") +
                 "\nAs a json rpc call\n"
-                + HelpExampleRpc("getshieldedbalance", "\"*\" \"5\"")
+                + HelpExampleRpc("getshieldbalance", "\"*\" \"5\"")
         );
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
@@ -1266,7 +1332,7 @@ UniValue getshieldedbalance(const JSONRPCRequest& request)
         if (addressStr.empty() || addressStr != "*") {
             address = KeyIO::DecodeSaplingPaymentAddress(addressStr);
             if (!address) {
-                throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid shielded address");
+                throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid shield address");
             }
         }
     }
@@ -1281,12 +1347,12 @@ UniValue getshieldedbalance(const JSONRPCRequest& request)
     return ValueFromAmount(nBalance);
 }
 
-UniValue viewshieldedtransaction(const JSONRPCRequest& request)
+UniValue viewshieldtransaction(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-                "viewshieldedtransaction \"txid\"\n"
-                "\nGet detailed shielded information about in-wallet transaction <txid>\n"
+                "viewshieldtransaction \"txid\"\n"
+                "\nGet detailed shield information about in-wallet transaction <txid>\n"
                 + HelpRequiringPassphrase() + "\n"
                 "\nArguments:\n"
                 "1. \"txid\"    (string, required) The transaction id\n"
@@ -1320,8 +1386,8 @@ UniValue viewshieldedtransaction(const JSONRPCRequest& request)
                 "}\n"
 
                 "\nExamples:\n"
-                + HelpExampleCli("viewshieldedtransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
-                + HelpExampleRpc("viewshieldedtransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
+                + HelpExampleCli("viewshieldtransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
+                + HelpExampleRpc("viewshieldtransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
         );
 
     if (!pwalletMain->HasSaplingSPKM()) {
@@ -1340,7 +1406,7 @@ UniValue viewshieldedtransaction(const JSONRPCRequest& request)
     const CWalletTx& wtx = pwalletMain->mapWallet[hash];
 
     if (!wtx.IsShieldedTx()) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid transaction, no shielded data available");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid transaction, no shield data available");
     }
 
     entry.pushKV("txid", hash.GetHex());
@@ -1460,7 +1526,7 @@ static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request)
     SaplingOperation operation(txBuilder);
 
     // Param 0: source of funds. Can either be a valid address, sapling address,
-    // or the string "from_transparent"|"from_trans_cold"|"from_shielded"
+    // or the string "from_transparent"|"from_trans_cold"|"from_shield"
     bool fromSapling  = false;
     std::string sendFromStr = request.params[0].get_str();
     if (sendFromStr == "from_transparent") {
@@ -1469,8 +1535,8 @@ static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request)
     } else if (sendFromStr == "from_trans_cold") {
         // send from any transparent address + delegations
         operation.setSelectTransparentCoins(true, true);
-    } else if (sendFromStr == "from_shielded") {
-        // send from any shielded address
+    } else if (sendFromStr == "from_shield") {
+        // send from any shield address
         operation.setSelectShieldedCoins(true);
         fromSapling = true;
     } else {
@@ -1478,13 +1544,13 @@ static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request)
         if (!IsValidDestination(fromTAddressDest)) {
             auto res = KeyIO::DecodePaymentAddress(sendFromStr);
             if (!IsValidPaymentAddress(res)) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid from address, should be a taddr or shielded addr.");
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid from address, should be a taddr or shield addr.");
             }
             libzcash::SaplingPaymentAddress fromShieldedAddress = *boost::get<libzcash::SaplingPaymentAddress>(&res);
             if (!pwalletMain->HaveSpendingKeyForPaymentAddress(fromShieldedAddress)) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "From address does not belong to this node, shielded addr spending key not found.");
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "From address does not belong to this node, shield addr spending key not found.");
             }
-            // send from user-supplied shielded address
+            // send from user-supplied shield address
             operation.setFromAddress(fromShieldedAddress);
             fromSapling = true;
         } else {
@@ -1538,7 +1604,7 @@ static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request)
         if (!memoValue.isNull()) {
             memo = memoValue.get_str();
             if (!saddr) {
-                throw JSONRPCError(RPC_INVALID_PARAMETER, "Memo cannot be used with a taddr. It can only be used with a shielded addr.");
+                throw JSONRPCError(RPC_INVALID_PARAMETER, "Memo cannot be used with a taddr. It can only be used with a shield addr.");
             }
             if (memo.length() > ZC_MEMO_SIZE*2) {
                 throw JSONRPCError(RPC_INVALID_PARAMETER,  strprintf("Invalid parameter, size of memo is larger than maximum allowed %d", ZC_MEMO_SIZE ));
@@ -1592,7 +1658,7 @@ static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request)
     }
 
     if (fromSapling && nMinDepth == 0) {
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Minconf cannot be zero when sending from shielded addr");
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Minconf cannot be zero when sending from shield addr");
     }
 
     if (nMinDepth < 0) {
@@ -1607,37 +1673,37 @@ static SaplingOperation CreateShieldedTransaction(const JSONRPCRequest& request)
     return operation;
 }
 
-UniValue shieldedsendmany(const JSONRPCRequest& request)
+UniValue shieldsendmany(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
         throw std::runtime_error(
-                "shieldedsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf ) ( fee )\n"
+                "shieldsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf fee )\n"
                 "\nSend to many recipients. Amounts are decimal numbers with at most 8 digits of precision."
-                "\nChange generated from a transparent addr flows to a new  transparent addr address, while change generated from a shielded addr returns to itself."
-                "\nWhen sending coinbase UTXOs to a shielded addr, change is not allowed. The entire value of the UTXO(s) must be consumed."
+                "\nChange generated from a transparent addr flows to a new  transparent addr address, while change generated from a shield addr returns to itself."
+                "\nWhen sending coinbase UTXOs to a shield addr, change is not allowed. The entire value of the UTXO(s) must be consumed."
                 + HelpRequiringPassphrase() + "\n"
                 "\nArguments:\n"
-                "1. \"fromaddress\"         (string, required) The transparent addr or shielded addr to send the funds from.\n"
-                "                             It can also be the string \"from_transparent\"|\"from_shielded\" to send the funds\n"
-                "                             from any transparent|shielded address available.\n"
+                "1. \"fromaddress\"         (string, required) The transparent addr or shield addr to send the funds from.\n"
+                "                             It can also be the string \"from_transparent\"|\"from_shield\" to send the funds\n"
+                "                             from any transparent|shield address available.\n"
                 "                             Additionally, it can be the string \"from_trans_cold\" to select transparent funds,\n"
                 "                             possibly including delegated coins, if needed.\n"
                 "2. \"amounts\"             (array, required) An array of json objects representing the amounts to send.\n"
                 "    [{\n"
-                "      \"address\":address  (string, required) The address is a transparent addr or shielded addr\n"
+                "      \"address\":address  (string, required) The address is a transparent addr or shield addr\n"
                 "      \"amount\":amount    (numeric, required) The numeric amount in " + "PIV" + " is the value\n"
-                "      \"memo\":memo        (string, optional) If the address is a shielded addr, message string of max 512 bytes\n"
+                "      \"memo\":memo        (string, optional) If the address is a shield addr, message string of max 512 bytes\n"
                 "    }, ... ]\n"
                 "3. minconf               (numeric, optional, default=1) Only use funds confirmed at least this many times.\n"
                 "4. fee                   (numeric, optional), The fee amount to attach to this transaction.\n"
-                "                            If not specified, the wallet will try to compute the minimum possible fee for a shielded TX,\n"
+                "                            If not specified, the wallet will try to compute the minimum possible fee for a shield TX,\n"
                 "                            based on the expected transaction size and the current value of -minRelayTxFee.\n"
                 "\nResult:\n"
                 "\"id\"          (string) transaction hash in the network\n"
                 "\nExamples:\n"
-                + HelpExampleCli("shieldedsendmany",
+                + HelpExampleCli("shieldsendmany",
                                  "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" '[{\"address\": \"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\" ,\"amount\": 5.0}]'")
-                + HelpExampleRpc("shieldedsendmany",
+                + HelpExampleRpc("shieldsendmany",
                                  "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\", [{\"address\": \"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\" ,\"amount\": 5.0}]")
         );
 
@@ -1649,38 +1715,38 @@ UniValue shieldedsendmany(const JSONRPCRequest& request)
     return txHash;
 }
 
-UniValue rawshieldedsendmany(const JSONRPCRequest& request)
+UniValue rawshieldsendmany(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
         throw std::runtime_error(
-                "rawshieldedsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf ) ( fee )\n"
+                "rawshieldsendmany \"fromaddress\" [{\"address\":... ,\"amount\":...},...] ( minconf fee )\n"
                 "\nCreates a transaction sending to many recipients (without committing it), and returns the hex string."
                 "\nAmounts are decimal numbers with at most 8 digits of precision."
-                "\nChange generated from a transparent addr flows to a new  transparent addr address, while change generated from a shielded addr returns to itself."
-                "\nWhen sending coinbase UTXOs to a shielded addr, change is not allowed. The entire value of the UTXO(s) must be consumed."
+                "\nChange generated from a transparent addr flows to a new  transparent addr address, while change generated from a shield addr returns to itself."
+                "\nWhen sending coinbase UTXOs to a shield addr, change is not allowed. The entire value of the UTXO(s) must be consumed."
                 + HelpRequiringPassphrase() + "\n"
                 "\nArguments:\n"
-                "1. \"fromaddress\"         (string, required) The transparent addr or shielded addr to send the funds from.\n"
-                "                             It can also be the string \"from_transparent\"|\"from_shielded\" to send the funds\n"
-                "                             from any transparent|shielded address available.\n"
+                "1. \"fromaddress\"         (string, required) The transparent addr or shield addr to send the funds from.\n"
+                "                             It can also be the string \"from_transparent\"|\"from_shield\" to send the funds\n"
+                "                             from any transparent|shield address available.\n"
                 "                             Additionally, it can be the string \"from_trans_cold\" to select transparent funds,\n"
                 "                             possibly including delegated coins, if needed.\n"
                 "2. \"amounts\"             (array, required) An array of json objects representing the amounts to send.\n"
                 "    [{\n"
-                "      \"address\":address  (string, required) The address is a transparent addr or shielded addr\n"
+                "      \"address\":address  (string, required) The address is a transparent addr or shield addr\n"
                 "      \"amount\":amount    (numeric, required) The numeric amount in " + "PIV" + " is the value\n"
-                "      \"memo\":memo        (string, optional) If the address is a shielded addr, message string of max 512 bytes\n"
+                "      \"memo\":memo        (string, optional) If the address is a shield addr, message string of max 512 bytes\n"
                 "    }, ... ]\n"
                 "3. minconf               (numeric, optional, default=1) Only use funds confirmed at least this many times.\n"
                 "4. fee                   (numeric, optional), The fee amount to attach to this transaction.\n"
-                "                            If not specified, the wallet will try to compute the minimum possible fee for a shielded TX,\n"
+                "                            If not specified, the wallet will try to compute the minimum possible fee for a shield TX,\n"
                 "                            based on the expected transaction size and the current value of -minRelayTxFee.\n"
                 "\nResult:\n"
                 "{tx_json}                (json object) decoded transaction\n"
                 "\nExamples:\n"
-                + HelpExampleCli("rawshieldedsendmany",
+                + HelpExampleCli("rawshieldsendmany",
                                  "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" '[{\"address\": \"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\" ,\"amount\": 5.0}]'")
-                + HelpExampleRpc("rawshieldedsendmany",
+                + HelpExampleRpc("rawshieldsendmany",
                                  "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\", [{\"address\": \"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\" ,\"amount\": 5.0}]")
         );
 
@@ -1904,7 +1970,7 @@ UniValue getbalance(const JSONRPCRequest& request)
 {
     if (request.fHelp || (request.params.size() > 4 ))
         throw std::runtime_error(
-            "getbalance ( minconf includeWatchonly includeDelegated )\n"
+            "getbalance ( minconf includeWatchonly includeDelegated includeShield )\n"
             "\nReturns the server's total available balance.\n"
             "The available balance is what the wallet considers currently spendable, and is\n"
             "thus affected by options which limit spendability such as -spendzeroconfchange.\n"
@@ -1913,7 +1979,7 @@ UniValue getbalance(const JSONRPCRequest& request)
             "1. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
             "2. includeWatchonly (bool, optional, default=false) Also include balance in watchonly addresses (see 'importaddress')\n"
             "3. includeDelegated (bool, optional, default=true) Also include balance delegated to cold stakers\n"
-            "4. includeShielded  (bool, optional, default=true) Also include shielded balance\n"
+            "4. includeShield    (bool, optional, default=true) Also include shield balance\n"
 
             "\nResult:\n"
             "amount              (numeric) The total amount in PIV received for this wallet.\n"
@@ -2068,14 +2134,14 @@ static UniValue legacy_sendmany(const UniValue& sendTo, int nMinDepth, std::stri
 
 /*
  * This function uses [legacy_sendmany] in the background.
- * If any recipient is a shielded address, instead it uses [shieldedsendmany "from_transparent"].
+ * If any recipient is a shield address, instead it uses [shieldsendmany "from_transparent"].
  */
 UniValue sendmany(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 5)
         throw std::runtime_error(
             "sendmany \"\" {\"address\":amount,...} ( minconf \"comment\" includeDelegated )\n"
-            "\nSend to multiple destinations. Recipients are transparent or shielded PIVX addresses.\n"
+            "\nSend to multiple destinations. Recipients are transparent or shield PIVX addresses.\n"
             "\nAmounts are double-precision floating point numbers.\n"
             + HelpRequiringPassphrase() + "\n"
 
@@ -2083,7 +2149,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "1. \"dummy\"               (string, required) Must be set to \"\" for backwards compatibility.\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The pivx address (either transparent or shielded) is the key,\n"
+            "      \"address\":amount   (numeric) The pivx address (either transparent or shield) is the key,\n"
             "                                     the numeric amount in PIV is the value\n"
             "      ,...\n"
             "    }\n"
@@ -2100,7 +2166,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             HelpExampleCli("sendmany", "\"\" \"{\\\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\\\":0.01,\\\"DAD3Y6ivr8nPQLT1NEPX84DxGCw9jz9Jvg\\\":0.02}\"") +
             "\nSend two amounts to two different addresses setting the confirmation and comment:\n" +
             HelpExampleCli("sendmany", "\"\" \"{\\\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\\\":0.01,\\\"DAD3Y6ivr8nPQLT1NEPX84DxGCw9jz9Jvg\\\":0.02}\" 6 \"testing\"") +
-            "\nSend to shielded address:\n" +
+            "\nSend to shield address:\n" +
             HelpExampleCli("sendmany", "\"\" \"{\\\"ps1u87kylcmn28yclnx2uy0psnvuhs2xn608ukm6n2nshrpg2nzyu3n62ls8j77m9cgp40dx40evej\\\":10}\"") +
             "\nAs a json rpc call\n" +
             HelpExampleRpc("sendmany", "\"\", \"{\\\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\\\":0.01,\\\"DAD3Y6ivr8nPQLT1NEPX84DxGCw9jz9Jvg\\\":0.02}\", 6, \"testing\"")
@@ -2116,7 +2182,7 @@ UniValue sendmany(const JSONRPCRequest& request)
                         request.params[3].get_str() : "";
     const bool fIncludeDelegated = (request.params.size() > 5 && request.params[5].get_bool());
 
-    // Check  if any recipient address is shielded
+    // Check  if any recipient address is shield
     bool fShieldSend = false;
     for (const std::string& key : sendTo.getKeys()) {
         bool isStaking = false, isShielded = false;
@@ -2128,39 +2194,7 @@ UniValue sendmany(const JSONRPCRequest& request)
     }
 
     if (fShieldSend) {
-        // convert params to 'shieldedsendmany' format
-        JSONRPCRequest req;
-        req.params = UniValue(UniValue::VARR);
-        if (!fIncludeDelegated) {
-            req.params.push_back(UniValue("from_transparent"));
-        } else {
-            req.params.push_back(UniValue("from_trans_cold"));
-        }
-        UniValue recipients(UniValue::VARR);
-        for (const std::string& key : sendTo.getKeys()) {
-            UniValue recipient(UniValue::VOBJ);
-            recipient.pushKV("address", key);
-            recipient.pushKV("amount", sendTo[key]);
-            recipients.push_back(recipient);
-        }
-        req.params.push_back(recipients);
-        req.params.push_back(nMinDepth);
-
-        // send
-        SaplingOperation operation = CreateShieldedTransaction(req);
-        std::string txid;
-        auto res = operation.send(txid);
-        if (!res)
-            throw JSONRPCError(RPC_WALLET_ERROR, res.getError());
-
-        // add comment
-        if (!comment.empty()) {
-            const uint256 txHash(txid);
-            assert(pwalletMain->mapWallet.count(txHash));
-            pwalletMain->mapWallet[txHash].mapValue["comment"] = comment;
-        }
-
-        return txid;
+        return ShieldSendManyTo(sendTo, comment, "", nMinDepth, fIncludeDelegated);
     }
 
     // All recipients are transparent: use Legacy sendmany t->t
@@ -2401,12 +2435,12 @@ UniValue listreceivedbyaddress(const JSONRPCRequest& request)
     return ListReceived(request.params, false);
 }
 
-UniValue listreceivedbyshieldedaddress(const JSONRPCRequest& request)
+UniValue listreceivedbyshieldaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size()==0 || request.params.size() >2)
         throw std::runtime_error(
-                "listreceivedbyshieldedaddress \"address\" ( minconf )\n"
-                "\nReturn a list of amounts received by a shielded addr belonging to the node's wallet.\n"
+                "listreceivedbyshieldaddress \"address\" ( minconf )\n"
+                "\nReturn a list of amounts received by a shield addr belonging to the node's wallet.\n"
                 "\nArguments:\n"
                 "1. \"address\"      (string) The private address.\n"
                 "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
@@ -2423,8 +2457,8 @@ UniValue listreceivedbyshieldedaddress(const JSONRPCRequest& request)
                 "  \"change\": true|false,    (boolean) true if the address that received the note is also one of the sending addresses\n"
                 "}\n"
                 "\nExamples:\n"
-                + HelpExampleCli("listreceivedbyshieldedaddress", "\"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\"")
-                + HelpExampleRpc("listreceivedbyshieldedaddress", "\"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\"")
+                + HelpExampleCli("listreceivedbyshieldaddress", "\"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\"")
+                + HelpExampleRpc("listreceivedbyshieldaddress", "\"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\"")
         );
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
@@ -2444,12 +2478,12 @@ UniValue listreceivedbyshieldedaddress(const JSONRPCRequest& request)
     if (!zaddr) {
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid addr.");
     }
-    libzcash::SaplingPaymentAddress shieldedAddr = *zaddr;
+    libzcash::SaplingPaymentAddress shieldAddr = *zaddr;
 
     auto sspkm = pwalletMain->GetSaplingScriptPubKeyMan();
     // Visitor to support Sapling addrs
-    if (!sspkm->PaymentAddressBelongsToWallet(shieldedAddr)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "From address does not belong to this node, shielded addr spending key or viewing key not found.");
+    if (!sspkm->PaymentAddressBelongsToWallet(shieldAddr)) {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "From address does not belong to this node, shield addr spending key or viewing key not found.");
     }
 
     UniValue result(UniValue::VARR);
@@ -2457,7 +2491,7 @@ UniValue listreceivedbyshieldedaddress(const JSONRPCRequest& request)
     sspkm->GetFilteredNotes(saplingEntries, zaddr, nMinDepth, false, false);
 
     std::set<std::pair<libzcash::PaymentAddress, uint256>> nullifierSet;
-    bool hasSpendingKey = pwalletMain->HaveSpendingKeyForPaymentAddress(shieldedAddr);
+    bool hasSpendingKey = pwalletMain->HaveSpendingKeyForPaymentAddress(shieldAddr);
     if (hasSpendingKey) {
         nullifierSet = sspkm->GetNullifiersForAddresses({*zaddr});
     }
@@ -3856,10 +3890,10 @@ unsigned int sumMultiSend()
     return sum;
 }
 
+/* disable multisend
 UniValue multisend(const JSONRPCRequest& request)
 {
     throw std::runtime_error("Multisend is disabled in this wallet version");
-    /* disable multisend
     CWalletDB walletdb(pwalletMain->strWalletFile);
     bool fFileBacked;
     //MultiSend Commands
@@ -4008,15 +4042,15 @@ UniValue multisend(const JSONRPCRequest& request)
         }
     }
     return printMultiSend();
-    */
 }
+*/
 
 
 UniValue getsaplingnotescount(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
-                "getsaplingnodescount ( minconf )\n"
+                "getsaplingnotescount ( minconf )\n"
                 "Returns the number of sapling notes available in the wallet.\n"
                 "\nArguments:\n"
                 "1. minconf      (numeric, optional, default=1) Only include notes in transactions confirmed at least this many times.\n"
@@ -4111,21 +4145,21 @@ static const CRPCCommand commands[] =
     { "wallet",             "delegatorremove",          &delegatorremove,          true  },
     { "wallet",             "bip38encrypt",             &bip38encrypt,             true  },
     { "wallet",             "bip38decrypt",             &bip38decrypt,             true  },
-    { "wallet",             "multisend",                &multisend,                false },
+    //{ "wallet",             "multisend",                &multisend,                false },
 
     /** Sapling functions */
-    { "wallet",             "getnewshieldedaddress",         &getnewshieldedaddress,          true  },
-    { "wallet",             "listshieldedaddresses",         &listshieldedaddresses,          false },
+    { "wallet",             "getnewshieldaddress",           &getnewshieldaddress,            true  },
+    { "wallet",             "listshieldaddresses",           &listshieldaddresses,            false },
     { "wallet",             "exportsaplingkey",              &exportsaplingkey,               true  },
     { "wallet",             "importsaplingkey",              &importsaplingkey,               true  },
     { "wallet",             "importsaplingviewingkey",       &importsaplingviewingkey,        true  },
     { "wallet",             "exportsaplingviewingkey",       &exportsaplingviewingkey,        true  },
-    { "wallet",             "getshieldedbalance",            &getshieldedbalance,             false },
-    { "wallet",             "listshieldedunspent",           &listshieldedunspent,            false },
-    { "wallet",             "rawshieldedsendmany",           &rawshieldedsendmany,            false },
-    { "wallet",             "shieldedsendmany",              &shieldedsendmany,               false },
-    { "wallet",             "listreceivedbyshieldedaddress", &listreceivedbyshieldedaddress,  false },
-    { "wallet",             "viewshieldedtransaction",       &viewshieldedtransaction,        false },
+    { "wallet",             "getshieldbalance",              &getshieldbalance,               false },
+    { "wallet",             "listshieldunspent",             &listshieldunspent,              false },
+    { "wallet",             "rawshieldsendmany",             &rawshieldsendmany,              false },
+    { "wallet",             "shieldsendmany",                &shieldsendmany,                 false },
+    { "wallet",             "listreceivedbyshieldaddress",   &listreceivedbyshieldaddress,    false },
+    { "wallet",             "viewshieldtransaction",         &viewshieldtransaction,          false },
     { "wallet",             "getsaplingnotescount",          &getsaplingnotescount,           false },
 
     /** Label functions (to replace non-balance account functions) */

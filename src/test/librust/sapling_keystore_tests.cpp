@@ -6,8 +6,9 @@
 #include "test/test_pivx.h"
 #include "test/librust/utiltest.h"
 
-#include "sapling/address.hpp"
+#include "sapling/address.h"
 #include "sapling/sapling_util.h"
+
 #include <boost/test/unit_test.hpp>
 #include <univalue.h>
 

@@ -1,5 +1,5 @@
-#include "sapling/address.hpp"
-#include "sapling/noteencryption.hpp"
+#include "sapling/address.h"
+#include "sapling/noteencryption.h"
 #include "sapling/prf.h"
 #include "sapling/sapling_util.h"
 

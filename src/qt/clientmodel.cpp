@@ -20,6 +20,7 @@
 #include "netbase.h"
 #include "guiinterface.h"
 #include "util.h"
+#include "warnings.h"
 
 #include <stdint.h>
 
@@ -82,6 +83,17 @@ QString ClientModel::getMasternodeCountString() const
     return tr("Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)").arg(QString::number(total)).arg(QString::number((int)ipv4)).arg(QString::number((int)ipv6)).arg(QString::number((int)onion)).arg(QString::number((int)nUnknown));
 }
 
+QString ClientModel::getMasternodesCount()
+{
+    if (!cachedMasternodeCountString.isEmpty()) {
+        return cachedMasternodeCountString;
+    }
+
+    // Force an update
+    cachedMasternodeCountString = getMasternodeCountString();
+    return cachedMasternodeCountString;
+}
+
 int ClientModel::getNumBlocks()
 {
     if (!cacheTip) {
@@ -138,12 +150,8 @@ void ClientModel::updateTimer()
 
 void ClientModel::updateMnTimer()
 {
-    // Get required lock upfront. This avoids the GUI from getting stuck on
-    // periodical polls if the core is holding the locks for a longer time -
-    // for example, during a wallet rescan.
-    TRY_LOCK(cs_main, lockMain);
-    if (!lockMain)
-        return;
+    // Following method is locking the mnmanager mutex for now,
+    // future: move to an event based update.
     QString newMasternodeCountString = getMasternodeCountString();
 
     if (cachedMasternodeCountString != newMasternodeCountString) {

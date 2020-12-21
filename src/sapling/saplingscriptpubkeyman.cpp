@@ -634,7 +634,7 @@ Optional<std::pair<
             ovks.emplace(getCommonOVK());
         } catch (...) {
             LogPrintf("WARNING: No CommonOVK found. Some notes might not be correctly recovered. "
-                      "Unlock the wallet and call 'viewshieldedtransaction %s' to fix.\n", txId.ToString());
+                      "Unlock the wallet and call 'viewshieldtransaction %s' to fix.\n", txId.ToString());
         }
     } else {
         for (const auto& spend : tx.sapData->vShieldedSpend) {
@@ -671,6 +671,9 @@ isminetype SaplingScriptPubKeyMan::IsMine(const CWalletTx& wtx, const SaplingOut
 
 CAmount SaplingScriptPubKeyMan::GetCredit(const CWalletTx& tx, const isminefilter& filter, const bool fUnspent) const
 {
+    if (!tx.IsShieldedTx() || tx.sapData->vShieldedOutput.empty()) {
+        return 0;
+    }
     CAmount nCredit = 0;
     for (int i = 0; i < (int) tx.sapData->vShieldedOutput.size(); ++i) {
         SaplingOutPoint op(tx.GetHash(), i);
@@ -697,6 +700,9 @@ CAmount SaplingScriptPubKeyMan::GetCredit(const CWalletTx& tx, const isminefilte
 
 CAmount SaplingScriptPubKeyMan::GetDebit(const CTransaction& tx, const isminefilter& filter) const
 {
+    if (!tx.IsShieldedTx() || tx.sapData->vShieldedSpend.empty()) {
+        return 0;
+    }
     CAmount nDebit = 0;
     for (const SpendDescription& spend : tx.sapData->vShieldedSpend) {
         const auto &it = mapSaplingNullifiersToNotes.find(spend.nullifier);
@@ -720,7 +726,7 @@ CAmount SaplingScriptPubKeyMan::GetDebit(const CTransaction& tx, const isminefil
 
 CAmount SaplingScriptPubKeyMan::GetShieldedChange(const CWalletTx& wtx) const
 {
-    if (!wtx.isSaplingVersion() || wtx.sapData->vShieldedOutput.empty()) {
+    if (!wtx.IsShieldedTx() || wtx.sapData->vShieldedOutput.empty()) {
         return 0;
     }
     const uint256& txHash = wtx.GetHash();
@@ -756,7 +762,7 @@ bool SaplingScriptPubKeyMan::IsNoteSaplingChange(const std::set<std::pair<libzca
     // also spent Notes in the same transaction. This will catch,
     // for instance:
     // - Change created by spending fractions of Notes (because
-    //   shieldedsendmany sends change to the originating shielded address).
+    //   shieldsendmany sends change to the originating shielded address).
     // - Notes sent from one address to itself.
     const auto& tx = wallet->mapWallet[op.hash];
     if (tx.sapData) {

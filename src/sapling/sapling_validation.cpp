@@ -32,7 +32,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState& state, CAmount& 
         return true;
     }
 
-    // From here, all of the checks are done in +v2 transactions.
+    // From here, all of the checks are done in v3+ transactions.
 
     // if the tx has shielded data, cannot be a coinstake, coinbase, zcspend and zcmint
     if (tx.IsCoinStake() || tx.IsCoinBase() || tx.HasZerocoinSpendInputs() || tx.HasZerocoinMintOutputs())
@@ -53,7 +53,7 @@ bool CheckTransactionWithoutProofVerification(const CTransaction& tx, CValidatio
 {
     // Basic checks that don't depend on any context
     const Consensus::Params& consensus = Params().GetConsensus();
-    // If the tx got to this point, must be +v2.
+    // If the tx got to this point, must be v3+.
     assert(tx.isSaplingVersion());
 
     // Check for non-zero valueBalance when there are no Sapling inputs or outputs

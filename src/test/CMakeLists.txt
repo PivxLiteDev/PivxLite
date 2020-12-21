@@ -127,6 +127,7 @@ set(BITCOIN_TESTS
         ${CMAKE_CURRENT_SOURCE_DIR}/uint256_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/univalue_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/util_tests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/validation_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/sha256compress_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/upgrades_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/librust/sapling_rpc_wallet_tests.cpp
@@ -171,6 +172,10 @@ if(MINIUPNP_FOUND)
     target_compile_definitions(test_pivx PRIVATE "-DSTATICLIB -DMINIUPNP_STATICLIB")
     target_link_libraries(test_pivx PRIVATE ${MINIUPNP_LIBRARY})
     target_include_directories(test_pivx PRIVATE ${MINIUPNP_INCLUDE_DIR})
+endif()
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(test_pivx PRIVATE "-framework Cocoa")
 endif()
 
 target_link_libraries(test_pivx PRIVATE ${sodium_LIBRARY_RELEASE} -ldl -lpthread)

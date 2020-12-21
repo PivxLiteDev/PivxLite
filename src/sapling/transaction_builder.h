@@ -14,10 +14,10 @@
 #include "script/script.h"
 #include "script/standard.h"
 #include "uint256.h"
-#include "sapling/address.hpp"
-#include "sapling/incrementalmerkletree.hpp"
-#include "sapling/note.hpp"
-#include "sapling/noteencryption.hpp"
+#include "sapling/address.h"
+#include "sapling/incrementalmerkletree.h"
+#include "sapling/note.h"
+#include "sapling/noteencryption.h"
 
 struct SpendDescriptionInfo {
     libzcash::SaplingExpandedSpendingKey expsk;
@@ -54,6 +54,11 @@ struct TransparentInputInfo {
         CScript scriptPubKey,
         CAmount value) : scriptPubKey(scriptPubKey), value(value) {}
 };
+
+// Dummy constants used during fee-calculation loop
+extern const OutputDescription DUMMY_SHIELD_OUT;
+extern const SpendDescription DUMMY_SHIELD_SPEND;
+extern const SaplingTxData::binding_sig_t DUMMY_SHIELD_BINDSIG;
 
 class TransactionBuilderResult {
 private:
@@ -120,7 +125,13 @@ public:
 
     void SendChangeTo(CTxDestination& changeAddr);
 
-    TransactionBuilderResult Build();
+    TransactionBuilderResult Build(bool fDummySig = false);
+    // Add Sapling Spend/Output descriptions, binding sig, and transparent signatures
+    TransactionBuilderResult ProveAndSign();
+    // Add dummy Sapling Spend/Output descriptions, binding sig, and transparent signatures
+    TransactionBuilderResult AddDummySignatures();
+    // Remove Sapling Spend/Output descriptions, binding sig, and transparent signatures
+    void ClearProofsAndSignatures();
 };
 
 #endif /* TRANSACTION_BUILDER_H */

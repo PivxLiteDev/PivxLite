@@ -41,7 +41,7 @@ public:
     int64_t sigTime; //mnb message times
 
     CMasternodePing();
-    CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash);
+    CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash, uint64_t _sigTime);
 
     ADD_SERIALIZE_METHODS;
 
@@ -268,7 +268,7 @@ class CMasternodeBroadcast : public CMasternode
 {
 public:
     CMasternodeBroadcast();
-    CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubKey newPubkey, CPubKey newPubkey2, int protocolVersionIn);
+    CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubKey newPubkey, CPubKey newPubkey2, int protocolVersionIn, const CMasternodePing& _lastPing);
     CMasternodeBroadcast(const CMasternode& mn);
 
     bool CheckAndUpdate(int& nDoS);

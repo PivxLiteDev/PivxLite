@@ -164,8 +164,22 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     // Make sure to create the correct block version
     const Consensus::Params& consensus = Params().GetConsensus();
 
-    //!> Block v7: Removes accumulator checkpoints
-    pblock->nVersion = CBlockHeader::CURRENT_VERSION;
+    bool fSaplingActive = NetworkUpgradeActive(nHeight, consensus, Consensus::UPGRADE_V5_0);
+
+    if (fSaplingActive) {
+        //!> Block v8: Sapling / tx v2
+        pblock->nVersion = CBlockHeader::CURRENT_VERSION;
+    } else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V4_0)) {
+        pblock->nVersion = 7;
+    } else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V3_4)) {
+        pblock->nVersion = 6;
+    } else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_BIP65)) {
+        pblock->nVersion = 5;
+    } else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC)) {
+        pblock->nVersion = 4;
+    } else {
+        pblock->nVersion = 3;
+    }
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (Params().IsRegTestNet()) {
@@ -289,6 +303,9 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         int nBlockSigOps = 100;
         bool fSortedByFee = (nBlockPrioritySize <= 0);
 
+        // Keep track of block space used for shielded txes
+        unsigned int nSizeShielded = 0;
+
         TxPriorityCompare comparer(fSortedByFee);
         std::make_heap(vecPriority.begin(), vecPriority.end(), comparer);
 
@@ -303,8 +320,12 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             vecPriority.pop_back();
 
             // Size limits
-            unsigned int nTxSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
+            unsigned int nTxSize = tx.GetTotalSize();
             if (nBlockSize + nTxSize >= nBlockMaxSize)
+                continue;
+
+            const bool isShielded = tx.IsShieldedTx();
+            if (isShielded && nSizeShielded + nTxSize > MAX_BLOCK_SHIELDED_TXES_SIZE)
                 continue;
 
             // Legacy limits on sigOps:
@@ -358,6 +379,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             ++nBlockTx;
             nBlockSigOps += nTxSigOps;
             nFees += nTxFees;
+            if (isShielded) nSizeShielded += nTxSize;
 
             if (fPrintPriority) {
                 LogPrintf("priority %.1f fee %s txid %s\n",
@@ -391,8 +413,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         LogPrintf("%s : total size %u\n", __func__, nBlockSize);
 
         // Sapling
-        if (NetworkUpgradeActive(nHeight, consensus, Consensus::UPGRADE_V5_0)) {
-            pblock->nVersion = 8;
+        if (fSaplingActive) {
             SaplingMerkleTree sapling_tree;
             assert(view.GetSaplingAnchorAt(view.GetBestAnchor(), sapling_tree));
 
@@ -583,7 +604,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-        } else if (consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
+        } else if (pindexPrev->nHeight > 6 && consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
             // Late PoW: run for a little while longer, just in case there is a rewind on the chain.
             LogPrintf("%s: Exiting PoW Mining Thread at height: %d\n", __func__, pindexPrev->nHeight);
             return;

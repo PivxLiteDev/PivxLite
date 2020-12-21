@@ -273,14 +273,8 @@ UniValue mnbudgetvote(const JSONRPCRequest& request)
         UniValue statusObj(UniValue::VOBJ);
 
         while (true) {
-            if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
-                failed++;
-                statusObj.pushKV("node", "local");
-                statusObj.pushKV("result", "failed");
-                statusObj.pushKV("error", "Masternode signing error, GetKeysFromSecret failed.");
-                resultsObj.push_back(statusObj);
-                break;
-            }
+            // Get MN keys
+            activeMasternode.GetKeys(keyMasternode, pubKeyMasternode);
 
             CMasternode* pmn = mnodeman.Find(activeMasternode.vin->prevout);
             if (pmn == NULL) {
@@ -816,11 +810,8 @@ UniValue mnfinalbudget(const JSONRPCRequest& request)
         std::string strHash = request.params[1].get_str();
         uint256 hash(uint256S(strHash));
 
-        CPubKey pubKeyMasternode;
-        CKey keyMasternode;
-
-        if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, keyMasternode, pubKeyMasternode))
-            return "Error upon calling GetKeysFromSecret";
+        CPubKey pubKeyMasternode; CKey keyMasternode;
+        activeMasternode.GetKeys(keyMasternode, pubKeyMasternode);
 
         CMasternode* pmn = mnodeman.Find(activeMasternode.vin->prevout);
         if (pmn == NULL) {

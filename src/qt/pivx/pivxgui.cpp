@@ -239,9 +239,9 @@ void PIVXGUI::handleRestart(QStringList args)
 }
 
 
-void PIVXGUI::setClientModel(ClientModel* clientModel)
+void PIVXGUI::setClientModel(ClientModel* _clientModel)
 {
-    this->clientModel = clientModel;
+    this->clientModel = _clientModel;
     if (this->clientModel) {
         // Create system tray menu (or setup the dock menu) that late to prevent users from calling actions,
         // while the client has not yet fully loaded
@@ -254,6 +254,9 @@ void PIVXGUI::setClientModel(ClientModel* clientModel)
 
         // Receive and report messages from client model
         connect(clientModel, &ClientModel::message, this, &PIVXGUI::message);
+        connect(clientModel, &ClientModel::alertsChanged, [this](const QString& _alertStr) {
+            message(tr("Alert!"), _alertStr, CClientUIInterface::MSG_WARNING);
+        });
         connect(topBar, &TopBar::walletSynced, dashboard, &DashboardWidget::walletSynced);
         connect(topBar, &TopBar::walletSynced, coldStakingWidget, &ColdStakingWidget::walletSynced);
 

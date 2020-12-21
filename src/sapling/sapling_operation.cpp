@@ -170,7 +170,7 @@ OperationResult SaplingOperation::build()
 
         // Build the transaction
         txBuilder.SetFee(nFeeRet);
-        TransactionBuilderResult txResult = txBuilder.Build();
+        TransactionBuilderResult txResult = txBuilder.Build(true);
         auto opTx = txResult.GetTx();
 
         // Check existent tx
@@ -213,6 +213,16 @@ OperationResult SaplingOperation::build()
     }
     // Done
     fee = nFeeRet;
+
+    // Clear dummy signatures/proofs and add real ones
+    txBuilder.ClearProofsAndSignatures();
+    TransactionBuilderResult txResult = txBuilder.ProveAndSign();
+    auto opTx = txResult.GetTx();
+    // Check existent tx
+    if (!opTx) {
+        return errorOut("Failed to build transaction: " + txResult.GetError());
+    }
+    finalTx = *opTx;
     return OperationResult(true);
 }
 
@@ -285,9 +295,9 @@ OperationResult SaplingOperation::loadUtxos(TxValues& txValues)
         return errorOut("Insufficient funds, no available UTXO to spend");
     }
 
-    // sort in ascending order, so smaller utxos appear first
+    // sort in descending order, so higher utxos appear first
     std::sort(transInputs.begin(), transInputs.end(), [](const COutput& i, const COutput& j) -> bool {
-        return i.Value() < j.Value();
+        return i.Value() > j.Value();
     });
 
     // Final step, append utxo to the transaction

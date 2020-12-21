@@ -73,7 +73,7 @@ CMasternode::CMasternode() :
     addr = CService();
     pubKeyCollateralAddress = CPubKey();
     pubKeyMasternode = CPubKey();
-    sigTime = GetAdjustedTime();
+    sigTime = 0;
     lastPing = CMasternodePing();
     protocolVersion = PROTOCOL_VERSION;
     nScanningErrorCount = 0;
@@ -206,7 +206,7 @@ CMasternodeBroadcast::CMasternodeBroadcast() :
         CMasternode()
 { }
 
-CMasternodeBroadcast::CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubKey pubKeyCollateralAddressNew, CPubKey pubKeyMasternodeNew, int protocolVersionIn) :
+CMasternodeBroadcast::CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubKey pubKeyCollateralAddressNew, CPubKey pubKeyMasternodeNew, int protocolVersionIn, const CMasternodePing& _lastPing) :
         CMasternode()
 {
     vin = newVin;
@@ -214,6 +214,8 @@ CMasternodeBroadcast::CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubK
     pubKeyCollateralAddress = pubKeyCollateralAddressNew;
     pubKeyMasternode = pubKeyMasternodeNew;
     protocolVersion = protocolVersionIn;
+    lastPing = _lastPing;
+    sigTime = lastPing.sigTime;
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast(const CMasternode& mn) :
@@ -286,7 +288,7 @@ bool CMasternodeBroadcast::Create(const CTxIn& txin,
 
     // Get block hash to ping (TODO: move outside of this function)
     const uint256& nBlockHashToPing = mnodeman.GetBlockHashToPing();
-    CMasternodePing mnp(txin, nBlockHashToPing);
+    CMasternodePing mnp(txin, nBlockHashToPing, GetAdjustedTime());
     if (!mnp.Sign(keyMasternodeNew, pubKeyMasternodeNew)) {
         strErrorRet = strprintf("Failed to sign ping, masternode=%s", txin.prevout.hash.ToString());
         LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strErrorRet);
@@ -294,7 +296,7 @@ bool CMasternodeBroadcast::Create(const CTxIn& txin,
         return false;
     }
 
-    mnbRet = CMasternodeBroadcast(service, txin, pubKeyCollateralAddressNew, pubKeyMasternodeNew, PROTOCOL_VERSION);
+    mnbRet = CMasternodeBroadcast(service, txin, pubKeyCollateralAddressNew, pubKeyMasternodeNew, PROTOCOL_VERSION, mnp);
 
     if (!mnbRet.IsValidNetAddr()) {
         strErrorRet = strprintf("Invalid IP address %s, masternode=%s", mnbRet.addr.ToStringIP (), txin.prevout.hash.ToString());
@@ -303,7 +305,6 @@ bool CMasternodeBroadcast::Create(const CTxIn& txin,
         return false;
     }
 
-    mnbRet.lastPing = mnp;
     if (!mnbRet.Sign(keyCollateralAddressNew, pubKeyCollateralAddressNew)) {
         strErrorRet = strprintf("Failed to sign broadcast, masternode=%s", txin.prevout.hash.ToString());
         LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strErrorRet);
@@ -563,14 +564,14 @@ CMasternodePing::CMasternodePing() :
         CSignedMessage(),
         vin(),
         blockHash(),
-        sigTime(GetAdjustedTime())
+        sigTime(0)
 { }
 
-CMasternodePing::CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash) :
+CMasternodePing::CMasternodePing(const CTxIn& newVin, const uint256& nBlockHash, uint64_t _sigTime) :
         CSignedMessage(),
         vin(newVin),
         blockHash(nBlockHash),
-        sigTime(GetAdjustedTime())
+        sigTime(_sigTime)
 { }
 
 uint256 CMasternodePing::GetHash() const
@@ -601,6 +602,14 @@ bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireAvailable, bool fCh
         return false;
     }
 
+    // Check if the ping block hash exists and it's within 24 blocks from the tip
+    if (!mnodeman.IsWithinDepth(blockHash, 2 * MNPING_DEPTH)) {
+        LogPrint(BCLog::MNPING,"%s: Masternode %s block hash %s is too old or has an invalid block hash\n",
+                                        __func__, vin.prevout.hash.ToString(), blockHash.ToString());
+        nDos = 33;
+        return false;
+    }
+
     // see if we have this Masternode
     CMasternode* pmn = mnodeman.Find(vin.prevout);
     const bool isMasternodeFound = (pmn != nullptr);
@@ -628,14 +637,6 @@ bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireAvailable, bool fCh
         // last ping was more then MASTERNODE_MIN_MNP_SECONDS-60 ago comparing to this one
         if (!pmn->IsPingedWithin(MasternodeMinPingSeconds() - 60, sigTime)) {
             if (!isSignatureValid) {
-                nDos = 33;
-                return false;
-            }
-
-            // Check if the ping block hash exists and it's within 24 blocks from the tip
-            if (!mnodeman.IsWithinDepth(blockHash, 2 * MNPING_DEPTH)) {
-                LogPrint(BCLog::MNPING,"%s: Masternode %s block hash %s is too old or has an invalid block hash\n",
-                                                __func__, vin.prevout.hash.ToString(), blockHash.ToString());
                 nDos = 33;
                 return false;
             }

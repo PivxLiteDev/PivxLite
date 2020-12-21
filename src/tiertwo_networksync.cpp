@@ -107,7 +107,6 @@ bool CMasternodeSync::MessageDispatcher(CNode* pfrom, std::string& strCommand, C
                 // TODO: This could be a MASTERNODE_SYNC_BUDGET_FIN as well, possibly should decouple the finalization budget sync
                 //  from the MASTERNODE_SYNC_BUDGET_PROP (both are under the BUDGETVOTESYNC message)
                 UpdatePeerSyncState(pfrom->GetId(), NetMsgType::BUDGETVOTESYNC, MASTERNODE_SYNC_FINISHED);
-                LogPrintf("SYNC FINISHED!\n");
                 return true;
             }
             case MASTERNODE_SYNC_BUDGET_FIN: {

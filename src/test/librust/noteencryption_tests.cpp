@@ -8,12 +8,12 @@
 #include <array>
 #include <stdexcept>
 
-#include "sapling/address.hpp"
-#include "sapling/note.hpp"
-#include "sapling/noteencryption.hpp"
+#include "crypto/sha256.h"
+#include "sapling/address.h"
+#include "sapling/note.h"
+#include "sapling/noteencryption.h"
 #include "sapling/prf.h"
 #include "sapling/sapling_util.h"
-#include "crypto/sha256.h"
 
 #include <boost/test/unit_test.hpp>
 #include <librustzcash.h>

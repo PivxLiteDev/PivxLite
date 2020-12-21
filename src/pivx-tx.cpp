@@ -13,7 +13,6 @@
 #include "primitives/transaction.h"
 #include "script/script.h"
 #include "script/sign.h"
-#include "guiinterface.h" // for _(...)
 #include <univalue.h>
 #include "util.h"
 #include "utilmoneystr.h"
@@ -27,7 +26,6 @@
 
 static bool fCreateBlank;
 static std::map<std::string, UniValue> registers;
-CClientUIInterface uiInterface;
 
 static bool AppInitRawTx(int argc, char* argv[])
 {
@@ -448,12 +446,14 @@ static void MutateTxSign(CMutableTransaction& tx, const std::string& flagStr)
         const CAmount& amount = coin.out.nValue;
 
         SignatureData sigdata;
+        SigVersion sigversion =  mergedTx.GetRequiredSigVersion();
         // Only sign SIGHASH_SINGLE if there's a corresponding output:
         if (!fHashSingle || (i < mergedTx.vout.size()))
             ProduceSignature(
                     MutableTransactionSignatureCreator(&keystore, &mergedTx, i, amount, nHashType),
                     prevPubKey,
                     sigdata,
+                    sigversion,
                     false // no cold stake
             );
 
@@ -462,7 +462,8 @@ static void MutateTxSign(CMutableTransaction& tx, const std::string& flagStr)
             sigdata = CombineSignatures(prevPubKey, MutableTransactionSignatureChecker(&mergedTx, i, amount), sigdata, DataFromTransaction(txv, i));
         }
         UpdateTransaction(mergedTx, i, sigdata);
-        if (!VerifyScript(txin.scriptSig, prevPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, MutableTransactionSignatureChecker(&mergedTx, i, amount)))
+        if (!VerifyScript(txin.scriptSig, prevPubKey, STANDARD_SCRIPT_VERIFY_FLAGS,
+                MutableTransactionSignatureChecker(&mergedTx, i, amount), sigversion))
             fComplete = false;
     }
 

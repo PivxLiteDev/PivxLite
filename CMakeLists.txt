@@ -400,6 +400,7 @@ set(COMMON_SOURCES
         ./src/script/script_error.cpp
         ./src/spork.cpp
         ./src/sporkdb.cpp
+        ./src/warnings.cpp
         )
 add_library(COMMON_A STATIC ${BitcoinHeaders} ${COMMON_SOURCES})
 target_include_directories(COMMON_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -568,6 +569,10 @@ if(MINIUPNP_FOUND)
     target_compile_definitions(pivxd PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
     target_link_libraries(pivxd ${MINIUPNP_LIBRARY})
     target_include_directories(pivxd PUBLIC ${MINIUPNP_INCLUDE_DIR})
+endif()
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(pivxd "-framework Cocoa")
 endif()
 
 target_link_libraries(pivxd ${sodium_LIBRARY_RELEASE} -ldl -lpthread)

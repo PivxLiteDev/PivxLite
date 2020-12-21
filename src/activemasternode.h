@@ -40,6 +40,7 @@ public:
     // Initialized by init.cpp
     // Keys for the main Masternode
     CPubKey pubKeyMasternode;
+    CKey privKeyMasternode;
 
     // Initialized while registering Masternode
     Optional<CTxIn> vin;
@@ -55,6 +56,8 @@ public:
     bool SendMasternodePing(std::string& errorMessage);
     /// Enable cold wallet mode (run a Masternode with no funds)
     bool EnableHotColdMasterNode(CTxIn& vin, CService& addr);
+
+    void GetKeys(CKey& privKeyMasternode, CPubKey& pubKeyMasternode);
 };
 
 #endif

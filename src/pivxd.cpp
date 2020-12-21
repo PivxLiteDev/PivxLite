@@ -3,19 +3,16 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
+#include "chainparams.h"
 #include "clientversion.h"
 #include "fs.h"
 #include "init.h"
 #include "masternodeconfig.h"
 #include "noui.h"
 #include "rpc/server.h"
-#include "guiinterface.h"
 #include "util.h"
-#include "httpserver.h"
-#include "httprpc.h"
-#include "validation.h"
 
 #include <stdio.h>
 

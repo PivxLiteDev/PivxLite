@@ -33,7 +33,6 @@ OperationResult initMasternode(const std::string& _strMasterNodePrivKey, const s
 
     // Global params set
     strMasterNodeAddr = _strMasterNodeAddr;
-    strMasterNodePrivKey = _strMasterNodePrivKey;
 
     // Address parsing.
     const CChainParams& params = Params();
@@ -56,11 +55,12 @@ OperationResult initMasternode(const std::string& _strMasterNodePrivKey, const s
 
     CKey key;
     CPubKey pubkey;
-
-    if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, key, pubkey)) {
+    if (!CMessageSigner::GetKeysFromSecret(_strMasterNodePrivKey, key, pubkey)) {
         return errorOut(_("Invalid masternodeprivkey. Please see the documentation."));
     }
+
     activeMasternode.pubKeyMasternode = pubkey;
+    activeMasternode.privKeyMasternode = key;
     fMasterNode = true;
     return OperationResult(true);
 }
@@ -169,19 +169,16 @@ bool CActiveMasternode::SendMasternodePing(std::string& errorMessage)
         return false;
     }
 
-    CPubKey pubKeyMasternode;
-    CKey keyMasternode;
-
-    if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
-        errorMessage = "Error upon calling GetKeysFromSecret.\n";
+    if (!privKeyMasternode.IsValid() || !pubKeyMasternode.IsValid()) {
+        errorMessage = "Error upon masternode key.\n";
         return false;
     }
 
     LogPrintf("CActiveMasternode::SendMasternodePing() - Relay Masternode Ping vin = %s\n", vin->ToString());
 
     const uint256& nBlockHash = mnodeman.GetBlockHashToPing();
-    CMasternodePing mnp(*vin, nBlockHash);
-    if (!mnp.Sign(keyMasternode, pubKeyMasternode)) {
+    CMasternodePing mnp(*vin, nBlockHash, GetAdjustedTime());
+    if (!mnp.Sign(privKeyMasternode, pubKeyMasternode)) {
         errorMessage = "Couldn't sign Masternode Ping";
         return false;
     }
@@ -233,4 +230,13 @@ bool CActiveMasternode::EnableHotColdMasterNode(CTxIn& newVin, CService& newServ
     LogPrintf("CActiveMasternode::EnableHotColdMasterNode() - Enabled! You may shut down the cold daemon.\n");
 
     return true;
+}
+
+void CActiveMasternode::GetKeys(CKey& _privKeyMasternode, CPubKey& _pubKeyMasternode)
+{
+    if (!privKeyMasternode.IsValid() || !pubKeyMasternode.IsValid()) {
+        throw std::runtime_error("Error trying to get masternode keys");
+    }
+    _privKeyMasternode = privKeyMasternode;
+    _pubKeyMasternode = pubKeyMasternode;
 }

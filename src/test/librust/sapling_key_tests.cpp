@@ -5,10 +5,12 @@
 
 #include "test/test_pivx.h"
 
-#include "sapling/address.hpp"
+#include "sapling/address.h"
 #include "sapling/key_io_sapling.h"
+
 #include <string>
 #include <vector>
+
 #include <boost/test/unit_test.hpp>
 
 

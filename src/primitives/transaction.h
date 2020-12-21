@@ -21,6 +21,12 @@
 
 class CTransaction;
 
+enum SigVersion
+{
+    SIGVERSION_BASE = 0,
+    SIGVERSION_SAPLING = 1,
+};
+
 // contextual flag to guard the serialization for v5 upgrade.
 // can be removed once v5 enforcement is activated.
 extern std::atomic<bool> g_IsSaplingActive;
@@ -229,7 +235,7 @@ public:
     /** Transaction Versions */
     enum TxVersion: int16_t {
         LEGACY      = 1,
-        SAPLING     = 2,
+        SAPLING     = 3,
         TOOHIGH
     };
 
@@ -320,6 +326,12 @@ public:
     bool IsSpecialTx() const
     {
         return isSaplingVersion() && nType != TxType::NORMAL && hasExtraPayload();
+    }
+
+    // Ensure that special and sapling fields are signed
+    SigVersion GetRequiredSigVersion() const
+    {
+        return isSaplingVersion() ? SIGVERSION_SAPLING : SIGVERSION_BASE;
     }
 
     /*
@@ -421,6 +433,17 @@ struct CMutableTransaction
      * fly, as opposed to GetHash() in CTransaction, which uses a cached result.
      */
     uint256 GetHash() const;
+
+    bool isSaplingVersion() const
+    {
+        return nVersion >= CTransaction::TxVersion::SAPLING;
+    }
+
+    // Ensure that special and sapling fields are signed
+    SigVersion GetRequiredSigVersion() const
+    {
+        return isSaplingVersion() ? SIGVERSION_SAPLING : SIGVERSION_BASE;
+    }
 };
 
 typedef std::shared_ptr<const CTransaction> CTransactionRef;

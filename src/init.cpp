@@ -66,6 +66,7 @@
 #include "wallet/rpcwallet.h"
 
 #endif
+#include "warnings.h"
 
 #include <atomic>
 #include <fstream>
@@ -125,7 +126,7 @@ enum BindFlags {
 };
 
 static const char* FEE_ESTIMATES_FILENAME = "fee_estimates.dat";
-CClientUIInterface uiInterface;
+CClientUIInterface uiInterface;  // Declared but not defined in guiinterface.h
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -1463,9 +1464,6 @@ bool AppInit2()
     // ********************************************************* Step 7: load block chain
 
     fReindex = gArgs.GetBoolArg("-reindex", false);
-
-    // Assume sapling active during reindex for proper v2 deserialization when loading the wallet
-    if (fReindex) g_IsSaplingActive = true;
 
     // Create blocks directory if it doesn't already exist
     fs::create_directories(GetDataDir() / "blocks");

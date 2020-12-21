@@ -22,8 +22,6 @@
 
 #include <univalue.h>
 
-#define _(x) std::string(x) /* Keep the _() around in case gettext or such will be used later to translate non-UI */
-
 static const char DEFAULT_RPCCONNECT[] = "127.0.0.1";
 static const int DEFAULT_HTTP_CLIENT_TIMEOUT=900;
 

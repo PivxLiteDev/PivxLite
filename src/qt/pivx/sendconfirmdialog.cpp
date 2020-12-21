@@ -140,6 +140,8 @@ void TxDetailDialog::setData(WalletModel *_model, const QModelIndex &index)
             ui->contentMemo->setVisible(true);
             ui->labelDividerMemo->setVisible(true);
             ui->textMemo->adjustSize();
+            ui->textMemo->moveCursor(QTextCursor::Start);
+            ui->textMemo->ensureCursorVisible();
         } else {
             ui->contentMemo->setVisible(false);
             ui->labelDividerMemo->setVisible(false);
@@ -211,6 +213,8 @@ void TxDetailDialog::setData(WalletModel *_model, WalletModelTransaction* _tx)
             ui->textMemo->insertPlainText(recipient.message);
             ui->contentMemo->setVisible(true);
             ui->labelDividerMemo->setVisible(true);
+            ui->textMemo->moveCursor(QTextCursor::Start);
+            ui->textMemo->ensureCursorVisible();
         } else {
             ui->contentMemo->setVisible(false);
             ui->labelDividerMemo->setVisible(false);

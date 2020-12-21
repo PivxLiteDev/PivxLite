@@ -11,9 +11,9 @@
 #include "uint256.h"
 #include "consensus/consensus.h"
 
-#include "sapling/noteencryption.hpp"
+#include "sapling/noteencryption.h"
 #include "sapling/sapling.h"
-#include "sapling/proof.hpp"
+#include "sapling/proof.h"
 
 #include <boost/variant.hpp>
 

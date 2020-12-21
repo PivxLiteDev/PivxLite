@@ -8,10 +8,10 @@
 #define BITCOIN_COINS_H
 
 #include "compressor.h"
+#include "consensus/consensus.h" // can be removed once policy/ established
 #include "memusage.h"
-#include "consensus/consensus.h"  // can be removed once policy/ established
+#include "sapling/incrementalmerkletree.h"
 #include "script/standard.h"
-#include "sapling/incrementalmerkletree.hpp"
 #include "serialize.h"
 #include "uint256.h"
 
@@ -277,7 +277,7 @@ class CCoinsViewCache : public CCoinsViewBacked
 protected:
     /**
      * Make mutable so that we can "fill the cache" even from Get-methods
-     * declared as "const".  
+     * declared as "const".
      */
     mutable uint256 hashBlock;
     mutable CCoinsMap cacheCoins;

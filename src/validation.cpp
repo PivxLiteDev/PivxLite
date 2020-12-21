@@ -48,6 +48,7 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #include "validationinterface.h"
+#include "warnings.h"
 #include "zpivchain.h"
 #include "zpiv/zerocoin.h"
 #include "zpiv/zpivmodule.h"
@@ -791,7 +792,7 @@ CAmount GetBlockValue(int nHeight)
         return 250000 * COIN;
     }
     // Mainnet/Testnet block reward reduction schedule
-    const int nLast = isTestnet ? 648000 : Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight;
+    const int nLast = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight;
     if (nHeight > nLast)   return 5    * COIN;
     if (nHeight > 648000)  return 4.5  * COIN;
     if (nHeight > 604800)  return 9    * COIN;
@@ -802,8 +803,7 @@ CAmount GetBlockValue(int nHeight)
     if (nHeight > 388800)  return 31.5 * COIN;
     if (nHeight > 345600)  return 36   * COIN;
     if (nHeight > 302400)  return 40.5 * COIN;
-    const int nSecond = isTestnet ? 145000 : 151200;
-    if (nHeight > nSecond) return 45   * COIN;
+    if (nHeight > 151200)  return 45   * COIN;
     if (nHeight > 86400)   return 225  * COIN;
     if (nHeight !=1)       return 250  * COIN;
     // Premine for 6 masternodes at block 1
@@ -836,8 +836,6 @@ bool IsInitialBlockDownload()
     return state;
 }
 
-bool fLargeWorkForkFound = false;
-bool fLargeWorkInvalidChainFound = false;
 CBlockIndex *pindexBestForkTip = NULL, *pindexBestForkBase = NULL;
 
 static void AlertNotify(const std::string& strMessage)
@@ -876,7 +874,7 @@ void CheckForkWarningConditions()
         pindexBestForkTip = nullptr;
 
     if (pindexBestForkTip || (pindexBestInvalid && pindexBestInvalid->nChainWork > pChainTip->nChainWork + (GetBlockProof(*pChainTip) * 6))) {
-        if (!fLargeWorkForkFound && pindexBestForkBase) {
+        if (!GetfLargeWorkForkFound() && pindexBestForkBase) {
             if (pindexBestForkBase->phashBlock) {
                 std::string warning = std::string("'Warning: Large-work fork detected, forking after block ") +
                                       pindexBestForkBase->phashBlock->ToString() + std::string("'");
@@ -888,15 +886,15 @@ void CheckForkWarningConditions()
                 LogPrintf("CheckForkWarningConditions: Warning: Large valid fork found\n  forking the chain at height %d (%s)\n  lasting to height %d (%s).\nChain state database corruption likely.\n",
                     pindexBestForkBase->nHeight, pindexBestForkBase->phashBlock->ToString(),
                     pindexBestForkTip->nHeight, pindexBestForkTip->phashBlock->ToString());
-                fLargeWorkForkFound = true;
+                SetfLargeWorkForkFound(true);
             }
         } else {
             LogPrintf("CheckForkWarningConditions: Warning: Found invalid chain at least ~6 blocks longer than our best chain.\nChain state database corruption likely.\n");
-            fLargeWorkInvalidChainFound = true;
+            SetfLargeWorkInvalidChainFound(true);
         }
     } else {
-        fLargeWorkForkFound = false;
-        fLargeWorkInvalidChainFound = false;
+        SetfLargeWorkForkFound(false);
+        SetfLargeWorkInvalidChainFound(false);
     }
 }
 
@@ -987,7 +985,7 @@ void UpdateCoins(const CTransaction& tx, CCoinsViewCache &inputs, int nHeight)
 bool CScriptCheck::operator()()
 {
     const CScript& scriptSig = ptxTo->vin[nIn].scriptSig;
-    return VerifyScript(scriptSig, scriptPubKey, nFlags, CachingTransactionSignatureChecker(ptxTo, nIn, amount, cacheStore, *precomTxData), &error);
+    return VerifyScript(scriptSig, scriptPubKey, nFlags, CachingTransactionSignatureChecker(ptxTo, nIn, amount, cacheStore, *precomTxData), ptxTo->GetRequiredSigVersion(), &error);
 }
 
 std::map<COutPoint, COutPoint> mapInvalidOutPoints;
@@ -1186,7 +1184,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState &state, const CCoinsVi
 /** Abort with a message */
 static bool AbortNode(const std::string& strMessage, const std::string& userMessage="")
 {
-    strMiscWarning = strMessage;
+    SetMiscWarning(strMessage);
     LogPrintf("*** %s\n", strMessage);
     uiInterface.ThreadSafeMessageBox(
         userMessage.empty() ? _("Error: A fatal internal error occured, see debug.log for details") : userMessage,
@@ -1670,8 +1668,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         UpdateCoins(tx, view, i == 0 ? undoDummy : blockundo.vtxundo.back(), pindex->nHeight);
 
         // Sapling update tree
-        for(const OutputDescription &outputDescription : tx.sapData->vShieldedOutput) {
-            sapling_tree.append(outputDescription.cmu);
+        if (tx.IsShieldedTx() && !tx.sapData->vShieldedOutput.empty()) {
+            for(const OutputDescription &outputDescription : tx.sapData->vShieldedOutput) {
+                sapling_tree.append(outputDescription.cmu);
+            }
         }
 
         vPos.emplace_back(tx.GetHash(), pos);
@@ -1924,10 +1924,12 @@ void static UpdateTip(CBlockIndex* pindexNew)
         if (nUpgraded > 0)
             LogPrintf("SetBestChain: %d of last 100 blocks above version %d\n", nUpgraded, (int)CBlock::CURRENT_VERSION);
         if (nUpgraded > 100 / 2) {
-            // strMiscWarning is read by GetWarnings(), called by Qt and the JSON-RPC code to warn the user:
-            strMiscWarning = _("Warning: This version is obsolete, upgrade required!");
-            AlertNotify(strMiscWarning);
-            fWarned = true;
+            std::string strWarning = _("Warning: This version is obsolete, upgrade required!");
+            SetMiscWarning(strWarning);
+            if (!fWarned) {
+                AlertNotify(strWarning);
+                fWarned = true;
+            }
         }
     }
 }
@@ -2093,50 +2095,6 @@ bool static ConnectTip(CValidationState& state, CBlockIndex* pindexNew, const st
     LogPrint(BCLog::BENCH, "  - Connect postprocess: %.2fms [%.2fs]\n", (nTime6 - nTime5) * 0.001, nTimePostConnect * 0.000001);
     LogPrint(BCLog::BENCH, "- Connect block: %.2fms [%.2fs]\n", (nTime6 - nTime1) * 0.001, nTimeTotal * 0.000001);
     return true;
-}
-
-bool DisconnectBlocks(int nBlocks, const CChainParams& chainparams)
-{
-    LOCK(cs_main);
-
-    CValidationState state;
-
-    LogPrintf("%s: Got command to replay %d blocks\n", __func__, nBlocks);
-    for (int i = 0; i <= nBlocks; i++)
-        DisconnectTip(state, chainparams);
-
-    return true;
-}
-
-void ReprocessBlocks(int nBlocks, const CChainParams& chainparams)
-{
-    std::map<uint256, int64_t>::iterator it = mapRejectedBlocks.begin();
-    while (it != mapRejectedBlocks.end()) {
-        //use a window twice as large as is usual for the nBlocks we want to reset
-        if ((*it).second > GetTime() - (nBlocks * Params().GetConsensus().nTargetSpacing * 2)) {
-            BlockMap::iterator mi = mapBlockIndex.find((*it).first);
-            if (mi != mapBlockIndex.end() && (*mi).second) {
-                LOCK(cs_main);
-
-                CBlockIndex* pindex = (*mi).second;
-                LogPrintf("%s - %s\n", __func__, (*it).first.ToString());
-
-                CValidationState state;
-                ReconsiderBlock(state, pindex);
-            }
-        }
-        ++it;
-    }
-
-    CValidationState state;
-    {
-        LOCK(cs_main);
-        DisconnectBlocks(nBlocks, chainparams);
-    }
-
-    if (state.IsValid()) {
-        ActivateBestChain(state);
-    }
 }
 
 /**
@@ -2658,26 +2616,6 @@ bool FindUndoPos(CValidationState& state, int nFile, CDiskBlockPos& pos, unsigne
     return true;
 }
 
-bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
-{
-    // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
-        return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
-
-    if (Params().IsRegTestNet()) return true;
-
-    // Version 4 header must be used after consensus.ZC_TimeStart. And never before.
-    if (block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart) {
-        if(block.nVersion < 4)
-            return state.DoS(50,false, REJECT_INVALID, "block-version", "must be above 4 after ZC_TimeStart");
-    } else {
-        if (block.nVersion >= 4)
-            return state.DoS(50,false, REJECT_INVALID, "block-version", "must be below 4 before ZC_TimeStart");
-    }
-
-    return true;
-}
-
 bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
 {
     if (!tx.HasP2CSOutputs())
@@ -2724,6 +2662,16 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     return true;
 }
 
+// cumulative size of all shielded txes inside a block
+static unsigned int GetTotalShieldedTxSize(const CBlock& block)
+{
+    unsigned int nSizeShielded = 0;
+    for (const auto& tx : block.vtx) {
+        if (tx->IsShieldedTx()) nSizeShielded += tx->GetTotalSize();
+    }
+    return nSizeShielded;
+}
+
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     if (block.fChecked)
@@ -2734,8 +2682,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    if (!CheckBlockHeader(block, state, !IsPoS))
-        return false;
+    if (!IsPoS && fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
+        return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
     // All potential-corruption validation must be done before we do any
     // transaction validation, as otherwise we may mark the header as invalid
@@ -2757,8 +2705,13 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
     // Size limits
     unsigned int nMaxBlockSize = MAX_BLOCK_SIZE_CURRENT;
-    if (block.vtx.empty() || block.vtx.size() > nMaxBlockSize || ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION) > nMaxBlockSize)
+    const unsigned int nBlockSize = ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION);
+    if (block.vtx.empty() || block.vtx.size() > nMaxBlockSize || nBlockSize > nMaxBlockSize)
         return state.DoS(100, false, REJECT_INVALID, "bad-blk-length", false, "size limits failed");
+
+    // Check shielded txes limits (no need to check if the block size is already under 750kB)
+    if (nBlockSize > MAX_BLOCK_SHIELDED_TXES_SIZE && GetTotalShieldedTxSize(block) > MAX_BLOCK_SHIELDED_TXES_SIZE)
+        return state.DoS(100, false, REJECT_INVALID, "bad-blk-shielded-size", false, "shielded size limits failed");
 
     // First transaction must be coinbase, the rest must not be
     if (block.vtx.empty() || !block.vtx[0]->IsCoinBase())
@@ -2979,11 +2932,12 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
         return state.DoS(0, error("%s : forked chain older than last checkpoint (height %d)", __func__, nHeight));
 
     // Reject outdated version blocks
-    if((block.nVersion < 3 && nHeight >= 1) ||
+    if ((block.nVersion < 3 && nHeight >= 1) ||
         (block.nVersion < 4 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC)) ||
         (block.nVersion < 5 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_BIP65)) ||
         (block.nVersion < 6 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V3_4)) ||
-        (block.nVersion < 7 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V4_0)))
+        (block.nVersion < 7 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V4_0)) ||
+        (block.nVersion < 8 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V5_0)))
     {
         std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
         return state.Invalid(false, REJECT_OBSOLETE, "bad-version", stringErr);
@@ -3093,10 +3047,6 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
         if (pindex->nStatus & BLOCK_FAILED_MASK)
             return state.Invalid(error("%s : block is marked invalid", __func__), 0, "duplicate");
         return true;
-    }
-
-    if (!CheckBlockHeader(block, state, false)) {
-        return error("%s: CheckBlockHeader failed for block %s: %s", __func__, hash.ToString(), FormatStateMessage(state));
     }
 
     // Get prev block index
@@ -4112,37 +4062,6 @@ void static CheckBlockIndex()
 
     // Check that we actually traversed the entire map.
     assert(nNodes == forward.size());
-}
-
-
-std::string GetWarnings(std::string strFor)
-{
-    std::string strStatusBar;
-    std::string strRPC;
-
-    if (!CLIENT_VERSION_IS_RELEASE)
-        strStatusBar = _("This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!");
-
-    if (gArgs.GetBoolArg("-testsafemode", DEFAULT_TESTSAFEMODE))
-        strStatusBar = strRPC = "testsafemode enabled";
-
-    // Misc warnings like out of disk space and clock is wrong
-    if (strMiscWarning != "") {
-        strStatusBar = strMiscWarning;
-    }
-
-    if (fLargeWorkForkFound) {
-        strStatusBar = strRPC = _("Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.");
-    } else if (fLargeWorkInvalidChainFound) {
-        strStatusBar = strRPC = _("Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.");
-    }
-
-    if (strFor == "statusbar")
-        return strStatusBar;
-    else if (strFor == "rpc")
-        return strRPC;
-    assert(!"GetWarnings() : invalid parameter");
-    return "error";
 }
 
 // Note: whenever a protocol update is needed toggle between both implementations (comment out the formerly active one)

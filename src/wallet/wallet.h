@@ -22,7 +22,7 @@
 #include "policy/feerate.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "sapling/address.hpp"
+#include "sapling/address.h"
 #include "guiinterface.h"
 #include "util.h"
 #include "util/memory.h"
@@ -606,7 +606,7 @@ public:
     CAmount GetDelegatedBalance() const;    // delegated coins for which we have the spending key
     CAmount GetImmatureDelegatedBalance() const;
     CAmount GetLockedCoins() const;
-    CAmount GetUnconfirmedBalance(isminetype filter = ISMINE_SPENDABLE) const;
+    CAmount GetUnconfirmedBalance(isminetype filter = ISMINE_SPENDABLE_ALL) const;
     CAmount GetImmatureBalance() const;
     CAmount GetWatchOnlyBalance() const;
     CAmount GetUnconfirmedWatchOnlyBalance() const;

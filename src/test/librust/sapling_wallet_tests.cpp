@@ -18,8 +18,8 @@
 #include "test/librust/utiltest.h"
 #include "wallet/wallet.h"
 #include "consensus/merkle.h"
-#include "sapling/note.hpp"
-#include "sapling/noteencryption.hpp"
+#include "sapling/note.h"
+#include "sapling/noteencryption.h"
 
 #include <boost/filesystem.hpp>
 

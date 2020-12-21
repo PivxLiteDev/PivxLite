@@ -6,11 +6,11 @@
 #define PIVX_SAPLINGSCRIPTPUBKEYMAN_H
 
 #include "consensus/consensus.h"
-#include "sapling/note.hpp"
+#include "sapling/note.h"
 #include "wallet/hdchain.h"
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
-#include "sapling/incrementalmerkletree.hpp"
+#include "sapling/incrementalmerkletree.h"
 
 //! Size of witness cache
 //  Should be large enough that we can expect not to reorg beyond our cache
