@@ -507,9 +507,11 @@ UniValue getnewshieldaddress(const JSONRPCRequest& request)
         throw std::runtime_error(
                 "getnewshieldaddress\n"
                 "\nReturns a new shield address for receiving payments.\n"
-                "\nArguments:\n"
+                + HelpRequiringPassphrase() + "\n"
+
                 "\nResult:\n"
                 "\"address\"    (string) The new shield address.\n"
+
                 "\nExamples:\n"
                 + HelpExampleCli("getnewshieldaddress", "")
                 + HelpExampleRpc("getnewshieldaddress", "")
@@ -532,6 +534,7 @@ UniValue listshieldunspent(const JSONRPCRequest& request)
                 "\nReturns array of unspent shield notes with between minconf and maxconf (inclusive) confirmations.\n"
                 "Optionally filter to only include notes sent to specified addresses.\n"
                 "When minconf is 0, unspent notes with zero confirmations are returned, even though they are not immediately spendable.\n"
+
                 "\nArguments:\n"
                 "1. minconf          (numeric, optional, default=1) The minimum confirmations to filter\n"
                 "2. maxconf          (numeric, optional, default=9999999) The maximum confirmations to filter\n"
@@ -541,6 +544,7 @@ UniValue listshieldunspent(const JSONRPCRequest& request)
                 "      \"address\"     (string) shield addr\n"
                 "      ,...\n"
                 "    ]\n"
+
                 "\nResult:\n"
                 "[                             (array of json object)\n"
                 "  {\n"
@@ -808,13 +812,16 @@ UniValue listshieldaddresses(const JSONRPCRequest& request)
         throw std::runtime_error(
                 "listshieldaddresses ( includeWatchonly )\n"
                 "\nReturns the list of shield addresses belonging to the wallet.\n"
+
                 "\nArguments:\n"
                 "1. includeWatchonly (bool, optional, default=false) Also include watchonly addresses (see 'importviewingkey')\n"
+
                 "\nResult:\n"
                 "[                     (json array of string)\n"
                 "  \"addr\"           (string) a shield address belonging to the wallet\n"
                 "  ,...\n"
                 "]\n"
+
                 "\nExamples:\n"
                 + HelpExampleCli("listshieldaddresses", "")
                 + HelpExampleRpc("listshieldaddresses", "")
@@ -1308,12 +1315,15 @@ UniValue getshieldbalance(const JSONRPCRequest& request)
                 "\nCAUTION: If the wallet contains any addresses for which it only has incoming viewing keys,"
                 "\nthe returned private balance may be larger than the actual balance, because spends cannot"
                 "\nbe detected with incoming viewing keys.\n"
+
                 "\nArguments:\n"
                 "1. \"address\"      (string, optional) The selected address. If non empty nor \"*\", it must be a Sapling address\n"
                 "2. minconf          (numeric, optional, default=1) Only include private and transparent transactions confirmed at least this many times.\n"
                 "3. includeWatchonly (bool, optional, default=false) Also include balance in watchonly addresses (see 'importaddress' and 'importsaplingviewingkey')\n"
+
                 "\nResult:\n"
                 "amount              (numeric) the total balance of shield funds (in Sapling addresses)\n"
+
                 "\nExamples:\n"
                 "\nThe total amount in the wallet\n"
                 + HelpExampleCli("getshieldbalance", "")
@@ -1352,7 +1362,7 @@ UniValue viewshieldtransaction(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
                 "viewshieldtransaction \"txid\"\n"
-                "\nGet detailed shield information about in-wallet transaction <txid>\n"
+                "\nGet detailed shield information about in-wallet transaction \"txid\"\n"
                 + HelpRequiringPassphrase() + "\n"
                 "\nArguments:\n"
                 "1. \"txid\"    (string, required) The transaction id\n"
@@ -2170,6 +2180,8 @@ UniValue sendmany(const JSONRPCRequest& request)
             HelpExampleRpc("sendmany", "\"\", \"{\\\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\\\":0.01,\\\"DAD3Y6ivr8nPQLT1NEPX84DxGCw9jz9Jvg\\\":0.02}\", 6, \"testing\"")
         );
 
+    EnsureWalletIsUnlocked();
+
     // Read Params
     if (!request.params[0].isNull() && !request.params[0].get_str().empty()) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Dummy value must be set to \"\"");
@@ -2439,9 +2451,11 @@ UniValue listreceivedbyshieldaddress(const JSONRPCRequest& request)
         throw std::runtime_error(
                 "listreceivedbyshieldaddress \"address\" ( minconf )\n"
                 "\nReturn a list of amounts received by a shield addr belonging to the node's wallet.\n"
+
                 "\nArguments:\n"
                 "1. \"address\"      (string) The private address.\n"
                 "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
+
                 "\nResult:\n"
                 "{\n"
                 "  \"txid\": \"txid\",           (string) the transaction id\n"
@@ -2454,6 +2468,7 @@ UniValue listreceivedbyshieldaddress(const JSONRPCRequest& request)
                 "  \"outindex\" (sapling) : n,     (numeric) the output index\n"
                 "  \"change\": true|false,    (boolean) true if the address that received the note is also one of the sending addresses\n"
                 "}\n"
+
                 "\nExamples:\n"
                 + HelpExampleCli("listreceivedbyshieldaddress", "\"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\"")
                 + HelpExampleRpc("listreceivedbyshieldaddress", "\"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\"")
@@ -2904,7 +2919,7 @@ UniValue gettransaction(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "gettransaction \"txid\" ( includeWatchonly )\n"
-            "\nGet detailed information about in-wallet transaction <txid>\n"
+            "\nGet detailed information about in-wallet transaction \"txid\"\n"
 
             "\nArguments:\n"
             "1. \"txid\"    (string, required) The transaction id\n"
@@ -2980,7 +2995,7 @@ UniValue abandontransaction(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
             "abandontransaction \"txid\"\n"
-            "\nMark in-wallet transaction <txid> as abandoned\n"
+            "\nMark in-wallet transaction \"txid\" as abandoned\n"
             "This will mark this transaction and all its in-wallet descendants as abandoned which will allow\n"
             "for their inputs to be respent.  It can be used to replace \"stuck\" or evicted transactions.\n"
             "It only works on transactions which are not included in a block and are not currently in the mempool.\n"
@@ -4050,12 +4065,13 @@ UniValue getsaplingnotescount(const JSONRPCRequest& request)
         throw std::runtime_error(
                 "getsaplingnotescount ( minconf )\n"
                 "Returns the number of sapling notes available in the wallet.\n"
+
                 "\nArguments:\n"
                 "1. minconf      (numeric, optional, default=1) Only include notes in transactions confirmed at least this many times.\n"
-                "\nResult:\n"
+
                 "\nResult:\n"
                 "num             (numeric) the number of sapling notes in the wallet\n"
-                "}\n"
+
                 "\nExamples:\n"
                 + HelpExampleCli("getsaplingnotescount", "0")
                 + HelpExampleRpc("getsaplingnotescount", "0")
@@ -4063,7 +4079,7 @@ UniValue getsaplingnotescount(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    int nMinDepth = request.params.size() > 0 ? request.params[0].get_int() : 1;
+    int nMinDepth = !request.params.empty() ? request.params[0].get_int() : 1;
     int count = 0;
     for (const auto& wtx : pwalletMain->mapWallet) {
         if (wtx.second.GetDepthInMainChain() >= nMinDepth) {
