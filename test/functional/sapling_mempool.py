@@ -94,7 +94,7 @@ class SaplingMempoolTest(PivxTestFramework):
         # Now disconnect the block with the note's anchor,
         # and check that the tx is removed from the mempool
         self.log.info("Disconnect the last block to change the sapling anchor")
-        anchor = txC_json['vShieldedSpend'][0]['anchor']
+        anchor = txC_json['vShieldSpend'][0]['anchor']
         assert_equal(anchor, miner.getbestsaplinganchor())
         miner.invalidateblock(miner.getbestblockhash())
         assert (anchor != miner.getbestsaplinganchor())

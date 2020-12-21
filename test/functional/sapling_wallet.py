@@ -238,17 +238,17 @@ class WalletSaplingTest(PivxTestFramework):
         # Verify existence of Sapling related JSON fields
         resp = self.nodes[0].getrawtransaction(mytxid7, 1)
         assert_equal(Decimal(resp['valueBalance']), Decimal('11.00'))    # 20 shield input - 8 shield spend - 1 change
-        assert_equal(len(resp['vShieldedSpend']), 3)
-        assert_equal(len(resp['vShieldedOutput']), 2)
+        assert_equal(len(resp['vShieldSpend']), 3)
+        assert_equal(len(resp['vShieldOutput']), 2)
         assert('bindingSig' in resp)
-        shieldedSpend = resp['vShieldedSpend'][0]
+        shieldedSpend = resp['vShieldSpend'][0]
         assert('cv' in shieldedSpend)
         assert('anchor' in shieldedSpend)
         assert('nullifier' in shieldedSpend)
         assert('rk' in shieldedSpend)
         assert('proof' in shieldedSpend)
         assert('spendAuthSig' in shieldedSpend)
-        shieldedOutput = resp['vShieldedOutput'][0]
+        shieldedOutput = resp['vShieldOutput'][0]
         assert('cv' in shieldedOutput)
         assert('cmu' in shieldedOutput)
         assert('ephemeralKey' in shieldedOutput)

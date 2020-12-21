@@ -136,7 +136,7 @@ class ListReceivedTest (PivxTestFramework):
 
         # Verify the spent nullifier
         tx_json = self.nodes[1].getrawtransaction(txid, True)
-        assert_equal(nullifier, tx_json["vShieldedSpend"][0]["nullifier"])
+        assert_equal(nullifier, tx_json["vShieldSpend"][0]["nullifier"])
 
         # Decrypted transaction details should be correct
         pt = self.nodes[1].viewshieldtransaction(txid)

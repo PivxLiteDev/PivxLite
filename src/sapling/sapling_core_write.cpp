@@ -46,9 +46,9 @@ void TxSaplingToJSON(const CTransaction& tx, UniValue& entry) {
         entry.pushKV("valueBalance", FormatMoney(tx.sapData->valueBalance));
         entry.pushKV("valueBalanceSat", tx.sapData->valueBalance);
         UniValue vspenddesc = TxShieldedSpendsToJSON(tx);
-        entry.pushKV("vShieldedSpend", vspenddesc);
+        entry.pushKV("vShieldSpend", vspenddesc);
         UniValue voutputdesc = TxShieldedOutputsToJSON(tx);
-        entry.pushKV("vShieldedOutput", voutputdesc);
+        entry.pushKV("vShieldOutput", voutputdesc);
         if (tx.sapData->hasBindingSig()) {
             entry.pushKV("bindingSig", HexStr(tx.sapData->bindingSig.begin(), tx.sapData->bindingSig.end()));
         }
