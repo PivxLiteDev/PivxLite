@@ -343,7 +343,7 @@ bool TransactionRecord::decomposeDebitTransaction(const CWallet* wallet, const C
     }
 
     // Decompose shielded debit
-    return decomposeShieldedDebitTransaction(wallet, wtx, nTxFee, involvesWatchAddress, parts);
+    return decomposeShieldedDebitTransaction(wallet, wtx, nTxFee, involvesWatchAddress, parts) || !parts.empty();
 }
 
 // Check whether all the shielded inputs and outputs are from and send to this wallet
@@ -445,10 +445,14 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
         }
     }
 
-    // if we get to this point, we have a mixed debit transaction, can't break down payees.
-    TransactionRecord record(wtx.GetHash(), wtx.GetTxTime(), wtx.GetTotalSize(), TransactionRecord::Other, "", nNet, 0);
-    record.involvesWatchAddress = involvesWatchAddress;
-    parts.append(record);
+    // Check if wasn't able to decompose the transaction
+    if (parts.empty()) {
+        // if we get to this point, we have a mixed debit transaction, can't break down payees.
+        TransactionRecord record(wtx.GetHash(), wtx.GetTxTime(), wtx.GetTotalSize(), TransactionRecord::Other, "", nNet,
+                                 0);
+        record.involvesWatchAddress = involvesWatchAddress;
+        parts.append(record);
+    }
     return parts;
 }
 
