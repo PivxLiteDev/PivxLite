@@ -100,6 +100,13 @@ bool CBudgetProposal::CheckStartEnd()
         return false;
     }
 
+    // !TODO: remove (and alwyas use new rules) when all proposals submitted before v5 enforcement are expired.
+    bool fNewRules = Params().GetConsensus().NetworkUpgradeActive(nBlockStart, Consensus::UPGRADE_V5_0);
+    if (fNewRules && GetTotalPaymentCount() > Params().GetConsensus().nMaxProposalPayments) {
+        strInvalid = "Invalid payment count";
+        return false;
+    }
+
     return true;
 }
 

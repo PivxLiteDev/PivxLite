@@ -64,6 +64,12 @@ void checkBudgetInputs(const UniValue& params, std::string &strProposalName, std
     if (nPaymentCount < 1)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid payment count, must be more than zero.");
 
+    int nMaxPayments = Params().GetConsensus().nMaxProposalPayments;
+    if (nPaymentCount > nMaxPayments) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER,
+                strprintf("Invalid payment count, must be <= %d", nMaxPayments));
+    }
+
     CBlockIndex* pindexPrev = GetChainTip();
     if (!pindexPrev)
         throw JSONRPCError(RPC_IN_WARMUP, "Try again after active chain is loaded");
