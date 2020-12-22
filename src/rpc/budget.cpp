@@ -157,6 +157,10 @@ UniValue preparebudget(const JSONRPCRequest& request)
     if (res.status != CWallet::CommitStatus::OK)
         throw JSONRPCError(RPC_WALLET_ERROR, res.ToString());
 
+    // Store proposal name as a comment
+    assert(pwalletMain->mapWallet.count(wtx.GetHash()));
+    pwalletMain->mapWallet[wtx.GetHash()].SetComment("Proposal: " + strProposalName);
+
     return wtx.GetHash().ToString();
 }
 

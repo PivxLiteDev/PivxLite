@@ -94,6 +94,7 @@ void TxRow::setType(bool isLightTheme, int type, bool isConfirmed)
         case TransactionRecord::ZerocoinSpend_Change_zPiv:
         case TransactionRecord::ZerocoinSpend_FromMe:
         case TransactionRecord::SendToShielded:
+        case TransactionRecord::SendToNobody:
             path = "://ic-transaction-sent";
             css = "text-list-amount-send";
             break;

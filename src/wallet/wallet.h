@@ -74,8 +74,6 @@ static const int DEFAULT_CUSTOMBACKUPTHRESHOLD = 1;
 static const CAmount DEFAULT_MIN_STAKE_SPLIT_THRESHOLD = 100 * COIN;
 //! Default for -spendzeroconfchange
 static const bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
-//! Default for -sendfreetransactions
-static const bool DEFAULT_SEND_FREE_TRANSACTIONS = false;
 //! Default for -staking
 static const bool DEFAULT_STAKING = true;
 //! Default for -coldstaking
@@ -1014,6 +1012,13 @@ public:
 
     //! checks whether a tx has P2CS inputs or not
     bool HasP2CSInputs() const;
+
+    //! Store a comment
+    void SetComment(const std::string& comment) { mapValue["comment"] = comment; }
+    std::string GetComment() const {
+        const auto& it = mapValue.find("comment");
+        return it != mapValue.end() ? it->second : "";
+    }
 
     int GetDepthAndMempool(bool& fConflicted) const;
 

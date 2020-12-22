@@ -35,11 +35,21 @@ void TxViewHolder::init(QWidget* holder, const QModelIndex &index, bool isHovere
             type !=  TransactionRecord::ZerocoinSpend_Change_zPiv &&
             type !=  TransactionRecord::StakeZPIV &&
             type != TransactionRecord::Other) {
+
         QString address = rIndex.data(Qt::DisplayRole).toString();
-        if (address.length() > 20) {
-            address = address.left(ADDRESS_SIZE) + "..." + address.right(ADDRESS_SIZE);
+        if (!address.isEmpty()) {
+            if (type == TransactionRecord::SendToNobody) {
+                // OP_RETURN record with a valid utf-8 string to show
+                label.clear();
+                label += address;
+            } else {
+                // Regular addresses
+                if (address.length() > 20) {
+                    address = address.left(ADDRESS_SIZE) + "..." + address.right(ADDRESS_SIZE);
+                }
+                label += " " + address;
+            }
         }
-        label += " " + address;
     } else if (type == TransactionRecord::Other) {
         label += rIndex.data(Qt::DisplayRole).toString();
     }
