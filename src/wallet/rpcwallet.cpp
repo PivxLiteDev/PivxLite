@@ -1233,45 +1233,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
             "7. \"fForceNotEnabled\"    (boolean, optional, default = false) ONLY FOR TESTING: force the creation even if SPORK 17 is disabled (for tests).\n"
 
             "\nResult:\n"
-            "{\n"
-            "  \"txid\" : \"id\",        (string) The transaction id (same as provided)\n"
-            "  \"version\" : n,          (numeric) The version\n"
-            "  \"type\" : n,             (numeric) The type\n"
-            "  \"size\" : n,             (numeric) The serialized transaction size\n"
-            "  \"locktime\" : ttt,       (numeric) The lock time\n"
-            "  \"vin\" : [               (array of json objects)\n"
-            "     {\n"
-            "       \"txid\": \"id\",    (string) The transaction id\n"
-            "       \"vout\": n,         (numeric) \n"
-            "       \"scriptSig\": {     (json object) The script\n"
-            "         \"asm\": \"asm\",  (string) asm\n"
-            "         \"hex\": \"hex\"   (string) hex\n"
-            "       },\n"
-            "       \"sequence\": n      (numeric) The script sequence number\n"
-            "     }\n"
-            "     ,...\n"
-            "  ],\n"
-            "  \"vout\" : [              (array of json objects)\n"
-            "     {\n"
-            "       \"value\" : x.xxx,            (numeric) The value in PIV\n"
-            "       \"n\" : n,                    (numeric) index\n"
-            "       \"scriptPubKey\" : {          (json object)\n"
-            "         \"asm\" : \"asm\",          (string) the asm\n"
-            "         \"hex\" : \"hex\",          (string) the hex\n"
-            "         \"reqSigs\" : n,            (numeric) The required sigs\n"
-            "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
-            "         \"addresses\" : [           (json array of string)\n"
-            "           \"pivxaddress\"        (string) pivx address\n"
-            "           ,...\n"
-            "         ]\n"
-            "       }\n"
-            "     }\n"
-            "     ,...\n"
-            "  ],\n"
-            "  \"extraPayloadSize\" : n    (numeric) Size of extra payload. Only present if it's a special TX\n"
-            "  \"extraPayload\" : \"hex\"  (string) Hex encoded extra payload data. Only present if it's a special TX\n"
-            "  \"hex\" : \"data\",       (string) The serialized, hex-encoded data for 'txid'\n"
-            "}\n"
+            "\"transaction\"            (string) hex string of the transaction\n"
 
             "\nExamples:\n" +
             HelpExampleCli("rawdelegatestake", "\"S1t2a3kab9c8c71VA78xxxy4MxZg6vgeS6\" 100") +
@@ -1284,10 +1246,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
     CReserveKey reservekey(pwalletMain);
     CreateColdStakeDelegation(request.params, wtx, reservekey);
 
-    UniValue result(UniValue::VOBJ);
-    TxToUniv(wtx, UINT256_ZERO, result);
-
-    return result;
+    return EncodeHexTx(wtx);
 }
 
 
@@ -1753,6 +1712,7 @@ UniValue rawshieldsendmany(const JSONRPCRequest& request)
                 "                            based on the expected transaction size and the current value of -minRelayTxFee.\n"
                 "\nResult:\n"
                 "\"transaction\"            (string) hex string of the transaction\n"
+
                 "\nExamples:\n"
                 + HelpExampleCli("rawshieldsendmany",
                                  "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" '[{\"address\": \"ps1ra969yfhvhp73rw5ak2xvtcm9fkuqsnmad7qln79mphhdrst3lwu9vvv03yuyqlh42p42st47qd\" ,\"amount\": 5.0}]'")
