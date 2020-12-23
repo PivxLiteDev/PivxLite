@@ -1035,11 +1035,6 @@ bool AppInit2()
     // Exit early if -masternode=1 and -listen=0
     if (gArgs.GetBoolArg("-masternode", DEFAULT_MASTERNODE) && !gArgs.GetBoolArg("-listen", DEFAULT_LISTEN))
         return UIError(_("Error: -listen must be true if -masternode is set."));
-    // Exit early if -masternode=1 and -port is not the default port
-    if (gArgs.GetBoolArg("-masternode", DEFAULT_MASTERNODE) && (GetListenPort() != Params().GetDefaultPort() && !Params().IsRegTestNet()))
-        return UIError(strprintf(_("Error: Invalid port %d for running a masternode."), GetListenPort()) + "\n\n" +
-                       strprintf(_("Masternodes are required to run on port %d for %s-net"), Params().GetDefaultPort(), Params().NetworkIDString()));
-
     if (gArgs.GetBoolArg("-benchmark", false))
         UIWarning(_("Warning: Unsupported argument -benchmark ignored, use -debug=bench."));
 
