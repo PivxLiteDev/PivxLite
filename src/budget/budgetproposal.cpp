@@ -8,7 +8,7 @@
 #include "masternodeman.h"
 
 CBudgetProposal::CBudgetProposal():
-        nAlloted(0),
+        nAllotted(0),
         fValid(true),
         strInvalid(""),
         strProposalName("unknown"),
@@ -28,7 +28,7 @@ CBudgetProposal::CBudgetProposal(const std::string& name,
                                  const CAmount& amount,
                                  int blockstart,
                                  const uint256& nfeetxhash):
-        nAlloted(0),
+        nAllotted(0),
         fValid(true),
         strInvalid(""),
         strProposalName(name),

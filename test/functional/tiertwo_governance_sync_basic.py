@@ -85,8 +85,8 @@ class MasternodeGovernanceBasicTest(PivxTier2TestFramework):
         obj["IsValid"] = IsValid
         if IsInvalidReason != "":
             obj["IsInvalidReason"] = IsInvalidReason
-        obj["Alloted"] = Allotted
-        obj["TotalBudgetAlloted"] = TotalBudgetAllotted
+        obj["Allotted"] = Allotted
+        obj["TotalBudgetAllotted"] = TotalBudgetAllotted
         return obj
 
     def check_budgetprojection(self, expected):

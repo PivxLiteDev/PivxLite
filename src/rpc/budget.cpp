@@ -45,7 +45,7 @@ void budgetToJSON(const CBudgetProposal* pbudgetProposal, UniValue& bObj, int nC
     bObj.pushKV("IsValid", fValid);
     if (!fValid)
         bObj.pushKV("IsInvalidReason", pbudgetProposal->IsInvalidReason());
-    bObj.pushKV("Alloted", ValueFromAmount(pbudgetProposal->GetAllotted()));
+    bObj.pushKV("Allotted", ValueFromAmount(pbudgetProposal->GetAllotted()));
 }
 
 void checkBudgetInputs(const UniValue& params, std::string &strProposalName, std::string &strURL,
@@ -544,8 +544,8 @@ UniValue getbudgetprojection(const JSONRPCRequest& request)
             "    \"IsEstablished\": true|false,  (boolean) Established (true) or (false)\n"
             "    \"IsValid\": true|false,        (boolean) Valid (true) or Invalid (false)\n"
             "    \"IsInvalidReason\": \"xxxx\",      (string) Error message, if any\n"
-            "    \"Alloted\": xxx.xxx,           (numeric) Amount alloted in current period\n"
-            "    \"TotalBudgetAlloted\": xxx.xxx (numeric) Total alloted\n"
+            "    \"Allotted\": xxx.xxx,           (numeric) Amount allotted in current period\n"
+            "    \"TotalBudgetAllotted\": xxx.xxx (numeric) Total allotted\n"
             "  }\n"
             "  ,...\n"
             "]\n"
@@ -562,7 +562,7 @@ UniValue getbudgetprojection(const JSONRPCRequest& request)
         UniValue bObj(UniValue::VOBJ);
         budgetToJSON(&p, bObj, g_budgetman.GetBestHeight());
         nTotalAllotted += p.GetAllotted();
-        bObj.pushKV("TotalBudgetAlloted", ValueFromAmount(nTotalAllotted));
+        bObj.pushKV("TotalBudgetAllotted", ValueFromAmount(nTotalAllotted));
         ret.push_back(bObj);
     }
 
