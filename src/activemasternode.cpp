@@ -55,7 +55,7 @@ OperationResult initMasternode(const std::string& _strMasterNodePrivKey, const s
 
     // Peer port needs to match the masternode public one for IPv4 and IPv6.
     // Onion can run in other ports because those are behind a hidden service which has the public port fixed to the default port.
-    if (nPort != GetListenPort() && !addrTest.IsTor() && !params.IsRegTestNet()) {
+    if (nPort != GetListenPort() && !addrTest.IsTor()) {
         return errorOut(strprintf(_("Invalid -masternodeaddr port %d, isn't the same as the peer port %d"),
                                   nPort, GetListenPort()));
     }
