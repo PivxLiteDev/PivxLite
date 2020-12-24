@@ -7,6 +7,7 @@ from test_framework.test_framework import PivxTier2TestFramework
 from test_framework.util import (
     assert_equal,
     assert_true,
+    Decimal,
 )
 
 import time
@@ -60,6 +61,39 @@ class MasternodeGovernanceBasicTest(PivxTier2TestFramework):
                     found = True
             assert_true(found, "Error checking vote existence in node " + str(i))
 
+    def get_proposal_obj(self, Name, URL, Hash, FeeHash, BlockStart, BlockEnd,
+                             TotalPaymentCount, RemainingPaymentCount, PaymentAddress,
+                             Ratio, Yeas, Nays, Abstains, TotalPayment, MonthlyPayment,
+                             IsEstablished, IsValid, Allotted, TotalBudgetAllotted, IsInvalidReason = ""):
+        obj = {}
+        obj["Name"] = Name
+        obj["URL"] = URL
+        obj["Hash"] = Hash
+        obj["FeeHash"] = FeeHash
+        obj["BlockStart"] = BlockStart
+        obj["BlockEnd"] = BlockEnd
+        obj["TotalPaymentCount"] = TotalPaymentCount
+        obj["RemainingPaymentCount"] = RemainingPaymentCount
+        obj["PaymentAddress"] = PaymentAddress
+        obj["Ratio"] = Ratio
+        obj["Yeas"] = Yeas
+        obj["Nays"] = Nays
+        obj["Abstains"] = Abstains
+        obj["TotalPayment"] = TotalPayment
+        obj["MonthlyPayment"] = MonthlyPayment
+        obj["IsEstablished"] = IsEstablished
+        obj["IsValid"] = IsValid
+        if IsInvalidReason != "":
+            obj["IsInvalidReason"] = IsInvalidReason
+        obj["Alloted"] = Allotted
+        obj["TotalBudgetAlloted"] = TotalBudgetAllotted
+        return obj
+
+    def check_budgetprojection(self, expected):
+        for i in range(self.num_nodes):
+            assert_equal(self.nodes[i].getbudgetprojection(), expected)
+            self.log.info("Budget projection valid for node %d" % i)
+
     def run_test(self):
         self.enable_mocktime()
         self.setup_2_masternodes_network()
@@ -106,7 +140,7 @@ class MasternodeGovernanceBasicTest(PivxTier2TestFramework):
         # let's wait a little bit and see if all nodes are sync
         time.sleep(1)
         self.check_proposal_existence(firstProposalName, proposalHash)
-        self.log.info("proposal broadcast succeed!")
+        self.log.info("proposal broadcast successful!")
 
         # Proposal is established after 5 minutes. Mine 7 blocks
         # Proposal needs to be on the chain > 5 min.
@@ -130,6 +164,20 @@ class MasternodeGovernanceBasicTest(PivxTier2TestFramework):
         self.stake(1, [self.remoteOne, self.remoteTwo])
         self.check_vote_existence(firstProposalName, self.mnTwoTxHash, "YES")
         self.log.info("all good, MN2 vote accepted everywhere!")
+
+        # Now check the budget
+        blockStart = nextSuperBlockHeight
+        blockEnd = blockStart + firstProposalCycles * 145
+        TotalPayment = firstProposalAmountPerCycle * firstProposalCycles
+        Allotted = firstProposalAmountPerCycle
+        RemainingPaymentCount = firstProposalCycles
+        expected_budget = [
+            self.get_proposal_obj(firstProposalName, firstProposalLink, proposalHash, proposalFeeTxId, blockStart,
+                                  blockEnd, firstProposalCycles, RemainingPaymentCount, firstProposalAddress, 1,
+                                  2, 0, 0, Decimal(str(TotalPayment)), Decimal(str(firstProposalAmountPerCycle)),
+                                  True, True, Decimal(str(Allotted)), Decimal(str(Allotted)))
+                           ]
+        self.check_budgetprojection(expected_budget)
 
         # Quick block count check.
         assert_equal(self.ownerOne.getblockcount(), 276)
@@ -163,6 +211,10 @@ class MasternodeGovernanceBasicTest(PivxTier2TestFramework):
         assert_equal(addrInfo[0]["amount"], firstProposalAmountPerCycle)
 
         self.log.info("budget proposal paid!, all good")
+
+        # Check that the proposal info returns updated payment count
+        expected_budget[0]["RemainingPaymentCount"] -= 1
+        self.check_budgetprojection(expected_budget)
 
 
 
