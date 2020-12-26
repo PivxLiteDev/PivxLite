@@ -25,7 +25,7 @@ class SaplingMempoolTest(PivxTestFramework):
         alice = self.nodes[1]
 
         # Fixed fee
-        fee = 1
+        fee = 0.05
 
         self.log.info("Mining 120 blocks...")
         miner.generate(120)
@@ -49,7 +49,7 @@ class SaplingMempoolTest(PivxTestFramework):
         # Alice creates and sends tx_B, unshielding the same note to tadd_B
         self.log.info("Alice creating and sending tx_B...")
         tadd_B = alice.getnewaddress()
-        txid_B = alice.shieldsendmany(alice_zaddr, [{"address": tadd_B, "amount": Decimal('9.00')}], 1, fee)
+        txid_B = alice.shieldsendmany(alice_zaddr, [{"address": tadd_B, "amount": Decimal('9.95')}], 1, fee)
 
         # Miner receives tx_B and accepts it in the mempool
         assert (txid_B in alice.getrawmempool())
