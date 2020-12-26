@@ -34,6 +34,68 @@ Notable Changes
 
 (Developers: add your notes here as part of your pull requests whenever possible)
 
+New SHIELD Protocol Implemented!
+--------------------------------
+
+#### Overview
+Users will be able to protect their financial information by sending and receiving PIVs privately, as well as sending and receiving encrypted messages attached to the shield transactions.
+More visual information about the protocol can be found at https://pivx.org .
+
+#### GUI features
+New set of functionalities for usage of the SHIELD protocol:
+
+* Receive screen modified to show, generate and set label of wallet's shield addresses.
+* Dashboard transactions list including shield transactions.
+* Top bar showing shield PIV balances.
+* Send screen modified, implementing shield transaction crafting and broadcast.
+* New encrypted memo functionality.
+* Transaction detail dialog presenting shield transaction information.
+* Spending process moved to a background thread, loading screen connected while the operation is being performed.
+* Contacts screen modified to store external shield addresses.
+
+#### Wallet
+A brand new manager encapsulating all Sapling related capabilities inside the wallet has been implemented:
+
+* New address type: shield addresses (using bech32 format).
+* New derivation path for Sapling keys: Shield addresses are derived from the unique wallet's master seed (same as regular & cold staking addresses. The wallet's seed is able to restore PIVs and Shield PIVs equally).
+* Support for Sapling extended full viewing keys, incoming viewing keys, outgoing viewing keys and spending keys.
+* Sapling notes management: 
+  - Notes decryption.
+  - Blockchain scanning protocol: handling when and how to store a Sapling output and its related keys. As well as mark used notes.
+  - Notes metadata cache: retrieving information without requiring to decrypt notes on-demand.
+  - Able to filter available notes for spending.
+* Sapling witnesses and nullifiers tracking.
+* New transaction building process, crafting and signing shield transactions.
+
+#### Block Primitive:
+* Block version bumped to 8, the header is storing 32 bytes more for the Sapling incremental merkle tree root.
+* Each block index now is tracking the network total value entering and exiting the shield pool.
+
+#### Transaction Primitive:
+* Version bumped to 2.
+* The "transaction type" concept was introduced, dividing the version field (4 bytes) in version (first 2 bytes) and type (second 2 bytes).
+* Sapling data has been included: `valueBalance`, `vShieldedSpend`, `ShieldedSpend` and `bindingSig`.
+* Special transactions extra payload introduction (not enabled by consensus).
+* A new signature hash for Sapling and Special transactions has been implemented.
+
+Tier Two Network
+----------------
+A large number of performance and stability improvements over the complete tier two network and masternodes sources have been performed. Re-writing, encapsulating and decoupling workflows, cleaning up an extensive number of redundancies and misalignment.
+Plus, tier two and masternodes capabilities have been introduced to regtest, enabling the local testing environment setup and the creation of a functional testing framework for the area.
+This work is directly correlated with a substantial efficiency improvement for the entire software, not only for masternodes, and is one of the building blocks for the new tier two network and sync protocol that will be continued post-v5.
+
+Instant Proposal Removal: 
+The threshold was increased to 30% of negative votes.
+The proposal will never be removed before its first superblock.
+
+Maximum Proposal Payment:
+The limit was decreased to a maximum of 6 payments.
+
+Concurrency
+-----------
+A complete overhaul of the thread synchronization area has been done, all of the workflows that were containing locks with cyclic dependencies that could cause a deadlock were reworked.
+Solving every circular dependency, a good number of inconsistent states were fixed. The software now can be fully run with the `--enable-debug` configure time flag without crashing for a possible deadlock.
+
 Account API Removed
 -------------------
 
@@ -51,13 +113,15 @@ Detailed release notes follow. This overview includes changes that affect behavi
 
 ### Build System
 
-### P2P Protocol and Network Code
-
 ### GUI
 
-### RPC/REST
-
 ### Wallet
+
+### P2P Protocol and Network Code
+
+### Tier Two Network
+
+### RPC/REST
 
 ### Miscellaneous
 
