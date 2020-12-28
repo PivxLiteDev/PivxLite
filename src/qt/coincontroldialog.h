@@ -54,6 +54,9 @@ public:
     void clearPayAmounts();
     void addPayAmount(const CAmount& amount, bool isShieldedRecipient);
     void setSelectionType(bool isTransparent) { fSelectTransparent = isTransparent; }
+    // calculate sums for selected amount, number of inputs, change, fee, after fee value, and transaction size
+    void getTotals(CAmount& nPayAmount, CAmount& nAmount, CAmount& nPayFee, CAmount& nAfterFee,
+                   CAmount& nChange, unsigned int& nQuantity, unsigned int& nBytes, bool& fDust);
 
     CCoinControl* coinControl;
 

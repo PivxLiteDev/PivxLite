@@ -497,18 +497,20 @@ static int GetCompactSize(uint64_t nSize)
     return 9;
 }
 
-void CoinControlDialog::updateLabels()
+void CoinControlDialog::getTotals(CAmount& nPayAmount, CAmount& nAmount, CAmount& nPayFee, CAmount& nAfterFee,
+                                  CAmount& nChange, unsigned int& nQuantity, unsigned int& nBytes, bool& fDust)
 {
-    if (!model)
-        return;
+    // clear references
+    nPayAmount = 0;
+    nAmount = 0;
+    nPayFee = 0;
+    nAfterFee = 0;
+    nChange = 0;
+    nQuantity = 0;
+    nBytes = 0;
+    fDust = false;
 
-    ui->labelTitle->setText(fSelectTransparent ?
-            "Select PIV Outputs to Spend" :
-            "Select Shielded PIV to Spend");
-
-    // nPayAmount (!todo fix dust)
-    CAmount nPayAmount = 0;
-    bool fDust = false;
+    // todo: fix dust - compute nPayAmount later
     for (const auto& amount : payAmounts) {
         nPayAmount += amount.first;
         if (amount.first > 0) {
@@ -517,14 +519,6 @@ void CoinControlDialog::updateLabels()
                 fDust = true;
         }
     }
-
-    CAmount nAmount = 0;
-    CAmount nPayFee = 0;
-    CAmount nAfterFee = 0;
-    CAmount nChange = 0;
-    unsigned int nBytes = 0;
-    unsigned int nBytesInputs = 0;
-    unsigned int nQuantity = 0;
 
     std::vector<OutPointWrapper> vCoinControl;
     coinControl->ListSelected(vCoinControl);
@@ -535,8 +529,8 @@ void CoinControlDialog::updateLabels()
         // Amount
         nAmount += out.value;
         // Bytes
-        nBytesInputs += (fSelectTransparent ? (CTXIN_SPEND_DUST_SIZE + (out.isP2CS ? 1 : 0))
-                                            : SPENDDESCRIPTION_SIZE);
+        nBytes += (fSelectTransparent ? (CTXIN_SPEND_DUST_SIZE + (out.isP2CS ? 1 : 0))
+                                      : SPENDDESCRIPTION_SIZE);
     }
 
     // selected inputs
@@ -549,18 +543,13 @@ void CoinControlDialog::updateLabels()
         nShieldIns = nQuantity;
     }
 
-    // update SelectAll button state
-    // if inputs selected > inputs unselected, set checked (label "Unselect All")
-    // if inputs selected <= inputs unselected, set unchecked (label "Select All")
-    updatePushButtonSelectAll(coinControl->QuantitySelected() * 2 > nSelectableInputs);
-
     // calculation
     const int P2CS_OUT_SIZE = 61;
     int nTransOuts = 0, nShieldOuts = 0;
     if (nQuantity > 0) {
         // Bytes: nBytesInputs + (sum of nBytesOutputs)
         // always assume +1 (p2pkh) output for change here
-        nBytes = nBytesInputs + (fSelectTransparent ? CTXOUT_REGULAR_SIZE : OUTPUTDESCRIPTION_SIZE);
+        nBytes += (fSelectTransparent ? CTXOUT_REGULAR_SIZE : OUTPUTDESCRIPTION_SIZE);
         for (const auto& a : payAmounts) {
             bool shieldedOut = a.second;
             if (shieldedOut) nShieldOuts++;
@@ -607,6 +596,31 @@ void CoinControlDialog::updateLabels()
         // after fee
         nAfterFee = std::max<CAmount>(nAmount - nPayFee, 0);
     }
+}
+
+void CoinControlDialog::updateLabels()
+{
+    if (!model)
+        return;
+
+    ui->labelTitle->setText(fSelectTransparent ?
+            "Select PIV Outputs to Spend" :
+            "Select Shielded PIV to Spend");
+
+    CAmount nPayAmount = 0;
+    CAmount nAmount = 0;
+    CAmount nPayFee = 0;
+    CAmount nAfterFee = 0;
+    CAmount nChange = 0;
+    unsigned int nQuantity = 0;
+    unsigned int nBytes = 0;
+    bool fDust = false;
+    getTotals(nPayAmount, nAmount, nPayFee, nAfterFee, nChange, nQuantity, nBytes, fDust);
+
+    // update SelectAll button state
+    // if inputs selected > inputs unselected, set checked (label "Unselect All")
+    // if inputs selected <= inputs unselected, set unchecked (label "Select All")
+    updatePushButtonSelectAll(coinControl->QuantitySelected() * 2 > nSelectableInputs);
 
     // actually update labels
     int nDisplayUnit = BitcoinUnits::PIV;
