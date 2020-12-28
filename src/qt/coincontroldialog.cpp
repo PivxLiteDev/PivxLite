@@ -510,16 +510,6 @@ void CoinControlDialog::getTotals(CAmount& nPayAmount, CAmount& nAmount, CAmount
     nBytes = 0;
     fDust = false;
 
-    // todo: fix dust - compute nPayAmount later
-    for (const auto& amount : payAmounts) {
-        nPayAmount += amount.first;
-        if (amount.first > 0) {
-            CTxOut txout(amount.first, (CScript)std::vector<unsigned char>(24, 0));
-            if (IsDust(txout, ::minRelayTxFee))
-                fDust = true;
-        }
-    }
-
     std::vector<OutPointWrapper> vCoinControl;
     coinControl->ListSelected(vCoinControl);
 
@@ -551,9 +541,14 @@ void CoinControlDialog::getTotals(CAmount& nPayAmount, CAmount& nAmount, CAmount
         // always assume +1 (p2pkh) output for change here
         nBytes += (fSelectTransparent ? CTXOUT_REGULAR_SIZE : OUTPUTDESCRIPTION_SIZE);
         for (const auto& a : payAmounts) {
+            nPayAmount += a.first;
             bool shieldedOut = a.second;
             if (shieldedOut) nShieldOuts++;
             else nTransOuts++;
+            if (a.first > 0 && !fDust) {
+                if (a.first < (shieldedOut ? GetShieldedDustThreshold(minRelayTxFee) : GetDustThreshold(minRelayTxFee)))
+                    fDust = true;
+            }
             nBytes += (shieldedOut ? OUTPUTDESCRIPTION_SIZE
                                    : (forDelegation ? P2CS_OUT_SIZE : CTXOUT_REGULAR_SIZE));
         }
@@ -658,7 +653,8 @@ void CoinControlDialog::updateLabels()
     toolTip1 += tr("This means a fee of at least %1 per kB is required.").arg(BitcoinUnits::formatWithUnit(nDisplayUnit, CWallet::GetRequiredFee(1000))) + "<br /><br />";
     toolTip1 += tr("Can vary +/- 1 byte per input.");
 
-    QString toolTip3 = tr("This label turns red, if any recipient receives an amount smaller than %1.").arg(BitcoinUnits::formatWithUnit(nDisplayUnit, ::minRelayTxFee.GetFee(546)));
+    QString toolTip3 = tr("This label turns red, if recipient receives an amount smaller than %1 (transparent) / %2 (shield)."
+            ).arg(BitcoinUnits::formatWithUnit(nDisplayUnit, GetDustThreshold(minRelayTxFee))).arg(BitcoinUnits::formatWithUnit(nDisplayUnit, GetShieldedDustThreshold(minRelayTxFee)));
 
     // how many satoshis the estimated fee can vary per byte we guess wrong
     double dFeeVary;
