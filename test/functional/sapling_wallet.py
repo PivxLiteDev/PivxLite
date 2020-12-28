@@ -75,15 +75,15 @@ class WalletSaplingTest(PivxTestFramework):
         # Trying to send a rawtx with low fee directly
         self.log.info("Good. It was not possible. Now try with a raw tx...")
         self.restart_node(0, extra_args=self.extra_args[0]+['-minrelaytxfee=0.0000001'])
-        rawtx = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1)["hex"]
+        rawtx_hex = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1)
         self.restart_node(0, extra_args=self.extra_args[0])
         connect_nodes(self.nodes[0], 1)
         assert_raises_rpc_error(-26, "insufficient fee",
-                                self.nodes[0].sendrawtransaction, rawtx)
+                                self.nodes[0].sendrawtransaction, rawtx_hex)
         self.log.info("Good. Not accepted in the mempool.")
 
         # Fixed fee
-        fee = 1
+        fee = 0.05
 
         # Node 0 shields some funds
         # taddr -> Sapling
@@ -103,14 +103,14 @@ class WalletSaplingTest(PivxTestFramework):
 
         # shield more funds creating and then sending a raw transaction
         self.log.info("TX 3: shield funds creating and sending raw transaction.")
-        tx_json = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1, fee)
+        tx_hex = self.nodes[0].rawshieldsendmany("from_transparent", recipients, 1, fee)
 
         # Check SPORK_20 for sapling maintenance mode
         SPORK_20 = "SPORK_20_SAPLING_MAINTENANCE"
         self.activate_spork(0, SPORK_20)
         self.wait_for_spork(True, SPORK_20)
         assert_raises_rpc_error(-26, "bad-tx-sapling-maintenance",
-                                self.nodes[0].sendrawtransaction, tx_json["hex"])
+                                self.nodes[0].sendrawtransaction, tx_hex)
         self.log.info("Good. Not accepted when SPORK_20 is active.")
 
         # Try with RPC...
@@ -121,7 +121,7 @@ class WalletSaplingTest(PivxTestFramework):
         sleep(5)
         self.deactivate_spork(0, SPORK_20)
         self.wait_for_spork(False, SPORK_20)
-        mytxid3 = self.nodes[0].sendrawtransaction(tx_json["hex"])
+        mytxid3 = self.nodes[0].sendrawtransaction(tx_hex)
         self.log.info("Good. Accepted when SPORK_20 is not active.")
 
         # Verify priority of tx is INF_PRIORITY, defined as 1E+25 (10000000000000000000000000)
@@ -181,8 +181,8 @@ class WalletSaplingTest(PivxTestFramework):
 
         # Send more shield funds (with create + send raw transaction)
         self.log.info("TX 6: shield raw transaction.")
-        tx_json = self.nodes[0].rawshieldsendmany("from_shield", recipients5, 1, fee)
-        mytxid6 = self.nodes[0].sendrawtransaction(tx_json["hex"])
+        tx_hex = self.nodes[0].rawshieldsendmany("from_shield", recipients5, 1, fee)
+        mytxid6 = self.nodes[0].sendrawtransaction(tx_hex)
         self.check_tx_priority([mytxid6])
 
         self.nodes[2].generate(1)
@@ -209,11 +209,11 @@ class WalletSaplingTest(PivxTestFramework):
         self.sync_all()
 
         # Verify balance
-        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('3'))   # 30 received - (20 sent + 3 fee) - 4 sent
-        assert_equal(self.nodes[1].getshieldbalance(saplingAddr1), Decimal('20'))  # 20 received
-        assert_equal(self.nodes[0].getshieldbalance(saplingAddr2), Decimal('2'))   # 10 received - 10 sent + 2 change
+        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('4.9'))   # 30 received - (20 sent + 0.15 fee) - 4.95 sent
+        assert_equal(self.nodes[1].getshieldbalance(saplingAddr1), Decimal('20'))    # 20 received
+        assert_equal(self.nodes[0].getshieldbalance(saplingAddr2), Decimal('3.9'))   # 10 received - 10 sent + 3.9 change
         assert_equal(self.nodes[1].getreceivedbyaddress(taddr1), Decimal('0'))
-        assert_equal(self.nodes[0].getshieldbalance(), Decimal('5'))
+        assert_equal(self.nodes[0].getshieldbalance(), Decimal('8.8'))
         self.log.info("Balances check out")
 
         # Node 1 sends some shield funds to node 0, as well as unshielding
@@ -230,25 +230,25 @@ class WalletSaplingTest(PivxTestFramework):
         self.sync_all()
 
         # Verify balance
-        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('11'))  # 3 prev balance + 8 received
-        assert_equal(self.nodes[1].getshieldbalance(saplingAddr1), Decimal('1'))   # 20 prev balance - (18 sent + 1 fee)
+        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('12.9')) # 4.9 prev balance + 8 received
+        assert_equal(self.nodes[1].getshieldbalance(saplingAddr1), Decimal('1.95')) # 20 prev balance - (18 sent + 0.05 fee)
         assert_equal(self.nodes[1].getreceivedbyaddress(taddr1), Decimal('10'))
         self.log.info("Balances check out")
 
         # Verify existence of Sapling related JSON fields
         resp = self.nodes[0].getrawtransaction(mytxid7, 1)
-        assert_equal(Decimal(resp['valueBalance']), Decimal('11.00'))    # 20 shield input - 8 shield spend - 1 change
-        assert_equal(len(resp['vShieldedSpend']), 3)
-        assert_equal(len(resp['vShieldedOutput']), 2)
+        assert_equal(Decimal(resp['valueBalance']), Decimal('10.05'))    # 20 shield input - 8 shield spend - 1.95 change
+        assert_equal(len(resp['vShieldSpend']), 3)
+        assert_equal(len(resp['vShieldOutput']), 2)
         assert('bindingSig' in resp)
-        shieldedSpend = resp['vShieldedSpend'][0]
+        shieldedSpend = resp['vShieldSpend'][0]
         assert('cv' in shieldedSpend)
         assert('anchor' in shieldedSpend)
         assert('nullifier' in shieldedSpend)
         assert('rk' in shieldedSpend)
         assert('proof' in shieldedSpend)
         assert('spendAuthSig' in shieldedSpend)
-        shieldedOutput = resp['vShieldedOutput'][0]
+        shieldedOutput = resp['vShieldOutput'][0]
         assert('cv' in shieldedOutput)
         assert('cmu' in shieldedOutput)
         assert('ephemeralKey' in shieldedOutput)
@@ -262,26 +262,26 @@ class WalletSaplingTest(PivxTestFramework):
         sk0 = self.nodes[0].exportsaplingkey(saplingAddr0)
         saplingAddrInfo0 = self.nodes[2].importsaplingkey(sk0, "yes")
         assert_equal(saplingAddrInfo0["address"], saplingAddr0)
-        assert_equal(self.nodes[2].getshieldbalance(saplingAddrInfo0["address"]), Decimal('11'))
+        assert_equal(self.nodes[2].getshieldbalance(saplingAddrInfo0["address"]), Decimal('12.9'))
         sk1 = self.nodes[1].exportsaplingkey(saplingAddr1)
         saplingAddrInfo1 = self.nodes[2].importsaplingkey(sk1, "yes")
         assert_equal(saplingAddrInfo1["address"], saplingAddr1)
-        assert_equal(self.nodes[2].getshieldbalance(saplingAddrInfo1["address"]), Decimal('1'))
+        assert_equal(self.nodes[2].getshieldbalance(saplingAddrInfo1["address"]), Decimal('1.95'))
 
         # Verify importing a viewing key will update the nullifiers and witnesses correctly
         self.log.info("Checking exporting/importing a viewing key...")
         extfvk0 = self.nodes[0].exportsaplingviewingkey(saplingAddr0)
         saplingAddrInfo0 = self.nodes[3].importsaplingviewingkey(extfvk0, "yes")
         assert_equal(saplingAddrInfo0["address"], saplingAddr0)
-        assert_equal(Decimal(self.nodes[3].getshieldbalance(saplingAddrInfo0["address"], 1, True)), Decimal('11'))
+        assert_equal(Decimal(self.nodes[3].getshieldbalance(saplingAddrInfo0["address"], 1, True)), Decimal('12.9'))
         extfvk1 = self.nodes[1].exportsaplingviewingkey(saplingAddr1)
         saplingAddrInfo1 = self.nodes[3].importsaplingviewingkey(extfvk1, "yes")
         assert_equal(saplingAddrInfo1["address"], saplingAddr1)
-        assert_equal(self.nodes[3].getshieldbalance(saplingAddrInfo1["address"], 1, True), Decimal('1'))
+        assert_equal(self.nodes[3].getshieldbalance(saplingAddrInfo1["address"], 1, True), Decimal('1.95'))
         # no balance in the wallet
         assert_equal(self.nodes[3].getshieldbalance(), Decimal('0'))
         # watch only balance
-        assert_equal(self.nodes[3].getshieldbalance("*", 1, True), Decimal('12.00'))
+        assert_equal(self.nodes[3].getshieldbalance("*", 1, True), Decimal('14.85'))
 
         # Now shield some funds using sendmany
         self.log.info("TX11: Shielding coins to multiple destinations with sendmany RPC...")
@@ -318,9 +318,9 @@ class WalletSaplingTest(PivxTestFramework):
         # Verify balance
         self.nodes[2].generate(1)
         self.sync_all()
-        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('19'))  # 11 prev balance + 8 received
-        assert_equal(self.nodes[1].getshieldbalance(saplingAddr1), Decimal('2'))  # 1 prev balance + 1 received
-        assert_equal(self.nodes[0].getshieldbalance(saplingAddr2), Decimal('2.5'))  # 2 prev balance + 0.5 received
+        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('20.9'))  # 12.9 prev balance + 8 received
+        assert_equal(self.nodes[1].getshieldbalance(saplingAddr1), Decimal('2.95'))  # 1.95 prev balance + 1 received
+        assert_equal(self.nodes[0].getshieldbalance(saplingAddr2), Decimal('4.4'))  # 3.9 prev balance + 0.5 received
         # Balance of node 0 is: prev_balance - 1 PIV (+fee) sent externally +  250 PIV matured coinbase
         assert_equal(self.nodes[0].getbalance(), satoshi_round(prev_balance + Decimal('249') - Decimal(fee)))
 
@@ -345,7 +345,7 @@ class WalletSaplingTest(PivxTestFramework):
         # Verify balance
         self.nodes[2].generate(1)
         self.sync_all()
-        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('29'))  # 19 prev balance + 10 received
+        assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('30.9'))  # 20.9 prev balance + 10 received
 
         self.log.info("All good.")
 

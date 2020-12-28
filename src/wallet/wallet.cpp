@@ -2414,6 +2414,8 @@ bool CWallet::StakeableCoins(std::vector<CStakeableOutput>* pCoins)
     const bool fIncludeColdStaking = !sporkManager.IsSporkActive(SPORK_19_COLDSTAKING_MAINTENANCE) &&
                                      gArgs.GetBoolArg("-coldstaking", DEFAULT_COLDSTAKING);
 
+    if (pCoins) pCoins->clear();
+
     LOCK2(cs_main, cs_wallet);
     for (const auto& it : mapWallet) {
         const uint256& wtxid = it.first;

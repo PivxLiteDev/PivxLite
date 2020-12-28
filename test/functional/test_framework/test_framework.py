@@ -1208,8 +1208,8 @@ class PivxTier2TestFramework(PivxTestFramework):
         self.stake(1)
         time.sleep(3)
         self.advance_mocktime(10)
-        remoteOnePort = p2p_port(self.remoteTwoPos)
-        remoteTwoPort = p2p_port(self.remoteOnePos)
+        remoteOnePort = p2p_port(self.remoteOnePos)
+        remoteTwoPort = p2p_port(self.remoteTwoPos)
         self.remoteOne.initmasternode(self.mnOnePrivkey, "127.0.0.1:"+str(remoteOnePort))
         self.remoteTwo.initmasternode(self.mnTwoPrivkey, "127.0.0.1:"+str(remoteTwoPort))
 

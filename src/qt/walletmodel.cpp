@@ -463,12 +463,6 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
 
 WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction& transaction)
 {
-    QByteArray transaction_array; /* store serialized transaction */
-
-    if (isStakingOnlyUnlocked()) {
-        return StakingOnlyUnlocked;
-    }
-
     bool fColdStakingActive = isColdStakingNetworkelyEnabled();
     bool fSaplingActive = Params().GetConsensus().NetworkUpgradeActive(cachedNumBlocks, Consensus::UPGRADE_V5_0);
 
@@ -478,6 +472,8 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction& tran
     if (!CheckTransaction(*newTx, true, true, state, true, fColdStakingActive, fSaplingActive)) {
         return TransactionCheckFailed;
     }
+
+    QByteArray transaction_array; /* store serialized transaction */
 
     {
         LOCK2(cs_main, wallet->cs_wallet);

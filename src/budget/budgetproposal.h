@@ -22,7 +22,7 @@ static const int64_t BUDGET_VOTE_UPDATE_MIN = 60 * 60;
 class CBudgetProposal
 {
 private:
-    CAmount nAlloted;
+    CAmount nAllotted;
     bool fValid;
     std::string strInvalid;
 
@@ -87,8 +87,8 @@ public:
     int GetNays() const { return GetVoteCount(CBudgetVote::VOTE_NO); }
     int GetAbstains() const { return GetVoteCount(CBudgetVote::VOTE_ABSTAIN); };
     CAmount GetAmount() const { return nAmount; }
-    void SetAllotted(CAmount nAllotedIn) { nAlloted = nAllotedIn; }
-    CAmount GetAllotted() const { return nAlloted; }
+    void SetAllotted(CAmount nAllottedIn) { nAllotted = nAllottedIn; }
+    CAmount GetAllotted() const { return nAllotted; }
 
     void CleanAndRemove();
 

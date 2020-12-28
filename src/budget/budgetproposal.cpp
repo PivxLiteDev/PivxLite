@@ -8,6 +8,7 @@
 #include "masternodeman.h"
 
 CBudgetProposal::CBudgetProposal():
+        nAllotted(0),
         fValid(true),
         strInvalid(""),
         strProposalName("unknown"),
@@ -27,6 +28,7 @@ CBudgetProposal::CBudgetProposal(const std::string& name,
                                  const CAmount& amount,
                                  int blockstart,
                                  const uint256& nfeetxhash):
+        nAllotted(0),
         fValid(true),
         strInvalid(""),
         strProposalName(name),
@@ -38,14 +40,10 @@ CBudgetProposal::CBudgetProposal(const std::string& name,
         nTime(0)
 {
     const int nBlocksPerCycle = Params().GetConsensus().nBudgetCycleBlocks;
+    // !todo: remove this when v5 rules are enforced (nBlockStart is always = to nCycleStart)
     int nCycleStart = nBlockStart - nBlockStart % nBlocksPerCycle;
 
-    // Right now single payment proposals have nBlockEnd have a cycle too early!
-    // switch back if it break something else
-    // calculate the end of the cycle for this vote, add half a cycle (vote will be deleted after that block)
-    // nBlockEnd = nCycleStart + GetBudgetPaymentCycleBlocks() * nPaymentCount + GetBudgetPaymentCycleBlocks() / 2;
-
-    // Calculate the end of the cycle for this vote, vote will be deleted after next cycle
+    // calculate the expiration block
     nBlockEnd = nCycleStart + (nBlocksPerCycle + 1)  * paycount;
 }
 
@@ -90,13 +88,23 @@ bool CBudgetProposal::IsHeavilyDownvoted(bool fNewRules)
 
 bool CBudgetProposal::CheckStartEnd()
 {
-    if (nBlockStart < 0) {
-        strInvalid = "Invalid Proposal";
+    // !TODO: remove (and always use new rules) when all proposals submitted before v5 enforcement are expired.
+    bool fNewRules = Params().GetConsensus().NetworkUpgradeActive(nBlockStart, Consensus::UPGRADE_V5_0);
+
+    if (nBlockStart < 0 ||
+            // block start must be a superblock
+            (fNewRules && (nBlockStart % Params().GetConsensus().nBudgetCycleBlocks) != 0)) {
+        strInvalid = "Invalid nBlockStart";
         return false;
     }
 
     if (nBlockEnd < nBlockStart) {
         strInvalid = "Invalid nBlockEnd (end before start)";
+        return false;
+    }
+
+    if (fNewRules && GetTotalPaymentCount() > Params().GetConsensus().nMaxProposalPayments) {
+        strInvalid = "Invalid payment count";
         return false;
     }
 

@@ -565,8 +565,8 @@ BOOST_AUTO_TEST_CASE(SpentSaplingNoteIsFromMe) {
     BOOST_CHECK_EQUAL(tx2.vin.size(), 0);
     BOOST_CHECK_EQUAL(tx2.vout.size(), 0);
     BOOST_CHECK_EQUAL(tx2.sapData->vShieldedSpend.size(), 1);
-    BOOST_CHECK_EQUAL(tx2.sapData->vShieldedOutput.size(), 1);   // 0.025 dust change added to the fee
-    BOOST_CHECK_EQUAL(tx2.sapData->valueBalance, 12500000);      // 0.025 dust change added to the fee
+    BOOST_CHECK_EQUAL(tx2.sapData->vShieldedOutput.size(), 2);
+    BOOST_CHECK_EQUAL(tx2.sapData->valueBalance, 10000000);
 
     CWalletTx wtx2 {&wallet, tx2};
 
@@ -1115,8 +1115,8 @@ BOOST_AUTO_TEST_CASE(MarkAffectedSaplingTransactionsDirty) {
     BOOST_CHECK_EQUAL(tx2.vin.size(), 0);
     BOOST_CHECK_EQUAL(tx2.vout.size(), 0);
     BOOST_CHECK_EQUAL(tx2.sapData->vShieldedSpend.size(), 1);
-    BOOST_CHECK_EQUAL(tx2.sapData->vShieldedOutput.size(), 1); // 0.05 dust change added to the fee
-    BOOST_CHECK_EQUAL(tx2.sapData->valueBalance, 15000000);    // 0.05 dust change added to the fee
+    BOOST_CHECK_EQUAL(tx2.sapData->vShieldedOutput.size(), 2);
+    BOOST_CHECK_EQUAL(tx2.sapData->valueBalance, 10000000);
 
     CWalletTx wtx2 {&wallet, tx2};
 

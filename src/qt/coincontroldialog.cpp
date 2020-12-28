@@ -801,7 +801,7 @@ void CoinControlDialog::updateView()
         // save COLUMN_CHECKBOX width for tree-mode
         colCheckBoxWidth_treeMode = std::max(110, ui->treeWidget->columnWidth(COLUMN_CHECKBOX));
         // minimize COLUMN_CHECKBOX width in list-mode (need to display only the check box)
-        ui->treeWidget->resizeColumnToContents(COLUMN_CHECKBOX);
+        ui->treeWidget->setColumnWidth(COLUMN_CHECKBOX, 70);
     }
 
     // sort view

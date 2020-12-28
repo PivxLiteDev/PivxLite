@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(SaplingToSapling) {
     auto pa = sk.default_address();
 
     // Create a Sapling-only transaction
-    // --- 0.4 shielded-PIV in, 0.25 shielded-PIV out, 0.1 shielded-PIV fee, 0.05 shielded-PIV change (added to fee)
+    // --- 0.4 shielded-PIV in, 0.299 shielded-PIV out, 0.1 shielded-PIV fee, 0.001 shielded-PIV change (added to fee)
     auto testNote = GetTestSaplingNote(pa, 40000000);
     auto builder = TransactionBuilder(consensusParams, 2);
     builder.AddSaplingSpend(expsk, testNote.note, testNote.tree.root(), testNote.tree.witness());
@@ -73,16 +73,15 @@ BOOST_AUTO_TEST_CASE(SaplingToSapling) {
     // TODO: the following check can be split out in to another test
     BOOST_CHECK_THROW(builder.AddSaplingSpend(expsk, testNote.note, uint256(), testNote.tree.witness()), std::runtime_error);
 
-    builder.AddSaplingOutput(fvk.ovk, pa, 25000000, {});
+    builder.AddSaplingOutput(fvk.ovk, pa, 29900000, {});
     auto tx = builder.Build().GetTxOrThrow();
 
     BOOST_CHECK_EQUAL(tx.vin.size(), 0);
     BOOST_CHECK_EQUAL(tx.vout.size(), 0);
     BOOST_CHECK_EQUAL(tx.sapData->vShieldedSpend.size(), 1);
-
     // since the change is below the dust threshold, it is added to the fee
     BOOST_CHECK_EQUAL(tx.sapData->vShieldedOutput.size(), 1);
-    BOOST_CHECK_EQUAL(tx.sapData->valueBalance, 15000000);
+    BOOST_CHECK_EQUAL(tx.sapData->valueBalance, 10100000);
 
     CValidationState state;
     BOOST_CHECK(SaplingValidation::ContextualCheckTransaction(tx, state, Params(), 3, true, false));

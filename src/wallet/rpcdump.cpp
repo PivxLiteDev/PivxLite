@@ -702,15 +702,19 @@ UniValue importsaplingkey(const JSONRPCRequest& request)
         throw std::runtime_error(
                 "importsaplingkey \"key\" ( rescan startHeight )\n"
                 "\nAdds a key (as returned by exportsaplingkey) to your wallet.\n"
+                + HelpRequiringPassphrase() + "\n"
+
                 "\nArguments:\n"
                 "1. \"key\"             (string, required) The zkey (see exportsaplingkey)\n"
                 "2. rescan             (string, optional, default=\"whenkeyisnew\") Rescan the wallet for transactions - can be \"yes\", \"no\" or \"whenkeyisnew\"\n"
                 "3. startHeight        (numeric, optional, default=0) Block height to start rescan from\n"
                 "\nNote: This call can take minutes to complete if rescan is true.\n"
+
                 "\nResult:\n"
                 "{\n"
                 "  \"address\" : \"address|DefaultAddress\",    (string) The address corresponding to the spending key (the default address).\n"
                 "}\n"
+
                 "\nExamples:\n"
                 "\nExport a zkey\n"
                 + HelpExampleCli("exportsaplingkey", "\"myaddress\"") +
@@ -790,15 +794,19 @@ UniValue importsaplingviewingkey(const JSONRPCRequest& request)
         throw std::runtime_error(
                 "importsaplingviewingkey \"vkey\" ( rescan startHeight )\n"
                 "\nAdds a viewing key (as returned by exportsaplingviewingkey) to your wallet.\n"
+                + HelpRequiringPassphrase() + "\n"
+
                 "\nArguments:\n"
                 "1. \"vkey\"             (string, required) The viewing key (see exportsaplingviewingkey)\n"
                 "2. rescan             (string, optional, default=\"whenkeyisnew\") Rescan the wallet for transactions - can be \"yes\", \"no\" or \"whenkeyisnew\"\n"
                 "3. startHeight        (numeric, optional, default=0) Block height to start rescan from\n"
                 "\nNote: This call can take minutes to complete if rescan is true.\n"
+
                 "\nResult:\n"
                 "{\n"
                 "  \"address\" : \"address|DefaultAddress\",    (string) The address corresponding to the viewing key (for Sapling, this is the default address).\n"
                 "}\n"
+
                 "\nExamples:\n"
                 "\nImport a viewing key\n"
                 + HelpExampleCli("importsaplingviewingkey", "\"vkey\"") +
@@ -880,10 +888,14 @@ UniValue exportsaplingviewingkey(const JSONRPCRequest& request)
                 "exportsaplingviewingkey \"shielded_addr\"\n"
                 "\nReveals the viewing key corresponding to 'shielded addr'.\n"
                 "Then the importsaplingviewingkey can be used with this output\n"
+                + HelpRequiringPassphrase() + "\n"
+
                 "\nArguments:\n"
                 "1. \"shielded_addr\"   (string, required) The shielded addr for the viewing key\n"
+
                 "\nResult:\n"
                 "\"vkey\"                  (string) The viewing key\n"
+
                 "\nExamples:\n"
                 + HelpExampleCli("exportsaplingviewingkey", "\"myaddress\"")
                 + HelpExampleRpc("exportsaplingviewingkey", "\"myaddress\"")
@@ -915,10 +927,14 @@ UniValue exportsaplingkey(const JSONRPCRequest& request)
                 "exportsaplingkey \"shielded addr\"\n"
                 "\nReveals the key corresponding to the 'shielded addr'.\n"
                 "Then the importsaplingkey can be used with this output\n"
+                + HelpRequiringPassphrase() + "\n"
+
                 "\nArguments:\n"
                 "1. \"addr\"   (string, required) The shielded addr for the private key\n"
+
                 "\nResult:\n"
                 "\"key\"                  (string) The private key\n"
+
                 "\nExamples:\n"
                 + HelpExampleCli("exportsaplingkey", "\"myaddress\"")
                 + HelpExampleRpc("exportsaplingkey", "\"myaddress\"")

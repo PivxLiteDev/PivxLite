@@ -48,7 +48,7 @@ class ListReceivedTest (PivxTestFramework):
                                 self.nodes[1].shieldsendmany, taddr,
                                 [{'address': shield_addr1, 'amount': 2, 'memo': too_big_memo_str}])
         # Fixed fee
-        fee = 0.5
+        fee = 0.05
 
         # Send 1 PIV to shield addr1
         txid = self.nodes[1].shieldsendmany(taddr, [ # node_1 with 6 PIV sending them all (fee is 0.1 PIV)
@@ -128,15 +128,15 @@ class ListReceivedTest (PivxTestFramework):
         # Generate some change by sending part of shield_addr1 to shield_addr2
         txidPrev = txid
         shield_addr2 = self.nodes[1].getnewshieldaddress()
-        txid = self.nodes[1].shieldsendmany(shield_addr1, # shield_addr1 has 2 PIV, send 0.6 PIV + 0.5 PIV fee
+        txid = self.nodes[1].shieldsendmany(shield_addr1, # shield_addr1 has 2 PIV, send 0.6 PIV + 0.05 PIV fee
                                                [{'address': shield_addr2, 'amount': 0.6, "memo": non_ascii_memo_str}],
-                                               1, fee) # change 0.9
+                                               1, fee) # change 1.35
         self.sync_all()
         self.generate_and_sync(height+4)
 
         # Verify the spent nullifier
         tx_json = self.nodes[1].getrawtransaction(txid, True)
-        assert_equal(nullifier, tx_json["vShieldedSpend"][0]["nullifier"])
+        assert_equal(nullifier, tx_json["vShieldSpend"][0]["nullifier"])
 
         # Decrypted transaction details should be correct
         pt = self.nodes[1].viewshieldtransaction(txid)
@@ -165,8 +165,8 @@ class ListReceivedTest (PivxTestFramework):
                 assert_equal(out['address'], shield_addr1)
                 assert_equal(out['outgoing'], False)
                 assert_equal(out['memo'], no_memo)
-                assert_equal(out['value'], Decimal('0.9'))
-                assert_equal(out['valueSat'], 90000000)
+                assert_equal(out['value'], Decimal('1.35'))
+                assert_equal(out['valueSat'], 135000000)
                 found[1] = True
         assert_equal(found, [True] * 2)
 
@@ -176,7 +176,7 @@ class ListReceivedTest (PivxTestFramework):
         assert_true(2 == len(r), "shield_addr1 Should have received 2 notes")
 
         assert_equal(txid, r[0]['txid'])
-        assert_equal(Decimal('0.9'), r[0]['amount'])
+        assert_equal(Decimal('1.35'), r[0]['amount'])
         assert_true(r[0]['change'], "Note valued at (1.4-fee) should be change")
         assert_equal(no_memo, r[0]['memo'])
 

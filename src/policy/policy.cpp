@@ -47,7 +47,7 @@ bool IsDust(const CTxOut& txout, const CFeeRate& dustRelayFee)
 
 CAmount GetShieldedDustThreshold(const CFeeRate& dustRelayFee)
 {
-    unsigned int K = DEFAULT_SHIELDEDTXFEE_K;   // Fixed (1000) for now
+    unsigned int K = DEFAULT_SHIELDEDTXFEE_K;   // Fixed (100) for now
     return 3 * K * dustRelayFee.GetFee(SPENDDESCRIPTION_SIZE +
                                        CTXOUT_REGULAR_SIZE +
                                        BINDINGSIG_SIZE);

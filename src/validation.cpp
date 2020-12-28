@@ -292,7 +292,7 @@ CAmount GetMinRelayFee(unsigned int nBytes, bool fAllowFree)
 CAmount GetShieldedTxMinFee(const CTransaction& tx)
 {
     assert (tx.IsShieldedTx());
-    unsigned int K = DEFAULT_SHIELDEDTXFEE_K;   // Fixed (1000) for now
+    unsigned int K = DEFAULT_SHIELDEDTXFEE_K;   // Fixed (100) for now
     CAmount nMinFee = ::minRelayTxFee.GetFee(tx.GetTotalSize()) * K;
     if (!Params().GetConsensus().MoneyRange(nMinFee))
         nMinFee = Params().GetConsensus().nMaxMoneyOut;

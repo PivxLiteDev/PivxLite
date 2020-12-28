@@ -24,11 +24,11 @@ class SaplingSupplyTest(PivxTestFramework):
 
     def check_shield_supply(self, z_supply):
         self.log.info("Checking supply...")
-        assert_equal(self.nodes[0].getsupplyinfo()['shieldsupply'], z_supply)
+        assert_equal(self.nodes[0].getsupplyinfo()['shieldsupply'], Decimal("%.8f" % z_supply))
         self.log.info("OK. Shield supply is %.8f" % z_supply)
 
     def run_test(self):
-        fee = 1
+        fee = 0.05
         # First mine 101 blocks to mature one utxo
         self.log.info("Generating 101 blocks...")
         self.generate_and_sync(101)

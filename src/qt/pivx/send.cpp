@@ -77,6 +77,7 @@ SendWidget::SendWidget(PIVXGUI* parent) :
     // Shield coins
     ui->btnShieldCoins->setTitleClassAndText("btn-title-grey", tr("Shield Coins"));
     ui->btnShieldCoins->setSubTitleClassAndText("text-subtitle", tr("Convert all transparent coins into shielded coins"));
+    ui->btnShieldCoins->setVisible(false);
 
     connect(ui->pushButtonFee, &QPushButton::clicked, this, &SendWidget::onChangeCustomFeeClicked);
     connect(ui->btnCoinControl, &OptionButton::clicked, this, &SendWidget::onCoinControlClicked);
