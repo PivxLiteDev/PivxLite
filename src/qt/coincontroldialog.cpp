@@ -484,6 +484,19 @@ void CoinControlDialog::updateLabelLocked()
     }
 }
 
+// serialized int size
+static int GetCompactSize(uint64_t nSize)
+{
+    if (nSize < 253) {
+        return 1;
+    } else if (nSize <= std::numeric_limits<unsigned short>::max()) {
+        return 3;
+    } else if (nSize <= std::numeric_limits<unsigned int>::max()) {
+        return 5;
+    }
+    return 9;
+}
+
 void CoinControlDialog::updateLabels()
 {
     if (!model)
@@ -526,6 +539,16 @@ void CoinControlDialog::updateLabels()
                                             : SPENDDESCRIPTION_SIZE);
     }
 
+    // selected inputs
+    int nTransIns, nShieldIns;
+    if (fSelectTransparent) {
+        nTransIns = nQuantity;
+        nShieldIns = 0;
+    } else {
+        nTransIns = 0;
+        nShieldIns = nQuantity;
+    }
+
     // update SelectAll button state
     // if inputs selected > inputs unselected, set checked (label "Unselect All")
     // if inputs selected <= inputs unselected, set unchecked (label "Select All")
@@ -533,30 +556,35 @@ void CoinControlDialog::updateLabels()
 
     // calculation
     const int P2CS_OUT_SIZE = 61;
+    int nTransOuts = 0, nShieldOuts = 0;
     if (nQuantity > 0) {
-        bool isShieldedTx = !fSelectTransparent;
         // Bytes: nBytesInputs + (sum of nBytesOutputs)
         // always assume +1 (p2pkh) output for change here
         nBytes = nBytesInputs + (fSelectTransparent ? CTXOUT_REGULAR_SIZE : OUTPUTDESCRIPTION_SIZE);
         for (const auto& a : payAmounts) {
             bool shieldedOut = a.second;
-            isShieldedTx |= shieldedOut;
+            if (shieldedOut) nShieldOuts++;
+            else nTransOuts++;
             nBytes += (shieldedOut ? OUTPUTDESCRIPTION_SIZE
                                    : (forDelegation ? P2CS_OUT_SIZE : CTXOUT_REGULAR_SIZE));
         }
 
         // Shielded txes must include binding sig and valueBalance
+        bool isShieldedTx = (nShieldIns + nShieldOuts > 0);
         if (isShieldedTx) {
             nBytes += (BINDINGSIG_SIZE + 8);
-            // (plus at least 2 bytes for shielded in/outs len sizes)
-            nBytes += 2;
+            // shielded in/outs len sizes
+            nBytes += (GetCompactSize(nShieldIns) + GetCompactSize(nShieldOuts));
         }
 
         // !TODO: ExtraPayload size for special txes. For now 1 byte for nullopt.
         nBytes += 1;
 
-        // nVersion, nType, nLockTime and vin/vout len sizes
-        nBytes += 10;
+        // nVersion, nType, nLockTime
+        nBytes += 8;
+
+        // vin/vout len sizes
+        nBytes += (GetCompactSize(nTransIns) +  GetCompactSize(nTransOuts));
 
         // Fee (default K fixed for shielded fee for now)
         nPayFee = GetMinRelayFee(nBytes, false) * (isShieldedTx ? DEFAULT_SHIELDEDTXFEE_K : 1);
