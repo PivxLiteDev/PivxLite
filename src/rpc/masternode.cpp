@@ -380,9 +380,6 @@ UniValue startmasternode (const JSONRPCRequest& request)
             throw std::runtime_error("You can't use this command until masternode list is synced\n");
         }
 
-        std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
-        mnEntries = masternodeConfig.getEntries();
-
         int successful = 0;
         int failed = 0;
 
@@ -845,9 +842,6 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
         // wait for reindex and/or import to finish
         if (fImporting || fReindex)
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Wait for reindex and/or import to finish");
-
-        std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
-        mnEntries = masternodeConfig.getEntries();
 
         int successful = 0;
         int failed = 0;
