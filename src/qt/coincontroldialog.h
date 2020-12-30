@@ -24,6 +24,17 @@ class WalletModel;
 class CCoinControl;
 class CTxMemPool;
 
+struct TotalAmounts {
+    CAmount nPayAmount{0};      // sum of recipients send amount
+    CAmount nAmount{0};         // sum of value of selected inputs
+    CAmount nPayFee{0};         // expected tx fee
+    CAmount nAfterFee{0};       // nAmount - nPayFee
+    CAmount nChange{0};         // nAfterFee - nPayAmount
+    unsigned int nQuantity{0};  // number of selected inputs
+    unsigned int nBytes{0};     // expected tx size
+    bool fDust{false};          // true if any output is below the dust threshold
+};
+
 namespace Ui
 {
 class CoinControlDialog;
@@ -54,9 +65,6 @@ public:
     void clearPayAmounts();
     void addPayAmount(const CAmount& amount, bool isShieldedRecipient);
     void setSelectionType(bool isTransparent) { fSelectTransparent = isTransparent; }
-    // calculate sums for selected amount, number of inputs, change, fee, after fee value, and transaction size
-    void getTotals(CAmount& nPayAmount, CAmount& nAmount, CAmount& nPayFee, CAmount& nAfterFee,
-                   CAmount& nChange, unsigned int& nQuantity, unsigned int& nBytes, bool& fDust);
 
     CCoinControl* coinControl;
 
@@ -100,6 +108,10 @@ private:
                            const int64_t nTime,
                            const int nDepth,
                            const bool isChange);
+
+    // calculate sums for selected amount, number of inputs, change, fee, after fee value, and transaction size
+    TotalAmounts getTotals() const;
+
 
     enum {
         COLUMN_CHECKBOX,

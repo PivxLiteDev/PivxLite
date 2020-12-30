@@ -497,100 +497,92 @@ static int GetCompactSize(uint64_t nSize)
     return 9;
 }
 
-void CoinControlDialog::getTotals(CAmount& nPayAmount, CAmount& nAmount, CAmount& nPayFee, CAmount& nAfterFee,
-                                  CAmount& nChange, unsigned int& nQuantity, unsigned int& nBytes, bool& fDust)
+TotalAmounts CoinControlDialog::getTotals() const
 {
-    // clear references
-    nPayAmount = 0;
-    nAmount = 0;
-    nPayFee = 0;
-    nAfterFee = 0;
-    nChange = 0;
-    nQuantity = 0;
-    nBytes = 0;
-    fDust = false;
+    TotalAmounts t;
 
     std::vector<OutPointWrapper> vCoinControl;
     coinControl->ListSelected(vCoinControl);
 
     for (const OutPointWrapper& out : vCoinControl) {
         // Quantity
-        nQuantity++;
+        t.nQuantity++;
         // Amount
-        nAmount += out.value;
+        t.nAmount += out.value;
         // Bytes
-        nBytes += (fSelectTransparent ? (CTXIN_SPEND_DUST_SIZE + (out.isP2CS ? 1 : 0))
+        t.nBytes += (fSelectTransparent ? (CTXIN_SPEND_DUST_SIZE + (out.isP2CS ? 1 : 0))
                                       : SPENDDESCRIPTION_SIZE);
     }
 
     // selected inputs
     int nTransIns, nShieldIns;
     if (fSelectTransparent) {
-        nTransIns = nQuantity;
+        nTransIns = t.nQuantity;
         nShieldIns = 0;
     } else {
         nTransIns = 0;
-        nShieldIns = nQuantity;
+        nShieldIns = t.nQuantity;
     }
 
     // calculation
     const int P2CS_OUT_SIZE = 61;
     int nTransOuts = 0, nShieldOuts = 0;
-    if (nQuantity > 0) {
+    if (t.nQuantity > 0) {
         // Bytes: nBytesInputs + (sum of nBytesOutputs)
         // always assume +1 (p2pkh) output for change here
-        nBytes += (fSelectTransparent ? CTXOUT_REGULAR_SIZE : OUTPUTDESCRIPTION_SIZE);
+        t.nBytes += (fSelectTransparent ? CTXOUT_REGULAR_SIZE : OUTPUTDESCRIPTION_SIZE);
         for (const auto& a : payAmounts) {
-            nPayAmount += a.first;
+            t.nPayAmount += a.first;
             bool shieldedOut = a.second;
             if (shieldedOut) nShieldOuts++;
             else nTransOuts++;
-            if (a.first > 0 && !fDust) {
+            if (a.first > 0 && !t.fDust) {
                 if (a.first < (shieldedOut ? GetShieldedDustThreshold(minRelayTxFee) : GetDustThreshold(minRelayTxFee)))
-                    fDust = true;
+                    t.fDust = true;
             }
-            nBytes += (shieldedOut ? OUTPUTDESCRIPTION_SIZE
+            t.nBytes += (shieldedOut ? OUTPUTDESCRIPTION_SIZE
                                    : (forDelegation ? P2CS_OUT_SIZE : CTXOUT_REGULAR_SIZE));
         }
 
         // Shielded txes must include binding sig and valueBalance
         bool isShieldedTx = (nShieldIns + nShieldOuts > 0);
         if (isShieldedTx) {
-            nBytes += (BINDINGSIG_SIZE + 8);
+            t.nBytes += (BINDINGSIG_SIZE + 8);
             // shielded in/outs len sizes
-            nBytes += (GetCompactSize(nShieldIns) + GetCompactSize(nShieldOuts));
+            t.nBytes += (GetCompactSize(nShieldIns) + GetCompactSize(nShieldOuts));
         }
 
         // !TODO: ExtraPayload size for special txes. For now 1 byte for nullopt.
-        nBytes += 1;
+        t.nBytes += 1;
 
         // nVersion, nType, nLockTime
-        nBytes += 8;
+        t.nBytes += 8;
 
         // vin/vout len sizes
-        nBytes += (GetCompactSize(nTransIns) +  GetCompactSize(nTransOuts));
+        t.nBytes += (GetCompactSize(nTransIns) +  GetCompactSize(nTransOuts));
 
         // Fee (default K fixed for shielded fee for now)
-        nPayFee = GetMinRelayFee(nBytes, false) * (isShieldedTx ? DEFAULT_SHIELDEDTXFEE_K : 1);
+        t.nPayFee = GetMinRelayFee(t.nBytes, false) * (isShieldedTx ? DEFAULT_SHIELDEDTXFEE_K : 1);
 
-        if (nPayAmount > 0) {
-            nChange = nAmount - nPayFee - nPayAmount;
+        if (t.nPayAmount > 0) {
+            t.nChange = t.nAmount - t.nPayFee - t.nPayAmount;
 
             // Never create dust outputs; if we would, just add the dust to the fee.
             CAmount dustThreshold = fSelectTransparent ? GetDustThreshold(minRelayTxFee) :
                                                          GetShieldedDustThreshold(minRelayTxFee);
-            if (nChange > 0 && nChange < dustThreshold) {
-                nPayFee += nChange;
-                nChange = 0;
+            if (t.nChange > 0 && t.nChange < dustThreshold) {
+                t.nPayFee += t.nChange;
+                t.nChange = 0;
             }
 
-            if (nChange == 0)
-                nBytes -= (fSelectTransparent ? CTXOUT_REGULAR_SIZE : SPENDDESCRIPTION_SIZE);
+            if (t.nChange == 0)
+                t.nBytes -= (fSelectTransparent ? CTXOUT_REGULAR_SIZE : SPENDDESCRIPTION_SIZE);
         }
 
         // after fee
-        nAfterFee = std::max<CAmount>(nAmount - nPayFee, 0);
+        t.nAfterFee = std::max<CAmount>(t.nAmount - t.nPayFee, 0);
     }
+    return t;
 }
 
 void CoinControlDialog::updateLabels()
@@ -602,15 +594,7 @@ void CoinControlDialog::updateLabels()
             "Select PIV Outputs to Spend" :
             "Select Shielded PIV to Spend");
 
-    CAmount nPayAmount = 0;
-    CAmount nAmount = 0;
-    CAmount nPayFee = 0;
-    CAmount nAfterFee = 0;
-    CAmount nChange = 0;
-    unsigned int nQuantity = 0;
-    unsigned int nBytes = 0;
-    bool fDust = false;
-    getTotals(nPayAmount, nAmount, nPayFee, nAfterFee, nChange, nQuantity, nBytes, fDust);
+    const TotalAmounts& t = getTotals();
 
     // update SelectAll button state
     // if inputs selected > inputs unselected, set checked (label "Unselect All")
@@ -623,30 +607,30 @@ void CoinControlDialog::updateLabels()
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 
     // enable/disable "dust" and "change"
-    const bool hasPayAmount = nPayAmount > 0;
+    const bool hasPayAmount = t.nPayAmount > 0;
     ui->labelCoinControlLowOutputText->setEnabled(hasPayAmount);
     ui->labelCoinControlLowOutput->setEnabled(hasPayAmount);
     ui->labelCoinControlChangeText->setEnabled(hasPayAmount);
     ui->labelCoinControlChange->setEnabled(hasPayAmount);
 
     // stats
-    ui->labelCoinControlQuantity->setText(QString::number(nQuantity));
-    ui->labelCoinControlAmount->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, nAmount));
-    ui->labelCoinControlFee->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, nPayFee));
-    ui->labelCoinControlAfterFee->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, nAfterFee));
-    ui->labelCoinControlBytes->setText(((nBytes > 0) ? "~" : "") + QString::number(nBytes));
-    ui->labelCoinControlLowOutput->setText(fDust ? tr("yes") : tr("no"));
-    ui->labelCoinControlChange->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, nChange));
-    if (nPayFee > 0 && !(payTxFee.GetFeePerK() > 0 && fPayAtLeastCustomFee && nBytes < 1000)) {
+    ui->labelCoinControlQuantity->setText(QString::number(t.nQuantity));
+    ui->labelCoinControlAmount->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, t.nAmount));
+    ui->labelCoinControlFee->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, t.nPayFee));
+    ui->labelCoinControlAfterFee->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, t.nAfterFee));
+    ui->labelCoinControlBytes->setText(((t.nBytes > 0) ? "~" : "") + QString::number(t.nBytes));
+    ui->labelCoinControlLowOutput->setText(t.fDust ? tr("yes") : tr("no"));
+    ui->labelCoinControlChange->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, t.nChange));
+    if (t.nPayFee > 0 && !(payTxFee.GetFeePerK() > 0 && fPayAtLeastCustomFee && t.nBytes < 1000)) {
         ui->labelCoinControlFee->setText("~" + ui->labelCoinControlFee->text());
         ui->labelCoinControlAfterFee->setText("~" + ui->labelCoinControlAfterFee->text());
-        if (nChange > 0)
+        if (t.nChange > 0)
             ui->labelCoinControlChange->setText("~" + ui->labelCoinControlChange->text());
     }
 
     // turn labels "red"
-    ui->labelCoinControlBytes->setStyleSheet((nBytes >= MAX_FREE_TRANSACTION_CREATE_SIZE) ? "color:red;" : "");     // Bytes >= 1000
-    ui->labelCoinControlLowOutput->setStyleSheet((fDust) ? "color:red;" : "");                                      // Dust = "yes"
+    ui->labelCoinControlBytes->setStyleSheet((t.nBytes >= MAX_FREE_TRANSACTION_CREATE_SIZE) ? "color:red;" : "");     // Bytes >= 1000
+    ui->labelCoinControlLowOutput->setStyleSheet((t.fDust) ? "color:red;" : "");                                      // Dust = "yes"
 
     // tool tips
     QString toolTip1 = tr("This label turns red, if the transaction size is greater than 1000 bytes.") + "<br /><br />";
@@ -678,7 +662,7 @@ void CoinControlDialog::updateLabels()
     // Insufficient funds
     QLabel* label = findChild<QLabel*>("labelCoinControlInsuffFunds");
     if (label)
-        label->setVisible(nChange < 0);
+        label->setVisible(t.nChange < 0);
 }
 
 void CoinControlDialog::loadAvailableCoin(bool treeMode,
