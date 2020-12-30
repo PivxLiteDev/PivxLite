@@ -454,6 +454,12 @@ UniValue dumpwallet(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"filename\"    (string, required) The filename\n"
 
+            "\nResult:\n"
+            "{\n"
+            "  \"filename\": \"xxxx\",     (string) The full path to the wallet dump file.\n"
+            "  \"warning\": \"xxxx\"       (string) A warning message about the exact contents of this file.\n"
+            "}\n"
+
             "\nExamples:\n" +
             HelpExampleCli("dumpwallet", "\"test\"") + HelpExampleRpc("dumpwallet", "\"test\""));
 
