@@ -190,7 +190,10 @@ UniValue getmasternodecount (const JSONRPCRequest& request)
             "  \"total\": n,        (numeric) Total masternodes\n"
             "  \"stable\": n,       (numeric) Stable count\n"
             "  \"enabled\": n,      (numeric) Enabled masternodes\n"
-            "  \"inqueue\": n       (numeric) Masternodes in queue\n"
+            "  \"inqueue\": n,      (numeric) Masternodes in queue\n"
+            "  \"ipv4\": n,         (numeric) Number of IPv4 masternodes\n"
+            "  \"ipv6\": n,         (numeric) Number of IPv6 masternodes\n"
+            "  \"onion\": n         (numeric) Number of Tor masternodes\n"
             "}\n"
 
             "\nExamples:\n" +
