@@ -84,7 +84,9 @@ BOOST_AUTO_TEST_CASE(StoreAndLoadSaplingZkeys) {
     auto dpa = sk.ToXFVK().Address(diversifier).get().second;
 
     // verify wallet only has the default address
-    BOOST_CHECK(wallet.HaveSaplingIncomingViewingKey(sk.DefaultAddress()));
+    libzcash::SaplingPaymentAddress defaultAddr = sk.DefaultAddress();
+    BOOST_CHECK(wallet.HaveSaplingIncomingViewingKey(defaultAddr));
+    BOOST_CHECK_MESSAGE(!(dpa == defaultAddr), "ERROR: default address is equal to diversified address");
     BOOST_CHECK(!wallet.HaveSaplingIncomingViewingKey(dpa));
 
     // manually add a diversified address
