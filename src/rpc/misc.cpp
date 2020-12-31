@@ -58,6 +58,7 @@ UniValue getinfo(const JSONRPCRequest& request)
             "{\n"
             "  \"version\": xxxxx,             (numeric) the server version\n"
             "  \"protocolversion\": xxxxx,     (numeric) the protocol version\n"
+            "  \"services\": \"xxxx\",         (string) The network services provided by this client\n"
             "  \"walletversion\": xxxxx,       (numeric) the wallet version\n"
             "  \"balance\": xxxxxxx,           (numeric) the total pivx balance of the wallet\n"
             "  \"staking status\": true|false, (boolean) if the wallet is staking or not\n"
