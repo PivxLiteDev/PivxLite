@@ -463,6 +463,13 @@ UniValue sethdseed(const JSONRPCRequest& request)
     spk_man->SetHDSeed(master_pub_key, true);
     if (flush_key_pool) spk_man->NewKeyPool();
 
+    // Update Sapling chain
+    SaplingScriptPubKeyMan* sspk_man = pwallet->CanSupportFeature(FEATURE_SAPLING) ?
+                                       pwallet->GetSaplingScriptPubKeyMan() : nullptr;
+    if (sspk_man) {
+        sspk_man->SetHDSeed(master_pub_key, true);
+    }
+
     return NullUniValue;
 }
 
