@@ -13,6 +13,7 @@
 #include "chainparams.h"
 #include "rpc/client.h"
 #include "rpc/server.h"
+#include "sapling/key_io_sapling.h"
 #include "util.h"
 #include "utilitydialog.h"
 
@@ -460,6 +461,12 @@ static bool PotentiallyDangerousCommand(const QString& cmd)
         std::vector<std::string> args;
         parseCommandLineSettings(args, cmd.toStdString());
         return (args.size() == 2 && IsValidDestinationString(args[1], false));
+    }
+    if (cmd.size() >= 18 && cmd.leftRef(16) == "exportsaplingkey") {
+        // valid PIVX Shield Address
+        std::vector<std::string> args;
+        parseCommandLineSettings(args, cmd.toStdString());
+        return (args.size() == 2 && KeyIO::IsValidPaymentAddressString(args[1]));
     }
 
     return false;
