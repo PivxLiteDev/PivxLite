@@ -56,7 +56,7 @@ Users will be able to protect their financial information by sending and receivi
 More visual information about the protocol can be found at https://pivx.org .
 
 #### GUI features
-New set of functionalities for usage of the SHIELD protocol:
+New set of functionalities for the interaction with the SHIELD protocol:
 
 * Receive screen modified to show, generate and set label of wallet's shield addresses.
 * Dashboard transactions list including shield transactions.
@@ -71,7 +71,7 @@ New set of functionalities for usage of the SHIELD protocol:
 A brand new manager encapsulating all Sapling related capabilities inside the wallet has been implemented:
 
 * New address type: shield addresses (using bech32 format).
-* New derivation path for Sapling keys: Shield addresses are derived from the unique wallet's master seed (same as regular & cold staking addresses. The wallet's seed is able to restore PIVs and Shield PIVs equally).
+* New derivation path for Sapling keys: Shield addresses are derived from the same wallet master seed used for the deterministic derivation of all other keys. The same seed, therefore, can be used to restore both transparent and Shield addresses, recovering both transparent and Shield PIV balance.
 * Support for Sapling extended full viewing keys, incoming viewing keys, outgoing viewing keys and spending keys.
 * Sapling notes management:
   - Notes decryption.
@@ -82,15 +82,19 @@ A brand new manager encapsulating all Sapling related capabilities inside the wa
 * New transaction building process, crafting and signing shield transactions.
 
 #### Block Primitive:
-* Block version bumped to 8, the header is storing 32 bytes more for the Sapling incremental merkle tree root.
+* Block version bumped to 8.
+* Starting from block v8, the block header includes an additional `uint256` field, `hashFinalSaplingRoot` (which adds 32 bytes to the end of the serialized block header) storing the root of the Sapling note commitment tree, corresponding to the final Sapling treestate of this block.
 * Each block index now is tracking the network total value entering and exiting the shield pool.
 
 #### Transaction Primitive:
-* Version bumped to 2.
 * The "transaction type" concept was introduced, dividing the version field (4 bytes) in version (first 2 bytes) and type (second 2 bytes).
-* Sapling data has been included: `valueBalance`, `vShieldedSpend`, `ShieldedSpend` and `bindingSig`.
-* Special transactions extra payload introduction (not enabled by consensus).
-* A new signature hash for Sapling and Special transactions has been implemented.
+* For transactions with `nVersion >= 3`, a new optional field `sapData` has been included, comprising:
+  - `valueBalance`: the net value of Sapling spend transfers minus output transfers
+  - `vShieldedSpend`: a sequence of Sapling spend descriptions
+  - `vShieldedOutput`: a sequence of Sapling output descriptions
+  - `bindingSig`: the Sapling binding signature
+* Transactions with `nVersion >= 3` and `nType != 0`(not enabled by consensus at the moment), are defined "special transactions" and must include an extra payload serialized according to the definition imposed by the relative type.
+* A new signature hash for Sapling and Special transactions has been implemented (as defined in [ZIP-243](https://zips.z.cash/zip-0243)).
 
 #### Build System
 In order to support the protocol, the following dependencies are introduced in the build system:
