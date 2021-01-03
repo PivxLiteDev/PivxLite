@@ -16,6 +16,20 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVX-Qt (on Mac) or pivxd/pivx-qt (on Linux).
 
+#### Sapling Parameters
+In order to run, PIVX Core now requires two files, `sapling-output.params` and `sapling-spend.params` (with total size ~50 MB), to be saved in a specific location.
+
+For the following packages, no action is required by the user:
+- macOS release `dmg` binaries will use the params that are bundled into the .app bundle.
+- Windows installer `.exe` will automatically copy the files in the proper location.
+- Linux `PPA/Snap/Copr` installs will automatically copy the files in the proper location.
+
+For the other packages, the user must save the param files in the proper location, before being able to run PIVX v5.0.0:
+- macOS/Linux `tar.gz` tarballs include a bash script (`install-params.sh`) to copy the parameters in the appropriate location.
+- Windows `.zip` users need to manually copy the files from the `share/pivx` folder to the `%APPDATA%\PIVXParams` directory.
+- self compilers can run the script from the repository sources (`params/install-params.sh`), or copy the files directly from the `params` subdirectory.
+
+
 
 Compatibility
 ==============
@@ -59,7 +73,7 @@ A brand new manager encapsulating all Sapling related capabilities inside the wa
 * New address type: shield addresses (using bech32 format).
 * New derivation path for Sapling keys: Shield addresses are derived from the unique wallet's master seed (same as regular & cold staking addresses. The wallet's seed is able to restore PIVs and Shield PIVs equally).
 * Support for Sapling extended full viewing keys, incoming viewing keys, outgoing viewing keys and spending keys.
-* Sapling notes management: 
+* Sapling notes management:
   - Notes decryption.
   - Blockchain scanning protocol: handling when and how to store a Sapling output and its related keys. As well as mark used notes.
   - Notes metadata cache: retrieving information without requiring to decrypt notes on-demand.
@@ -84,7 +98,7 @@ A large number of performance and stability improvements over the complete tier 
 Plus, tier two and masternodes capabilities have been introduced to regtest, enabling the local testing environment setup and the creation of a functional testing framework for the area.
 This work is directly correlated with a substantial efficiency improvement for the entire software, not only for masternodes, and is one of the building blocks for the new tier two network and sync protocol that will be continued post-v5.
 
-Instant Proposal Removal: 
+Instant Proposal Removal:
 The threshold was increased to 30% of negative votes.
 The proposal will never be removed before its first superblock.
 
@@ -319,7 +333,7 @@ Each new command is detailed below:
   4. fee                  (numeric, optional), The fee amount to attach to this transaction.
      If not specified, the wallet will try to compute the minimum possible fee for a shield TX,
      based on the expected transaction size and the current value of -minRelayTxFee.
-  
+
   Result:
   transaction                (string) hex string of the transaction
   ```
@@ -437,7 +451,7 @@ Several RPC commands have had changes to their input arguments or output fields 
 
 * `getblock`
   A new JSON entry (`finalsaplingroot`) has been added to the return object. (string) The root of the Sapling commitment tree after applying this block.
-  
+
 * `getblockheader`
   A new JSON object (`shield_pool_value`) has been added to the return object with the following information:
   ```
@@ -447,7 +461,7 @@ Several RPC commands have had changes to their input arguments or output fields 
      "valueDelta":        (numeric) Change in value held by the Sapling circuit over this block
   }
   ```
-  
+
 * `getblockchaininfo`
   A new JSON entry (`initial_block_downloading`) has been added to the return object. (boolean) whether the node is in initial block downloading state or not.
   A new JSON object (`shield_pool_value`) has been added to the return object with the following information:
@@ -462,19 +476,19 @@ Several RPC commands have had changes to their input arguments or output fields 
 * `getblockindexstats`
   The `fFeeOnly` input argument has been removed.
   The `spendcount` and `pubspendcount` return objects have been removed due to zerocoin deprecation.
-  
+
 * `preparebudget` and `submitbudget`
   A maximum of `6` payment cycles per proposal (`20` on testnet) is now imposed for newly created proposals. Amounts higher than this limit will now return an error message.
-  
+
 * `getbudgetprojection`
   A typo in the JSON return fields has been corrected; `Alloted` and `TotalBudgetAlloted` have been renamed to `Allotted` and `TotalBudgetAllotted` respectively.
-  
+
 * `startmasternode`
   A new optional input argument (`reload_conf`) has been added to reload the client's `masternode.conf` file in real-time. This optional argument is only available when running `startmasternode` with "alias" being specified as the first argument.
-  
+
 * `decodemasternodebroadcast`
   The `nlastdsq` JSON return entry has been removed. This was a remnant from pre-zerocoin "CoinJoin" mixing.
-  
+
 * `getinfo`
   The `zerocoinbalance` JSON return entry and the `zPIVsupply` return JSON object have been removed due to zerocoin deprecation.
   The `balance` JSON return entry is now all inclusive (the sum of all transparent and shield PIV)
@@ -482,15 +496,15 @@ Several RPC commands have had changes to their input arguments or output fields 
   A new JSON return entry (`transparentsupply`) has been added to return the sum of the value of all unspent outputs when the chainstate was last flushed to disk.
   A new JSON return entry (`shieldsupply`) has been added to return the shield supply at the chain tip.
   Integrators should switch to the newly added `getsupplyinfo` RPC command for the purpose of obtaining supply information as it is more robust and does not rely on information caching.
-  
+
 * `validateaddress`
   The `account` JSON return entry has been removed due to the removal of the internal accounting system. The `label` entry was it's replacement.
-  
+
 * `getrawtransaction`
   A new JSON return entry (`type`) has been added which indicates via a numeric value the type of transaction (currently not fully implemented).
   A new JSON return array (`shield_addresses`) has been added which will contain a list of shield address strings involved in the transaction (if that information is available to the local client).
   Two new JSON return entries (`extraPayloadSize` and `extraPayload`) have been added pre-emptively to support future implementation of "special" transactions (currently NYI).
-  
+
 * `getrawtransaction` and `decoderawtransaction`
   New JSON output entries have been added to both these commands to detail sapling input/output information after the `vout` array in the following format:
   ```
@@ -520,22 +534,22 @@ Several RPC commands have had changes to their input arguments or output fields 
   ],
   "bindingSig": hex,       (string) Prove consistency of valueBalance with the value commitments in spend descriptions and output descriptions, and proves knowledge of the randomness used for the spend and output value commitments
   ```
-  
+
 * `getbalance`
   The `account` input argument has been removed due to the removal of the internal accounting system.
   A new optional input argument (`includeShield`) has been added to include shield balance. Default is `true`.
-  
+
 * `getcoldstakingbalance` and `getdelegatedbalance`
   The optional `account` input argument has been removed due to the removal of the internal accounting system.
-  
+
 * `listreceivedbyaddress`, `listreceivedbylabel`, `listsinceblock`, and `gettransaction`
   The JSON return entry `account` has been removed due to the removal of the internal accounting system.
   The JSON return entry `bcconfirmations` has been marked as deprecated and will be removed in the future.
-  
+
 * `listunspent`
   The JSON return entry `account` has been removed due to the removal of the internal accounting system.
   A new JSON entry (`generated`) has been added to indicate if the txout is a coinstake transaction.
-  
+
 
 #### Removed RPC Commands
 
