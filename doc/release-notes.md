@@ -10,6 +10,13 @@ Please report bugs using the issue tracker at github: <https://github.com/pivx-p
 Mandatory Update
 ==============
 
+PIVX Core v5.0.0 is a mandatory update for all users. This release contains a protocol upgrade (to `70920`), new consensus rules and improvements that are not backwards compatible with older versions. Users will need to update their clients before enforcement of this update goes into effect.
+
+Update enforcement is currently scheduled to go into effect at the following time:
+```
+Mainnet: TBD
+```
+Masternodes will need to be restarted once both the masternode daemon and the controller wallet have been upgraded.
 
 How to Upgrade
 ==============
