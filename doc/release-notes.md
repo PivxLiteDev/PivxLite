@@ -113,6 +113,22 @@ In order to support the protocol, the following dependencies are introduced in t
 - `Sodium` https://github.com/jedisct1/libsodium
 - `Rust/Cargo`https://www.rust-lang.org/
 
+HD Wallet upgrade
+-----------------
+In order to support the Shield features, the wallet must be upgraded to `SAPLING_VERSION`.
+
+*How do I check my wallet version?*
+   * Check the output of `getinfo` or `getwalletinfo`.<br>The `"walletversion"` field must be equal to `170000` (`SAPLING_VERSION`)
+
+*How do I upgrade my HD wallet to `SAPLING_VERSION`?*
+   * Newly created wallets have already the latest version
+   * If the wallet is unlocked, use the `-upgradewallet` init flag to automatically update at startup.<br>Otherwise use the GUI or RPC (see below) to unlock and upgrade the wallet.
+   * GUI:
+      - A dialog will appear on every wallet startup notifying you that you are running a pre-Sapling wallet and letting you upgrade it from there.
+      - If you haven't upgraded your wallet, the topbar (bar with icons that appears at the top of your wallet) will have an "HD" icon. Click it and the upgrade dialog will be launched.
+   * RPC:
+      - use the `upgradewallet` after unlocking the wallet (if locked)
+
 Tier Two Network
 ----------------
 A large number of performance and stability improvements over the complete tier two network and masternodes sources have been performed. Re-writing, encapsulating and decoupling workflows, cleaning up an extensive number of redundancies and misalignment.
