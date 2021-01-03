@@ -92,6 +92,11 @@ A brand new manager encapsulating all Sapling related capabilities inside the wa
 * Special transactions extra payload introduction (not enabled by consensus).
 * A new signature hash for Sapling and Special transactions has been implemented.
 
+#### Build System
+In order to support the protocol, the following dependencies are introduced in the build system:
+- `Sodium` https://github.com/jedisct1/libsodium
+- `Rust/Cargo`https://www.rust-lang.org/
+
 Tier Two Network
 ----------------
 A large number of performance and stability improvements over the complete tier two network and masternodes sources have been performed. Re-writing, encapsulating and decoupling workflows, cleaning up an extensive number of redundancies and misalignment.
