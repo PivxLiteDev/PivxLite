@@ -96,6 +96,18 @@ A brand new manager encapsulating all Sapling related capabilities inside the wa
 * Transactions with `nVersion >= 3` and `nType != 0`(not enabled by consensus at the moment), are defined "special transactions" and must include an extra payload serialized according to the definition imposed by the relative type.
 * A new signature hash for Sapling and Special transactions has been implemented (as defined in [ZIP-243](https://zips.z.cash/zip-0243)).
 
+#### Additional Consensus Rules
+- Transactions with version >= 3 must have the new serialization (including a zero byte for empty `Optional`, if missing `sapData` or `extraPayload`).
+- Shield transactions cannot be coinbase or coinstake transactions.
+- Transactions containing empty `vin` must have non-empty `vShieldedSpend`.
+- Transactions containing empty `vout` must have non-empty `vShieldedOutput`.
+- Transactions with version >= 4 are not accepted
+- The maximum size of a single Shield transaction is 400 kB.
+- The sum of the sizes of all Shield transactions in a block cannot be greater than 750 kB.
+
+#### Fee Policy
+The `minRelayTxFee` startup argument is multiplied by a fixed factor `K = 100` for Shield transactions. This makes the fee required to relay Shield transactions (and "dust" threshold value) 100 times higher than a transparent transaction of the same size.
+
 #### Build System
 In order to support the protocol, the following dependencies are introduced in the build system:
 - `Sodium` https://github.com/jedisct1/libsodium
