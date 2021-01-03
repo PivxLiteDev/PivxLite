@@ -189,7 +189,7 @@ void AddressesWidget::onStoreContactClicked()
         bool isStakingAddress = false;
         auto pivAdd = Standard::DecodeDestination(address.toUtf8().constData(), isStakingAddress);
 
-        if (!Standard::IsValidDestination(pivAdd) || isStakingAddress) {
+        if (!Standard::IsValidDestination(pivAdd)) {
             setCssEditLine(ui->lineEditAddress, false, true);
             inform(tr("Invalid Contact Address"));
             return;
