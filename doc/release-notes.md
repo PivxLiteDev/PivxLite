@@ -128,8 +128,19 @@ The 'label' API was introduced in v4.2.0 as a replacement for accounts.
 See the release notes from [v4.2.0](https://github.com/PIVX-Project/PIVX/blob/master/doc/release-notes/release-notes-4.2.0.md#label-and-account-apis-for-wallet) for a full description of the changes from the 'account' API to the 'label' API.
 
 
+GUI Changes
+-----------
+#### Shield Protocol
+Several views and widgets have been updated to support new features as described in the previous section.
+
+#### RPC Console
+- Added autocompletion for the `help` command
+- Added warning/confirmation dialog before executing commands that expose private keys (`dumpwallet`, `dumpprivkey`, `exportsaplingkey`)
+
+
 RPC Changes
 ------------------
+The RPC server now returns a JSON-RPC exception when receiving a request during the warm-up phase. The returned exception includes the current init message ("Loading sporks", "Loading block index", "Verifying blocks", etc...)
 
 #### New RPC Commands
 
@@ -458,6 +469,12 @@ Each new command is detailed below:
 
 Several RPC commands have had changes to their input arguments or output fields since v4.3.0 to support new functionality. Below is a detailed list of changes to existing RPC commands:
 
+* `dumpwallet`
+  A new entry (`warning`) is added to the return object, explaining the risks connected with sharing the output of the command. Also the filename can no longer contain the strings `"bug"` and `"log"`.
+
+* `delegatestake`/`rawdelegatestake`
+  A new input parameter (`fUseShielded`) has been added, in order to delegate funds from Shield addresses.
+
 * `getblock`
   A new JSON entry (`finalsaplingroot`) has been added to the return object. (string) The root of the Sapling commitment tree after applying this block.
 
@@ -491,6 +508,12 @@ Several RPC commands have had changes to their input arguments or output fields 
 
 * `getbudgetprojection`
   A typo in the JSON return fields has been corrected; `Alloted` and `TotalBudgetAlloted` have been renamed to `Allotted` and `TotalBudgetAllotted` respectively.
+
+* `mnfinalbudget show`
+  The `strName` key of the JSON object, representing a finalized budget in the output list, has now the format `"main" (Hash)`. The object no longer has the `"Hash"` entry.
+
+* `sendtoaddress`/`sendmany`
+  Shield addresses can be used as recipients. In this case the request is forwarded to `shieldsendmany` with first parameter set to `from_transparent`.
 
 * `startmasternode`
   A new optional input argument (`reload_conf`) has been added to reload the client's `masternode.conf` file in real-time. This optional argument is only available when running `startmasternode` with "alias" being specified as the first argument.
