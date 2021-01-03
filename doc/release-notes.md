@@ -139,6 +139,42 @@ The 'label' API was introduced in v4.2.0 as a replacement for accounts.
 
 See the release notes from [v4.2.0](https://github.com/PIVX-Project/PIVX/blob/master/doc/release-notes/release-notes-4.2.0.md#label-and-account-apis-for-wallet) for a full description of the changes from the 'account' API to the 'label' API.
 
+SwiftX Removed
+--------------
+Remove obsolete functionality (already disabled via SPORK in the previous releases).
+- startup arguments removed:
+   * `zmqpubhashtxlock`
+   * `zmqpubrawtxlock`
+   * `enableswifttx`
+   * `swifttxdepth`
+
+
+- P2P messages deprecated:
+   * `MSG_TXLOCK_REQUEST`
+   * `MSG_TXLOCK_VOTE`
+
+
+- GUI changes:
+   * remove SwiftX mentions in coin control
+
+
+- RPC commands removed/modified:
+   * `sendtoaddressix` (removed)
+   * `sendrawtransaction` (removed `swiftx` optional parameter)
+   * decoded transaction `bcconfirmations` JSON entry is now deprecated and kept only for backward compatibility (it is equal to `confirmations`)
+
+
+- Deprecated Sporks:
+   * `SPORK_2_SWIFTTX`
+   * `SPORK_3_SWIFTTX_BLOCK_FILTERING`
+
+Zerocoin Protocol Support Removed
+---------------------------------
+The Core wallet is no longer able to produce (public) zerocoin spends, and those are no longer accepted by consensus.
+- Several zerocoin related RPC commands have been removed or changed (as  detailed in the section "RPC Changes" below).
+- startup argument removed: `reindexzerocoin`
+- GUI: removed transaction records for zerocoin mint outputs
+
 
 GUI Changes
 -----------
