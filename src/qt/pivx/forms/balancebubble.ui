@@ -10,9 +10,15 @@
     <height>178</height>
    </rect>
   </property>
-  <property name="maximumSize">
+  <property name="minimumSize">
    <size>
     <width>218</width>
+    <height>178</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>250</width>
     <height>178</height>
    </size>
   </property>
@@ -38,7 +44,7 @@ background-color:transparent
      </property>
      <property name="maximumSize">
       <size>
-       <width>200</width>
+       <width>250</width>
        <height>160</height>
       </size>
      </property>
@@ -78,8 +84,7 @@ background-color:transparent
       <item>
        <widget class="QLabel" name="textTransparent">
         <property name="styleSheet">
-         <string notr="true">
-                                      </string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>0.00 pivx</string>
