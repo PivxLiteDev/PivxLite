@@ -696,30 +696,282 @@ The table below details RPC commands that have now been fully removed. These com
 | `spendrawzerocoin` | Create and broadcast a TX spending the provided zericoin | Zerocoin deprecation |
 
 
-*version* Change log
+*v5.0.0* Change log
 ==============
 
 Detailed release notes follow. This overview includes changes that affect behavior, not code moves, refactors and string updates. For convenience in locating the code changes and accompanying discussion, both the pull request and git merge commit are mentioned.
 
-### Core Features
-
-### Build System
-
 ### GUI
+- #1857 `981a5f86f4` [GUI] do not decode the address twice in save contact. (furszy)
+- #1863 `ad15bce2f5` [Trivial][GUI] Fix init messages (random-zebra)
+- #1881 `5d66d5c296` [GUI] Autocomplete 'help' PRC commands in UI Consoles (Fuzzbawls)
+- #1895 `a418e9f1a3` [Bug][GUI] Fix wallet crashing on faq-buttons press (random-zebra)
+- #1900 `aafd0541c2` [QT] fixing qt flag deprecation (furszy)
+- #1919 `df2a6dbf60` [GUI] isStakingStatusActive pointers guarded. (furszy)
+- #1928 `15632533c3` [GUI] Double confirmation dialog for dumpwallet command. (furszy)
+- #1931 `65ca5e0255` [Bug][GUI] guarding wallet ptr access in WalletModel:getEncryptionStatus. (furszy)
+- #1963 `94c182e320` [Core] Sapling milestone 5: Graphical User Interface (furszy)
+- #1977 `bc2ec8590f` [GUI] Coin control dialog utxo processing/update flow large cleanup and improvements (furszy)
+- #1978 `f6a1a6e0e3` [GUI] FAQ "Exit" moved to "Close FAQ" (furszy)
+- #1997 `58f7562529` [Bug][GUI] CControl: cache utxo amount values properly (random-zebra)
+- #1999 `0805834485` [GUI] Encrypted memo feature implemented (furszy)
+- #2003 `8a07799388` [GUI] Tx detail, don't show inputs if there is no information for them. (furszy)
+- #2004 `fe7c942272` [BugFix] [GUI] Shield all transparent balance fee calculation. (furszy)
+- #2005 `6fb1dd7084` [GUI] Fixing export addressbook (furszy)
+- #2008 `7fe89170d5` [Bug] label of coin type in send widget after shielded coin control (random-zebra)
+- #2010 `0371b10bbb` [Bug][GUI] Encrypted memo with transparent recipient address (random-zebra)
+- #2011 `e79fbccc97` [Bug][GUI] memo not reset after hitting reset button (random-zebra)
+- #2017 `0fe1242ee6` [GUI] Guard shielded flows pre-v5 enforcement (furszy)
+- #2025 `2768e98dc6` [GUI] Cold staking screen, hide memo entry button. (furszy)
+- #2030 `f3a753d4c8` [GUI] Workaround to the MN MISSING/REMOVE labeling (furszy)
+- #2033 `5b252c059f` [GUI][Trivial] Adjust CoinControl column widths for readability (Ambassador)
+- #2035 `f06f2cbf24` [Bug][GUI] TxDetail dialog memo: plain text edit + copy button (furszy)
+- #2037 `17a39c0c1e` [GUI] Address generation error on locked wallets fix plus extra corrections. (furszy)
+- #2039 `d6b7d1837f` [GUI] Periodic make translate (Fuzzbawls)
+- #2055 `1ff296441b` [GUI] Transaction detail, scroll memo fix, starting from the top. (furszy)
+- #2066 `fe6cc349d0` [Bug][GUI] Receive widget: check typeRole before refreshing view (random-zebra)
+- #2070 `6557613c09` [GUI] coin-control: remove column checkbox extra white space in tree-mode (random-zebra)
+- #2073 `8d4f64906f` [GUI] Dashboard, fix type filtering disappearance. (furszy)
+- #2075 `1d2d335f20` [GUI] Settings information (furszy)
+- #2094 `c0863655d3` [GUI] Hide shield all coins button. (furszy)
+- #2096 `98a487eed4` [GUI][BugFix] Duplicate transaction records. (furszy)
+- #2098 `6d8ee7eb29` [Trivial][GUI] coin control: Fixed column size in list-mode (random-zebra)
+- #2100 `b9eb39b2f2` [GUI] Support for op_return proposal output records. (furszy)
+- #2102 `fb71ddffa2` [BUG][GUI] Cache unconfirmed_balance only for transparent outs (random-zebra)
+- #2104 `b9665fb9c0` [BUG][GUI] Don't return StakingOnlyUnlocked from WalletModel::sendCoins (random-zebra)
+- #2111 `e217d1e306` [BUG][GUI] coin-control dialog: more accurate "after fee" + fDust for shield recipient (random-zebra)
+- #2115 `4634bb6193` [GUI] Fixing tooltip balance amount cropped (furszy)
+- #2121 `7aa80011b9` [GUI][Trivial] Save cold-staking address in contacts (random-zebra)
+- #2122 `670b94a6b8` [BUG][GUI] Fix double conf dialog for RPC commands that expose privkeys (random-zebra)
 
 ### Wallet
+- #1814 `2018fca21d` [Core][Wallet] Sapling transaction primitive data. (furszy)
+- #1819 `b6562473aa` [Wallet] Address book encapsulation. (furszy)
+- #1850 `9520ee370b` [wallet] Extra GetTransaction call in stakeable coins selection flow removed. (furszy)
+- #1868 `fb94ca77d4` [wallet] GetMasternodeVinAndKeys wasn't locking cs_wallet to obtain the collateral. (furszy)
+- #1884 `ee1be563a2` [Wallet] Sapling keys management final round. (furszy)
+- #1911 `c9f16d09ad` [Wallet] Kill Accounts (Fuzzbawls)
+- #1918 `638c146a8f` [Wallet] Sapling notes, nullifiers and witnesses management. (furszy)
+- #1943 `46fad30bbb` [Wallet][DB] Back ports up to the CWallet/CWalletDB/CDB refactor. (furszy)
+- #1948 `2037003b68` [Bug][Wallet] Lock cs_main before accessing CheckFinalTx (random-zebra)
+- #1951 `cec4b92afe` [Wallet] CWalletTx: missing fStakeDelegationVoided initialization (furszy)
+- #1952 `c7f7b009b7` [Wallet] Shielded transactions balance cache system. (furszy)
+- #1959 `eaac8fe2e7` [Wallet] [Wallet] fix GetShieldedChange, tx isSapling renamed to isSaplingVersion (furszy)
+- #1961 `740f958bea` [Wallet] Sapling operation new spend from several different sources feature + send/build decoupling. (furszy)
+- #1985 `7c7f1bf916` [Cleanup] Remove zerocoin wallet (random-zebra)
+- #1989 `da927fc31b` [Sapling][Bug] Fixing multi-source notes spending (furszy)
+- #2007 `a0d5b62e5b` [Wallet] Sapling: don't update witnesses for external notes (random-zebra)
+- #2013 `7a4153f7ce` [Wallet] Initial cleanup to the v1 transparent CreateTransaction flow. (furszy)
+- #2020 `8d2ab3ba9d` [Wallet] HD wallets automatic upgrade to sapling features. (furszy)
+- #2027 `1ee90a49fe` [Sapling] Try to recover corruption of notes cache during send operation (random-zebra)
+- #2046 `7bec5ce8f8` [Sapling] Transparent inputs selection (furszy)
+- #2048 `d6e5f281ea` [Wallet] BugFix: automatic upgrade for unlocked wallet (furszy)
+- #2065 `75d52340ee` [Wallet][Sapling] Dummy ECDSA sigs and zk-proofs during fee calculation loop (random-zebra)
+- #2080 `9f3ec5ba89` [BUG][Wallet] return unconfirmed balance for all spendable coins by default (random-zebra)
+- #2109 `57c807e342` [Wallet] clear StakeableCoins before initializing (PeterL73)
 
-### P2P Protocol and Network Code
+### RPC
+- #1869 `525a45a3a9` [RPC] Update univalue and unify JSON obj pushes (Fuzzbawls)
+- #1878 `7bba3947af` [Core][RPC][Bug] Use sum of utxo values as money supply (random-zebra)
+- #1894 `f02fcc1b9a` [RPC][Bug] Fix 'mnfinalbudget show' returning a single budget (random-zebra)
+- #1906 `051719e2af` [RPC] Cache money supply on memory. Introduce getsupplyinfo (random-zebra)
+- #1909 `48e3c91e8c` [Bug][RPC] Guard RPC server during warm-up (random-zebra)
+- #1926 `ab460a523f` [RPC][Refactor] Register calls where they are defined (Fuzzbawls)
+- #1927 `bf04df311e` [RPC] Add additional warning to dumpwallet result object (Fuzzbawls)
+- #1930 `2dc9704ba2` [RPC] Speeding up listmasternodes command (furszy)
+- #1949 `d36963415d` [Bug][RPC] Add missing lock in sendrawtransaction (random-zebra)
+- #1964 `a0afd9f625` [RPC] shielded_sendmany from multiple sources + raw_shielded_sendmany (random-zebra)
+- #1965 `56b133f283` [RPC][Tests] Add sapling mempool test + getbestsaplinganchor (random-zebra)
+- #1970 `692d053d91` [Validation][RPC] Delegate from shielded addresses (random-zebra)
+- #1971 `98d2443c2e` [RPC] [scripted-diff] Don't use snake case in RPC command names (Fuzzbawls)
+- #1972 `880f1afcb0` [RPC][Tests] Memo field for sapling transactions (random-zebra)
+- #1982 `3156f92be2` [RPC] shielded supply in getsupplyinfo and getinfo (random-zebra)
+- #2014 `b01a1bb2a3` [RPC] redirect sendmany to shieldedsendmany when recipient is shielded (random-zebra)
+- #2018 `51fe307f13` [Bug][RPC] Save collateral errors into proposals/budgets strInvalid (random-zebra)
+- #2047 `ea872d3763` [Bug][RPC] Fix check in wallet upgrade RPC (random-zebra)
+- #2049 `6a2fb3e417` [RPC] Add nullifiers to listshieldedunspent output (random-zebra)
+- #2050 `bc01a697eb` [RPC] redirect sendtoaddress to shieldedsendmany for shielded recipient (random-zebra)
+- #2086 `1a410bc848` [RPC] Use "shield" nomenclature instead of "shielded" (Fuzzbawls)
+- #2088 `23f6fab207` [RPC] Cleanup RPC help output (Fuzzbawls)
+- #2093 `9d0923f699` [Trivial][RPC] Drop 'ed' suffix from vShielded* in TxSaplingToJSON (random-zebra)
+- #2097 `5867b88a4d` [RPC] Fix more RPC help output (Fuzzbawls)
+- #2113 `00fa7da1fa` [Doc] RPC getrawtransaction and decoderawtransaction (furszy)
+- #2119 `cf043ad47d` [RPC] Fix inconsistencies in outputs (Fuzzbawls)
+- #2120 `2a736a89a4` [RPC] Update Sapling HD chain seed with sethdseed (random-zebra)
 
-### Tier Two Network
+### Masternodes/Budget
+- #1829 `0adce3cbb7` [Masternodes] Tier two network sync new architecture, regtest support + MN activation functional test. (furszy)
+- #1834 `9d5f5952e0` [Masternodes] CActiveMasternode::ManageStatus remove unneded GetAvailableBalance check (furszy)
+- #1842 `41927dfe6c` [Refactoring] Faster mn Check() - remove AcceptableInputs (random-zebra)
+- #1844 `7196a35651` [Refactoring] Budget, round 2: review locks (random-zebra)
+- #1845 `f152deed36` [Refactoring] Budget, round 3: split UpdateValid checks for proposals / finalized budgets (random-zebra)
+- #1851 `24c9dbf38e` [Refactoring] Budget, round 4: remove Broadcast classes (random-zebra)
+- #1855 `3cd52771f2` [Bug] wrong reserveKey when committing budget/proposal collaterals (random-zebra)
+- #1858 `951470bd43` [Refactoring] Budget, round 5: proposals/budgets FeeTX indexes (random-zebra)
+- #1861 `8f37bcccc3` [Refactoring] Budget, round 6: masternode vote for finalized budgets (random-zebra)
+- #1862 `70c1fd1981` [Refactoring] Budget, round 7: split masternode-budget files (random-zebra)
+- #1886 `db9b0933d5` [Masternodes] dead end over the activation process. (furszy)
+- #1891 `5b9f25e5f9` [Bug] Set budget best height before reading budget DB during init (random-zebra)
+- #1968 `47916129bc` [TierTwo] Missing misbehaving + ban score not introduced on the new msg dispatcher flow (furszy)
+- #2006 `9ce3fec43c` [Refactor] Masternode activeState on-demand (random-zebra)
+- #2023 `f9a29a9205` [Bug] Fix lock order issue with CMMan::CheckAndRemove and CMPayments::CleanPaymentList (random-zebra)
+- #2024 `a307a26eb6` [Bug] GetLastPaid/SecondsSincePayment locking cs_main (random-zebra)
+- #2031 `e7fcab0019` [Masternodes] remove recursive lock in CMasternode::Status() (random-zebra)
+- #2045 `1617f9d347` [TierTwo] Remove unneeded extra logging. (furszy)
+- #2056 `945044c740` [Masternode] Encapsulate global and do not parse privkey redundantly everywhere. (furszy)
+- #2060 `c246834912` [Bug][MN] Immediately detect forked masternodes (random-zebra)
+- #2068 `6db9e9c189` [Consensus] Budget: Fix instant killing of proposals (random-zebra)
+- #2084 `11606ee0d4` [BUG][Masternode] Miner not paying valid finalized budget if <20 active masternodes (random-zebra)
+- #2103 `7a1837eb58` [Startup] Do not block local peer port selection for Masternodes running over tor. (furszy)
 
-### RPC/REST
+### Core
+- #1798 `21fdc49327` [Core][Wallet] Sapling Integration: Chain + Wallet transaction manager. (furszy)
+- #1848 `98ab596778` [Bug] Fix misaligned height in calls to GetBlockValue (random-zebra)
+- #1867 `c65d0368a0` [Bug] g_IsSaplingActive flag is not initialized at startup. (furszy)
+- #1870 `696e328d8c` [Sapling] Incremental merkle tree backport. (furszy)
+- #1872 `2f4e1caac1` [Core] Mrs Peacock in The Library with The Candlestick (killed main.{h,cpp}) (random-zebra)
+- #1875 `8e7fa721af` [Bug] tx sync parsing problem fixed + extra refactoring. (furszy)
+- #1879 `717c53c23c` [BugFix] Migrate list serialization to the current flow. (furszy)
+- #1888 `d7bb310f0c` [Bug] Fix regression with emplace_back on cold-staking scripts (random-zebra)
+- #1890 `bec361e86f` [Bug][Script] Add fColdStaking boolean argument to IsSolvable (random-zebra)
+- #1903 `f1b9b42046` [Sapling] Anchors and nullifiers integrated into the chain state view layered cache. (furszy)
+- #1904 `92035f80fe` [Validation] Introduce rolling cache for block hashes in masternode manager (random-zebra)
+- #1910 `d28fef17c7` [Validation] v8 blocks, Sapling merkle tree inclusion. (furszy)
+- #1912 `ba9c3eec06` [Sapling] Sapling transaction: builder, sapData net validation and builder unit tests coverage (furszy)
+- #1913 `0a820797fb` [Mempool] Add tags to mempool's mapTx indices (Suhas Daftuar)
+- #1914 `017396d2aa` [Bug] Swiftx DoConsensusVote missing brackets always returning without doing anything. (furszy)
+- #1915 `8a9b92c0ed` [Validation] Fix block-connection performance regression and mempool not copying tx performance improvement (Matt Corallo)
+- #1921 `14f0e974f8` [Core] Lock cs_vSend and cs_inventory in a consistent order even in TRY (random-zebra)
+- #1937 `3bf6248633` [Refactor] Removing prev index pointer from FillBlockPayee flow. (furszy)
+- #1938 `de5b240881` [Core] Arg parsing overhaul (Fuzzbawls)
+- #1940 `2a192ea87e` [Validation] Introducing Sapling transaction network connection and validations. (furszy)
+- #1945 `d98378e56b` [Core] Say "Goodbye" to SwiftTX (random-zebra)
+- #1953 `1b7d182bb5` [Cleanup] Stop using Boost where possible (Fuzzbawls)
+- #1955 `072081538c` [Core] Sapling transaction version (random-zebra)
+- #1956 `c76192ff1c` [Bug] Fix transaction size limits for sapling version (random-zebra)
+- #1958 `efa4a94d80` [Validation] Sapling nullifiers mempool connection (random-zebra)
+- #1962 `911a046859` [Bug] Updated stakeable coins in staker thread (random-zebra)
+- #1966 `0ad68a3dbe` [Core] Special Transactions base layer (random-zebra)
+- #1967 `226aaaa9d2` [Refactor] SaplingOperation: support for multisig, cold-staking, and OP_RETURN outputs (random-zebra)
+- #1975 `7837dd4d62` [Trivial] Log changed count for sapling nullifiers and anchors (random-zebra)
+- #1976 `9e3c70d34a` [Consensus] Introduce SPORK_19 and SPORK_20 (random-zebra)
+- #1979 `738e5023fe` [Consensus][Validation] Dynamic Fee for Shielded Transactions + Max Size. (random-zebra)
+- #1980 `6f2f2e876b` [Sapling] Remove Sprout parameters (random-zebra)
+- #1981 `3f6f501c80` [Cleanup][Sapling] Final Sprout cleanup (random-zebra)
+- #1988 `2f1dcfce44` [Trivial] Rename placeholder for v5 network upgrade info (random-zebra)
+- #1993 `e576a1fc99` [Validation] v5 zerocoin final deprecation. (furszy)
+- #1994 `78726e46f3` [Consensus] Bump active protocol version to 70920 (furszy)
+- #1998 `547d60690e` [Bug] g_IsSapling active flag during reindex (random-zebra)
+- #2000 `0756462149` [Core] Masternode collateral index (furszy)
+- #2009 `3ec4f66a8b` [Trivial] constant functions in SaplingScriptPubKeyMan (random-zebra)
+- #2034 `5b02228cf4` [SSPKM] Crash fix, external notes witness decrement (furszy)
+- #2038 `27bd2dcd33` [Consensus] Set final enforcement height for V5 on Testnet (random-zebra)
+- #2051 `2746bad417` [Consensus] Bump TxVersion::SAPLING to 3 (random-zebra)
+- #2052 `e04debc359` [Miner] Update block header's current version to v8 (Fuzzbawls)
+- #2058 `9e2d82504c` [Cleanup] Removing unused DisconnectBlocks and ReprocessBlocks (furszy)
+- #2062 `30cc7f66c5` [Consensus] Max block space available for shielded txes (random-zebra)
+- #2063 `84ca60a42f` [Backport] Fix races for strMiscWarning and fLargeWork*Found (furszy)
+- #2064 `d3866a08a0` [Script][Bug] Fix signature malleability for t inputs in Sapling txes (random-zebra)
+- #2067 `05a7668b5c` [Consensus][Validation] Reject outdated block version after v5 enforcement (random-zebra)
+- #2069 `1f98c2b28d` [Consensus] Start new Testnet (v5) (random-zebra)
+- #2071 `dc7eb08ff4` [Consensus] Update Spork keys for v5 (random-zebra)
+- #2083 `95ed10a37e` [Core] Prevector Optimizations (Lenny Maiorani)
+- #2091 `7a256942e3` [Trivial][Refactor] Pass caught logic_error by reference in CreateSig (random-zebra)
+- #2101 `9d95c16e5b` [Consensus] Max payment count for budget proposals (random-zebra)
+- #2108 `0477b7c3ca` [Policy] Set DEFAULT_SHIELDEDTXFEE_K to 100 (from 1000) (random-zebra)
+- #2112 `e7283dec9e` [Consensus] Set v5 enforcement height for mainnet (furszy)
 
-### Miscellaneous
+### Build Systems
+- #1856 `1bbb906059` [CMake] Add test_pivx unit test target (Fuzzbawls)
+- #1877 `a59e8273fb` [Misc] Fixing recurrent compiler warnings (furszy)
+- #1882 `5bd7d52c2c` [Build][Doc] Post branch-off/release maintenance (Fuzzbawls)
+- #1883 `e7d78bd2c2` [Build] Clean lcov artifacts from all paths (Fuzzbawls)
+- #1942 `e63d8290f5` [Travis] Increase Travis ccache size and reduce spam (Fuzzbawls)
+- #1947 `1fd7a25fc3` [Travis] Set stricter timeout for Dash 32bit job (Fuzzbawls)
+- #1986 `cf4c971151` [Build] Replicate TravisCI tests in Github Actions (Fuzzbawls)
+- #1990 `027c036f0a` [Build] Pass proper commit range to linter (Fuzzbawls)
+- #1991 `06b28f1854` [Build] Fix a few GA issues (Fuzzbawls)
+- #2001 `ab081d0060` [Build] Address more issues with GA (Fuzzbawls)
+- #2021 `3845c18723` [GA] Reduce number of concurrent jobs (Fuzzbawls)
+- #2022 `8385a96f94` [Build] Package sapling params in repo/release (Fuzzbawls)
+- #2036 `a3e75c2afa` [Build] Proper coverage for ppa (Fuzzbawls)
+- #2041 `a15dc3417d` [Build] CMake pivxd and unit tests: fixing missing MacOS framework. (furszy)
+- #2087 `869b621c2c` [Build] Unify header file extensions (Fuzzbawls)
+
+### P2P/Network
+- #2012 `a45e827c60` [Backport] P2P open network connection (Matt Corallo)
+- #2015 `860064b890` [Net] Prevent un-necessary disconnections in version handshake (Fuzzbawls)
+- #2028 `007359a632` [P2P] Add missing lock in CAddrMan::Clear() (practicalswift)
+- #2029 `57fa1341f6` [P2P] When clearing addrman clear mapInfo and mapAddr (Gregory Sanders)
+- #2054 `d9cbbad1dc` [Net] Socks5 netbase back ports (furszy)
+
+### Testing
+- #1871 `3c05a7bd2d` [Sapling] Note Encryption unit tests back ported. (furszy)
+- #1885 `40278cb688` [Test] Update sighash tests for shielded transactions. (furszy)
+- #1887 `901480fc01` [Test] Updating and enabling bip32 unit test (furszy)
+- #1889 `4136d8f5a6` [Test] unit test checking cold staking script key extraction. (furszy)
+- #1916 `6d8525169f` [Test] Introducing tier two functional test suite + several fixes (furszy)
+- #1944 `2dc773b1e1` [Tests] Split out zerocoin and sapling unit tests to their own targets (Fuzzbawls)
+- #1946 `98c6183d72` [Tests] Testing framework, adding mocktime startup arg (furszy)
+- #1969 `437ea2d691` [Tests] Add support for sapling txes and v8 blocks in the framework (random-zebra)
+- #1983 `18ee5cee1a` [Tests][Cleanup] Nuke zerocoin from the functional test framework (random-zebra)
+- #1987 `4ee2ad2e09` [Tests] Add sapling_supply functional test (random-zebra)
+- #1995 `b09752dc69` [Tests] Fix double Bug in sapling_mempool functional test (random-zebra)
+- #2016 `564dce8f82` [Tests] Add --all option to test_runner for complete functional tests coverage (random-zebra)
+- #2042 `8b04db16ff` [Test] Adding sapling transaction validation unit test coverage. (furszy)
+- #2059 `a4fd2e1311` [Test] Make rpc_ban unit test pass again (Bernhard M. Wiedemann)
+- #2081 `2e6aeed60a` [Tests] minor fixes for mining_pos_reorg.py (random-zebra)
+- #2116 `4e438d8d26` [Test] Print error if shield diversified address is equal to the default address (furszy)
+- #2123 `9d935a9646` [Test] Attempt to fix the diversified address equal to default address test scenario (furszy)
+
+### Cleanup/Refactoring
+- #1815 `7b2b9d048e` [Refactor] Make CBlock a vector of shared_ptr of CTransactions (furszy)
+- #1830 `a9946da47d` [Refactor] Emplace elements in maps and vectors (random-zebra)
+- #1837 `d1682ef4f6` [Refactor] Use Optional template in guiinterface.h (Kolby Moroz Liebl)
+- #1853 `e8d13ef4b0` [Cleanup] Removing unused and unneeded functions and members (furszy)
+- #1866 `585c9fed6d` [Refactor] Decouple peer-processing from block-connection logic (Matt Corallo)
+- #1898 `4edb8c5d8e` [Refactor] Pass previous index from AcceptBlock to AcceptBlockHeader (random-zebra)
+- #1901 `443318460f` [Backport] test: remove glibc fdelt sanity check (furszy)
+- #1905 `ea5f85e071` [Cleanup] removing unused mapRelay and cs_mapRelay. (furszy)
+- #1922 `2d86a41951` [Refactor] Strip out cs_main lock for misbehaving from Masternodeman:ProcessMessage (furszy)
+- #1924 `65c493313e` [Cleanup] Remove unconfirmed/immature zerocoin balance calculations (random-zebra)
+- #1932 `f092c28c76` [Trivial] Remove unused var in SaplingSPKM::AddSaplingSpendingKey (random-zebra)
+- #1933 `79f15c6141` [Cleanup] Remove duplicate header includes (Fuzzbawls)
+- #1934 `c576916cf2` [Cleanup] Remove ZLNP remnants in bloom.h/bloom.cpp (random-zebra)
+- #1936 `ec54459192` [Cleanup] Remove Q_FOREACH (Fuzzbawls)
+- #1950 `ce702dabb8` [Backport] Moving GetDustThreshold out of transaction primitive (furszy)
+- #1954 `676f6a79bf` [Refactor] Move CFeeRate out of the consensus module (random-zebra)
+- #2026 `ee792245ae` [Cleanup] [Trivial] Remove stale siphash.py file (Fuzzbawls)
+- #2061 `7082d8899c` [Trivial] Add Zcash copyright statement (random-zebra)
+
+### Docs/Output
+- #1860 `5aed03f6fe` [Logs] Missing mnping category added to logcategories (furszy)
+- #2032 `18a91240f6` [Doc] Windows WSL build recommendation to temporarily disable Win32 PE support (Aaron Clauson)
+- #2095 `b9ed70ea5b` [Doc] Main readme re-written (furszy)
 
 ## Credits
 
 Thanks to everyone who directly contributed to this release:
-
+- Aaron Clauson
+- Ambassador
+- Ben Woosley
+- Bernhard M. Wiedemann
+- Fuzzbawls
+- Gregory Sanders
+- Jonas Schnelli
+- Kolby Moroz Liebl
+- Lenny Maiorani
+- MarcoFalke
+- Matt Corallo
+- Pavel Janík
+- PeterL73
+- Philip Kaufmann
+- Pieter Wuille
+- Suhas Daftuar
+- Wladimir J. van der Laan
+- furszy
+- gnuser
+- practicalswift
+- random-zebra
 
 As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/pivx-project-translations/), the QA team during Testing and the Node hosts supporting our Testnet.
