@@ -12,11 +12,13 @@ Mandatory Update
 
 PIVX Core v5.0.0 is a mandatory update for all users. This release contains a protocol upgrade (to `70920`), new consensus rules and improvements that are not backwards compatible with older versions. Users will need to update their clients before enforcement of this update goes into effect.
 
-Update enforcement is currently scheduled to go into effect at the following time:
+Update enforcement is currently scheduled to go into effect at the following block height:
 ```
-Mainnet: TBD
+Mainnet: 2,700,500
 ```
 Masternodes will need to be restarted once both the masternode daemon and the controller wallet have been upgraded.
+
+Note: In preparation for the enforcement, upgraded peers will start rejecting non-upgraded peers few hours before the enforcement block height, we recommend everyone to be updated at max a day before the final time.
 
 How to Upgrade
 ==============
