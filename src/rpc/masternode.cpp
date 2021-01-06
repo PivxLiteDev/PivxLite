@@ -190,7 +190,10 @@ UniValue getmasternodecount (const JSONRPCRequest& request)
             "  \"total\": n,        (numeric) Total masternodes\n"
             "  \"stable\": n,       (numeric) Stable count\n"
             "  \"enabled\": n,      (numeric) Enabled masternodes\n"
-            "  \"inqueue\": n       (numeric) Masternodes in queue\n"
+            "  \"inqueue\": n,      (numeric) Masternodes in queue\n"
+            "  \"ipv4\": n,         (numeric) Number of IPv4 masternodes\n"
+            "  \"ipv6\": n,         (numeric) Number of IPv6 masternodes\n"
+            "  \"onion\": n         (numeric) Number of Tor masternodes\n"
             "}\n"
 
             "\nExamples:\n" +
@@ -379,9 +382,6 @@ UniValue startmasternode (const JSONRPCRequest& request)
                 masternodeSync.RequestedMasternodeAssets == MASTERNODE_SYNC_FAILED)) {
             throw std::runtime_error("You can't use this command until masternode list is synced\n");
         }
-
-        std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
-        mnEntries = masternodeConfig.getEntries();
 
         int successful = 0;
         int failed = 0;
@@ -845,9 +845,6 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
         // wait for reindex and/or import to finish
         if (fImporting || fReindex)
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Wait for reindex and/or import to finish");
-
-        std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
-        mnEntries = masternodeConfig.getEntries();
 
         int successful = 0;
         int failed = 0;

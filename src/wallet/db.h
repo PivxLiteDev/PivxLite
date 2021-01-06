@@ -20,8 +20,6 @@
 
 #include <db_cxx.h>
 
-extern unsigned int nWalletDBUpdated;
-
 static const unsigned int DEFAULT_WALLET_DBLOGSIZE = 100;
 static const bool DEFAULT_WALLET_PRIVDB = true;
 

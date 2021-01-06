@@ -607,7 +607,7 @@ for staking</source>
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+82"/>
+        <location filename="../clientmodel.cpp" line="+83"/>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -762,12 +762,12 @@ for staking</source>
     </message>
     <message>
         <location line="+42"/>
-        <location line="+690"/>
+        <location line="+719"/>
         <source>Unselect all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-566"/>
+        <location line="-595"/>
         <source>Please switch to &quot;List mode&quot; to use this function.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -812,12 +812,17 @@ for staking</source>
         <translation>(%1 locked)</translation>
     </message>
     <message>
-        <location line="+123"/>
+        <location line="+144"/>
         <source>yes</source>
         <translation>yes</translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+18"/>
+        <source>This label turns red, if recipient receives an amount smaller than %1 (transparent) / %2 (shield).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
         <source>Can vary +/- %1 u%2 per input.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -832,13 +837,13 @@ for staking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+110"/>
+        <location line="+117"/>
         <source>Select All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+77"/>
-        <location filename="../coincontroldialog.cpp" line="-232"/>
+        <location filename="../coincontroldialog.cpp" line="-240"/>
         <source>no</source>
         <translation>no</translation>
     </message>
@@ -858,12 +863,7 @@ for staking</source>
         <translation>Can vary +/- 1 byte per input.</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>This label turns red, if any recipient receives an amount smaller than %1.</source>
-        <translation>This label turns red, if any recipient receives an amount smaller than %1.</translation>
-    </message>
-    <message>
-        <location line="+134"/>
+        <location line="+137"/>
         <source>(no label)</source>
         <translation>(no label)</translation>
     </message>
@@ -2511,13 +2511,13 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
     <name>PIVXGUI</name>
     <message>
         <location filename="../pivx/pivxgui.cpp" line="+68"/>
-        <location line="+298"/>
+        <location line="+301"/>
         <location line="+69"/>
         <source>PIVX Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-366"/>
+        <location line="-369"/>
         <source>Wallet</source>
         <translation type="unfinished">Wallet</translation>
     </message>
@@ -2552,7 +2552,12 @@ https://www.transifex.com/pivx-project/pivx-project-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+166"/>
+        <location line="+46"/>
+        <source>Alert!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+123"/>
         <source>Error</source>
         <translation type="unfinished">Error</translation>
     </message>
@@ -2809,7 +2814,7 @@ Address: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <location filename="../pivx.cpp" line="+515"/>
+        <location filename="../pivx.cpp" line="+516"/>
         <source>A fatal error occurred. PIVX can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2957,7 +2962,7 @@ Address: %4
         <translation type="unfinished">Sent</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>Shield</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3720,7 +3725,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+85"/>
         <location line="+16"/>
         <source>No available address
 try unlocking the wallet</source>
@@ -4134,7 +4139,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SendWidget</name>
     <message>
-        <location filename="../pivx/send.cpp" line="+156"/>
+        <location filename="../pivx/send.cpp" line="+157"/>
         <source>Total remaining from the selected UTXO</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4224,7 +4229,7 @@ These coins will no longer be cold-staked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-896"/>
+        <location line="-897"/>
         <source>Coin Control</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4255,17 +4260,17 @@ These coins will no longer be cold-staked.</source>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+628"/>
+        <location line="+629"/>
         <source>Shield Coins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-627"/>
+        <location line="-628"/>
         <source>Convert all transparent coins into shielded coins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+83"/>
         <source>Unlocked remaining</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4654,7 +4659,7 @@ Using this mechanism you can share your keys without middle-man risk, only need 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsconsolewidget.cpp" line="+263"/>
+        <location filename="../pivx/settings/settingsconsolewidget.cpp" line="+264"/>
         <source>Console input</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5217,7 +5222,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/settings/settingsinformationwidget.cpp" line="+72"/>
+        <location filename="../pivx/settings/settingsinformationwidget.cpp" line="+74"/>
         <source>Main</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5255,6 +5260,11 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <location line="+1"/>
         <source>Out:</source>
         <translation type="unfinished">Out:</translation>
+    </message>
+    <message>
+        <location line="+56"/>
+        <source>No available data</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6611,12 +6621,17 @@ backup will be created.
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Burned PIVs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+32"/>
         <source>watch-only</source>
         <translation>watch-only</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+26"/>
         <source>Anonymous</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6792,7 +6807,7 @@ backup will be created.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+61"/>
+        <location line="+63"/>
         <source>ID copied</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6812,7 +6827,7 @@ backup will be created.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+148"/>
+        <location line="+150"/>
         <source>Unknown</source>
         <translation type="unfinished">Unknown</translation>
     </message>
@@ -7347,7 +7362,7 @@ PIVX Core Wallet</source>
         <translation type="unfinished">Error: Disk space is low!</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>Error: Unsupported argument -tor found, use -onion.</source>
         <translation type="unfinished">Error: Unsupported argument -tor found, use -onion.</translation>
     </message>
@@ -7417,7 +7432,12 @@ PIVX Core Wallet</source>
         <translation type="unfinished">Insufficient funds.</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
+        <source>Invalid -masternodeaddr port %d, isn&apos;t the same as the peer port %d</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7685,7 +7705,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
         <translation type="unfinished">Masternode options:</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
         <translation type="unfinished">Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</translation>
     </message>
@@ -7775,7 +7795,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-304"/>
+        <location line="-303"/>
         <source>Connect only to the specified node(s); -noconnect or -connect=0 alone to disable automatic connections</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7880,12 +7900,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
-        <source>Error: Invalid port %d for running a masternode.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
+        <location line="+5"/>
         <source>Failed to accept tx in the memory pool (reason: %s)
 </source>
         <translation type="unfinished"></translation>
@@ -7901,7 +7916,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Invalid -masternodeaddr port %d, only %d is supported on %s-net.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7931,12 +7946,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+18"/>
-        <source>Masternodes are required to run on port %d for %s-net</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
+        <location line="+22"/>
         <source>No error</source>
         <translation type="unfinished"></translation>
     </message>

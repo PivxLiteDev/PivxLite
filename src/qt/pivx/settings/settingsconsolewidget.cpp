@@ -13,6 +13,7 @@
 #include "chainparams.h"
 #include "rpc/client.h"
 #include "rpc/server.h"
+#include "sapling/key_io_sapling.h"
 #include "util.h"
 #include "utilitydialog.h"
 
@@ -449,6 +450,28 @@ void SettingsConsoleWidget::messageInternal(int category, const QString& message
     ui->messagesWidget->append(out);
 }
 
+static bool PotentiallyDangerousCommand(const QString& cmd)
+{
+    if (cmd.size() >= 12 && cmd.leftRef(10) == "dumpwallet") {
+        // at least one char for filename
+        return true;
+    }
+    if (cmd.size() >= 13 && cmd.leftRef(11) == "dumpprivkey") {
+        // valid PIVX Transparent Address
+        std::vector<std::string> args;
+        parseCommandLineSettings(args, cmd.toStdString());
+        return (args.size() == 2 && IsValidDestinationString(args[1], false));
+    }
+    if (cmd.size() >= 18 && cmd.leftRef(16) == "exportsaplingkey") {
+        // valid PIVX Shield Address
+        std::vector<std::string> args;
+        parseCommandLineSettings(args, cmd.toStdString());
+        return (args.size() == 2 && KeyIO::IsValidPaymentAddressString(args[1]));
+    }
+
+    return false;
+}
+
 void SettingsConsoleWidget::on_lineEdit_returnPressed()
 {
     QString cmd = ui->lineEdit->text();
@@ -456,7 +479,8 @@ void SettingsConsoleWidget::on_lineEdit_returnPressed()
 
     if (!cmd.isEmpty()) {
 
-        if ((cmd == "dumpwallet" || cmd == "dumpprivkey") &&
+        // ask confirmation before sending potentially dangerous commands
+        if (PotentiallyDangerousCommand(cmd) &&
             !ask("DANGER!", "Your coins will be STOLEN if you give\nthe info to anyone!\n\nAre you sure?\n")) {
             return;
         }

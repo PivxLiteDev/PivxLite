@@ -28,10 +28,16 @@ BalanceBubble::BalanceBubble(QWidget *parent) :
     for (QWidget* w : lblTitles) { w->setFont(font); }
 }
 
-void BalanceBubble::updateValues(int64_t nTransparentBalance, int64_t nShieldedBalance, int unit){
+void BalanceBubble::updateValues(int64_t nTransparentBalance, int64_t nShieldedBalance, int unit)
+{
+    QString valueTrans = BitcoinUnits::formatWithUnit(unit, nTransparentBalance, false, BitcoinUnits::separatorAlways);
+    valueTrans = valueTrans.replace(QChar(THIN_SP_CP), QString(","));
+    QString valueShield = BitcoinUnits::formatWithUnit(unit, nShieldedBalance, false, BitcoinUnits::separatorAlways);
+    valueShield = valueShield.replace(QChar(THIN_SP_CP), QString(","));
 
-    ui->textTransparent->setText(BitcoinUnits::formatWithUnit(unit, nTransparentBalance, false, BitcoinUnits::separatorAlways));
-    ui->textShielded->setText(BitcoinUnits::formatWithUnit(unit, nShieldedBalance, false, BitcoinUnits::separatorAlways));
+    ui->textTransparent->setText(valueTrans);
+    ui->textShielded->setText(valueShield);
+    adjustSize();
 }
 
 void BalanceBubble::showEvent(QShowEvent *event)

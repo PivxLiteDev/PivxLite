@@ -95,6 +95,35 @@ void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry)
     }
 }
 
+std::string GetSaplingTxHelpInfo()
+{
+    return "  \"valueBalance\": n,          (numeric) The net value of spend transfers minus output transfers\n"
+           "  \"valueBalanceSat\": n,       (numeric) `valueBalance` in sats\n"
+           "  \"vShieldSpend\": [               (array of json objects)\n"
+           "     {\n"
+           "       \"cv\": \"hex\",         (string) A value commitment to the value of the input note\n"
+           "       \"anchor\": hex,         (string) A Merkle root of the Sapling note commitment tree at some block height in the past\n"
+           "       \"nullifier\": hex,       (string) The nullifier of the input note\n"
+           "       \"rk\": hex,              (string) The randomized public key for spendAuthSig\n"
+           "       \"proof\": hex,           (string) A zero-knowledge proof using the spend circuit\n"
+           "       \"spendAuthSig\": hex,    (string) A signature authorizing this spend\n"
+           "     }\n"
+           "     ,...\n"
+           "  ],\n"
+           "  \"vShieldOutput\": [             (array of json objects)\n"
+           "     {\n"
+           "       \"cv\": hex,                  (string) A value commitment to the value of the output note\n"
+           "       \"cmu\": hex,                 (string) The u-coordinate of the note commitment for the output note\n"
+           "       \"ephemeralKey\": hex,         (string) A Jubjub public key\n"
+           "       \"encCiphertext\": hex,       (string) A ciphertext component for the encrypted output note\n"
+           "       \"outCiphertext\": hex,       (string) A ciphertext component for the encrypted output note\n"
+           "       \"proof\": hex,               (string) A zero-knowledge proof using the output circuit\n"
+           "     }\n"
+           "     ,...\n"
+           "  ],\n"
+           "  \"bindingSig\": hex,       (string) Prove consistency of valueBalance with the value commitments in spend descriptions and output descriptions, and proves knowledge of the randomness used for the spend and output value commitments\n";
+}
+
 UniValue getrawtransaction(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
@@ -155,6 +184,7 @@ UniValue getrawtransaction(const JSONRPCRequest& request)
             "     }\n"
             "     ,...\n"
             "  ],\n"
+            + GetSaplingTxHelpInfo() +
             "  \"shielded_addresses\"      (json array of string) the shielded addresses involved in this transaction if possible (only for shielded transactions and the tx owner/viewer)\n"
             "  \"extraPayloadSize\" : n    (numeric) Size of extra payload. Only present if it's a special TX\n"
             "  \"extraPayload\" : \"hex\"  (string) Hex encoded extra payload data. Only present if it's a special TX\n"
@@ -367,6 +397,7 @@ UniValue decoderawtransaction(const JSONRPCRequest& request)
             "     }\n"
             "     ,...\n"
             "  ],\n"
+            + GetSaplingTxHelpInfo() +
             "  \"extraPayloadSize\" : n    (numeric) Size of extra payload. Only present if it's a special TX\n"
             "  \"extraPayload\" : \"hex\"  (string) Hex encoded extra payload data. Only present if it's a special TX\n"
             "}\n"

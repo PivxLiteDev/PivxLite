@@ -164,7 +164,8 @@ void setSortTxTypeFilter(QComboBox* filter, SortEdit* lineEditType)
     filter->addItem(QObject::tr("Sent"),
                     TransactionFilterProxy::TYPE(TransactionRecord::SendToAddress) |
                     TransactionFilterProxy::TYPE(TransactionRecord::SendToOther) |
-                    TransactionFilterProxy::TYPE(TransactionRecord::SendToShielded));
+                    TransactionFilterProxy::TYPE(TransactionRecord::SendToShielded) |
+                    TransactionFilterProxy::TYPE(TransactionRecord::SendToNobody));
     filter->addItem(QObject::tr("Shield"),
                     TransactionFilterProxy::TYPE(TransactionRecord::RecvWithShieldedAddress) |
                     TransactionFilterProxy::TYPE(TransactionRecord::SendToShielded) |

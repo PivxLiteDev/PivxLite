@@ -6,6 +6,10 @@
         <translation>Diálogo</translation>
     </message>
     <message>
+        <source>New Address</source>
+        <translation>Nueva Direccion</translation>
+    </message>
+    <message>
         <source>Address</source>
         <translation>Dirección</translation>
     </message>
@@ -39,6 +43,10 @@
     <message>
         <source>Set a label for the selected address</source>
         <translation>Etiqueta la dirección seleccionada</translation>
+    </message>
+    <message>
+        <source>Enter a label for the address (e.g. Exchange)</source>
+        <translation>Introduzca un titulo para la direccion (Ejemplo: Exchange)</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -219,6 +227,14 @@
         <translation>GUARDAR</translation>
     </message>
     <message>
+        <source>Add new contact</source>
+        <translation>Anadir un nuevo contacto</translation>
+    </message>
+    <message>
+        <source>Generate a new address to receive tokens.</source>
+        <translation>Generar una nueva direccion para recibir fichas</translation>
+    </message>
+    <message>
         <source>Invalid Contact Address</source>
         <translation>Dirección de contacto inválida</translation>
     </message>
@@ -360,6 +376,18 @@ para staking</translation>
         <translation>Wallet encriptado</translation>
     </message>
     <message>
+        <source>WARNING:</source>
+        <translation>ADVERTENCIA:</translation>
+    </message>
+    <message>
+        <source>The caps lock key is on!</source>
+        <translation>Las mayusculas estan activadas!</translation>
+    </message>
+    <message>
+        <source>Passphrases do not match!</source>
+        <translation>Las contraseñas no coinciden!</translation>
+    </message>
+    <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
         <translation>IMPORTANTE: Cualquier copia de seguridad anterior que hayas realizado de tu wallet debe ser reemplazada por la nueva copia de seguridad encriptada. Por razones de seguridad, las copias de seguridad anteriores de la wallet sin encriptar pasarán a ser obsoletas tan pronto empiece a utilizar la nueva wallet encriptada.</translation>
     </message>
@@ -380,6 +408,10 @@ para staking</translation>
         <translation>Las contraseñas introducidas no coinciden.</translation>
     </message>
     <message>
+        <source>LOSE ALL OF YOUR COINS</source>
+        <translation>PERDER TODAS TUS MONEDAS</translation>
+    </message>
+    <message>
         <source>Wallet unlock failed</source>
         <translation>El desbloqueo de la wallet ha fallido</translation>
     </message>
@@ -396,6 +428,13 @@ para staking</translation>
         <translation>Se cambió la contraseña con éxito.</translation>
     </message>
 </context>
+<context>
+    <name>BalanceBubble</name>
+    <message>
+        <source>Form</source>
+        <translation>Formulario</translation>
+    </message>
+    </context>
 <context>
     <name>BanTableModel</name>
     <message>
@@ -592,52 +631,16 @@ para staking</translation>
         <translation>Cambio Copiado</translation>
     </message>
     <message>
-        <source>highest</source>
-        <translation>la más alta</translation>
-    </message>
-    <message>
-        <source>higher</source>
-        <translation>más alta</translation>
-    </message>
-    <message>
-        <source>high</source>
-        <translation>alta</translation>
-    </message>
-    <message>
-        <source>medium-high</source>
-        <translation>medio-alta</translation>
-    </message>
-    <message>
-        <source>medium</source>
-        <translation>media</translation>
-    </message>
-    <message>
-        <source>low-medium</source>
-        <translation>baja-media</translation>
-    </message>
-    <message>
-        <source>low</source>
-        <translation>baja</translation>
-    </message>
-    <message>
-        <source>lower</source>
-        <translation>muy baja</translation>
-    </message>
-    <message>
-        <source>lowest</source>
-        <translation>la más baja</translation>
-    </message>
-    <message>
         <source>(%1 locked)</source>
         <translation>(%1 bloqueado)</translation>
     </message>
     <message>
-        <source>none</source>
-        <translation>ninguno</translation>
-    </message>
-    <message>
         <source>yes</source>
         <translation>sí</translation>
+    </message>
+    <message>
+        <source>Can vary +/- %1 u%2 per input.</source>
+        <translation>Puede variar +/- %1 u%2 por entrada.</translation>
     </message>
     <message>
         <source>delegated to %1 for cold staking</source>
@@ -664,24 +667,8 @@ para staking</translation>
         <translation>Puede variar +/- 1 byte por entrada.</translation>
     </message>
     <message>
-        <source>Transactions with higher priority are more likely to get included into a block.</source>
-        <translation>Las transacciones con alta prioridad tienen más probabilidades de ser incluidas en un bloque.</translation>
-    </message>
-    <message>
-        <source>This label turns red, if the priority is smaller than "medium".</source>
-        <translation>Esta etiqueta se vuelve roja, si la prioridad es inferior a "media".</translation>
-    </message>
-    <message>
-        <source>This label turns red, if any recipient receives an amount smaller than %1.</source>
-        <translation>Esta etiqueta se vuelve roja, si algún destinatario recibe una cantidad menor que %1.</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation>(sin etiqueta)</translation>
-    </message>
-    <message>
-        <source>change from %1 (%2)</source>
-        <translation>cambio desde %1 (%2)</translation>
     </message>
     <message>
         <source>(change)</source>
@@ -736,7 +723,7 @@ para staking</translation>
     </message>
     <message>
         <source>Error loading delegations: %1</source>
-        <translation>Error al cargar las delegaciones:%1</translation>
+        <translation>Error al cargar las delegaciones: %1</translation>
     </message>
     <message>
         <source>You can delegate your PIVs, letting a hot node (24/7 online node)
@@ -775,6 +762,27 @@ Haga Stake en tu nombre, manteniendo las llaves en un lugar seguro fuera de lín
     <message>
         <source>Coin Control</source>
         <translation>Control de moneda</translation>
+    </message>
+    <message>
+        <source>Select %1 outputs to delegate.</source>
+        <translation>Selecciona %1 salidas para delegar.</translation>
+    </message>
+    <message>
+        <source>Create Cold Staking Address</source>
+        <translation>Crear direccion de apuesta en frio</translation>
+    </message>
+    <message>
+        <source>Creates an address to receive delegated coins
+and stake them on their owner's behalf.</source>
+        <translation>Crea una dirección para recibir monedas delegadas y apostarlas en nombre de su propietario.</translation>
+    </message>
+    <message>
+        <source>My Cold Staking Addresses</source>
+        <translation>Mis direcciones de Cold Staking</translation>
+    </message>
+    <message>
+        <source>List your own cold staking addresses.</source>
+        <translation>Enumere sus propias direcciones de apuesta en frío.</translation>
     </message>
     <message>
         <source>Invalid entry</source>
@@ -819,6 +827,10 @@ el dispositivo que contiene la dirección del propietario.
     <message>
         <source>Coins delegated</source>
         <translation>Monedas delegadas </translation>
+    </message>
+    <message>
+        <source>You don't have any %1 to select.</source>
+        <translation>No tiene %1 para seleccionar.</translation>
     </message>
     <message>
         <source>Cannot perform operation, wallet locked</source>
@@ -923,6 +935,14 @@ del propietario </translation>
     <message>
         <source>Staking statistics</source>
         <translation>Estadísticas de Staking</translation>
+    </message>
+    <message>
+        <source>View your account's history</source>
+        <translation>Ver el historial de su cuenta</translation>
+    </message>
+    <message>
+        <source>How to get PIV</source>
+        <translation>Cómo obtener PIV</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1248,7 +1268,15 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-    </context>
+    <message>
+        <source>Collateral tx not found</source>
+        <translation>tx colateral no encontrado</translation>
+    </message>
+    <message>
+        <source>Status: %1</source>
+        <translation>Estado: %1</translation>
+    </message>
+</context>
 <context>
     <name>MasterNodeWizardDialog</name>
     <message>
@@ -1336,6 +1364,10 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Dirección IP Inválida</translation>
     </message>
     <message>
+        <source>Unknown error</source>
+        <translation>Error desconocido</translation>
+    </message>
+    <message>
         <source>Prepare master node failed.
 
 %1
@@ -1360,6 +1392,10 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>No se pueden enviar transacciones colaterales.
 
 %1</translation>
+    </message>
+    <message>
+        <source>walletModel not set</source>
+        <translation>Modelo de billetera no definido</translation>
     </message>
     <message>
         <source>Invalid masternode.conf file</source>
@@ -1474,12 +1510,28 @@ Espere unos minutos más (las garantías de masternode requieren %1 confirmacion
         <translation>Datos de Masternode copiados al portapapeles.</translation>
     </message>
     <message>
+        <source>Not enough balance to create a masternode, 10,000 %1 required.</source>
+        <translation>No hay suficiente saldo para crear un masternode, se requiere 10,000 %1.</translation>
+    </message>
+    <message>
         <source>Remote Masternode Data</source>
         <translation>Datos Remotos del Masternode </translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
         <translation>¿Qué es un Masternode?</translation>
+    </message>
+    <message>
+        <source>FAQ explaining what Masternodes are</source>
+        <translation>Preguntas frecuentes que explican qué son los Masternodes</translation>
+    </message>
+    <message>
+        <source>What is a Controller?</source>
+        <translation>¿Qué es un controlador?</translation>
+    </message>
+    <message>
+        <source>FAQ explaining what is a Masternode Controller</source>
+        <translation>Preguntas frecuentes que explican qué es un controlador Masternode</translation>
     </message>
     <message>
         <source>You are just about to export the required data to run a Masternode
@@ -1569,7 +1621,15 @@ Are you sure?</source>
         <source>Export data to run the Masternode on a remote server</source>
         <translation>Exportar datos para ejecutar el Masternode en un servidor remoto</translation>
     </message>
-    </context>
+    <message>
+        <source>Masternode public key copied</source>
+        <translation>Se copió la clave pública de masternode</translation>
+    </message>
+    <message>
+        <source>Collateral tx id copied</source>
+        <translation>Se copió el ID de transaccion colateral</translation>
+    </message>
+</context>
 <context>
     <name>MyAddressRow</name>
     <message>
@@ -1582,6 +1642,48 @@ Are you sure?</source>
     <message>
         <source>Form</source>
         <translation>Formulario</translation>
+    </message>
+    <message>
+        <source>HOME
+</source>
+        <translation>INICIO
+</translation>
+    </message>
+    <message>
+        <source>SEND
+</source>
+        <translation>ENVIAR
+</translation>
+    </message>
+    <message>
+        <source>RECEIVE
+</source>
+        <translation>RECIBIR
+</translation>
+    </message>
+    <message>
+        <source>CONTACTS
+</source>
+        <translation>CONTACTOS
+</translation>
+    </message>
+    <message>
+        <source>MASTER
+NODES</source>
+        <translation>NODOS
+MAESTROS</translation>
+    </message>
+    <message>
+        <source>COLD
+STAKING</source>
+        <translation>APUESTA
+EN FRIO</translation>
+    </message>
+    <message>
+        <source>SETTINGS
+</source>
+        <translation>CONFIGURACIONES
+</translation>
     </message>
     <message>
         <source>V 1.0.0</source>
@@ -2103,6 +2205,10 @@ Dirección: %4
         <source>Ping Time</source>
         <translation>Intervalo de Ping</translation>
     </message>
+    <message>
+        <source>NodeID</source>
+        <translation>ID del Nodo</translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -2193,6 +2299,10 @@ Dirección: %4
     <message>
         <source>Delegator</source>
         <translation>Delegador</translation>
+    </message>
+    <message>
+        <source>Delegable</source>
+        <translation>Delegable</translation>
     </message>
     <message>
         <source>Cold Staking</source>
@@ -2290,7 +2400,59 @@ Dirección: %4
         <source>by Date</source>
         <translation>por Fecha</translation>
     </message>
-    </context>
+    <message>
+        <source>Jan</source>
+        <translation>Ene</translation>
+    </message>
+    <message>
+        <source>Feb</source>
+        <translation>Feb</translation>
+    </message>
+    <message>
+        <source>Mar</source>
+        <translation>Mar</translation>
+    </message>
+    <message>
+        <source>Apr</source>
+        <translation>Abr</translation>
+    </message>
+    <message>
+        <source>May</source>
+        <translation>May</translation>
+    </message>
+    <message>
+        <source>Jun</source>
+        <translation>Jun</translation>
+    </message>
+    <message>
+        <source>Jul</source>
+        <translation>Jul</translation>
+    </message>
+    <message>
+        <source>Aug</source>
+        <translation>Ago</translation>
+    </message>
+    <message>
+        <source>Sep</source>
+        <translation>Sep</translation>
+    </message>
+    <message>
+        <source>Oct</source>
+        <translation>Oct</translation>
+    </message>
+    <message>
+        <source>Nov</source>
+        <translation>Nov</translation>
+    </message>
+    <message>
+        <source>Dec</source>
+        <translation>Dic</translation>
+    </message>
+    <message>
+        <source>Address with no label</source>
+        <translation>Direccion sin titulo</translation>
+    </message>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -2709,6 +2871,10 @@ Dirección: %4
         <translation>Mi Dirección</translation>
     </message>
     <message>
+        <source>COPY</source>
+        <translation>COPIAR</translation>
+    </message>
+    <message>
         <source>CANCEL</source>
         <translation>CANCELAR</translation>
     </message>
@@ -2720,8 +2886,8 @@ Dirección: %4
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>No address</source>
-        <translation>Sin dirección </translation>
+        <source>Scan the QR code or copy the address to receive PIV</source>
+        <translation>Escanee el código QR o copie la dirección para recibir PIV</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -2740,8 +2906,20 @@ Dirección: %4
         <translation>Recibir</translation>
     </message>
     <message>
-        <source>No available address, try unlocking the wallet</source>
-        <translation>Sin dirección disponible, intenta desbloquear la wallet</translation>
+        <source>My Addresses</source>
+        <translation>Mis Direcciones</translation>
+    </message>
+    <message>
+        <source>List your own addresses</source>
+        <translation>Enumere sus propias direcciones</translation>
+    </message>
+    <message>
+        <source>Create Request</source>
+        <translation>Crear solicitud</translation>
+    </message>
+    <message>
+        <source>Request payment with a fixed amount</source>
+        <translation>Solicitar pago con una cantidad fija</translation>
     </message>
     <message>
         <source>Error generating address</source>
@@ -2838,6 +3016,10 @@ Dirección: %4
         <translation>PIV</translation>
     </message>
     <message>
+        <source>Instead of sharing only a PIVX address, you can create a payment request, bundling up more information</source>
+        <translation>En lugar de compartir solo una dirección PIVX, puede crear una solicitud de pago, agrupando más información</translation>
+    </message>
+    <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
         <translation>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </translation>
     </message>
@@ -2894,10 +3076,22 @@ Dirección: %4
         <translation>Cantidad (opcional)</translation>
     </message>
     <message>
+        <source>Address label cannot be empty</source>
+        <translation>La etiqueta de dirección no puede estar vacía</translation>
+    </message>
+    <message>
         <source>Invalid amount</source>
         <translation>Cantidad incorrecta</translation>
     </message>
-    </context>
+    <message>
+        <source>Request for </source>
+        <translation>Solicitud para</translation>
+    </message>
+    <message>
+        <source>Cold Staking Address Generated</source>
+        <translation>Dirección de Cold Staking generada</translation>
+    </message>
+</context>
 <context>
     <name>SendChangeAddressDialog</name>
     <message>
@@ -2928,7 +3122,11 @@ Dirección: %4
         <source>Invalid address</source>
         <translation>Dirección inválida</translation>
     </message>
-    </context>
+    <message>
+        <source>Cannot use cold staking addresses for change</source>
+        <translation>No se pueden usar direcciones de staking en frío para el cambio</translation>
+    </message>
+</context>
 <context>
     <name>SendCustomFeeDialog</name>
     <message>
@@ -2946,6 +3144,10 @@ Dirección: %4
     <message>
         <source>0.00 KB</source>
         <translation>0.00 KB</translation>
+    </message>
+    <message>
+        <source>Customize the transaction fee, depending on the fee value your transaction might be included faster in the blockchain</source>
+        <translation>Personalice la tarifa de transacción, dependiendo del valor de la tarifa, su transacción podría incluirse más rápido en la cadena de bloques</translation>
     </message>
     <message>
         <source>Custom</source>
@@ -2985,6 +3187,25 @@ Dirección: %4
     </message>
 </context>
 <context>
+    <name>SendMemoDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation>Diálogo</translation>
+    </message>
+    <message>
+        <source>SAVE</source>
+        <translation>GUARDAR</translation>
+    </message>
+    <message>
+        <source>RESET</source>
+        <translation>REINICIAR</translation>
+    </message>
+    <message>
+        <source>CANCEL</source>
+        <translation>CANCELAR</translation>
+    </message>
+</context>
+<context>
     <name>SendMultiRow</name>
     <message>
         <source>Form</source>
@@ -2995,10 +3216,14 @@ Dirección: %4
         <translation>Ingresa la dirección</translation>
     </message>
     <message>
+        <source>Address label (optional)</source>
+        <translation>Etiqueta de dirección (opcional)</translation>
+    </message>
+    <message>
         <source>Enter label</source>
         <translation>Introduce una etiqueta</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>SendWidget</name>
     <message>
@@ -3046,10 +3271,6 @@ Do you want to continue?</source>
         <translation>No se puede enviar, la wallet está bloqueada</translation>
     </message>
     <message>
-        <source>Cannot create transaction.</source>
-        <translation>No se puede crear la transacción.</translation>
-    </message>
-    <message>
         <source>WARNING:
 Transaction spends a cold-stake delegation, voiding it.
 These coins will no longer be cold-staked.</source>
@@ -3082,8 +3303,32 @@ Estas monedas ya no serán puestas en Cold-Staked</translation>
         <translation>Control de moneda</translation>
     </message>
     <message>
+        <source>Select the source of the coins</source>
+        <translation>Seleccione la fuente de las monedas</translation>
+    </message>
+    <message>
+        <source>Change Address</source>
+        <translation>Cambiar Direccion</translation>
+    </message>
+    <message>
+        <source>Customize the change address</source>
+        <translation>Personaliza la dirección de cambio</translation>
+    </message>
+    <message>
         <source>Open URI</source>
         <translation>Abrir URI</translation>
+    </message>
+    <message>
+        <source>Parse a payment request</source>
+        <translation>Analizar una solicitud de pago</translation>
+    </message>
+    <message>
+        <source>Unlocked remaining</source>
+        <translation>Desbloqueado restante</translation>
+    </message>
+    <message>
+        <source>You don't have any %1 to select.</source>
+        <translation>No tiene %1 para seleccionar.</translation>
     </message>
     <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
@@ -3137,8 +3382,20 @@ Estas monedas ya no serán puestas en Cold-Staked</translation>
         <translation>Donde</translation>
     </message>
     <message>
+        <source>Keep your wallet safe by doing regular backups and storing your backup file externally.
+This option creates a wallet.dat file that can be used to recover your whole balance (transactions and addresses) on another device</source>
+        <translation>Mantenga su billetera segura haciendo copias de seguridad periódicas y almacenando su archivo de copia de seguridad externamente.
+Esta opción crea un archivo wallet.dat que se puede usar para recuperar todo su saldo (transacciones y direcciones) en otro dispositivo</translation>
+    </message>
+    <message>
         <source>Select folder...</source>
         <translation>Selecciona un directorio...</translation>
+    </message>
+    <message>
+        <source>This will decrypt the whole wallet data and encrypt it back with the new passphrase.
+Remember to write it down and store it safely, otherwise you might lose access to your funds</source>
+        <translation>Esto descifrará todos los datos de la cartera y los volverá a cifrar con la nueva frase de contraseña.
+Recuerde anotarlos y almacenarlos de forma segura, de lo contrario, podría perder el acceso a sus fondos.</translation>
     </message>
     <message>
         <source>Change Passphrase</source>
@@ -3178,6 +3435,12 @@ Estas monedas ya no serán puestas en Cold-Staked</translation>
     <message>
         <source>BIP38 Tool</source>
         <translation>Herramienta BIP38</translation>
+    </message>
+    <message>
+        <source>Encrypt your PIVX addresses (key pair actually) using BIP38 encryption.
+Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
+        <translation>Cifre sus direcciones PIVX (par de claves en realidad) utilizando cifrado BIP38.
+Con este mecanismo puede compartir sus claves sin riesgo de intermediarios, solo necesita almacenar su contraseña de forma segura</translation>
     </message>
     <message>
         <source>Encrypt</source>
@@ -3234,6 +3497,10 @@ Estas monedas ya no serán puestas en Cold-Staked</translation>
     <message>
         <source>CLEAR ALL</source>
         <translation>BORRAR TODO</translation>
+    </message>
+    <message>
+        <source>Enter a passphrase</source>
+        <translation>Ingrese una contraseña</translation>
     </message>
     <message>
         <source>CLEAR</source>
@@ -3325,6 +3592,10 @@ Estas monedas ya no serán puestas en Cold-Staked</translation>
     <message>
         <source>Open Debug File</source>
         <translation>Abrir Archivo de Depuración</translation>
+    </message>
+    <message>
+        <source>Command Line Options</source>
+        <translation>Opciones de Linea de Comandos</translation>
     </message>
     <message>
         <source>Clear history</source>
@@ -3530,34 +3801,16 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
         <translation>2) ¿Por qué mis PIV no se pueden gastar?</translation>
     </message>
     <message>
+        <source>https://PIVX.org/</source>
+        <translation>https://PIVX.org/</translation>
+    </message>
+    <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
         <source>What is PIVX?</source>
         <translation>¿Qué es PIVX?</translation>
-    </message>
-    <message>
-        <source>
-                           &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           PIVX is a form of digital online money using blockchain technology
-                           that can be easily transferred globally, instantly, and with near
-                           zero fees.  PIVX incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zPIV) and Zerocoin staking.
-                           &lt;/p&gt;&lt;p align="justify"&gt;
-                           PIVX utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of PIVX to participate in earning block rewards
-                           while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
-                           &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-                         </source>
-        <translation>
-&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-PIVX es una forma de dinero digital en línea que utiliza la tecnología blockchain que se puede transferir a nivel global, de forma instantánea  y con comisiones casi nulas. PIVX incorpora un sistema de seguridad y privacidad líder en el mercado y es también la primera criptomoneda PoS (Proof of Stake) que implementa el sistema de Stake de ZeroCoin(zPIV) y Zerocoin.
-&lt;/p&gt;&lt;p align="justify"&gt;
- PIVX utiliza un algoritmo de consenso de Prueba de Stake (PoS), que permite a todos los propietarios de PIVX participar en la obtención de recompensas de los nuevos bloques generados mientras aseguran la red con wallet de nodo completo , así como también ejecutan Masternodos para crear y votar las propuestas.
-. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>2</source>
@@ -3587,6 +3840,14 @@ Tu cartera PIVX también necesita estar completamente sincronizada para que pued
     <message>
         <source>3</source>
         <translation>3</translation>
+    </message>
+    <message>
+        <source>How do I stake PIV?</source>
+        <translation>¿Cómo apuesto PIV?</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of PIVX with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (pivx-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Asegúrese de que su billetera esté completamente sincronizada y de que esté utilizando la última versión. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Debe tener un saldo de PIVX con un mínimo de 600 confirmaciones.&lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Su billetera debe permanecer en línea y estar desbloqueada para realizar apuestas. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Una vez que se siguen todos esos pasos, se deberia habilitar el staking. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Puede ver el estado de las apuestas en la billetera colocando el mouse sobre el icono del paquete en la fila en la parte superior izquierda de la interfaz de la billetera. El paquete se iluminará y dirá "Staking Enabled" para indicar que está activo el staking. Usando la interfaz de línea de comando (pivx-cli); El comando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; confirmará que el staking está activo. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -3705,12 +3966,24 @@ Requisitos:
         <translation>Preguntas Frecuentes</translation>
     </message>
     <message>
-        <source>You can read more here</source>
-        <translation>Puedes leer más aquí</translation>
+        <source>3) How do I stake PIV?</source>
+        <translation>3) ¿Cómo apuesto PIV?</translation>
     </message>
     <message>
-        <source>Exit</source>
-        <translation>Salida</translation>
+        <source>4) Where I should go if I need support?</source>
+        <translation>4) ¿A dónde debo ir si necesito ayuda?</translation>
+    </message>
+    <message>
+        <source>5) What is a Masternode?</source>
+        <translation>5) ¿Qué es un Masternode?</translation>
+    </message>
+    <message>
+        <source>6) What is a Masternode Controller?</source>
+        <translation>6) ¿Qué es un controlador Masternode?</translation>
+    </message>
+    <message>
+        <source>You can read more here</source>
+        <translation>Puedes leer más aquí</translation>
     </message>
 </context>
 <context>
@@ -3823,7 +4096,7 @@ Requisitos:
         <source>Out:</source>
         <translation>Fuera:</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>SettingsMainOptionsWidget</name>
     <message>
@@ -3853,6 +4126,10 @@ Requisitos:
     <message>
         <source>Main</source>
         <translation>Principal</translation>
+    </message>
+    <message>
+        <source>Customize the main application options</source>
+        <translation>Personaliza las principales opciones de la aplicación</translation>
     </message>
     <message>
         <source>Size of database cache</source>
@@ -4066,6 +4343,10 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Verificar</translation>
     </message>
     <message>
+        <source>Write message here...</source>
+        <translation>Escribe un mensaje aquí ...</translation>
+    </message>
+    <message>
         <source>Select mode</source>
         <translation>Seleccionar una modalidad</translation>
     </message>
@@ -4181,6 +4462,10 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Personaliza las opciones de la wallet interna</translation>
     </message>
     <message>
+        <source>Stake split threshold</source>
+        <translation>Umbral de división de participación</translation>
+    </message>
+    <message>
         <source>Spend unconfirmed change</source>
         <translation>Gastar cambio no confirmado</translation>
     </message>
@@ -4191,6 +4476,18 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
     <message>
         <source>Customize the node network options</source>
         <translation>Personalizar las opciones de la red de nodos</translation>
+    </message>
+    <message>
+        <source>Connect through SOCKS5 proxy (default proxy)</source>
+        <translation>Conéctese a través del proxy SOCKS5 (proxy predeterminado)</translation>
+    </message>
+    <message>
+        <source>Proxy IP</source>
+        <translation>Proxy IP</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Puerto</translation>
     </message>
     <message>
         <source>Enter port</source>
@@ -4232,6 +4529,10 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Actualiza tu wallet al último formato al iniciarse. (Nota: esto NO es una actualización de la wallet en sí)</translation>
     </message>
     <message>
+        <source>The buttons below will restart the wallet with command-line options to repair this wallet, fix issues with corrupt blockchain files or missing/obsolete transactions</source>
+        <translation>Los botones a continuación reiniciarán la billetera con opciones de línea de comandos para reparar esta billetera, solucionar problemas con archivos de la blockchain, transacciones faltantes/obsoletas</translation>
+    </message>
+    <message>
         <source>Salvage wallet</source>
         <translation>Salvar wallet</translation>
     </message>
@@ -4244,12 +4545,24 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
         <translation>Volver a escanear el archivo de la blockchain</translation>
     </message>
     <message>
+        <source>Rescan the blockchain for missing wallet transactions</source>
+        <translation>Vuelva a escanear la cadena de bloques en busca de transacciones de billetera faltantes</translation>
+    </message>
+    <message>
         <source>Recover transactions 1</source>
         <translation>Recuperar transacciones 1</translation>
     </message>
     <message>
+        <source>Recover transactions from blockchain (keep-meta-data, e.g. account owner)</source>
+        <translation>Recuperar transacciones de blockchain (mantener metadatos, por ejemplo, propietario de la cuenta)</translation>
+    </message>
+    <message>
         <source>Recover transactions 2</source>
         <translation>Recuperar transacciones 2</translation>
+    </message>
+    <message>
+        <source>Recover transactions from blockchain (drop meta-data)</source>
+        <translation>Recuperar transacciones de blockchain (eliminar metadatos)</translation>
     </message>
     <message>
         <source>Upgrade wallet format</source>
@@ -4258,6 +4571,18 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
     <message>
         <source>Rebuild index</source>
         <translation>Reconstruir índice</translation>
+    </message>
+    <message>
+        <source>Rebuild blockchain index from current blk000???.dat files</source>
+        <translation>Reconstruir el índice de blockchain a partir de los archivos blk000 ???.dat</translation>
+    </message>
+    <message>
+        <source>Delete local blockchain</source>
+        <translation>Eliminar blockchain local</translation>
+    </message>
+    <message>
+        <source>Deletes all local blockchain folders so the wallet synchronizes from scratch</source>
+        <translation>Elimina todas las carpetas de blockchain locales para que la billetera se sincronice desde cero</translation>
     </message>
     <message>
         <source>This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.&lt;br /&gt;&lt;br /&gt;</source>
@@ -4369,6 +4694,10 @@ Marque una o ambas casillas de verificación para enviar recompensas de stake y/
     <message>
         <source>Client will be shutdown, do you want to proceed?</source>
         <translation>El cliente se cerrará, ¿procedemos?</translation>
+    </message>
+    <message>
+        <source>Stake Split too low, it shall be either &gt;= %1 or equal to 0 (to disable stake splitting)</source>
+        <translation>Stake Split demasiado bajo, será &gt; = %1 o igual a 0 (para deshabilitar la división de participación)</translation>
     </message>
     <message>
         <source>Restart required</source>
@@ -4569,8 +4898,48 @@ una nueva copia de seguridad.
         <translation>Preguntas Frecuentes </translation>
     </message>
     <message>
+        <source>Upgrade to HD Wallet</source>
+        <translation>Actualice a billetera HD</translation>
+    </message>
+    <message>
+        <source>No Connection</source>
+        <translation>Sin Conexión</translation>
+    </message>
+    <message>
+        <source>Staking Disabled</source>
+        <translation>Staking Desabilitado</translation>
+    </message>
+    <message>
+        <source>Cold Staking Disabled</source>
+        <translation>Staking en frio Desabilitado</translation>
+    </message>
+    <message>
+        <source> %54 Synchronizing..</source>
+        <translation>%54 Sincronizando...</translation>
+    </message>
+    <message>
+        <source>Light Theme</source>
+        <translation>Tema Claro</translation>
+    </message>
+    <message>
+        <source>Dark Theme</source>
+        <translation>Tema Oscuro</translation>
+    </message>
+    <message>
+        <source>Wallet Locked </source>
+        <translation>Billetera Bloqueada</translation>
+    </message>
+    <message>
         <source>Wallet Locked</source>
         <translation>Billetera desbloqueada</translation>
+    </message>
+    <message>
+        <source>Wallet Unlocked</source>
+        <translation>Billetera Desbloqueada</translation>
+    </message>
+    <message>
+        <source>Wallet Unencrypted</source>
+        <translation>Billetera Desencriptada</translation>
     </message>
     <message>
         <source>Available (Locked included)</source>
@@ -4613,8 +4982,8 @@ una nueva copia de seguridad.
         <translation>La wallet se actualizó correctamente, pero no se creó ninguna copia de seguridad.</translation>
     </message>
     <message>
-        <source>WARNING: remember to make a copy of your wallet.dat file!</source>
-        <translation>ADVERTENCIA: ¡recuerda hacer una copia de tu archivo wallet.dat!</translation>
+        <source>WARNING: remember to make a copy of your wallet file!</source>
+        <translation>ADVERTENCIA: ¡recuerde hacer una copia de su archivo de billetera!</translation>
     </message>
     <message>
         <source>Upgrade Wallet Error</source>
@@ -4626,177 +4995,6 @@ una nueva copia de seguridad.
     <message>
         <source>KB/s</source>
         <translation>KB/s</translation>
-    </message>
-</context>
-<context>
-    <name>TransactionDesc</name>
-    <message>
-        <source>Open until %1</source>
-        <translation>Abierto hasta %1</translation>
-    </message>
-    <message>
-        <source>conflicted</source>
-        <translation>conflictivo (bloque huérfano?)</translation>
-    </message>
-    <message>
-        <source>%1/offline</source>
-        <translation>%1/offline</translation>
-    </message>
-    <message>
-        <source>%1/unconfirmed</source>
-        <translation>%1/sin confirmar</translation>
-    </message>
-    <message>
-        <source>%1 confirmations</source>
-        <translation>%1 confirmaciones</translation>
-    </message>
-    <message>
-        <source>%1/offline (verified via SwiftX)</source>
-        <translation>%1/offline (verificado via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (verified via SwiftX)</source>
-        <translation>%1/confirmado (verificado via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (verified via SwiftX)</source>
-        <translation>%1 confirmaciones (verificado via swifttx)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1/offline (verificación SwiftTX en marcha - %2 de %3 firmas)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification in progress - %2 of %3 signatures )</source>
-        <translation>%1/confirmado (verificación SwiftTX en marcha - %2 de %3 firmas)</translation>
-    </message>
-    <message>
-        <source>%1 confirmations (SwiftX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1 confirmaciones (verificación SwiftTX en marcha - %2 de %3 firmas)</translation>
-    </message>
-    <message>
-        <source>%1/offline (SwiftX verification failed)</source>
-        <translation>%1/offline (falló la verificación SwiftTX)</translation>
-    </message>
-    <message>
-        <source>%1/confirmed (SwiftX verification failed)</source>
-        <translation>%1/confirmado (falló la verificación SwiftTX)</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Estado</translation>
-    </message>
-    <message>
-        <source>, has not been successfully broadcast yet</source>
-        <translation>, no ha sido correctamente transmitida todavía</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Fecha</translation>
-    </message>
-    <message>
-        <source>Source</source>
-        <translation>Fuente</translation>
-    </message>
-    <message>
-        <source>Generated</source>
-        <translation>Generado</translation>
-    </message>
-    <message>
-        <source>From</source>
-        <translation>De</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>desconocido</translation>
-    </message>
-    <message>
-        <source>To</source>
-        <translation>A</translation>
-    </message>
-    <message>
-        <source>own address</source>
-        <translation>dirección propia</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>sólo-lectura</translation>
-    </message>
-    <message>
-        <source>label</source>
-        <translation>etiqueta</translation>
-    </message>
-    <message>
-        <source>Credit</source>
-        <translation>Crédito</translation>
-    </message>
-    <message>
-        <source>not accepted</source>
-        <translation>rechazado</translation>
-    </message>
-    <message>
-        <source>Debit</source>
-        <translation>Débito</translation>
-    </message>
-    <message>
-        <source>Total debit</source>
-        <translation>Débito total</translation>
-    </message>
-    <message>
-        <source>Total credit</source>
-        <translation>Abonos totales</translation>
-    </message>
-    <message>
-        <source>Transaction fee</source>
-        <translation>Comisión de transacción</translation>
-    </message>
-    <message>
-        <source>Net amount</source>
-        <translation>Cantidad neta</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Mensaje</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>Comentario</translation>
-    </message>
-    <message>
-        <source>Transaction ID</source>
-        <translation>ID de la transacción</translation>
-    </message>
-    <message>
-        <source>Output index</source>
-        <translation>Índice de salida</translation>
-    </message>
-    <message>
-        <source>Merchant</source>
-        <translation>Comerciante</translation>
-    </message>
-    <message>
-        <source>Debug information</source>
-        <translation>Información de depuración</translation>
-    </message>
-    <message>
-        <source>Transaction</source>
-        <translation>Transacción</translation>
-    </message>
-    <message>
-        <source>Inputs</source>
-        <translation>Entradas</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Cantidad</translation>
-    </message>
-    <message>
-        <source>true</source>
-        <translation>verdad</translation>
-    </message>
-    <message>
-        <source>false</source>
-        <translation>falso</translation>
     </message>
 </context>
 <context>
@@ -4816,10 +5014,6 @@ una nueva copia de seguridad.
     <message>
         <source>Open until %1</source>
         <translation>Abierto hasta %1</translation>
-    </message>
-    <message>
-        <source>Offline</source>
-        <translation>Desconectado</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
@@ -4842,10 +5036,6 @@ una nueva copia de seguridad.
         <translation>Prematuro (%1 confirmaciones, estará disponible después de %2)</translation>
     </message>
     <message>
-        <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>¡Este bloque no fue recibido por los otros nodos y probablemente no será aceptado!</translation>
-    </message>
-    <message>
         <source>Received with</source>
         <translation>Recibido con</translation>
     </message>
@@ -4856,6 +5046,22 @@ una nueva copia de seguridad.
     <message>
         <source>Received from</source>
         <translation>Recibido desde</translation>
+    </message>
+    <message>
+        <source>%1 Stake</source>
+        <translation>%1 Apuesta</translation>
+    </message>
+    <message>
+        <source>z%1 Stake</source>
+        <translation>z%1 Apuesta</translation>
+    </message>
+    <message>
+        <source>%1 Cold Stake</source>
+        <translation>%1 apuesta en frio</translation>
+    </message>
+    <message>
+        <source>%1 Stake on behalf of</source>
+        <translation>%1 Participa en nombre de</translation>
     </message>
     <message>
         <source>Stake delegation</source>
@@ -4880,6 +5086,26 @@ una nueva copia de seguridad.
     <message>
         <source>Mined</source>
         <translation>Minado</translation>
+    </message>
+    <message>
+        <source>Converted %1 to z%1</source>
+        <translation>Convertido %1 a z%1</translation>
+    </message>
+    <message>
+        <source>Spent z%1</source>
+        <translation>Gastado z%1</translation>
+    </message>
+    <message>
+        <source>Received %1 from z%1</source>
+        <translation>Recibido %1 de z%1</translation>
+    </message>
+    <message>
+        <source>Minted Change as z%1 from z%1 Spend</source>
+        <translation>Cambio acuñado como z%1 de z%1 Gasto</translation>
+    </message>
+    <message>
+        <source>Converted z%1 to %1</source>
+        <translation>z%1 convertido a %1</translation>
     </message>
     <message>
         <source>watch-only</source>
@@ -5017,6 +5243,10 @@ una nueva copia de seguridad.
         <translation>ID copiado</translation>
     </message>
     <message>
+        <source>Delegating to</source>
+        <translation>Delegando a</translation>
+    </message>
+    <message>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -5027,14 +5257,30 @@ una nueva copia de seguridad.
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-</context>
+    <message>
+        <source>+0.000585 PIV</source>
+        <translation>+0.000585 PIV</translation>
+    </message>
+    </context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Enviar Monedas</translation>
     </message>
-    </context>
+    <message>
+        <source>Transaction creation failed!
+%1</source>
+        <translation>Error al crear la transacción!
+%1</translation>
+    </message>
+    <message>
+        <source>The size of the transaction is too big.
+Select fewer inputs with coin control.</source>
+        <translation>El tamaño de la transacción es demasiado grande.
+Seleccione menos entradas con control de monedas.</translation>
+    </message>
+</context>
 <context>
     <name>WelcomeContentWidget</name>
     <message>
@@ -5107,10 +5353,6 @@ PIVX Core Wallet</translation>
 <context>
     <name>pivx-core</name>
     <message>
-        <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
-        <translation>(1= mantener los metadatos tx p.e. dueño de la cuenta e información de la solicitud de pago, 2 = ignorar metadatos tx)</translation>
-    </message>
-    <message>
         <source>Allow JSON-RPC connections from specified source. Valid for &lt;ip&gt; are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times</source>
         <translation>Permitir conexiones JSON-RPC  desde la fuente especificada. Valido para &lt;ip&gt; sea una única IP (ej: 1.2.3.4), una red/mascara de red (ej: 1.2.3.4/255.255.255.0) o una red/CIDR (ej: 1.2.3.4/24). Esta opción puede ser especificada múltiples veces.</translation>
     </message>
@@ -5147,10 +5389,6 @@ PIVX Core Wallet</translation>
         <translation>Borrar todas las transacciones de la wallet y solo recuperar partes de la cadena de bloque a traves de -rescan al inicio.</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Elimina todos registros de las transferencias y el acuñado de Zerocoin que se hayan registrado en la base de datos de Blockchain y vuelva a indexarlos (0-1, default: %u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Distribuido bajo licencia MIT software license, ver el archivo adjunto COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;</translation>
     </message>
@@ -5169,10 +5407,6 @@ PIVX Core Wallet</translation>
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
         <translation>Error: La escucha para conexiones entrantes falló (la escucha retorno error %s)</translation>
-    </message>
-    <message>
-        <source>Error: The transaction is larger than the maximum allowed transaction size!</source>
-        <translation>Error: ¡La transacción es más grande que el tamaño máximo de transacción permitido!</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
@@ -5205,10 +5439,6 @@ PIVX Core Wallet</translation>
     <message>
         <source>In this mode -genproclimit controls how many blocks are generated immediately.</source>
         <translation>En este modo -genproclimit controla cuantos bloques son generados inmediatamente.</translation>
-    </message>
-    <message>
-        <source>Insufficient or insufficient confirmed funds, you might need to wait a few minutes and try again.</source>
-        <translation>Fondos insuficientes o fondos confirmados insuficientes, es posible que tenga que esperar unos minutos y volver a intentarlo.</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
@@ -5271,10 +5501,6 @@ PIVX Core Wallet</translation>
         <translation>Define el número de hilos para generación de moneda si esta habilitado (-1 = todos los núcleos, predeterminado: %d)</translation>
     </message>
     <message>
-        <source>Show N confirmations for a successfully locked transaction (0-9999, default: %u)</source>
-        <translation>Mostrar N confirmaciones para una transacción cerrada exitosamente (0-9999, predefinido: %u)</translation>
-    </message>
-    <message>
         <source>Support filtering of blocks and transaction with bloom filters (default: %u)</source>
         <translation>Soportar filtrado de bloques y transacciones con filtros bloom (por defecto: %u)</translation>
     </message>
@@ -5319,14 +5545,6 @@ PIVX Core Wallet</translation>
         <translation>Advertencia: No estamos apareciendo totalmente en concordancia con nuestros pares! Podrías necesitar una actualización, o otros nodos pueden necesitar una actualización.</translation>
     </message>
     <message>
-        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Advertencia: error leyendo wallet.dat! Todas las claves leídas correctamente, pero datos de transacción or entradas en el libro de direcciones podrían estar faltando o ser incorrectas.</translation>
-    </message>
-    <message>
-        <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Advertencia: wallet.dat esta dañado, datos salvados! El wallet.dat original esta grabado como wallet.{timestamp}.bak en %s; si tu saldo o transacciones son incorrectas deberías restaurar de un backup.</translation>
-    </message>
-    <message>
         <source>Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.</source>
         <translation>Pares de la whitelist conectados desde la mascara de red o direcciones IP dada. Puede ser especificado múltiples veces.</translation>
     </message>
@@ -5335,16 +5553,8 @@ PIVX Core Wallet</translation>
         <translation>Pares de la Whitelist no pueden ser banneados por DoS y sus transacciones son siempre transmitidas, aún si ellas están ya en la mempool, util por ejemplo para un gateway.</translation>
     </message>
     <message>
-        <source>You must specify a masternodeprivkey in the configuration. Please see documentation for help.</source>
-        <translation>Debes especificar un masternodeprivkey en la configuración. Por favor mira la documentación por ayuda.</translation>
-    </message>
-    <message>
         <source>(default: %s)</source>
         <translation>(predeterminado: %s)</translation>
-    </message>
-    <message>
-        <source>(default: 1)</source>
-        <translation>(predeterminado: 1)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -5359,10 +5569,6 @@ PIVX Core Wallet</translation>
         <translation>Agregar un nodo a conectarse y intentar mantener abierta la conexión</translation>
     </message>
     <message>
-        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>Permitir búsquedas DNS para -addnode, -seednode y -connect</translation>
-    </message>
-    <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
         <translation>Siempre consultar por direcciones de pares vía búsqueda DNS (predeterminado: %u)</translation>
     </message>
@@ -5371,20 +5577,12 @@ PIVX Core Wallet</translation>
         <translation>Añadir un comentario a la cadena del agente de usuario</translation>
     </message>
     <message>
-        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>Intentar recuperar claves privadas desde un wallet.dat dañado</translation>
-    </message>
-    <message>
         <source>Automatically create Tor hidden service (default: %d)</source>
         <translation>Crear automáticamente servicio Tor oculto (por defecto: %d)</translation>
     </message>
     <message>
         <source>Block creation options:</source>
         <translation>Opciones de creación de bloque:</translation>
-    </message>
-    <message>
-        <source>Cannot downgrade wallet</source>
-        <translation>No se puede volver a una versión anterior de la wallet</translation>
     </message>
     <message>
         <source>Connect through SOCKS5 proxy</source>
@@ -5431,10 +5629,6 @@ PIVX Core Wallet</translation>
         <translation>Desactivar notificaciones del sistema para transacciones extrantes (por defecto: %u)</translation>
     </message>
     <message>
-        <source>Disable safemode, override a real safe mode event (default: %u)</source>
-        <translation>Desactiva modo seguro, invalida un evento modo seguro real (predeterminado: %u)</translation>
-    </message>
-    <message>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
         <translation>Descubrir direcciones IP propia (predeterminado: 1 cuando se esta a la escucha y sin opción -externalip)</translation>
     </message>
@@ -5451,14 +5645,6 @@ PIVX Core Wallet</translation>
         <translation>Realizando carga</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activar inclusión del hash de la transacción (fijada mediante SwiftTX) en &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activar inclusión de la transacción en bruto (fijada mediante SwiftTX) en &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Habilitar al cliente para actuar como un nodo maestro (0-1. predeterminado: %u)</translation>
     </message>
@@ -5467,24 +5653,8 @@ PIVX Core Wallet</translation>
         <translation>Error al inicializar base de datos de bloques</translation>
     </message>
     <message>
-        <source>Error initializing wallet database environment %s!</source>
-        <translation>Error al inicializar ambiente %s de base de datos de la wallet!</translation>
-    </message>
-    <message>
         <source>Error loading block database</source>
         <translation>Error al cargar base de datos de bloques</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat</source>
-        <translation>Error al cargar wallet.dat</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Error al cargar wallet.dat: Wallet dañada</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of PIVX Core</source>
-        <translation>Error al cargar wallet.dat: La wallet requiere una nueva versión del PIVX Core</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -5495,16 +5665,8 @@ PIVX Core Wallet</translation>
         <translation>Error al leer desde la base de datos, apagando.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Error al escribir zerocoinDB en el disco</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Error</translation>
-    </message>
-    <message>
-        <source>Error: </source>
-        <translation>Error:</translation>
     </message>
     <message>
         <source>Error: A fatal internal error occured, see debug.log for details</source>
@@ -5517,10 +5679,6 @@ PIVX Core Wallet</translation>
     <message>
         <source>Error: Unsupported argument -tor found, use -onion.</source>
         <translation>Error: Se encontró argumento no soportado -tor, utilizar -onion.</translation>
-    </message>
-    <message>
-        <source>Error: Wallet locked, unable to create transaction!</source>
-        <translation>Error: ¡Wallet bloqueada, imposible crear transacción!</translation>
     </message>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
@@ -5571,10 +5729,6 @@ PIVX Core Wallet</translation>
         <translation>La prueba de salud de inicialización ha fallado. PIVX Core se cerrará.</translation>
     </message>
     <message>
-        <source>Insufficient funds</source>
-        <translation>Fondos insuficientes</translation>
-    </message>
-    <message>
         <source>Insufficient funds.</source>
         <translation>Fondos insuficientes.</translation>
     </message>
@@ -5587,64 +5741,12 @@ PIVX Core Wallet</translation>
         <translation>Importe inválido para -paytxfee=&lt;amount&gt;: '%s' (debe ser al menos %s)</translation>
     </message>
     <message>
-        <source>Invalid amount</source>
-        <translation>Cantidad incorrecta</translation>
-    </message>
-    <message>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
-        <translation>Valor de masternodeprivkey es inválido. Por favor ver la documentación.</translation>
-    </message>
-    <message>
         <source>Invalid netmask specified in -whitelist: '%s'</source>
         <translation>Máscara de red inválida especificada en -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating PIV supply...</source>
-        <translation>Recalculando suministro PIV...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Reindexando la base de datos zerocoin...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>La reindexación zerocoin ha fallado</translation>
-    </message>
-    <message>
-        <source>Selected coins value is less than payment target</source>
-        <translation>El valor de las monedas seleccionadas es menor que el monto a pagar</translation>
-    </message>
-    <message>
-        <source>SwiftX options:</source>
-        <translation>Opciones SwiftX:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Esto es una versión pre-release de prueba - use bajo su propia responsabilidad - ¡No lo utilice para recompensa de participación ni aplicaciones de comercio!</translation>
-    </message>
-    <message>
-        <source> mints deleted
-</source>
-        <translation>creaciones de moneda borradas
-</translation>
-    </message>
-    <message>
-        <source> mints updated, </source>
-        <translation>creaciones de moneda actualizadas,</translation>
-    </message>
-    <message>
-        <source> unconfirmed transactions removed
-</source>
-        <translation>transacciones sin confirmar eliminadas
-</translation>
-    </message>
-    <message>
-        <source>Disable all PIVX specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Desabilitar toda la funcionalidad especifica PIVX (Masternodes, Obfuscation, SwiftTX, Budgeting) (0-1, predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Activar swifttx, mostrar confirmaciones para transacciones bloqueadas (bool, predeterminado: %s)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5655,20 +5757,8 @@ PIVX Core Wallet</translation>
         <translation>Ejecute el comando cuando el mejor bloque cambie y su tamaño haya terminado (%s en cmd se reemplaza por el hash del bloque, %d con el tamaño de bloque)</translation>
     </message>
     <message>
-        <source>Failed to find coin set amongst held coins with less than maxNumber of Spends</source>
-        <translation>No se puede encontrar el conjunto de monedas necesarias entre las monedas disponibles con menos de maxNumber para poder gastarlas</translation>
-    </message>
-    <message>
-        <source>In rare cases, a spend with 7 coins exceeds our maximum allowable transaction size, please retry spend using 6 or less coins</source>
-        <translation>En casos excepcionales, un envío con más de 7 monedas excede el tamaño máximo de transacción permitidas, intente gastar 6 monedas o menos.</translation>
-    </message>
-    <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Especifique una ruta de copia de seguridad personalizada para agregar una copia de cualquier copia de seguridad de la wallet. Si se establece como directorio, cada copia de seguridad genera un archivo con marcas de tiempo. Si se establece como archivo, se reescribirá en ese archivo cada copia de seguridad generada.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX requiere entradas con al menos 6 confirmaciones, es posible que deba esperar unos minutos e intente de nuevo.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -5677,10 +5767,6 @@ PIVX Core Wallet</translation>
     <message>
         <source>Attempt to force blockchain corruption recovery</source>
         <translation>Intentar forzar la recuperación de la cadena de bloques corrupta</translation>
-    </message>
-    <message>
-        <source>Cannot create public spend input</source>
-        <translation>No puede crear insumos para el gasto público</translation>
     </message>
     <message>
         <source>Display the stake modifier calculations in the debug.log file.</source>
@@ -5715,28 +5801,50 @@ PIVX Core Wallet</translation>
         <translation>Error: Un error interno fatal a ocurrido, ver debug.log para mas detalles</translation>
     </message>
     <message>
-        <source>Error: No valid utxo!</source>
-        <translation>Error: ¡utxo no válido!</translation>
+        <source>Accept connections from outside (default: %u if no -proxy or -connect/-noconnect)</source>
+        <translation>Acepta conexiones desde el exterior (predeterminado: %u si no hay -proxy o -connect / -noconnect)</translation>
     </message>
     <message>
-        <source>Failed to find Zerocoins in wallet.dat</source>
-        <translation>Error al encontrar Zerocoins en wallet.dat</translation>
+        <source>Cannot find the Sapling parameters in the following directory:
+%s
+Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.</source>
+        <translation>No se pueden encontrar los parámetros de Sapling en el siguiente directorio:
+ %s
+Ejecute 'sapling-fetch-params' o './util/fetch-params.sh' y luego reinicie.</translation>
     </message>
     <message>
-        <source>Failed to parse public spend</source>
-        <translation>No se analizó el gasto público</translation>
+        <source>Cannot upgrade to Sapling wallet (already running Sapling support). Version: %d</source>
+        <translation>No se puede actualizar a la billetera Sapling (ya se está ejecutando el soporte de Sapling). Versión: %d</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Error al seleccionar una zerocoin</translation>
+        <source>Warning: error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+        <translation>Advertencia: error al leer %s! Todas las claves se leen correctamente, pero los datos de transacciones o las entradas de la libreta de direcciones pueden faltar o ser incorrectos.</translation>
     </message>
     <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Error al borrar zerocoinDB</translation>
+        <source>Allow DNS lookups for -addnode, -seednode and -connect (default: %u)</source>
+        <translation>Permitir búsquedas de DNS para -addnode, -seednode y -connect (predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Failed to write coin serial number into wallet</source>
-        <translation>Error al escribir el número de serie de la moneda en la wallet</translation>
+        <source>Attempt to recover private keys from a corrupt wallet file</source>
+        <translation>Intente recuperar claves privadas de un archivo de billetera corrupto</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet corrupted</source>
+        <translation>Error al cargar %s: billetera dañada</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet requires newer version of PIVX Core</source>
+        <translation>Error al cargar %s: Wallet requiere una versión más reciente de PIVX Core</translation>
+    </message>
+    <message>
+        <source>Error loading %s
+</source>
+        <translation>Error al cargar %s
+</translation>
+    </message>
+    <message>
+        <source>Error upgrading chainstate database</source>
+        <translation>Error al actualizar la base de datos de chainstate</translation>
     </message>
     <message>
         <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
@@ -5823,8 +5931,12 @@ PIVX Core Wallet</translation>
         <translation>Máximo buffer de envío por conexión, &lt;n&gt;*1000 bytes (predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Mint did not make it into blockchain</source>
-        <translation>El Acuñado no se realizó en blockchain</translation>
+        <source>Mining/Staking options:</source>
+        <translation>Opciones de Mineria/Staking:</translation>
+    </message>
+    <message>
+        <source>Specify zk params directory (default: %s)</source>
+        <translation>Especifique parametros zk de directorio (predeterminado: %s)</translation>
     </message>
     <message>
         <source>Need to specify a port with -whitebind: '%s'</source>
@@ -5837,10 +5949,6 @@ PIVX Core Wallet</translation>
     <message>
         <source>Not enough file descriptors available.</source>
         <translation>No hay suficientes descriptores de archivo disponibles.</translation>
-    </message>
-    <message>
-        <source>Number of automatic wallet backups (default: 10)</source>
-        <translation>Número de Copias de seguridad automáticas de la wallet (predeterminado: 10)</translation>
     </message>
     <message>
         <source>Number of custom location backups to retain (default: %d)</source>
@@ -5871,16 +5979,12 @@ PIVX Core Wallet</translation>
         <translation>Los peers se están desconectando debido a las diferencias en la hora.</translation>
     </message>
     <message>
-        <source>Unable to find transaction containing mint %s</source>
-        <translation>No se ha podido encontrar la transacción que contiene acuñamiento %s </translation>
-    </message>
-    <message>
-        <source>Unable to find transaction containing mint, txHash: %s</source>
-        <translation>No se ha podido encontrar la transacción que contiene acuñamiento, txHash: %s</translation>
-    </message>
-    <message>
         <source>Use block spam filter (default: %u)</source>
         <translation>Usar el filtro de spam del bloque (default: %u)</translation>
+    </message>
+    <message>
+        <source>Wallet debugging/testing options:</source>
+        <translation>Opciones de prueba / depuración de billetera:</translation>
     </message>
     <message>
         <source>isValid(): Invalid -proxy address or hostname: '%s'</source>
@@ -5891,24 +5995,106 @@ PIVX Core Wallet</translation>
         <translation>Preparando para resincronizar...</translation>
     </message>
     <message>
+        <source>Connect only to the specified node(s); -noconnect or -connect=0 alone to disable automatic connections</source>
+        <translation>Conéctese solo a los nodo(s) especificados; -noconnect o -connect = 0 solo para deshabilitar las conexiones automáticas</translation>
+    </message>
+    <message>
+        <source>Fees (in %s/Kb) smaller than this are considered zero fee for relaying, mining and transaction creation (default: %s)</source>
+        <translation>Las tarifas (en %s/Kb) inferiores a esto se consideran tarifa cero por retransmisión, extracción y creación de transacciones (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>Fees (in %s/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Las tarifas (en %s/Kb) inferiores a esto se consideran tarifa cero para la creación de transacciones (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>Minimum positive amount (in PIV) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Cantidad mínima positiva (en PIV) permitida por GUI y RPC para el umbral de división de participación (predeterminado: %s)</translation>
+    </message>
+    <message>
         <source>Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
         <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora PIVX Core no funcionará adecuadamente.</translation>
+    </message>
+    <message>
+        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
+        <translation>Consultar direcciones de pares a través de búsqueda de DNS, si hay pocas direcciones (predeterminado: 1 a menos que -connect/ -noconnect)</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
         <translation>Especifica la ubicación del archivo de registro de depuración: puede ser una ruta determinada o una ruta relativa al directorio de datos (predeterminado: %s)</translation>
     </message>
     <message>
+        <source>WARNING: The transaction has been signed and recorded, so the wallet will try to re-send it. Use 'abandontransaction' to cancel it. (txid: %s)</source>
+        <translation>ADVERTENCIA: La transacción ha sido firmada y registrada, por lo que la billetera intentará reenviarla. Utilice 'abandonartransacción' para cancelarlo. (txid: %s)</translation>
+    </message>
+    <message>
+        <source>(must be %d for %s-net)</source>
+        <translation>(debe ser %d para %s-net)</translation>
+    </message>
+    <message>
+        <source>Active Masternode not initialized.</source>
+        <translation>Masternode activo no inicializado.</translation>
+    </message>
+    <message>
+        <source>Allows deprecated RPC method(s) to be used</source>
+        <translation>Permite el uso de método(s) RPC obsoletos</translation>
+    </message>
+    <message>
+        <source>Can't generate a change-address key. Please call keypoolrefill first.</source>
+        <translation>No se puede generar una clave de cambio de dirección. Llame primero a keypoolrefill.</translation>
+    </message>
+    <message>
         <source>Cannot resolve -%s address: '%s'</source>
         <translation>No se puede resolver la dirección -%s: '%s'</translation>
     </message>
     <message>
-        <source>Cannot upgrade to HD wallet (already running HD support). Version: %d</source>
-        <translation>No se puede actualizar a wallet HD (ya se está ejecutando el soporte HD). Versión: %d</translation>
+        <source>Change index out of range</source>
+        <translation>Cambiar índice fuera de rango</translation>
     </message>
     <message>
-        <source>Need destination or change address because change is not exact</source>
-        <translation>Necesitas un destino o cambiar de dirección porque el cambio no es exacto</translation>
+        <source>Error: -listen must be true if -masternode is set.</source>
+        <translation>Error: -listen debe ser verdadero si -masternode está configurado.</translation>
+    </message>
+    <message>
+        <source>Error: -maxmempool must be at least %d MB</source>
+        <translation>Error: -maxmempool debe tener al menos %d MB</translation>
+    </message>
+    <message>
+        <source>Failed to accept tx in the memory pool (reason: %s)
+</source>
+        <translation>No se pudo aceptar la transaccion en el grupo de memoria (motivo: %s)
+</translation>
+    </message>
+    <message>
+        <source>Fee (in %s/kB) to add to transactions you send (default: %s)</source>
+        <translation>Tarifa (en %s/kB) para agregar a las transacciones que envíe (predeterminado: %s)</translation>
+    </message>
+    <message>
+        <source>Invalid -masternodeaddr address: %s</source>
+        <translation>-masternodeaddr address: %s invalida</translation>
+    </message>
+    <message>
+        <source>Invalid -masternodeaddr port %d, only %d is supported on %s-net.</source>
+        <translation>-masternodeaddr puerto %d no válido, solo %d es compatible con %s-net.</translation>
+    </message>
+    <message>
+        <source>Invalid port %d detected in masternode.conf</source>
+        <translation>Puerto %d no válido detectado en masternode.conf</translation>
+    </message>
+    <message>
+        <source>Invalid status error.</source>
+        <translation>Error de estatus invalido.</translation>
+    </message>
+    <message>
+        <source>Keypool ran out, please call keypoolrefill first, or unlock the wallet.</source>
+        <translation>Keypool se agotó, llame primero a keypoolrefill o desbloquee la billetera.</translation>
+    </message>
+    <message>
+        <source>No error</source>
+        <translation>No error</translation>
+    </message>
+    <message>
+        <source>Number of automatic wallet backups (default: %d)</source>
+        <translation>Número de copias de seguridad automáticas de billetera (predeterminado: %d)</translation>
     </message>
     <message>
         <source>Prepend debug output with timestamp (default: %u)</source>
@@ -5917,10 +6103,6 @@ PIVX Core Wallet</translation>
     <message>
         <source>Print version and exit</source>
         <translation>Mostrar versión y salir</translation>
-    </message>
-    <message>
-        <source>Pubcoin not found in mint tx</source>
-        <translation>Pubcoin no encontrado en acuñamiento tx</translation>
     </message>
     <message>
         <source>RPC server options:</source>
@@ -5955,24 +6137,12 @@ PIVX Core Wallet</translation>
         <translation>Reescaneado...</translation>
     </message>
     <message>
-        <source>ResetMintZerocoin finished: </source>
-        <translation>ResetMintZerocoin finalizado:</translation>
-    </message>
-    <message>
-        <source>ResetSpentZerocoin finished: </source>
-        <translation>ResetSpentZerocoin finalizado:</translation>
-    </message>
-    <message>
         <source>Run a thread to flush wallet periodically (default: %u)</source>
         <translation>Ejecutar un hilo de ejecución para nivelar la wallet periódicamente (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Run in the background as a daemon and accept commands</source>
         <translation>Ejecutar en segundo plano como demonio y aceptar comandos</translation>
-    </message>
-    <message>
-        <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
-        <translation>Enviar transacciones como transacciones cero-comisión si es posible (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
@@ -6019,6 +6189,10 @@ PIVX Core Wallet</translation>
         <translation>Encojer el archivo debug.log en el cliente al inicio (predeterminado: 1 cuando no hay -debug)</translation>
     </message>
     <message>
+        <source>Shutdown requested over the txs scan. Exiting.</source>
+        <translation>Apagado solicitado durante el escaneo de transacciones. Saliendo.</translation>
+    </message>
+    <message>
         <source>Signing transaction failed</source>
         <translation>La firma de la transacción falló</translation>
     </message>
@@ -6051,16 +6225,8 @@ PIVX Core Wallet</translation>
         <translation>Especifique su propia dirección pública</translation>
     </message>
     <message>
-        <source>Spend Valid</source>
-        <translation>Gastar Válido</translation>
-    </message>
-    <message>
         <source>Spend unconfirmed change when sending transactions (default: %u)</source>
         <translation>Gastar cambio no confirmado cuando se envían transacciones (predeterminado: %u)</translation>
-    </message>
-    <message>
-        <source>Staking options:</source>
-        <translation>Opciones de recompensa por participación:</translation>
     </message>
     <message>
         <source>Stop running after importing blocks from disk (default: %u)</source>
@@ -6091,8 +6257,8 @@ PIVX Core Wallet</translation>
         <translation>Sincronizando con la red... </translation>
     </message>
     <message>
-        <source>Syncing zPIV wallet...</source>
-        <translation>Sincronizando la wallet zPIV...</translation>
+        <source>The threshold value cannot be less than %s</source>
+        <translation>El valor de umbral no puede ser menor que %s</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -6107,12 +6273,16 @@ PIVX Core Wallet</translation>
         <translation>Esto esta destinado para herramientas de prueba de regresión y desarrollo de aplicaciones.</translation>
     </message>
     <message>
-        <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
-        <translation>Limite para desconexión de peers de mal desempeño (predeterminado: %u)</translation>
+        <source>This is not a masternode. 'local' option disabled.</source>
+        <translation>Este no es un masternode. opción 'local' desactivada.</translation>
     </message>
     <message>
-        <source>Too many spends needed</source>
-        <translation>Demasiados gastos necesarios</translation>
+        <source>This is not a masternode.</source>
+        <translation>Este no es un masternode.</translation>
+    </message>
+    <message>
+        <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
+        <translation>Limite para desconexión de peers de mal desempeño (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Tor control port password (default: empty)</source>
@@ -6123,20 +6293,16 @@ PIVX Core Wallet</translation>
         <translation>Puerto de control Tor a utilizar si está activada la escucha Onion (por defecto: %s)</translation>
     </message>
     <message>
-        <source>Transaction Created</source>
-        <translation>Transacción creada</translation>
-    </message>
-    <message>
-        <source>Transaction Mint Started</source>
-        <translation>Cotação de transação iniciada</translation>
-    </message>
-    <message>
         <source>Transaction amount too small</source>
         <translation>El monto de la transacción es demasiado pequeño</translation>
     </message>
     <message>
         <source>Transaction amounts must be positive</source>
         <translation>El monto de la transacción debe ser positivo</translation>
+    </message>
+    <message>
+        <source>Transaction canceled.</source>
+        <translation>Transacción cancelada.</translation>
     </message>
     <message>
         <source>Transaction too large for fee policy</source>
@@ -6147,16 +6313,8 @@ PIVX Core Wallet</translation>
         <translation>La transacción es demasiado grande</translation>
     </message>
     <message>
-        <source>Trying to spend an already spent serial #, try again.</source>
-        <translation>Tentando gastar um número de série já gasto, tente novamente.</translation>
-    </message>
-    <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
         <translation>Imposible enlazar %s en esta computadora (enlace retorna error %s)</translation>
-    </message>
-    <message>
-        <source>Unable to generate initial key</source>
-        <translation>No se puede generar las llaves iniciales</translation>
     </message>
     <message>
         <source>Unable to generate keys</source>
@@ -6187,14 +6345,6 @@ PIVX Core Wallet</translation>
         <translation>Usar UPnP para mapear el puerto de escucha (predeterminado: %u)</translation>
     </message>
     <message>
-        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>Usar UPnP para mapear el puerto de escucha (predeterminado: 1 cuando esta en escucha)</translation>
-    </message>
-    <message>
-        <source>Use a custom max chain reorganization depth (default: %u)</source>
-        <translation>Utilice una profundidad de reorganización de cadena máxima personalizada (valor predeterminado: %u)</translation>
-    </message>
-    <message>
         <source>Use the test network</source>
         <translation>Usar la red de prueba</translation>
     </message>
@@ -6207,20 +6357,12 @@ PIVX Core Wallet</translation>
         <translation>Nombre de usuario para conexiones JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zPIV</source>
-        <translation>El valor está por debajo de la denominación más pequeña disponible (= 1) de zPIV</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Verificando bloques...</translation>
     </message>
     <message>
         <source>Verifying wallet...</source>
         <translation>Verificando la wallet...</translation>
-    </message>
-    <message>
-        <source>Wallet %s resides outside data directory %s</source>
-        <translation>La wallet %s esta ubicada fuera del directorio de datos %s</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart PIVX Core to complete</source>
@@ -6251,10 +6393,6 @@ PIVX Core Wallet</translation>
         <translation>Advertencia: Argumento no soportado -debugnet ignorado, use -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>No tienes suficientes Zerocoins en tu wallet</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Usted necesita reconstruir la base de datos usando -reindex para cambiar -txindex</translation>
     </message>
@@ -6267,20 +6405,8 @@ PIVX Core Wallet</translation>
         <translation>Opciones de notificación ZeroMQ:</translation>
     </message>
     <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Minting de Zerocoin disponible solo en regtest</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Opciones Zerocoin:</translation>
-    </message>
-    <message>
         <source>on startup</source>
         <translation>al inicio</translation>
-    </message>
-    <message>
-        <source>wallet.dat corrupt, salvage failed</source>
-        <translation>wallet.dat esta corrupto, fallo al guardar</translation>
     </message>
 </context>
 <context>
