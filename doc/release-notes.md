@@ -1,6 +1,4 @@
-(note: this is a temporary file, to be added-to by anybody, and moved to release-notes at release time)
-
-PIVX Core version *version* is now available from:  <https://github.com/pivx-project/pivx/releases>
+PIVX Core version *v5.0.0* is now available from:  <https://github.com/pivx-project/pivx/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
@@ -54,8 +52,6 @@ PIVX Core should also work on most other Unix-like systems but is not frequently
 
 Notable Changes
 ==============
-
-(Developers: add your notes here as part of your pull requests whenever possible)
 
 New SHIELD Protocol Implemented!
 --------------------------------
