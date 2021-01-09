@@ -211,25 +211,29 @@ void DumpMasternodePayments()
     LogPrint(BCLog::MASTERNODE,"Budget dump finished  %dms\n", GetTimeMillis() - nStart);
 }
 
-bool IsBlockValueValid(int nHeight, CAmount nExpectedValue, CAmount nMinted)
+bool IsBlockValueValid(int nHeight, CAmount& nExpectedValue, CAmount nMinted)
 {
     if (!masternodeSync.IsSynced()) {
         //there is no budget data to use to check anything
         //super blocks will always be on these blocks, max 100 per budgeting
         if (nHeight % Params().GetConsensus().nBudgetCycleBlocks < 100) {
-            return true;
+            if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+                return true;
+            }
+            nExpectedValue += g_budgetman.GetTotalBudget(nHeight);
         }
     } else {
         // we're synced and have data so check the budget schedule
         // if the superblock spork is enabled
-        if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS) &&
-                g_budgetman.IsBudgetPaymentBlock(nHeight)) {
-            //the value of the block is evaluated in CheckBlock
-            return true;
+        if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS)) {
+            // add current payee amount to the expected block value
+            CAmount expectedPayAmount;
+            if (g_budgetman.GetExpectedPayeeAmount(nHeight, expectedPayAmount)) {
+                nExpectedValue += expectedPayAmount;
+            }
         }
     }
 
-    // No superblock, regular check
     return nMinted <= nExpectedValue;
 }
 

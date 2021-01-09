@@ -103,6 +103,7 @@ public:
     std::vector<CBudgetProposal> GetBudget();
     std::vector<CBudgetProposal*> GetAllProposals();
     std::vector<CFinalizedBudget*> GetFinalizedBudgets();
+    bool GetExpectedPayeeAmount(int chainHeight, CAmount& nAmountRet) const;
     bool IsBudgetPaymentBlock(int nBlockHeight) const;
     bool IsBudgetPaymentBlock(int nBlockHeight, int& nCountThreshold) const;
     bool AddProposal(CBudgetProposal& budgetProposal);
