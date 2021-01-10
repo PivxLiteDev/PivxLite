@@ -14,7 +14,7 @@
 //
 class CBudgetManager
 {
-private:
+protected:
     // map budget hash --> CollTx hash.
     // hold unconfirmed finalized-budgets collateral txes until they mature enough to use
     std::map<uint256, uint256> mapUnconfirmedFeeTx;                         // guarded by cs_budgets
