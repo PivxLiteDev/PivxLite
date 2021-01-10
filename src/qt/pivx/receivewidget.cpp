@@ -180,6 +180,7 @@ void ReceiveWidget::updateLabel()
             ui->pushButtonLabel->setText(tr("Edit Label"));
         } else {
             ui->labelLabel->setVisible(false);
+            ui->pushButtonLabel->setText(tr("Add Label"));
         }
     }
 }
