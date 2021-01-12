@@ -61,16 +61,16 @@ static const char* ppszTypeName[] = {
     "ix",   // deprecated
     "txlvote", // deprecated
     NetMsgType::SPORK,
-    NetMsgType::GETSPORKS,
+    NetMsgType::MNWINNER,
+    "mnodescanerr",
+    NetMsgType::BUDGETVOTE,
+    NetMsgType::BUDGETPROPOSAL,
+    NetMsgType::FINALBUDGET,
+    NetMsgType::FINALBUDGETVOTE,
+    "mnq",
     NetMsgType::MNBROADCAST,
     NetMsgType::MNPING,
-    NetMsgType::MNWINNER,
-    NetMsgType::GETMNWINNERS,
-    NetMsgType::GETMNLIST,
-    NetMsgType::BUDGETPROPOSAL,
-    NetMsgType::BUDGETVOTE,
-    NetMsgType::FINALBUDGET,
-    NetMsgType::FINALBUDGETVOTE
+    "dstx"  // deprecated
 };
 
 /** All known message types. Keep this in the same order as the list of
@@ -99,18 +99,24 @@ const static std::string allNetMessageTypes[] = {
     NetMsgType::FILTERCLEAR,
     NetMsgType::REJECT,
     NetMsgType::SENDHEADERS,
+    "filtered block", // Should never occur
+    "ix",   // deprecated
+    "txlvote", // deprecated
     NetMsgType::SPORK,
-    NetMsgType::GETSPORKS,
-    NetMsgType::MNBROADCAST,
-    NetMsgType::MNPING,
     NetMsgType::MNWINNER,
-    NetMsgType::GETMNWINNERS,
-    NetMsgType::GETMNLIST,
-    NetMsgType::BUDGETPROPOSAL,
+    "mnodescanerr",
     NetMsgType::BUDGETVOTE,
-    NetMsgType::BUDGETVOTESYNC,
+    NetMsgType::BUDGETPROPOSAL,
     NetMsgType::FINALBUDGET,
     NetMsgType::FINALBUDGETVOTE,
+    "mnq",
+    NetMsgType::MNBROADCAST,
+    NetMsgType::MNPING,
+    "dstx",  // deprecated
+    NetMsgType::GETMNWINNERS,
+    NetMsgType::GETMNLIST,
+    NetMsgType::BUDGETVOTESYNC,
+    NetMsgType::GETSPORKS,
     NetMsgType::SYNCSTATUSCOUNT
 };
 const static std::vector<std::string> allNetMessageTypesVec(allNetMessageTypes, allNetMessageTypes + ARRAYLEN(allNetMessageTypes));
