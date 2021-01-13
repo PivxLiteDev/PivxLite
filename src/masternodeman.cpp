@@ -177,23 +177,7 @@ void DumpMasternodes()
     int64_t nStart = GetTimeMillis();
 
     CMasternodeDB mndb;
-    CMasternodeMan tempMnodeman;
-
-    LogPrint(BCLog::MASTERNODE,"Verifying mncache.dat format...\n");
-    CMasternodeDB::ReadResult readResult = mndb.Read(tempMnodeman);
-    // there was an error and it was not an error on file opening => do not proceed
-    if (readResult == CMasternodeDB::FileError)
-        LogPrint(BCLog::MASTERNODE,"Missing masternode cache file - mncache.dat, will try to recreate\n");
-    else if (readResult != CMasternodeDB::Ok) {
-        LogPrint(BCLog::MASTERNODE,"Error reading mncache.dat: ");
-        if (readResult == CMasternodeDB::IncorrectFormat)
-            LogPrint(BCLog::MASTERNODE,"magic is ok but data has invalid format, will try to recreate\n");
-        else {
-            LogPrint(BCLog::MASTERNODE,"file format is unknown or invalid, please fix it manually\n");
-            return;
-        }
-    }
-    LogPrint(BCLog::MASTERNODE,"Writting info to mncache.dat...\n");
+    LogPrint(BCLog::MASTERNODE,"Writing info to mncache.dat...\n");
     mndb.Write(mnodeman);
 
     LogPrint(BCLog::MASTERNODE,"Masternode dump finished  %dms\n", GetTimeMillis() - nStart);

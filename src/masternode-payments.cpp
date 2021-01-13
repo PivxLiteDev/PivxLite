@@ -205,23 +205,7 @@ void DumpMasternodePayments()
     int64_t nStart = GetTimeMillis();
 
     CMasternodePaymentDB paymentdb;
-    CMasternodePayments tempPayments;
-
-    LogPrint(BCLog::MASTERNODE,"Verifying mnpayments.dat format...\n");
-    CMasternodePaymentDB::ReadResult readResult = paymentdb.Read(tempPayments);
-    // there was an error and it was not an error on file opening => do not proceed
-    if (readResult == CMasternodePaymentDB::FileError)
-        LogPrint(BCLog::MASTERNODE,"Missing budgets file - mnpayments.dat, will try to recreate\n");
-    else if (readResult != CMasternodePaymentDB::Ok) {
-        LogPrint(BCLog::MASTERNODE,"Error reading mnpayments.dat: ");
-        if (readResult == CMasternodePaymentDB::IncorrectFormat)
-            LogPrint(BCLog::MASTERNODE,"magic is ok but data has invalid format, will try to recreate\n");
-        else {
-            LogPrint(BCLog::MASTERNODE,"file format is unknown or invalid, please fix it manually\n");
-            return;
-        }
-    }
-    LogPrint(BCLog::MASTERNODE,"Writting info to mnpayments.dat...\n");
+    LogPrint(BCLog::MASTERNODE,"Writing info to mnpayments.dat...\n");
     paymentdb.Write(masternodePayments);
 
     LogPrint(BCLog::MASTERNODE,"Budget dump finished  %dms\n", GetTimeMillis() - nStart);
