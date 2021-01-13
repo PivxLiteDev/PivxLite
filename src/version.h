@@ -23,6 +23,9 @@ static const int GETHEADERS_VERSION = 70077;
 static const int MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT = 70919;
 static const int MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT = 70920;
 
+//! peers with version older than this, could relay invalid (stale) mn pings
+static const int MIN_PEER_CACHEDVERSION = 70921;
+
 //! masternodes older than this proto version use old strMessage format for mnannounce
 static const int MIN_PEER_MNANNOUNCE = 70913;
 
