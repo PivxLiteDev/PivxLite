@@ -25,6 +25,8 @@ RecursiveMutex cs_vecPayments;
 RecursiveMutex cs_mapMasternodeBlocks;
 RecursiveMutex cs_mapMasternodePayeeVotes;
 
+static const int MNPAYMENTS_DB_VERSION = 1;
+
 //
 // CMasternodePaymentDB
 //
@@ -41,6 +43,7 @@ bool CMasternodePaymentDB::Write(const CMasternodePayments& objToSave)
 
     // serialize, checksum data up to that point, then append checksum
     CDataStream ssObj(SER_DISK, CLIENT_VERSION);
+    ssObj << MNPAYMENTS_DB_VERSION;
     ssObj << strMagicMessage;                   // masternode cache file specific magic message
     ssObj << FLATDATA(Params().MessageStart()); // network specific magic number
     ssObj << objToSave;
@@ -106,10 +109,12 @@ CMasternodePaymentDB::ReadResult CMasternodePaymentDB::Read(CMasternodePayments&
         return IncorrectHash;
     }
 
+    int version;
     unsigned char pchMsgTmp[4];
     std::string strMagicMessageTmp;
     try {
-        // de-serialize file header (masternode cache file specific magic message) and ..
+        // de-serialize file header
+        ssObj >> version;
         ssObj >> strMagicMessageTmp;
 
         // ... verify the message matches predefined one
@@ -136,7 +141,7 @@ CMasternodePaymentDB::ReadResult CMasternodePaymentDB::Read(CMasternodePayments&
         return IncorrectFormat;
     }
 
-    LogPrint(BCLog::MASTERNODE,"Loaded info from mnpayments.dat  %dms\n", GetTimeMillis() - nStart);
+    LogPrint(BCLog::MASTERNODE,"Loaded info from mnpayments.dat (dbversion=%d) %dms\n", version, GetTimeMillis() - nStart);
     LogPrint(BCLog::MASTERNODE,"  %s\n", objToLoad.ToString());
 
     return Ok;

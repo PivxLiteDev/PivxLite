@@ -54,6 +54,8 @@ struct CompareScoreMN {
 // CMasternodeDB
 //
 
+static const int MASTERNODE_DB_VERSION = 1;
+
 CMasternodeDB::CMasternodeDB()
 {
     pathMN = GetDataDir() / "mncache.dat";
@@ -66,6 +68,7 @@ bool CMasternodeDB::Write(const CMasternodeMan& mnodemanToSave)
 
     // serialize, checksum data up to that point, then append checksum
     CDataStream ssMasternodes(SER_DISK, CLIENT_VERSION);
+    ssMasternodes << MASTERNODE_DB_VERSION;
     ssMasternodes << strMagicMessage;                   // masternode cache file specific magic message
     ssMasternodes << FLATDATA(Params().MessageStart()); // network specific magic number
     ssMasternodes << mnodemanToSave;
@@ -133,11 +136,12 @@ CMasternodeDB::ReadResult CMasternodeDB::Read(CMasternodeMan& mnodemanToLoad)
         return IncorrectHash;
     }
 
+    int version;
     unsigned char pchMsgTmp[4];
     std::string strMagicMessageTmp;
     try {
-        // de-serialize file header (masternode cache file specific magic message) and ..
-
+        // de-serialize file header
+        ssMasternodes >> version;
         ssMasternodes >> strMagicMessageTmp;
 
         // ... verify the message matches predefined one
@@ -162,7 +166,7 @@ CMasternodeDB::ReadResult CMasternodeDB::Read(CMasternodeMan& mnodemanToLoad)
         return IncorrectFormat;
     }
 
-    LogPrint(BCLog::MASTERNODE,"Loaded info from mncache.dat  %dms\n", GetTimeMillis() - nStart);
+    LogPrint(BCLog::MASTERNODE,"Loaded info from mncache.dat (dbversion=%d) %dms\n", version, GetTimeMillis() - nStart);
     LogPrint(BCLog::MASTERNODE,"  %s\n", mnodemanToLoad.ToString());
 
     return Ok;

@@ -8,6 +8,7 @@
 #include "chainparams.h"
 #include "clientversion.h"
 
+static const int BUDGET_DB_VERSION = 1;
 
 //
 // CBudgetDB
@@ -25,6 +26,7 @@ bool CBudgetDB::Write(const CBudgetManager& objToSave)
 
     // serialize, checksum data up to that point, then append checksum
     CDataStream ssObj(SER_DISK, CLIENT_VERSION);
+    ssObj << BUDGET_DB_VERSION;
     ssObj << strMagicMessage;                   // masternode cache file specific magic message
     ssObj << FLATDATA(Params().MessageStart()); // network specific magic number
     ssObj << objToSave;
@@ -90,11 +92,12 @@ CBudgetDB::ReadResult CBudgetDB::Read(CBudgetManager& objToLoad, bool fDryRun)
         return IncorrectHash;
     }
 
-
+    int version;
     unsigned char pchMsgTmp[4];
     std::string strMagicMessageTmp;
     try {
-        // de-serialize file header (masternode cache file specific magic message) and ..
+        // de-serialize file header
+        ssObj >> version;
         ssObj >> strMagicMessageTmp;
 
         // ... verify the message matches predefined one
@@ -121,7 +124,7 @@ CBudgetDB::ReadResult CBudgetDB::Read(CBudgetManager& objToLoad, bool fDryRun)
         return IncorrectFormat;
     }
 
-    LogPrint(BCLog::MNBUDGET,"Loaded info from budget.dat  %dms\n", GetTimeMillis() - nStart);
+    LogPrint(BCLog::MNBUDGET,"Loaded info from budget.dat (dbversion=%d) %dms\n", version, GetTimeMillis() - nStart);
     LogPrint(BCLog::MNBUDGET,"%s\n", objToLoad.ToString());
     if (!fDryRun) {
         LogPrint(BCLog::MNBUDGET,"Budget manager - cleaning....\n");
