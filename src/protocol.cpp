@@ -61,16 +61,16 @@ static const char* ppszTypeName[] = {
     "ix",   // deprecated
     "txlvote", // deprecated
     NetMsgType::SPORK,
-    NetMsgType::GETSPORKS,
+    NetMsgType::MNWINNER,
+    "mnodescanerr",
+    NetMsgType::BUDGETVOTE,
+    NetMsgType::BUDGETPROPOSAL,
+    NetMsgType::FINALBUDGET,
+    NetMsgType::FINALBUDGETVOTE,
+    "mnq",
     NetMsgType::MNBROADCAST,
     NetMsgType::MNPING,
-    NetMsgType::MNWINNER,
-    NetMsgType::GETMNWINNERS,
-    NetMsgType::GETMNLIST,
-    NetMsgType::BUDGETPROPOSAL,
-    NetMsgType::BUDGETVOTE,
-    NetMsgType::FINALBUDGET,
-    NetMsgType::FINALBUDGETVOTE
+    "dstx"  // deprecated
 };
 
 /** All known message types. Keep this in the same order as the list of
@@ -99,18 +99,24 @@ const static std::string allNetMessageTypes[] = {
     NetMsgType::FILTERCLEAR,
     NetMsgType::REJECT,
     NetMsgType::SENDHEADERS,
+    "filtered block", // Should never occur
+    "ix",   // deprecated
+    "txlvote", // deprecated
     NetMsgType::SPORK,
-    NetMsgType::GETSPORKS,
-    NetMsgType::MNBROADCAST,
-    NetMsgType::MNPING,
     NetMsgType::MNWINNER,
-    NetMsgType::GETMNWINNERS,
-    NetMsgType::GETMNLIST,
-    NetMsgType::BUDGETPROPOSAL,
+    "mnodescanerr",
     NetMsgType::BUDGETVOTE,
-    NetMsgType::BUDGETVOTESYNC,
+    NetMsgType::BUDGETPROPOSAL,
     NetMsgType::FINALBUDGET,
     NetMsgType::FINALBUDGETVOTE,
+    "mnq",
+    NetMsgType::MNBROADCAST,
+    NetMsgType::MNPING,
+    "dstx",  // deprecated
+    NetMsgType::GETMNWINNERS,
+    NetMsgType::GETMNLIST,
+    NetMsgType::BUDGETVOTESYNC,
+    NetMsgType::GETSPORKS,
     NetMsgType::SYNCSTATUSCOUNT
 };
 const static std::vector<std::string> allNetMessageTypesVec(allNetMessageTypes, allNetMessageTypes + ARRAYLEN(allNetMessageTypes));
@@ -193,20 +199,6 @@ CInv::CInv(int typeIn, const uint256& hashIn)
     hash = hashIn;
 }
 
-CInv::CInv(const std::string& strType, const uint256& hashIn)
-{
-    unsigned int i;
-    for (i = 1; i < ARRAYLEN(ppszTypeName); i++) {
-        if (strType == ppszTypeName[i]) {
-            type = i;
-            break;
-        }
-    }
-    if (i == ARRAYLEN(ppszTypeName))
-        LogPrint(BCLog::NET, "CInv::CInv(string, uint256) : unknown type '%s'", strType);
-    hash = hashIn;
-}
-
 bool operator<(const CInv& a, const CInv& b)
 {
     return (a.type < b.type || (a.type == b.type && a.hash < b.hash));
@@ -218,7 +210,7 @@ bool CInv::IsKnownType() const
 }
 
 bool CInv::IsMasterNodeType() const{
-     return (type >= 6);
+     return type > 2;
 }
 
 const char* CInv::GetCommand() const

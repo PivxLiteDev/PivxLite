@@ -1716,11 +1716,7 @@ bool AppInit2()
     if (readResult == CMasternodeDB::FileError)
         LogPrintf("Missing masternode cache file - mncache.dat, will try to recreate\n");
     else if (readResult != CMasternodeDB::Ok) {
-        LogPrintf("Error reading mncache.dat: ");
-        if (readResult == CMasternodeDB::IncorrectFormat)
-            LogPrintf("magic is ok but data has invalid format, will try to recreate\n");
-        else
-            LogPrintf("file format is unknown or invalid, please fix it manually\n");
+        LogPrintf("Error reading mncache.dat - cached data discarded\n");
     }
 
     uiInterface.InitMessage(_("Loading budget cache..."));
@@ -1733,17 +1729,12 @@ bool AppInit2()
     if (readResult2 == CBudgetDB::FileError)
         LogPrintf("Missing budget cache - budget.dat, will try to recreate\n");
     else if (readResult2 != CBudgetDB::Ok) {
-        LogPrintf("Error reading budget.dat: ");
-        if (readResult2 == CBudgetDB::IncorrectFormat)
-            LogPrintf("magic is ok but data has invalid format, will try to recreate\n");
-        else
-            LogPrintf("file format is unknown or invalid, please fix it manually\n");
+        LogPrintf("Error reading budget.dat - cached data discarded\n");
     }
 
     //flag our cached items so we send them to our peers
     g_budgetman.ResetSync();
     g_budgetman.ClearSeen();
-
 
     uiInterface.InitMessage(_("Loading masternode payment cache..."));
 
@@ -1753,11 +1744,7 @@ bool AppInit2()
     if (readResult3 == CMasternodePaymentDB::FileError)
         LogPrintf("Missing masternode payment cache - mnpayments.dat, will try to recreate\n");
     else if (readResult3 != CMasternodePaymentDB::Ok) {
-        LogPrintf("Error reading mnpayments.dat: ");
-        if (readResult3 == CMasternodePaymentDB::IncorrectFormat)
-            LogPrintf("magic is ok but data has invalid format, will try to recreate\n");
-        else
-            LogPrintf("file format is unknown or invalid, please fix it manually\n");
+        LogPrintf("Error reading mnpayments.dat - cached data discarded\n");
     }
 
     fMasterNode = gArgs.GetBoolArg("-masternode", DEFAULT_MASTERNODE);

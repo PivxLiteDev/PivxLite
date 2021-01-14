@@ -256,7 +256,7 @@ std::string CSporkManager::GetSporkNameByID(SporkId nSporkID)
 {
     auto it = sporkDefsById.find(nSporkID);
     if (it == sporkDefsById.end()) {
-        LogPrintf("%s : Unknown Spork ID %d\n", __func__, nSporkID);
+        LogPrint(BCLog::NET, "%s : Unknown Spork ID %d\n", __func__, nSporkID);
         return "Unknown";
     }
     return it->second->name;

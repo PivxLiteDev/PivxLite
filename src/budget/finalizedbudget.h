@@ -147,6 +147,12 @@ public:
         nProposalHash = UINT256_ZERO;
     }
 
+    CTxBudgetPayment(const uint256& _nProposalHash, const CScript& _payee, const CAmount _nAmount) :
+        nProposalHash(_nProposalHash),
+        payee(_payee),
+        nAmount(_nAmount)
+    {}
+
     ADD_SERIALIZE_METHODS;
 
     //for saving to the serialized db

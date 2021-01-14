@@ -8,6 +8,7 @@
 #include "chainparams.h"
 #include "clientversion.h"
 
+static const int BUDGET_DB_VERSION = 1;
 
 //
 // CBudgetDB
@@ -25,6 +26,7 @@ bool CBudgetDB::Write(const CBudgetManager& objToSave)
 
     // serialize, checksum data up to that point, then append checksum
     CDataStream ssObj(SER_DISK, CLIENT_VERSION);
+    ssObj << BUDGET_DB_VERSION;
     ssObj << strMagicMessage;                   // masternode cache file specific magic message
     ssObj << FLATDATA(Params().MessageStart()); // network specific magic number
     ssObj << objToSave;
@@ -90,11 +92,12 @@ CBudgetDB::ReadResult CBudgetDB::Read(CBudgetManager& objToLoad, bool fDryRun)
         return IncorrectHash;
     }
 
-
+    int version;
     unsigned char pchMsgTmp[4];
     std::string strMagicMessageTmp;
     try {
-        // de-serialize file header (masternode cache file specific magic message) and ..
+        // de-serialize file header
+        ssObj >> version;
         ssObj >> strMagicMessageTmp;
 
         // ... verify the message matches predefined one
@@ -121,7 +124,7 @@ CBudgetDB::ReadResult CBudgetDB::Read(CBudgetManager& objToLoad, bool fDryRun)
         return IncorrectFormat;
     }
 
-    LogPrint(BCLog::MNBUDGET,"Loaded info from budget.dat  %dms\n", GetTimeMillis() - nStart);
+    LogPrint(BCLog::MNBUDGET,"Loaded info from budget.dat (dbversion=%d) %dms\n", version, GetTimeMillis() - nStart);
     LogPrint(BCLog::MNBUDGET,"%s\n", objToLoad.ToString());
     if (!fDryRun) {
         LogPrint(BCLog::MNBUDGET,"Budget manager - cleaning....\n");
@@ -137,23 +140,7 @@ void DumpBudgets(CBudgetManager& budgetman)
     int64_t nStart = GetTimeMillis();
 
     CBudgetDB budgetdb;
-    CBudgetManager tempBudget;
-
-    LogPrint(BCLog::MNBUDGET,"Verifying budget.dat format...\n");
-    CBudgetDB::ReadResult readResult = budgetdb.Read(tempBudget, true);
-    // there was an error and it was not an error on file opening => do not proceed
-    if (readResult == CBudgetDB::FileError)
-        LogPrint(BCLog::MNBUDGET,"Missing budgets file - budget.dat, will try to recreate\n");
-    else if (readResult != CBudgetDB::Ok) {
-        LogPrint(BCLog::MNBUDGET,"Error reading budget.dat: ");
-        if (readResult == CBudgetDB::IncorrectFormat)
-            LogPrint(BCLog::MNBUDGET,"magic is ok but data has invalid format, will try to recreate\n");
-        else {
-            LogPrint(BCLog::MNBUDGET,"file format is unknown or invalid, please fix it manually\n");
-            return;
-        }
-    }
-    LogPrint(BCLog::MNBUDGET,"Writting info to budget.dat...\n");
+    LogPrint(BCLog::MNBUDGET,"Writing info to budget.dat...\n");
     budgetdb.Write(budgetman);
 
     LogPrint(BCLog::MNBUDGET,"Budget dump finished  %dms\n", GetTimeMillis() - nStart);

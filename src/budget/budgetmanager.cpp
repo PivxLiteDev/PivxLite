@@ -409,6 +409,12 @@ bool CBudgetManager::GetPayeeAndAmount(int chainHeight, CScript& payeeRet, CAmou
     return pfb && pfb->GetPayeeAndAmount(chainHeight, payeeRet, nAmountRet) && pfb->GetVoteCount() > nCountThreshold;
 }
 
+bool CBudgetManager::GetExpectedPayeeAmount(int chainHeight, CAmount& nAmountRet) const
+{
+    CScript payeeRet;
+    return GetPayeeAndAmount(chainHeight, payeeRet, nAmountRet);
+}
+
 bool CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, const int nHeight, bool fProofOfStake) const
 {
     if (nHeight <= 0) return false;
