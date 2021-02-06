@@ -5,12 +5,12 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the pivxlld tests manually, launch `src/test/test_pivxl`. To recompile
+To run the pivxld tests manually, launch `src/test/test_pivxl`. To recompile
 after a test file was modified, run `make` and then run the test again. If you
 modify a non-test file, use `make -C src/test` to recompile only what's needed
-to run the pivxlld tests.
+to run the pivxld tests.
 
-To add more pivxlld tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more pivxld tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_FIXTURE_TEST_SUITE sections.
 

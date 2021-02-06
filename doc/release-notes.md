@@ -21,7 +21,7 @@ Note: In preparation for the enforcement, upgraded peers will start rejecting no
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVXL-Qt (on Mac) or pivxlld/pivxl-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVXL-Qt (on Mac) or pivxld/pivxl-qt (on Linux).
 
 #### Sapling Parameters
 In order to run, PIVXL Core now requires two files, `sapling-output.params` and `sapling-spend.params` (with total size ~50 MB), to be saved in a specific location.
@@ -891,7 +891,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
 - #2021 `3845c18723` [GA] Reduce number of concurrent jobs (Fuzzbawls)
 - #2022 `8385a96f94` [Build] Package sapling params in repo/release (Fuzzbawls)
 - #2036 `a3e75c2afa` [Build] Proper coverage for ppa (Fuzzbawls)
-- #2041 `a15dc3417d` [Build] CMake pivxlld and unit tests: fixing missing MacOS framework. (furszy)
+- #2041 `a15dc3417d` [Build] CMake pivxld and unit tests: fixing missing MacOS framework. (furszy)
 - #2087 `869b621c2c` [Build] Unify header file extensions (Fuzzbawls)
 
 ### P2P/Network

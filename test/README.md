@@ -1,4 +1,4 @@
-This directory contains integration tests that test pivxlld and its
+This directory contains integration tests that test pivxld and its
 utilities in their entirety. It does not contain unit tests, which
 can be found in [/src/test](/src/test), [/src/wallet/test](/src/wallet/test),
 etc.
@@ -6,7 +6,7 @@ etc.
 There are currently two sets of tests in this directory:
 
 - [functional](/test/functional) which test the functionality of
-pivxlld and pivxl-qt by interacting with them through the RPC and P2P
+pivxld and pivxl-qt by interacting with them through the RPC and P2P
 interfaces.
 - [util](/test/util) which tests the pivxl utilities, currently only
 pivxl-tx.
@@ -70,29 +70,29 @@ options. Run `test_runner.py -h` to see them all.
 
 ##### Resource contention
 
-The P2P and RPC ports used by the pivxlld nodes-under-test are chosen to make
-conflicts with other processes unlikely. However, if there is another pivxlld
+The P2P and RPC ports used by the pivxld nodes-under-test are chosen to make
+conflicts with other processes unlikely. However, if there is another pivxld
 process running on the system (perhaps from a previous test which hasn't successfully
-killed all its pivxlld nodes), then there may be a port conflict which will
+killed all its pivxld nodes), then there may be a port conflict which will
 cause the test to fail. It is recommended that you run the tests on a system
-where no other pivxlld processes are running.
+where no other pivxld processes are running.
 
 On linux, the test_framework will warn if there is another
-pivxlld process running when the tests are started.
+pivxld process running when the tests are started.
 
-If there are zombie pivxlld processes after test failure, you can kill them
+If there are zombie pivxld processes after test failure, you can kill them
 by running the following commands. **Note that these commands will kill all
-pivxlld processes running on the system, so should not be used if any non-test
-pivxlld processes are being run.**
+pivxld processes running on the system, so should not be used if any non-test
+pivxld processes are being run.**
 
 ```bash
-killall pivxlld
+killall pivxld
 ```
 
 or
 
 ```bash
-pkill -9 pivxlld
+pkill -9 pivxld
 ```
 
 
@@ -103,11 +103,11 @@ functional test is run and is stored in test/cache. This speeds up
 test startup times since new blockchains don't need to be generated for
 each test. However, the cache may get into a bad state, in which case
 tests will fail. If this happens, remove the cache directory (and make
-sure pivxlld processes are stopped as above):
+sure pivxld processes are stopped as above):
 
 ```bash
 rm -rf cache
-killall pivxlld
+killall pivxld
 ```
 
 ##### Test logging
@@ -120,13 +120,13 @@ default:
 - when run directly, *all* logs are written to `test_framework.log` and INFO
   level and above are output to the console.
 - when run on Travis, no logs are output to the console. However, if a test
-  fails, the `test_framework.log` and pivxlld `debug.log`s will all be dumped
+  fails, the `test_framework.log` and pivxld `debug.log`s will all be dumped
   to the console to help troubleshooting.
 
 To change the level of logs output to the console, use the `-l` command line
 argument.
 
-`test_framework.log` and pivxlld `debug.log`s can be combined into a single
+`test_framework.log` and pivxld `debug.log`s can be combined into a single
 aggregate log by running the `combine_logs.py` script. The output can be plain
 text, colorized text or html. For example:
 
@@ -153,9 +153,9 @@ import pdb; pdb.set_trace()
 ```
 
 anywhere in the test. You will then be able to inspect variables, as well as
-call methods that interact with the pivxlld nodes-under-test.
+call methods that interact with the pivxld nodes-under-test.
 
-If further introspection of the pivxlld instances themselves becomes
+If further introspection of the pivxld instances themselves becomes
 necessary, this can be accomplished by first setting a pdb breakpoint
 at an appropriate location, running the test to that point, then using
 `gdb` to attach to the process and debug.
@@ -169,8 +169,8 @@ For instance, to attach to `self.node[1]` during a run:
 use the directory path to get the pid from the pid file:
 
 ```bash
-cat /tmp/user/1000/testo9vsdjo3/node1/regtest/pivxlld.pid
-gdb /home/example/pivxlld <pid>
+cat /tmp/user/1000/testo9vsdjo3/node1/regtest/pivxld.pid
+gdb /home/example/pivxld <pid>
 ```
 
 Note: gdb attach step may require `sudo`

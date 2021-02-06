@@ -13,7 +13,7 @@ This version is an optional, but recommended, update for all users and services.
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVXL-Qt (on Mac) or pivxlld/pivxl-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PIVXL-Qt (on Mac) or pivxld/pivxl-qt (on Linux).
 
 
 Compatibility
@@ -64,7 +64,7 @@ Base58CheckEncode,131072,7697,8065,7785,20015,20971,20242
 
 A new 'label' API has been introduced for the wallet. This is intended as a
 replacement for the deprecated 'account' API. The 'account' can continue to
-be used in v4.2 by starting pivxlld with the '-deprecatedrpc=accounts'
+be used in v4.2 by starting pivxld with the '-deprecatedrpc=accounts'
 argument, and will be fully removed in v5.0.
 
 The label RPC methods mirror the account functionality, with the following functional differences:

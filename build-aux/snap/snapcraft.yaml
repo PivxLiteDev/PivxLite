@@ -17,16 +17,16 @@ confinement: strict
 
 apps:
   daemon:
-    command: pivxlld
+    command: pivxld
     plugs: [network, network-bind, home, removable-media]
-    desktop: pivxlld.desktop
+    desktop: pivxld.desktop
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   daemon-testnet:
-    command: pivxlld --testnet
+    command: pivxld --testnet
     plugs: [network, network-bind, home, removable-media]
-    desktop: pivxlld_testnet.desktop
+    desktop: pivxld_testnet.desktop
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON

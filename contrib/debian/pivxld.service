@@ -1,7 +1,7 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit pivxlld.service
+# $ systemctl edit pivxld.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
@@ -12,12 +12,12 @@ Description=PIVXL daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/pivxlld -daemon -datadir=/var/lib/pivxl -conf=/etc/pivxl/pivxl.conf -pid=/run/pivxlld/pivxlld.pid
-# Creates /run/pivxlld owned by pivxl
-RuntimeDirectory=pivxlld
+ExecStart=/usr/bin/pivxld -daemon -datadir=/var/lib/pivxl -conf=/etc/pivxl/pivxl.conf -pid=/run/pivxld/pivxld.pid
+# Creates /run/pivxld owned by pivxl
+RuntimeDirectory=pivxld
 User=pivxl
 Type=forking
-PIDFile=/run/pivxlld/pivxlld.pid
+PIDFile=/run/pivxld/pivxld.pid
 Restart=on-failure
 
 # Hardening measures

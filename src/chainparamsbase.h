@@ -10,7 +10,7 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between pivxl-cli and pivxlld)
+ * CBaseChainParams defines the base parameters (shared between pivxl-cli and pivxld)
  * of a given instance of the Pivx system.
  */
 class CBaseChainParams

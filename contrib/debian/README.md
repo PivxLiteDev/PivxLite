@@ -1,8 +1,8 @@
 
 Debian
 ====================
-This directory contains files used to package pivxlld/pivxl-qt
-for Debian-based Linux systems. If you compile pivxlld/pivxl-qt yourself, there are some useful files here.
+This directory contains files used to package pivxld/pivxl-qt
+for Debian-based Linux systems. If you compile pivxld/pivxl-qt yourself, there are some useful files here.
 
 ## pivxl: URI support ##
 

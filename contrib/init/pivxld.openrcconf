@@ -1,25 +1,25 @@
-# /etc/conf.d/pivxlld: config file for /etc/init.d/pivxlld
+# /etc/conf.d/pivxld: config file for /etc/init.d/pivxld
 
 # Config file location
 #BITCOIND_CONFIGFILE="/etc/pivxl/pivxl.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/pivxlld"
+#BITCOIND_PIDDIR="/var/run/pivxld"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/pivxlld.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/pivxld.pid"
 
-# Where to write pivxlld data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/pivxlld"
+# Where to write pivxld data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/pivxld"
 
-# User and group to own pivxlld process
+# User and group to own pivxld process
 #BITCOIND_USER="pivxl"
 #BITCOIND_GROUP="pivxl"
 
-# Path to pivxlld executable
-#BITCOIND_BIN="/usr/bin/pivxlld"
+# Path to pivxld executable
+#BITCOIND_BIN="/usr/bin/pivxld"
 
-# Nice value to run pivxlld under
+# Nice value to run pivxld under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

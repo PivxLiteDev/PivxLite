@@ -32,7 +32,7 @@ Homepage: http://www.pivxl.org
 Vcs-Git: git://github.com/PIVXL-Project/PIVXL.git
 Vcs-Browser: http://github.com/PIVXL-Project/PIVXL
 
-Package: pivxlld
+Package: pivxld
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
@@ -45,7 +45,7 @@ Description: peer-to-peer network based digital currency - daemon
  Full transaction history is stored locally at each client.  This
  requires 18.5+ GB of space, slowly growing.
  .
- This package provides the daemon, pivxlld, and the CLI tool
+ This package provides the daemon, pivxld, and the CLI tool
  pivxl-cli to interact with the daemon.
 
 Package: pivxl-qt

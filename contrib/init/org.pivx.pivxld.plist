@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.pivxl.pivxlld</string>
+	<string>org.pivxl.pivxld</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/bin/pivxlld</string>
+		<string>/usr/local/bin/pivxld</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

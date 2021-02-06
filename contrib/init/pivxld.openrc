@@ -5,23 +5,23 @@
 if [ -d "/var/lib/pivxl/.pivxl" ]; then
 	BITCOIND_DEFAULT_DATADIR="/var/lib/pivxl/.pivxl"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/pivxlld"
+	BITCOIND_DEFAULT_DATADIR="/var/lib/pivxld"
 fi
 
 BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/pivxl/pivxl.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/pivxlld}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/pivxlld.pid}
+BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/pivxld}
+BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/pivxld.pid}
 BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
 BITCOIND_USER=${BITCOIND_USER:-${BITCOIN_USER:-pivxl}
 BITCOIND_GROUP=${BITCOIND_GROUP:-pivxl}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/pivxlld}
+BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/pivxld}
 BITCOIND_NICE=${BITCOIND_NICE:-${NICELEVEL:-0}}
 BITCOIND_OPTS="${BITCOIND_OPTS:-${BITCOIN_OPTS}}"
 
 name="PIVXL Core Daemon"
 description="PIVXL crypto-currency p2p network daemon"
 
-command="/usr/bin/pivxlld"
+command="/usr/bin/pivxld"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
 		-conf=\"${BITCOIND_CONFIGFILE}\" \
 		-datadir=\"${BITCOIND_DATADIR}\" \
@@ -71,7 +71,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run pivxlld."
+		eerror "ERROR: You must set a secure rpcpassword to run pivxld."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "

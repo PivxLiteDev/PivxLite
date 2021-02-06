@@ -14,7 +14,7 @@ AC_CONFIG_HEADERS([src/config/pivxl-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=pivxlld
+BITCOIN_DAEMON_NAME=pivxld
 BITCOIN_GUI_NAME=pivxl-qt
 BITCOIN_CLI_NAME=pivxl-cli
 BITCOIN_TX_NAME=pivxl-tx
@@ -471,7 +471,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build pivxlld daemon (default=yes)])],
+  [build pivxld daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -1220,7 +1220,7 @@ AX_CHECK_COMPILE_FLAG([-Wno-builtin-declaration-mismatch],[CXXFLAGS="$CXXFLAGS -
 
 LIBZCASH_LIBS="$BOOST_SYSTEM_LIB $CRYPTO_LIBS $SODIUM_LIBS $RUST_LIBS"
 
-AC_MSG_CHECKING([whether to build pivxlld])
+AC_MSG_CHECKING([whether to build pivxld])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 

@@ -10,7 +10,7 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both pivxlld and pivxl-qt, to make it harder for attackers to
+ * for both pivxld and pivxl-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
 const std::string CLIENT_NAME("PIVXL Core");

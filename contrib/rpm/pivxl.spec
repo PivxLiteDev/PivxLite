@@ -27,7 +27,7 @@ Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 Source10:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/contrib/debian/examples/pivxl.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/doc/man/pivxlld.1
+Source20:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/doc/man/pivxld.1
 Source21:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/doc/man/pivxl-cli.1
 Source22:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/doc/man/pivxl-qt.1
 
@@ -182,12 +182,12 @@ popd
 make install DESTDIR=%{buildroot}
 
 mkdir -p -m755 %{buildroot}%{_sbindir}
-mv %{buildroot}%{_bindir}/pivxlld %{buildroot}%{_sbindir}/pivxlld
+mv %{buildroot}%{_bindir}/pivxld %{buildroot}%{_sbindir}/pivxld
 
 # systemd stuff
 mkdir -p %{buildroot}%{_tmpfilesdir}
 cat <<EOF > %{buildroot}%{_tmpfilesdir}/pivxl.conf
-d /run/pivxlld 0750 pivxl pivxl -
+d /run/pivxld 0750 pivxl pivxl -
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/pivxl.conf
 
@@ -202,7 +202,7 @@ OPTIONS=""
 # Don't change these unless you know what you're doing.
 CONFIG_FILE="%{_sysconfdir}/pivxl/pivxl.conf"
 DATA_DIR="%{_localstatedir}/lib/pivxl"
-PID_FILE="/run/pivxlld/pivxlld.pid"
+PID_FILE="/run/pivxld/pivxld.pid"
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_sysconfdir}/sysconfig/pivxl
 
@@ -214,7 +214,7 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=%{_sbindir}/pivxlld -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
+ExecStart=%{_sbindir}/pivxld -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
 EnvironmentFile=%{_sysconfdir}/sysconfig/pivxl
 User=pivxl
 Group=pivxl
@@ -300,7 +300,7 @@ touch -a -m -t 201511100546 %{buildroot}%{_datadir}/kde4/services/pivxl-core.pro
 %endif
 
 # man pages
-install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/pivxlld.1
+install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/pivxld.1
 install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/pivxl-cli.1
 %if %{_buildqt}
 install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/pivxl-qt.1
@@ -407,14 +407,14 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
 %doc COPYING pivxl.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_sbindir}/pivxlld
+%attr(0755,root,root) %{_sbindir}/pivxld
 %attr(0644,root,root) %{_tmpfilesdir}/pivxl.conf
 %attr(0644,root,root) %{_unitdir}/pivxl.service
 %dir %attr(0750,pivxl,pivxl) %{_sysconfdir}/pivxl
 %dir %attr(0750,pivxl,pivxl) %{_localstatedir}/lib/pivxl
 %config(noreplace) %attr(0600,root,root) %{_sysconfdir}/sysconfig/pivxl
 %attr(0644,root,root) %{_datadir}/selinux/*/*.pp
-%attr(0644,root,root) %{_mandir}/man1/pivxlld.1*
+%attr(0644,root,root) %{_mandir}/man1/pivxld.1*
 
 %files utils
 %defattr(-,root,root,-)

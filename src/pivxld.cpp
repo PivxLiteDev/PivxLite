@@ -67,7 +67,7 @@ bool AppInit(int argc, char* argv[])
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  pivxlld [options]                     " + _("Start Pivx Core Daemon") + "\n";
+                        "  pivxld [options]                     " + _("Start Pivx Core Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -156,7 +156,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect pivxlld signal handlers
+    // Connect pivxld signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);

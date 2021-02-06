@@ -79,7 +79,7 @@ In this case there is no dependency on Berkeley DB 4.8.
 Running
 -------
 
-PIVXL Core is now available at `./src/pivxlld`
+PIVXL Core is now available at `./src/pivxld`
 
 Before running, you may create an empty configuration file:
 
@@ -89,7 +89,7 @@ Before running, you may create an empty configuration file:
 
     chmod 600 "/Users/${USER}/Library/Application Support/PIVXL/pivxl.conf"
 
-The first time you run pivxlld, it will start downloading the blockchain. This process could take many hours, or even days on slower than average systems.
+The first time you run pivxld, it will start downloading the blockchain. This process could take many hours, or even days on slower than average systems.
 
 You can monitor the download process by looking at the debug.log file:
 
@@ -98,7 +98,7 @@ You can monitor the download process by looking at the debug.log file:
 Other commands:
 -------
 
-    ./src/pivxlld -daemon # Starts the pivxl daemon.
+    ./src/pivxld -daemon # Starts the pivxl daemon.
     ./src/pivxl-cli --help # Outputs a list of command-line options.
     ./src/pivxl-cli help # Outputs a list of RPC commands when the daemon is running.
 

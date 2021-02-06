@@ -207,7 +207,7 @@ bool Intro::pickDataDirectory()
 
     /* Only override -datadir if different from the default, to make it possible to
      * override -datadir in the pivxl.conf file in the default data directory
-     * (to be consistent with pivxlld behavior)
+     * (to be consistent with pivxld behavior)
      */
 
     if (dataDir != getDefaultDataDirectory())

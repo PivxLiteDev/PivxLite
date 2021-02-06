@@ -1,3 +1,3 @@
-usr/local/bin/pivxlld usr/bin
+usr/local/bin/pivxld usr/bin
 usr/local/bin/pivxl-cli usr/bin
 debian/examples/pivxl.conf etc/pivxl

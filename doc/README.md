@@ -14,7 +14,7 @@ The following are some helpful notes on how to run PIVXL Core on your native pla
 Unpack the files into a directory and run:
 
 - `bin/pivxl-qt` (GUI) or
-- `bin/pivxlld` (headless)
+- `bin/pivxld` (headless)
 
 If this is the first time running PIVXL Core (since v5.0.0), you'll need to install the sapling params by running the included `install-params.sh` script, which copies the two params files to `$HOME/.pivxl-params`
 

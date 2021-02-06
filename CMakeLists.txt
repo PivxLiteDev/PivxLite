@@ -526,18 +526,18 @@ if(GMP_FOUND)
     target_link_libraries(pivxl-tx ${GMP_LIBRARY})
 endif()
 
-set(pivxlld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxlld.cpp)
+set(pivxld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxld.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND pivxlld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxlld-res.rc)
+    list(APPEND pivxld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxld-res.rc)
 endif()
-add_executable(pivxlld ${pivxlld_SOURCES} ${BitcoinHeaders})
-add_dependencies(pivxlld libunivalue libsecp256k1 libzcashrust leveldb crc32c)
-target_include_directories(pivxlld PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
+add_executable(pivxld ${pivxld_SOURCES} ${BitcoinHeaders})
+add_dependencies(pivxld libunivalue libsecp256k1 libzcashrust leveldb crc32c)
+target_include_directories(pivxld PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
         ${LIBEVENT_INCLUDE_DIR})
-target_link_libraries(pivxlld
+target_link_libraries(pivxld
         pthread
         SERVER_A
         WALLET_A
@@ -555,27 +555,27 @@ target_link_libraries(pivxlld
         )
 if($ENV{target} MATCHES "Windows")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wstack-protector -fstack-protector-all -fPIE -pipe -O2 -pthread -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -pie --static")
-    target_link_libraries(pivxlld ${WINDOWS_LDADD})
+    target_link_libraries(pivxld ${WINDOWS_LDADD})
 endif()
 if(GMP_FOUND)
-    target_link_libraries(pivxlld ${GMP_LIBRARY})
-    target_include_directories(pivxlld PUBLIC ${GMP_INCLUDE_DIR})
+    target_link_libraries(pivxld ${GMP_LIBRARY})
+    target_include_directories(pivxld PUBLIC ${GMP_INCLUDE_DIR})
 endif()
 if(ZMQ_FOUND)
-    target_link_libraries(pivxlld ZMQ_A ${ZMQ_LIB})
-    target_include_directories(pivxlld PUBLIC ${ZMQ_INCLUDE_DIR})
+    target_link_libraries(pivxld ZMQ_A ${ZMQ_LIB})
+    target_include_directories(pivxld PUBLIC ${ZMQ_INCLUDE_DIR})
 endif()
 if(MINIUPNP_FOUND)
-    target_compile_definitions(pivxlld PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
-    target_link_libraries(pivxlld ${MINIUPNP_LIBRARY})
-    target_include_directories(pivxlld PUBLIC ${MINIUPNP_INCLUDE_DIR})
+    target_compile_definitions(pivxld PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
+    target_link_libraries(pivxld ${MINIUPNP_LIBRARY})
+    target_include_directories(pivxld PUBLIC ${MINIUPNP_INCLUDE_DIR})
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(pivxlld "-framework Cocoa")
+    target_link_libraries(pivxld "-framework Cocoa")
 endif()
 
-target_link_libraries(pivxlld ${sodium_LIBRARY_RELEASE} -ldl -lpthread)
+target_link_libraries(pivxld ${sodium_LIBRARY_RELEASE} -ldl -lpthread)
 
 add_subdirectory(src/qt)
 add_subdirectory(src/test)

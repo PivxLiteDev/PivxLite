@@ -12,12 +12,12 @@ Description=PIVXL daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/pivxlld -daemon -conf=/etc/pivxl/pivxl.conf -pid=/run/pivxlld/pivxlld.pid
-# Creates /run/pivxlld owned by pivxl
-RuntimeDirectory=pivxlld
+ExecStart=/usr/bin/pivxld -daemon -conf=/etc/pivxl/pivxl.conf -pid=/run/pivxld/pivxld.pid
+# Creates /run/pivxld owned by pivxl
+RuntimeDirectory=pivxld
 User=pivxl
 Type=forking
-PIDFile=/run/pivxlld/pivxlld.pid
+PIDFile=/run/pivxld/pivxld.pid
 Restart=on-failure
 
 # Hardening measures
