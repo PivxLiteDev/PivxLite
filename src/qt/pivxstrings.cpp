@@ -140,7 +140,7 @@ QT_TRANSLATE_NOOP("pivxl-core", ""
 "Maximum total fees to use in a single wallet transaction, setting too low "
 "may abort large transactions (default: %s)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
-"Minimum positive amount (in PIV) allowed by GUI and RPC for the stake split "
+"Minimum positive amount (in PIVXL) allowed by GUI and RPC for the stake split "
 "threshold (default: %s)"),
 QT_TRANSLATE_NOOP("pivxl-core", ""
 "Number of seconds to keep misbehaving peers from reconnecting (default: %u)"),

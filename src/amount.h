@@ -9,7 +9,7 @@
 
 #include <stdint.h>
 
-/** Amount in PIV (Can be negative) */
+/** Amount in PIVXL (Can be negative) */
 typedef int64_t CAmount;
 
 static const CAmount COIN = 100000000;

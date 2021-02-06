@@ -321,7 +321,7 @@ class WalletSaplingTest(PivxTestFramework):
         assert_equal(self.nodes[0].getshieldbalance(saplingAddr0), Decimal('20.9'))  # 12.9 prev balance + 8 received
         assert_equal(self.nodes[1].getshieldbalance(saplingAddr1), Decimal('2.95'))  # 1.95 prev balance + 1 received
         assert_equal(self.nodes[0].getshieldbalance(saplingAddr2), Decimal('4.4'))  # 3.9 prev balance + 0.5 received
-        # Balance of node 0 is: prev_balance - 1 PIV (+fee) sent externally +  250 PIV matured coinbase
+        # Balance of node 0 is: prev_balance - 1 PIVXL (+fee) sent externally +  250 PIVXL matured coinbase
         assert_equal(self.nodes[0].getbalance(), satoshi_round(prev_balance + Decimal('249') - Decimal(fee)))
 
         # Now shield some funds using sendtoaddress

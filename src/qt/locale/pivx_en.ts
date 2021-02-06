@@ -448,7 +448,7 @@ for staking</source>
     </message>
     <message>
         <location line="+161"/>
-        <source>PIVXL will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <source>PIVXL will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVXLs from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -585,7 +585,7 @@ for staking</source>
     </message>
     <message>
         <location line="+20"/>
-        <source>0,00 PIV</source>
+        <source>0,00 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -636,7 +636,7 @@ for staking</source>
     </message>
     <message>
         <location line="+81"/>
-        <source>Select PIV Outputs to Spend</source>
+        <source>Select PIVXL Outputs to Spend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -674,7 +674,7 @@ for staking</source>
         <location line="-393"/>
         <location line="+124"/>
         <location line="+461"/>
-        <source>0.00 PIV</source>
+        <source>0.00 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -937,7 +937,7 @@ for staking</source>
     </message>
     <message>
         <location filename="../pivxl/forms/coldstakingwidget.ui" line="-603"/>
-        <source>You can delegate your PIVs, letting a hot node (24/7 online node)
+        <source>You can delegate your PIVXLs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -948,7 +948,7 @@ stake on your behalf, while you keep the keys securely offline.</source>
     </message>
     <message>
         <location line="-139"/>
-        <source>Accept PIV delegation / Delegate PIV</source>
+        <source>Accept PIVXL delegation / Delegate PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1192,7 +1192,7 @@ address</source>
     </message>
     <message>
         <location line="+357"/>
-        <source>How to get PIV</source>
+        <source>How to get PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1222,7 +1222,7 @@ address</source>
     </message>
     <message>
         <location line="-558"/>
-        <source>Amount of PIV and zPIV staked.</source>
+        <source>Amount of PIVXL and zPIVXL staked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1652,7 +1652,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+23"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVXL Masternode you must dedicate 100,000 PIV (the unit of PIVXL) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a PIVXL Masternode you must dedicate 100,000 PIVXL (the unit of PIVXL) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1677,7 +1677,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+97"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 100,000 PIV will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node&apos;s name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 100,000 PIVXL will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node&apos;s name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2279,17 +2279,17 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
     </message>
     <message>
         <location line="-187"/>
-        <source>Enable automatic minting of PIV units to zPIV</source>
+        <source>Enable automatic minting of PIVXL units to zPIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Enable zPIV Automint</source>
+        <source>Enable zPIVXL Automint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Enable automatic zPIV minting from specific addresses</source>
+        <source>Enable automatic zPIVXL minting from specific addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2299,23 +2299,23 @@ https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>Percentage of incoming PIV which get automatically converted to zPIV via Zerocoin Protocol (min: 10%)</source>
+        <source>Percentage of incoming PIVXL which get automatically converted to zPIVXL via Zerocoin Protocol (min: 10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Percentage of autominted zPIV</source>
+        <source>Percentage of autominted zPIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+30"/>
         <location line="+16"/>
-        <source>Wait with automatic conversion to Zerocoin until enough PIV for this denomination is available</source>
+        <source>Wait with automatic conversion to Zerocoin until enough PIVXL for this denomination is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-13"/>
-        <source>Preferred Automint zPIV Denomination</source>
+        <source>Preferred Automint zPIVXL Denomination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3390,7 +3390,7 @@ Address: %4
     </message>
     <message>
         <location line="+29"/>
-        <source>Custom zPIV Backup Path:</source>
+        <source>Custom zPIVXL Backup Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3666,7 +3666,7 @@ Address: %4
     </message>
     <message>
         <location line="+61"/>
-        <source>Scan the QR code or copy the address to receive PIV</source>
+        <source>Scan the QR code or copy the address to receive PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3681,7 +3681,7 @@ Address: %4
     </message>
     <message>
         <location line="+19"/>
-        <source>Accept transparent or shielded PIV</source>
+        <source>Accept transparent or shielded PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3845,7 +3845,7 @@ try unlocking the wallet</source>
     </message>
     <message>
         <location line="+74"/>
-        <source>PIV</source>
+        <source>PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4002,7 +4002,7 @@ try unlocking the wallet</source>
     </message>
     <message>
         <location line="+86"/>
-        <source>PIV/kilobyte</source>
+        <source>PIVXL/kilobyte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4327,12 +4327,12 @@ Do you want to continue?
     </message>
     <message>
         <location line="+14"/>
-        <source>Error generating address to shield PIVs</source>
+        <source>Error generating address to shield PIVXLs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+8"/>
-        <source>You don&apos;t have any transparent PIVs to shield.</source>
+        <source>You don&apos;t have any transparent PIVXLs to shield.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4919,7 +4919,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+31"/>
-        <source>2) Why are my PIV unspendable?</source>
+        <source>2) Why are my PIVXL unspendable?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4944,7 +4944,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+21"/>
-        <source>Why are my PIV unspendable?</source>
+        <source>Why are my PIVXL unspendable?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4967,7 +4967,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+18"/>
-        <source>How do I stake PIV?</source>
+        <source>How do I stake PIVXL?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5039,7 +5039,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+26"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;A Masternode Controller wallet is where the 100,000 PIV collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;A Masternode Controller wallet is where the 100,000 PIVXL collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5047,7 +5047,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            A masternode is a computer running a full node PIVXL core wallet with a
-                           requirement of 100,000 PIV secured collateral to provide extra services
+                           requirement of 100,000 PIVXL secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
@@ -5079,7 +5079,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            Requirements:
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;100,000 PIV per single Masternode instance&lt;/li&gt;
+                           &lt;li&gt;100,000 PIVXL per single Masternode instance&lt;/li&gt;
                            &lt;li&gt;Must be stored in a core wallet&lt;/li&gt;
                            &lt;li&gt;Need dedicated IP address&lt;/li&gt;
                            &lt;li&gt;Masternode wallet to remain online&lt;/li&gt;
@@ -5100,7 +5100,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+138"/>
-        <source>3) How do I stake PIV?</source>
+        <source>3) How do I stake PIVXL?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6622,7 +6622,7 @@ backup will be created.
     </message>
     <message>
         <location line="+2"/>
-        <source>Burned PIVs</source>
+        <source>Burned PIVXLs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6841,12 +6841,12 @@ backup will be created.
     </message>
     <message>
         <location line="+142"/>
-        <source>+0.000585 PIV</source>
+        <source>+0.000585 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>-0.000585 PIV</source>
+        <source>-0.000585 PIVXL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7836,7 +7836,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+31"/>
-        <source>Minimum positive amount (in PIV) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <source>Minimum positive amount (in PIVXL) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

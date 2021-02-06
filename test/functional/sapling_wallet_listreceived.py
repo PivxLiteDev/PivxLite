@@ -40,7 +40,7 @@ class ListReceivedTest (PivxTestFramework):
         shield_addr1 = self.nodes[1].getnewshieldaddress()
         shield_addrExt = self.nodes[3].getnewshieldaddress()
 
-        self.nodes[0].sendtoaddress(taddr, 6.0) # node_1 in taddr with 6 PIV.
+        self.nodes[0].sendtoaddress(taddr, 6.0) # node_1 in taddr with 6 PIVXL.
         self.generate_and_sync(height+2)
 
         # Try to send with an oversized memo
@@ -50,8 +50,8 @@ class ListReceivedTest (PivxTestFramework):
         # Fixed fee
         fee = 0.05
 
-        # Send 1 PIV to shield addr1
-        txid = self.nodes[1].shieldsendmany(taddr, [ # node_1 with 6 PIV sending them all (fee is 0.1 PIV)
+        # Send 1 PIVXL to shield addr1
+        txid = self.nodes[1].shieldsendmany(taddr, [ # node_1 with 6 PIVXL sending them all (fee is 0.1 PIVXL)
             {'address': shield_addr1, 'amount': 2, 'memo': my_memo_str},
             {'address': shield_addrExt, 'amount': 3},
         ], 1, fee)
@@ -101,7 +101,7 @@ class ListReceivedTest (PivxTestFramework):
         c = self.nodes[1].getsaplingnotescount(0)
         assert_true(1 == c, "Count of unconfirmed notes should be 1")
 
-        # Confirm transaction (2 PIV from taddr to shield_addr1)
+        # Confirm transaction (2 PIVXL from taddr to shield_addr1)
         self.generate_and_sync(height+3)
 
         # adjust confirmations
@@ -128,7 +128,7 @@ class ListReceivedTest (PivxTestFramework):
         # Generate some change by sending part of shield_addr1 to shield_addr2
         txidPrev = txid
         shield_addr2 = self.nodes[1].getnewshieldaddress()
-        txid = self.nodes[1].shieldsendmany(shield_addr1, # shield_addr1 has 2 PIV, send 0.6 PIV + 0.05 PIV fee
+        txid = self.nodes[1].shieldsendmany(shield_addr1, # shield_addr1 has 2 PIVXL, send 0.6 PIVXL + 0.05 PIVXL fee
                                                [{'address': shield_addr2, 'amount': 0.6, "memo": non_ascii_memo_str}],
                                                1, fee) # change 1.35
         self.sync_all()

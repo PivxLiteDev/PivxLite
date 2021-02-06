@@ -52,7 +52,7 @@ class BudgetProposalTest(PivxTestFramework):
 
         self.log.info("Test with too low amount")
         invalid_amt = 9.99999999
-        assert_raises_rpc_error(-8, "Invalid amount - Payment of %.8f is less than minimum 10 PIV allowed" % invalid_amt, self.nodes[0].preparebudget,
+        assert_raises_rpc_error(-8, "Invalid amount - Payment of %.8f is less than minimum 10 PIVXL allowed" % invalid_amt, self.nodes[0].preparebudget,
                                 name, scheme + url, numcycles, nextsuperblock, address, invalid_amt)
 
         self.log.info("Test with too high amount")

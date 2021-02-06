@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(TransparentToSapling)
     auto pk = *ivk.address(d);
 
     // Create a shielding transaction from transparent to Sapling
-    // 0.5 t-PIV in, 0.4 shielded-PIV out, 0.1 t-PIV fee
+    // 0.5 t-PIVXL in, 0.4 shielded-PIVXL out, 0.1 t-PIVXL fee
     auto builder = TransactionBuilder(consensusParams, 1, &keystore);
     builder.AddTransparentInput(COutPoint(uint256S("1234"), 0), scriptPubKey, 50000000);
     builder.AddSaplingOutput(fvk_from.ovk, pk, 40000000, {});
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(SaplingToSapling) {
     auto pa = sk.default_address();
 
     // Create a Sapling-only transaction
-    // --- 0.4 shielded-PIV in, 0.299 shielded-PIV out, 0.1 shielded-PIV fee, 0.001 shielded-PIV change (added to fee)
+    // --- 0.4 shielded-PIVXL in, 0.299 shielded-PIVXL out, 0.1 shielded-PIVXL fee, 0.001 shielded-PIVXL change (added to fee)
     auto testNote = GetTestSaplingNote(pa, 40000000);
     auto builder = TransactionBuilder(consensusParams, 2);
     builder.AddSaplingSpend(expsk, testNote.note, testNote.tree.root(), testNote.tree.witness());
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(SaplingToSapling) {
     BOOST_CHECK(SaplingValidation::ContextualCheckTransaction(tx, state, Params(), 3, true, false));
     BOOST_CHECK_EQUAL(state.GetRejectReason(), "");
 
-    // --- Now try with 1 shielded-PIV in, 0.5 shielded-PIV out, 0.1 shielded-PIV fee, 0.4 shielded-PIV change
+    // --- Now try with 1 shielded-PIVXL in, 0.5 shielded-PIVXL out, 0.1 shielded-PIVXL fee, 0.4 shielded-PIVXL change
     auto testNote2 = GetTestSaplingNote(pa, 100000000);
     auto builder2 = TransactionBuilder(consensusParams, 2);
     builder2.AddSaplingSpend(expsk, testNote2.note, testNote2.tree.root(), testNote2.tree.witness());
@@ -154,25 +154,25 @@ BOOST_AUTO_TEST_CASE(FailsWithNegativeChange)
     auto scriptPubKey = GetScriptForDestination(tkeyid);
     CTxDestination taddr = tkeyid;
 
-    // Generate a 0.5 PIV note
+    // Generate a 0.5 PIVXL note
     auto testNote = GetTestSaplingNote(pa, 59990000);
 
     // Fail if there is only a Sapling output
-    // 0.5 shielded-PIV out, 0.1 t-PIV fee
+    // 0.5 shielded-PIVXL out, 0.1 t-PIVXL fee
     auto builder = TransactionBuilder(consensusParams, 1);
     builder.AddSaplingOutput(fvk.ovk, pa, 50000000, {});
     builder.SetFee(10000000);
     BOOST_CHECK_EQUAL("Change cannot be negative", builder.Build().GetError());
 
     // Fail if there is only a transparent output
-    // 0.5 t-PIV out, 0.1 t-PIV fee
+    // 0.5 t-PIVXL out, 0.1 t-PIVXL fee
     builder = TransactionBuilder(consensusParams, 1, &keystore);
     builder.AddTransparentOutput(taddr, 50000000);
     builder.SetFee(10000000);
     BOOST_CHECK_EQUAL("Change cannot be negative", builder.Build().GetError());
 
     // Fails if there is insufficient input
-    // 0.5 t-PIV out, 0.1 t-PIV fee, 0.59999 shielded-PIV in
+    // 0.5 t-PIVXL out, 0.1 t-PIVXL fee, 0.59999 shielded-PIVXL in
     builder.AddSaplingSpend(expsk, testNote.note, testNote.tree.root(), testNote.tree.witness());
     BOOST_CHECK_EQUAL("Change cannot be negative", builder.Build().GetError());
 

@@ -687,7 +687,7 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     }
     ui->labelTitle1->setText(nLockedBalance > 0 ? tr("Available (Locked included)") : tr("Available"));
 
-    // PIV Total
+    // PIVXL Total
     QString totalPiv = GUIUtil::formatBalance(newBalance.balance, nDisplayUnit);
     QString totalTransparent = GUIUtil::formatBalance(newBalance.balance - newBalance.shielded_balance);
     QString totalShielded = GUIUtil::formatBalance(newBalance.shielded_balance);

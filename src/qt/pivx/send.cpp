@@ -335,7 +335,7 @@ void SendWidget::setFocusOnLastEntry()
 void SendWidget::showHideCheckBoxDelegations()
 {
     // Show checkbox only when there is any available owned delegation and
-    // coincontrol is not selected, and we are trying to spend transparent PIVs.
+    // coincontrol is not selected, and we are trying to spend transparent PIVXLs.
     const bool isCControl = coinControlDialog->coinControl->HasSelected();
     const bool hasDel = cachedDelegatedBalance > 0;
 
@@ -719,7 +719,7 @@ void SendWidget::onShieldCoinsClicked()
             auto res = walletModel->getNewShieldedAddress(strAddress, "");
             // Check for generation errors
             if (!res.result) {
-                inform(tr("Error generating address to shield PIVs"));
+                inform(tr("Error generating address to shield PIVXLs"));
                 return false;
             }
             recipients.back().address = strAddress;
@@ -727,7 +727,7 @@ void SendWidget::onShieldCoinsClicked()
             return true;
         });
     } else {
-        inform(tr("You don't have any transparent PIVs to shield."));
+        inform(tr("You don't have any transparent PIVXLs to shield."));
     }
 }
 

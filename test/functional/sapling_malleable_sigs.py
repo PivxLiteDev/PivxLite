@@ -35,7 +35,7 @@ class MalleableSigsTest(PivxTestFramework):
         shield_to = [{"address": z_addr, "amount": Decimal('10')}]
 
         # Create rawtx shielding 10 PIV
-        self.log.info("Shielding 10 PIV...")
+        self.log.info("Shielding 10 PIVXL...")
         rawtx_hex = node.rawshieldsendmany("from_transparent", shield_to)
         self.log.info("Raw tx created")
 
