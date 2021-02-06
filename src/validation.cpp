@@ -793,26 +793,24 @@ CAmount GetBlockValue(int nHeight)
     }
     // Mainnet/Testnet block reward reduction schedule
     const int nLast = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight;
-    if (nHeight > nLast)   return 5    * COIN;
-    if (nHeight > 648000)  return 4.5  * COIN;
-    if (nHeight > 604800)  return 9    * COIN;
-    if (nHeight > 561600)  return 13.5 * COIN;
-    if (nHeight > 518400)  return 18   * COIN;
-    if (nHeight > 475200)  return 22.5 * COIN;
-    if (nHeight > 432000)  return 27   * COIN;
-    if (nHeight > 388800)  return 31.5 * COIN;
-    if (nHeight > 345600)  return 36   * COIN;
-    if (nHeight > 302400)  return 40.5 * COIN;
-    if (nHeight > 151200)  return 45   * COIN;
-    if (nHeight > 86400)   return 225  * COIN;
-    if (nHeight !=1)       return 250  * COIN;
-    // Premine for 6 masternodes at block 1
-    return 60001 * COIN;
+    int64_t nSubsidy = 0;
+
+    if (nHeight <= nLast && nHeight >= 0) {
+        nSubsidy = 15536 * COIN;
+    } else {
+        nSubsidy = 4 * COIN;
+    }
+
+    return nSubsidy;
 }
 
-int64_t GetMasternodePayment()
+int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
 {
-    return 3 * COIN;
+    int64_t ret = 0;
+    if (nHeight > Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight) {
+        ret = blockValue * 0.70; // 70% to masternodes
+    }
+    return ret;
 }
 
 bool IsInitialBlockDownload()
@@ -2621,10 +2619,12 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     if (!tx.HasP2CSOutputs())
         return true;
 
+    CAmount nReward = GetBlockValue(nHeight);
+
     const unsigned int outs = tx.vout.size();
     const CTxOut& lastOut = tx.vout[outs-1];
     if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        if (lastOut.nValue == GetMasternodePayment())
+        if (lastOut.nValue == GetMasternodePayment(nHeight, nReward))
             return true;
 
         // This could be a budget block.
