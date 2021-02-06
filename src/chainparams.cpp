@@ -255,9 +255,9 @@ public:
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
 
-        genesis = CreateGenesisBlock(1577169143, 268438, 0x1e0ffff0, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1577169143, 268438, 1, 1, 250 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000002584580320f08c04c7e02460428ca3b821dcb3a5ac4e5d1cc570f6212b2"));
+        assert(consensus.hashGenesisBlock == uint256S("0xbceb9bd1247969b008e4545f2219048e5948b5e0a6fd166288ba5685b6e98d73"));
         //assert(genesis.hashMerkleRoot == uint256S("0x1b2ef6e2f28be914103a277377ae7729dcd125dfeb8bf97bd5964ba72b6dc39b"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -361,9 +361,9 @@ public:
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
 
-        genesis = CreateGenesisBlock(1577169143, 268438, 0x1e0ffff0, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1577169143, 268438, 1, 1, 250 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000002584580320f08c04c7e02460428ca3b821dcb3a5ac4e5d1cc570f6212b2"));
+        assert(consensus.hashGenesisBlock == uint256S("0xbceb9bd1247969b008e4545f2219048e5948b5e0a6fd166288ba5685b6e98d73"));
         //assert(genesis.hashMerkleRoot == uint256S("0x1b2ef6e2f28be914103a277377ae7729dcd125dfeb8bf97bd5964ba72b6dc39b"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
