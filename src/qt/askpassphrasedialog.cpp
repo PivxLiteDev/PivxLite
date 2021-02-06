@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2015-2020 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,10 +11,10 @@
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/loadingdialog.h"
-#include "qt/pivx/defaultdialog.h"
-#include "qt/pivx/pivxgui.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/loadingdialog.h"
+#include "qt/pivxl/defaultdialog.h"
+#include "qt/pivxl/pivxlgui.h"
 #include <QDebug>
 
 #include <QKeyEvent>
@@ -190,7 +190,7 @@ void AskPassphraseDialog::accept()
         );
         if (ret) {
             newpassCache = newpass1;
-            PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
+            PIVXLGUI* window = static_cast<PIVXLGUI*>(parentWidget());
             LoadingDialog *dialog = new LoadingDialog(window);
             dialog->execute(this, 1);
             openDialogWithOpaqueBackgroundFullScreen(dialog, window);
@@ -310,7 +310,7 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
 
 bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn)
 {
-    PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
+    PIVXLGUI* gui = static_cast<PIVXLGUI*>(parentWidget());
     DefaultDialog *confirmDialog = new DefaultDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
     confirmDialog->adjustSize();
@@ -343,11 +343,11 @@ void AskPassphraseDialog::updateWarningsLabel()
 void AskPassphraseDialog::warningMessage()
 {
     hide();
-    static_cast<PIVXGUI*>(parentWidget())->showHide(true);
+    static_cast<PIVXLGUI*>(parentWidget())->showHide(true);
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("PIVX will close now to finish the encryption process. "
+            tr("PIVXL will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
                "your PIVs from being stolen by malware infecting your computer.") +
             "<br><br><b>" +

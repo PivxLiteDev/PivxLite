@@ -1,8 +1,8 @@
-// Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/focuseddialog.h"
+#include "qt/pivxl/focuseddialog.h"
 #include <QKeyEvent>
 
 FocusedDialog::FocusedDialog(QWidget *parent) :

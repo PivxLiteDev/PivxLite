@@ -1,15 +1,15 @@
-// Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/tooltipmenu.h"
-#include "qt/pivx/forms/ui_tooltipmenu.h"
+#include "qt/pivxl/tooltipmenu.h"
+#include "qt/pivxl/forms/ui_tooltipmenu.h"
 
-#include "qt/pivx/pivxgui.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/pivxlgui.h"
+#include "qt/pivxl/qtutils.h"
 #include <QTimer>
 
-TooltipMenu::TooltipMenu(PIVXGUI *_window, QWidget *parent) :
+TooltipMenu::TooltipMenu(PIVXLGUI *_window, QWidget *parent) :
     PWidget(_window, parent),
     ui(new Ui::TooltipMenu)
 {

@@ -122,12 +122,12 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши PIVX-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
+        <source>These are your PIVXL addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши PIVXL-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Это ваши PIVX-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
+        <source>These are your PIVXL addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Это ваши PIVXL-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -363,8 +363,8 @@ for staking</source>
         <translation>ОТМЕНА</translation>
     </message>
     <message>
-        <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши PIVX от кражи с использованием вредоносного ПО.</translation>
+        <source>PIVXL will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <translation>PIVXL сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши PIVXL от кражи с использованием вредоносного ПО.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -1059,8 +1059,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Изменить адрес отправки</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid PIVX address.</source>
-        <translation>Введенный адрес "%1" не является PIVX адресом.</translation>
+        <source>The entered address "%1" is not a valid PIVXL address.</source>
+        <translation>Введенный адрес "%1" не является PIVXL адресом.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1112,16 +1112,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>версия</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-бит)</translation>
     </message>
     <message>
-        <source>About PIVX Core</source>
-        <translation>О PIVX Core</translation>
+        <source>About PIVXL Core</source>
+        <translation>О PIVXL Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1175,16 +1175,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <source>Welcome to PIVX Core.</source>
-        <translation>Добро пожаловать в PIVX Core.</translation>
+        <source>Welcome to PIVXL Core.</source>
+        <translation>Добро пожаловать в PIVXL Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where PIVX Core will store its data.</source>
-        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные PIVX Core.</translation>
+        <source>As this is the first time the program is launched, you can choose where PIVXL Core will store its data.</source>
+        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные PIVXL Core.</translation>
     </message>
     <message>
-        <source>PIVX Core will download and store a copy of the PIVX block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>PIVX Core загрузит и сохранит копию цепочки блоков PIVX. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
+        <source>PIVXL Core will download and store a copy of the PIVXL block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>PIVXL Core загрузит и сохранит копию цепочки блоков PIVXL. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1203,8 +1203,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>ХОРОШО</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1533,7 +1533,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the pivxl.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1541,7 +1541,7 @@ this controller wallet (select the Masternode in the list and press "start").
 на удаленном сервере в буфер обмена.
 
 
-Вам необходимо только вставить данные в файл pivx.conf
+Вам необходимо только вставить данные в файл pivxl.conf
 вашего удаленного сервера и запустить его, а затем запустить мастерноду,
 используя этот кошелек контроллера (выберите мастерноду из списка и нажмите «Старт»).
 </translation>
@@ -1731,8 +1731,8 @@ STAKING</source>
         <translation>Проанализированные данные слишком большие</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>Неверный URI, не начинается с префикса "pivx"</translation>
+        <source>Invalid URI, not starting with "pivxl" prefix</source>
+        <translation>Неверный URI, не начинается с префикса "pivxl"</translation>
     </message>
 </context>
 <context>
@@ -1777,8 +1777,8 @@ STAKING</source>
         <translation>Отключив проведение неподтвержденных изменений все изменения о транзакции &lt;br/&gt;не будут использованы пока транзакция не получит хотя бы одно подтверждение.&lt;br/&gt;Также это влияет на расчет вашего баланса.</translation>
     </message>
     <message>
-        <source>Automatically open the PIVX client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматически открыть клиентский порт PIVX через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
+        <source>Automatically open the PIVXL client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматически открыть клиентский порт PIVXL через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1797,12 +1797,12 @@ STAKING</source>
         <translation>Эксперт</translation>
     </message>
     <message>
-        <source>Automatically start PIVX after logging in to the system.</source>
-        <translation>Автоматически запускать PIVX после входа в систему.</translation>
+        <source>Automatically start PIVXL after logging in to the system.</source>
+        <translation>Автоматически запускать PIVXL после входа в систему.</translation>
     </message>
     <message>
-        <source>&amp;Start PIVX on system login</source>
-        <translation>&amp;Запускать PIVX при входе в систему</translation>
+        <source>&amp;Start PIVXL on system login</source>
+        <translation>&amp;Запускать PIVXL при входе в систему</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1829,14 +1829,14 @@ STAKING</source>
         <translation>&amp;Сеть</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting PIVX.</source>
-        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска PIVX.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting PIVXL.</source>
+        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска PIVXL.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</source>
         <translation>Отсутствует ваш язык или заметили незавершенный перевод? Вы можете помочь нам стать лучше:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+https://www.transifex.com/pivxl-project/pivxl-project-translations</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1879,8 +1879,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Порог разделения доли:</translation>
     </message>
     <message>
-        <source>Connect to the PIVX network through a SOCKS5 proxy.</source>
-        <translation>Подключиться к сети PIVX через SOCKS5 прокси.</translation>
+        <source>Connect to the PIVXL network through a SOCKS5 proxy.</source>
+        <translation>Подключиться к сети PIVXL через SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2024,10 +2024,10 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
 </context>
 <context>
-    <name>PIVXGUI</name>
+    <name>PIVXLGUI</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2054,8 +2054,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Завершить работу</translation>
     </message>
     <message>
-        <source>PIVX Core client</source>
-        <translation>Клиент PIVX Core</translation>
+        <source>PIVXL Core client</source>
+        <translation>Клиент PIVXL Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2121,12 +2121,12 @@ Address: %4
         <translation>Неверный адрес оплаты %1</translation>
     </message>
     <message>
-        <source>Cannot start pivx: click-to-pay handler</source>
-        <translation>Не удалось запустить pivx: обработчик click-to-pay </translation>
+        <source>Cannot start pivxl: click-to-pay handler</source>
+        <translation>Не удалось запустить pivxl: обработчик click-to-pay </translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid PIVX address or malformed URI parameters.</source>
-        <translation>URI не интерпретируется! Причиной этому может быть неверный PIVX адрес или неверные параметеры URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid PIVXL address or malformed URI parameters.</source>
+        <translation>URI не интерпретируется! Причиной этому может быть неверный PIVXL адрес или неверные параметеры URI.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2211,8 +2211,8 @@ Address: %4
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>Enter PIVX address (e.g. %1)</source>
-        <translation>Введите адрес PIVX (например, %1)</translation>
+        <source>Enter PIVXL address (e.g. %1)</source>
+        <translation>Введите адрес PIVXL (например, %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2255,12 +2255,12 @@ Address: %4
         <translation>%1 мс</translation>
     </message>
     <message>
-        <source>A fatal error occurred. PIVX can no longer continue safely and will quit.</source>
-        <translation>Произошла фатальная ошибка. PIVX больше не может безопасно продолжать работу и завершит работу.</translation>
+        <source>A fatal error occurred. PIVXL can no longer continue safely and will quit.</source>
+        <translation>Произошла фатальная ошибка. PIVXL больше не может безопасно продолжать работу и завершит работу.</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2279,8 +2279,8 @@ Address: %4
         <translation>Ошибка чтения файла конфигурации мастерноды: %1</translation>
     </message>
     <message>
-        <source>PIVX Core didn't yet exit safely...</source>
-        <translation>PIVX Core еще не вышел безопасно...</translation>
+        <source>PIVXL Core didn't yet exit safely...</source>
+        <translation>PIVXL Core еще не вышел безопасно...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2518,8 +2518,8 @@ Address: %4
         <translation>Блокчейн</translation>
     </message>
     <message>
-        <source>Open the PIVX debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Открыть протокол отладки PIVX. Это может занять некоторе время, если файл протокола очень большой.</translation>
+        <source>Open the PIVXL debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Открыть протокол отладки PIVXL. Это может занять некоторе время, если файл протокола очень большой.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2743,8 +2743,8 @@ Address: %4
         <translation>Вывод:</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Добро пожаловать в окружение PIVX RPC.</translation>
+        <source>Welcome to the PIVXL RPC console.</source>
+        <translation>Добро пожаловать в окружение PIVXL RPC.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3011,8 +3011,8 @@ Address: %4
         <translation>PIV</translation>
     </message>
     <message>
-        <source>Instead of sharing only a PIVX address, you can create a payment request, bundling up more information</source>
-        <translation>Вместо того, чтобы делиться только адресом PIVX, вы можете создать запрос на оплату, связывая больше информации</translation>
+        <source>Instead of sharing only a PIVXL address, you can create a payment request, bundling up more information</source>
+        <translation>Вместо того, чтобы делиться только адресом PIVXL, вы можете создать запрос на оплату, связывая больше информации</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -3102,8 +3102,8 @@ Address: %4
         <translation>Смена адреса</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" PIVX address</source>
-        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса PIVX</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" PIVXL address</source>
+        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса PIVXL</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -3432,9 +3432,9 @@ Remember to write it down and store it safely, otherwise you might lose access t
         <translation>Инструмент BIP38</translation>
     </message>
     <message>
-        <source>Encrypt your PIVX addresses (key pair actually) using BIP38 encryption.
+        <source>Encrypt your PIVXL addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
-        <translation>Зашифруйте свои адреса PIVX (фактически, пару ключей), используя шифрование BIP38.
+        <translation>Зашифруйте свои адреса PIVXL (фактически, пару ключей), используя шифрование BIP38.
 С помощью этого механизма вы можете делиться своими ключами без риска посредника, вам нужно только безопасно хранить вашу парольную фразу</translation>
     </message>
     <message>
@@ -3470,8 +3470,8 @@ Using this mechanism you can share your keys without middle-man risk, only need 
         <translation>Расшифровать ключ</translation>
     </message>
     <message>
-        <source>PIVX address</source>
-        <translation>Адрес PIVX</translation>
+        <source>PIVXL address</source>
+        <translation>Адрес PIVXL</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3603,8 +3603,8 @@ Verify that you have installed a predetermined text editor.</source>
 Убедитесь, что вы установили заранее установленный текстовый редактор.</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Добро пожаловать в окружение PIVX RPC.</translation>
+        <source>Welcome to the PIVXL RPC console.</source>
+        <translation>Добро пожаловать в окружение PIVXL RPC.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3713,12 +3713,12 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>Экспорт списка адресов</translation>
     </message>
     <message>
-        <source>PIVX_tx_csv_export(*.csv)</source>
-        <translation>PIVX_tx_csv_export(*.csv)</translation>
+        <source>PIVXL_tx_csv_export(*.csv)</source>
+        <translation>PIVXL_tx_csv_export(*.csv)</translation>
     </message>
     <message>
-        <source>PIVX_addresses_csv_export(*.csv)</source>
-        <translation>PIVX_addresses_csv_export(*.csv)</translation>
+        <source>PIVXL_addresses_csv_export(*.csv)</source>
+        <translation>PIVXL_addresses_csv_export(*.csv)</translation>
     </message>
     <message>
         <source>Please select a folder to export the csv file first.</source>
@@ -3787,24 +3787,24 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Вид</translation>
     </message>
     <message>
-        <source>1) What is PIVX?</source>
-        <translation>1) Что такое PIVX?</translation>
+        <source>1) What is PIVXL?</source>
+        <translation>1) Что такое PIVXL?</translation>
     </message>
     <message>
         <source>2) Why are my PIV unspendable?</source>
         <translation>2) Почему мои PIV невозможно потратить?</translation>
     </message>
     <message>
-        <source>https://PIVX.org/</source>
-        <translation>https://PIVX.org/</translation>
+        <source>https://PIVXL.org/</source>
+        <translation>https://PIVXL.org/</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is PIVX?</source>
-        <translation>Что такое PIVX?</translation>
+        <source>What is PIVXL?</source>
+        <translation>Что такое PIVXL?</translation>
     </message>
     <message>
         <source>2</source>
@@ -3817,19 +3817,19 @@ There was an error trying to save the address list to %1. Please try again.</sou
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received PIVX requires 6 confirmations on the network
+                           Newly received PIVXL requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your PIVX wallet also needs to be completely synchronized
+                           Your PIVXL wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Недавно полученным PIVX требуется 6 подтверждений в сети,
+Недавно полученным PIVXL требуется 6 подтверждений в сети,
 чтобы получить право быть расходуемыми. Это может занять примерно 6 минут.
 &lt;/p&gt;&lt;p align="justify"&gt;
-Ваш кошелек PIVX также должен быть полностью синхронизирован,
+Ваш кошелек PIVXL также должен быть полностью синхронизирован,
 чтобы видеть баланс и расходовать его в сети.
  &lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
@@ -3870,7 +3870,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node PIVX core wallet with a
+                           A masternode is a computer running a full node PIVXL core wallet with a
                            requirement of 100,000 PIV secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3893,10 +3893,10 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in PIVX Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in PIVXL Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the PIVX network&lt;/li&gt;
+                           &lt;li&gt;Help secure the PIVXL network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3911,7 +3911,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
-Мастернода - это компьютер, на котором запущен базовый кошелек PIVX с полным узлом и для которого требуется обеспечение в 10000 PIV для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
+Мастернода - это компьютер, на котором запущен базовый кошелек PIVXL с полным узлом и для которого требуется обеспечение в 10000 PIV для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
 
 Мгновенные транзакции (SwiftX)
 Децентрализованное управление (Голосование по предложениям)
@@ -3923,10 +3923,10 @@ There was an error trying to save the address list to %1. Please try again.</sou
 
 Привилегии мастерноды:
 
-Участие в управлении PIVX
+Участие в управлении PIVXL
 Получение вознаграждений за мастерноду
 Товарные опционы для будущей продажи
-Помощь в защите сети PIVX
+Помощь в защите сети PIVXL
 
 Требования:
 
@@ -4059,8 +4059,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Невозможно открыть папку резервных копий</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>Невозможно открыть pivx.conf с приложением по умолчанию</translation>
+        <source>Unable to open pivxl.conf with default application</source>
+        <translation>Невозможно открыть pivxl.conf с приложением по умолчанию</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4114,8 +4114,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Количество потоков проверки скрипта</translation>
     </message>
     <message>
-        <source>Start PIVX on system login</source>
-        <translation>Запускать PIVX при входе в систему</translation>
+        <source>Start PIVXL on system login</source>
+        <translation>Запускать PIVXL при входе в систему</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -4202,8 +4202,8 @@ Are you sure?
         <translation>Флажок</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other PIVX addresses after it matures.</source>
-        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов PIVX после его созревания.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other PIVXL addresses after it matures.</source>
+        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов PIVXL после его созревания.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4329,8 +4329,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Сообщение</translation>
     </message>
     <message>
-        <source>PIVX address or contact label</source>
-        <translation>PIVX адрес или лейбл контакта</translation>
+        <source>PIVXL address or contact label</source>
+        <translation>PIVXL адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4650,8 +4650,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>ЧаВо</translation>
     </message>
     <message>
-        <source>About PIVX</source>
-        <translation>О PIVX</translation>
+        <source>About PIVXL</source>
+        <translation>О PIVXL</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4721,8 +4721,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>PIVX Core is shutting down...</source>
-        <translation>PIVX Core выключается...</translation>
+        <source>PIVXL Core is shutting down...</source>
+        <translation>PIVXL Core выключается...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4751,8 +4751,8 @@ Are you sure?
         <translation>Загрузка...</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Core</translation>
+        <source>PIVXL Core</source>
+        <translation>PIVXL Core</translation>
     </message>
 </context>
 <context>
@@ -5290,25 +5290,25 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <source>Welcome to
-PIVX Core Wallet</source>
+PIVXL Core Wallet</source>
         <translation>Добро пожаловать
-в основной кошелек PIVX</translation>
+в основной кошелек PIVXL</translation>
     </message>
     <message>
-        <source>PIVX is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>PIVX - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
+        <source>PIVXL is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>PIVXL - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - PIVX believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь PIVX верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - PIVXL believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь PIVXL верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is PIVX's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Сеть мастернод - это сеть второго уровня PIVX поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
+        <source>The masternode network is PIVXL's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Сеть мастернод - это сеть второго уровня PIVXL поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
     </message>
     <message>
-        <source>How PIVX respects your privacy?</source>
-        <translation>Как PIVX уважает вашу конфиденциальность?</translation>
+        <source>How PIVXL respects your privacy?</source>
+        <translation>Как PIVXL уважает вашу конфиденциальность?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5320,7 +5320,7 @@ PIVX Core Wallet</source>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>pivxl-core</name>
     <message>
         <source>Allow JSON-RPC connections from specified source. Valid for &lt;ip&gt; are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times</source>
         <translation>Разрешить соединения JSON-RPC из указанного источника. Действительно для  &lt;ip&gt; одного IP (например, 1.2.3.4), сетевой / сетевой маски (например, 1.2.3.4/255.255.255.0) или сети / CIDR (например, 1.2.3.4/24). Эта опция может быть указана несколько раз</translation>
@@ -5338,8 +5338,8 @@ PIVX Core Wallet</source>
         <translation>Привяжите к указанному адресу для прослушивания соединений JSON-RPC. Используйте [host]: обозначение порта для IPv6. Эта опция может быть указана несколько раз (по умолчанию: привязка ко всем интерфейсам)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. PIVX Core is probably already running.</source>
-        <translation>Не удается получить блокировку в каталоге данных %s. PIVX Core, вероятно, уже запущен.</translation>
+        <source>Cannot obtain a lock on data directory %s. PIVXL Core is probably already running.</source>
+        <translation>Не удается получить блокировку в каталоге данных %s. PIVXL Core, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5486,8 +5486,8 @@ PIVX Core Wallet</source>
         <translation>Общая длина строки версии сети (%i) превышает максимальную длину (%i). Уменьшите количество или размер uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. PIVX Core is probably already running.</source>
-        <translation>Не удалось привязать к %s на этом компьютере. PIVX Core, вероятно, уже запущен.</translation>
+        <source>Unable to bind to %s on this computer. PIVXL Core is probably already running.</source>
+        <translation>Не удалось привязать к %s на этом компьютере. PIVXL Core, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5502,8 +5502,8 @@ PIVX Core Wallet</source>
         <translation>Предупреждение: -paytxfee установлен очень высоко! Это комиссия за транзакцию, которую вы заплатите, если вы отправляете транзакцию.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
-        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, PIVX Core не будет работать должным образом.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVXL Core will not work properly.</source>
+        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, PIVXL Core не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5574,8 +5574,8 @@ PIVX Core Wallet</source>
         <translation>Copyright (C) 2014-%i Разработчики Dash Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
-        <translation>Copyright (C) 2015-%i Разработчики PIVX Core</translation>
+        <source>Copyright (C) 2015-%i The PIVXL Core Developers</source>
+        <translation>Copyright (C) 2015-%i Разработчики PIVXL Core</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -5694,8 +5694,8 @@ PIVX Core Wallet</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. PIVX Core is shutting down.</source>
-        <translation>Инициализация проверки работоспособности не удалась. PIVX Core отключается.</translation>
+        <source>Initialization sanity check failed. PIVXL Core is shutting down.</source>
+        <translation>Инициализация проверки работоспособности не удалась. PIVXL Core отключается.</translation>
     </message>
     <message>
         <source>Insufficient funds.</source>
@@ -5942,8 +5942,8 @@ PIVX Core Wallet</source>
         <translation>Минимальная положительная сумма (в PIV), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.</source>
-        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, PIVX Core не будет работать должным образом.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong PIVXL Core will not work properly.</source>
+        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, PIVXL Core не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6292,8 +6292,8 @@ PIVX Core Wallet</source>
         <translation>Проверка кошелька ...</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart PIVX Core to complete</source>
-        <translation>Кошелек необходимо переписать: перезапустите PIVX Core, чтобы завершить</translation>
+        <source>Wallet needed to be rewritten: restart PIVXL Core to complete</source>
+        <translation>Кошелек необходимо переписать: перезапустите PIVXL Core, чтобы завершить</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -6347,8 +6347,8 @@ PIVX Core Wallet</source>
         <translation>Отправить</translation>
     </message>
     <message>
-        <source>PIVX address or contact label</source>
-        <translation>PIVX адрес или лейбл контакта</translation>
+        <source>PIVXL address or contact label</source>
+        <translation>PIVXL адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Amount</source>

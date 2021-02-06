@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,7 +7,7 @@
 
 #include <QDialog>
 
-class PIVXGUI;
+class PIVXLGUI;
 
 namespace Ui {
 class SettingsFaqWidget;
@@ -26,7 +26,7 @@ public:
         MNCONTROLLER
     };
 
-    explicit SettingsFaqWidget(PIVXGUI *parent = nullptr);
+    explicit SettingsFaqWidget(PIVXLGUI *parent = nullptr);
     ~SettingsFaqWidget();
 
     void showEvent(QShowEvent *event) override;

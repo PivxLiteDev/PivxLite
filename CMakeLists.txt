@@ -21,7 +21,7 @@ if(RUSTC_PROGRAM)
     message(STATUS "Found rustc: ${RUSTC_PROGRAM}")
 endif()
 
-project(PIVX)
+project(PIVXL)
 
 set(BDB_VER "4.8.30")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/contrib/cmake")
@@ -54,7 +54,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         message(STATUS "Compiling on WSL")
         set(ENV{DISPLAY} ":0")
         set(ENV{LIBGL_ALWAYS_INDIRECT} 1)
-        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/$ENV{USER}/pivx-run)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/$ENV{USER}/pivxl-run)
         message(WARNING "WSL Runtime support requires VcXsrv to be installed and running")
     else()
         message(STATUS "Compiling on Linux")
@@ -109,8 +109,8 @@ else()
     )
 endif()
 
-# run configure if pivx_config.h doesn't exist
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/pivx-config.h")
+# run configure if pivxl_config.h doesn't exist
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/pivxl-config.h")
 else()
     execute_process(
         COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure ${CONFIGSITE} ${BDB_CONFIGURE_FLAGS} ${BIGNUM_CONFIGURE_FLAGS} ${SSL_CONFIGURE_FLAGS}
@@ -483,13 +483,13 @@ link_directories(
 
 link_directories(${CMAKE_BINARY_DIR})
 
-set(pivx-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-cli.cpp)
+set(pivxl-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-cli.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND pivx-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-cli-res.rc)
+    list(APPEND pivxl-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-cli-res.rc)
 endif()
-add_executable(pivx-cli ${pivx-cli_SOURCES})
-add_dependencies(pivx-cli libunivalue libzcashrust)
-target_link_libraries(pivx-cli
+add_executable(pivxl-cli ${pivxl-cli_SOURCES})
+add_dependencies(pivxl-cli libunivalue libzcashrust)
+target_link_libraries(pivxl-cli
         CLI_A
         univalue
         UTIL_A
@@ -499,16 +499,16 @@ target_link_libraries(pivx-cli
         ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} -ldl pthread
         )
 if($ENV{target} MATCHES "Windows")
-    target_link_libraries(pivx-cli ${WINDOWS_LDADD})
+    target_link_libraries(pivxl-cli ${WINDOWS_LDADD})
 endif()
 
-set(pivx-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-tx.cpp)
+set(pivxl-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-tx.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND pivx-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-tx-res.rc)
+    list(APPEND pivxl-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-tx-res.rc)
 endif()
-add_executable(pivx-tx ${pivx-tx_SOURCES})
-add_dependencies(pivx-tx libunivalue libsecp256k1 libzcashrust)
-target_link_libraries(pivx-tx
+add_executable(pivxl-tx ${pivxl-tx_SOURCES})
+add_dependencies(pivxl-tx libunivalue libsecp256k1 libzcashrust)
+target_link_libraries(pivxl-tx
         univalue
         COMMON_A
         ZEROCOIN_A
@@ -520,24 +520,24 @@ target_link_libraries(pivx-tx
         ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} -ldl pthread
         )
 if($ENV{target} MATCHES "Windows")
-    target_link_libraries(pivx-tx ${WINDOWS_LDADD})
+    target_link_libraries(pivxl-tx ${WINDOWS_LDADD})
 endif()
 if(GMP_FOUND)
-    target_link_libraries(pivx-tx ${GMP_LIBRARY})
+    target_link_libraries(pivxl-tx ${GMP_LIBRARY})
 endif()
 
-set(pivxd_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxd.cpp)
+set(pivxlld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxlld.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND pivxd_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxd-res.rc)
+    list(APPEND pivxlld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxlld-res.rc)
 endif()
-add_executable(pivxd ${pivxd_SOURCES} ${BitcoinHeaders})
-add_dependencies(pivxd libunivalue libsecp256k1 libzcashrust leveldb crc32c)
-target_include_directories(pivxd PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
+add_executable(pivxlld ${pivxlld_SOURCES} ${BitcoinHeaders})
+add_dependencies(pivxlld libunivalue libsecp256k1 libzcashrust leveldb crc32c)
+target_include_directories(pivxlld PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
         ${LIBEVENT_INCLUDE_DIR})
-target_link_libraries(pivxd
+target_link_libraries(pivxlld
         pthread
         SERVER_A
         WALLET_A
@@ -555,27 +555,27 @@ target_link_libraries(pivxd
         )
 if($ENV{target} MATCHES "Windows")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wstack-protector -fstack-protector-all -fPIE -pipe -O2 -pthread -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -pie --static")
-    target_link_libraries(pivxd ${WINDOWS_LDADD})
+    target_link_libraries(pivxlld ${WINDOWS_LDADD})
 endif()
 if(GMP_FOUND)
-    target_link_libraries(pivxd ${GMP_LIBRARY})
-    target_include_directories(pivxd PUBLIC ${GMP_INCLUDE_DIR})
+    target_link_libraries(pivxlld ${GMP_LIBRARY})
+    target_include_directories(pivxlld PUBLIC ${GMP_INCLUDE_DIR})
 endif()
 if(ZMQ_FOUND)
-    target_link_libraries(pivxd ZMQ_A ${ZMQ_LIB})
-    target_include_directories(pivxd PUBLIC ${ZMQ_INCLUDE_DIR})
+    target_link_libraries(pivxlld ZMQ_A ${ZMQ_LIB})
+    target_include_directories(pivxlld PUBLIC ${ZMQ_INCLUDE_DIR})
 endif()
 if(MINIUPNP_FOUND)
-    target_compile_definitions(pivxd PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
-    target_link_libraries(pivxd ${MINIUPNP_LIBRARY})
-    target_include_directories(pivxd PUBLIC ${MINIUPNP_INCLUDE_DIR})
+    target_compile_definitions(pivxlld PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
+    target_link_libraries(pivxlld ${MINIUPNP_LIBRARY})
+    target_include_directories(pivxlld PUBLIC ${MINIUPNP_INCLUDE_DIR})
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(pivxd "-framework Cocoa")
+    target_link_libraries(pivxlld "-framework Cocoa")
 endif()
 
-target_link_libraries(pivxd ${sodium_LIBRARY_RELEASE} -ldl -lpthread)
+target_link_libraries(pivxlld ${sodium_LIBRARY_RELEASE} -ldl -lpthread)
 
 add_subdirectory(src/qt)
 add_subdirectory(src/test)

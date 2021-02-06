@@ -1,11 +1,11 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingswidget.h"
-#include "qt/pivx/settings/forms/ui_settingswidget.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/defaultdialog.h"
+#include "qt/pivxl/settings/settingswidget.h"
+#include "qt/pivxl/settings/forms/ui_settingswidget.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/defaultdialog.h"
 #include "optionsmodel.h"
 #include "clientmodel.h"
 #include "utilitydialog.h"
@@ -13,7 +13,7 @@
 #include <QScrollBar>
 #include <QDataWidgetMapper>
 
-SettingsWidget::SettingsWidget(PIVXGUI* parent) :
+SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
     PWidget(parent),
     ui(new Ui::SettingsWidget)
 {

@@ -1,18 +1,18 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef COLDSTAKINGWIDGET_H
 #define COLDSTAKINGWIDGET_H
 
-#include "qt/pivx/pwidget.h"
-#include "qt/pivx/furabstractlistitemdelegate.h"
-#include "qt/pivx/txviewholder.h"
-#include "qt/pivx/tooltipmenu.h"
-#include "qt/pivx/sendmultirow.h"
-#include "qt/pivx/coldstakingmodel.h"
-#include "qt/pivx/contactsdropdown.h"
-#include "qt/pivx/addressholder.h"
+#include "qt/pivxl/pwidget.h"
+#include "qt/pivxl/furabstractlistitemdelegate.h"
+#include "qt/pivxl/txviewholder.h"
+#include "qt/pivxl/tooltipmenu.h"
+#include "qt/pivxl/sendmultirow.h"
+#include "qt/pivxl/coldstakingmodel.h"
+#include "qt/pivxl/contactsdropdown.h"
+#include "qt/pivxl/addressholder.h"
 #include "transactiontablemodel.h"
 #include "addresstablemodel.h"
 #include "addressfilterproxymodel.h"
@@ -24,7 +24,7 @@
 #include <QSpacerItem>
 #include <atomic>
 
-class PIVXGUI;
+class PIVXLGUI;
 class WalletModel;
 class CSDelegationHolder;
 
@@ -41,7 +41,7 @@ class ColdStakingWidget : public PWidget
     Q_OBJECT
 
 public:
-    explicit ColdStakingWidget(PIVXGUI* parent);
+    explicit ColdStakingWidget(PIVXLGUI* parent);
     ~ColdStakingWidget();
 
     void loadWalletModel() override;

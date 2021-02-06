@@ -1,9 +1,9 @@
-// Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_BALANCEBUBBLE_H
-#define PIVX_BALANCEBUBBLE_H
+#ifndef PIVXL_BALANCEBUBBLE_H
+#define PIVXL_BALANCEBUBBLE_H
 
 #include <QWidget>
 #include <QString>
@@ -32,4 +32,4 @@ private:
     QTimer* hideTimer{nullptr};
 };
 
-#endif //PIVX_BALANCEBUBBLE_H
+#endif //PIVXL_BALANCEBUBBLE_H

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2020 The PIVX developers
+# Copyright (c) 2019-2020 The PIVXL developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 # -*- coding: utf-8 -*-
@@ -9,7 +9,7 @@ from time import sleep
 
 from test_framework.messages import CTransaction, CTxIn, CTxOut, COIN, COutPoint
 from test_framework.mininode import network_thread_start
-from test_framework.pivx_node import PivxTestNode
+from test_framework.pivxl_node import PivxTestNode
 from test_framework.script import CScript, OP_CHECKSIG
 from test_framework.test_framework import PivxTestFramework
 from test_framework.util import (
@@ -30,7 +30,7 @@ def getDelegatedUtxos(utxos):
     return [x for x in utxos if x["scriptPubKey"][:10] == '76a97b63d1']
 
 
-class PIVX_ColdStakingTest(PivxTestFramework):
+class PIVXL_ColdStakingTest(PivxTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 3
@@ -485,4 +485,4 @@ class PIVX_ColdStakingTest(PivxTestFramework):
 
 
 if __name__ == '__main__':
-    PIVX_ColdStakingTest().main()
+    PIVXL_ColdStakingTest().main()

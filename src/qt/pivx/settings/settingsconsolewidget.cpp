@@ -1,11 +1,11 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/settings/settingsconsolewidget.h"
-#include "qt/pivx/settings/forms/ui_settingsconsolewidget.h"
+#include "qt/pivxl/settings/settingsconsolewidget.h"
+#include "qt/pivxl/settings/forms/ui_settingsconsolewidget.h"
 
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/qtutils.h"
 
 #include "clientmodel.h"
 #include "guiutil.h"
@@ -97,7 +97,7 @@ public:
     }
 };
 
-#include "qt/pivx/settings/moc_settingsconsolewidget.cpp"
+#include "qt/pivxl/settings/moc_settingsconsolewidget.cpp"
 
 /**
  * Split shell command line into a list of arguments. Aims to emulate \c bash and friends.
@@ -239,7 +239,7 @@ void RPCExecutor::requestCommand(const QString& command)
     }
 }
 
-SettingsConsoleWidget::SettingsConsoleWidget(PIVXGUI* _window, QWidget *parent) :
+SettingsConsoleWidget::SettingsConsoleWidget(PIVXLGUI* _window, QWidget *parent) :
     PWidget(_window,parent),
     ui(new Ui::SettingsConsoleWidget)
 {
@@ -425,7 +425,7 @@ void SettingsConsoleWidget::clear(bool clearHistory)
     QString clsKey = "Ctrl-L";
 #endif
 
-    messageInternal(CMD_REPLY, (tr("Welcome to the PIVX RPC console.") + "<br>" +
+    messageInternal(CMD_REPLY, (tr("Welcome to the PIVXL RPC console.") + "<br>" +
                         tr("Use up and down arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
                         tr("Type <b>help</b> for an overview of available commands.") +
                         "<br><span class=\"secwarning\"><br>" +
@@ -457,13 +457,13 @@ static bool PotentiallyDangerousCommand(const QString& cmd)
         return true;
     }
     if (cmd.size() >= 13 && cmd.leftRef(11) == "dumpprivkey") {
-        // valid PIVX Transparent Address
+        // valid PIVXL Transparent Address
         std::vector<std::string> args;
         parseCommandLineSettings(args, cmd.toStdString());
         return (args.size() == 2 && IsValidDestinationString(args[1], false));
     }
     if (cmd.size() >= 18 && cmd.leftRef(16) == "exportsaplingkey") {
-        // valid PIVX Shield Address
+        // valid PIVXL Shield Address
         std::vector<std::string> args;
         parseCommandLineSettings(args, cmd.toStdString());
         return (args.size() == 2 && KeyIO::IsValidPaymentAddressString(args[1]));

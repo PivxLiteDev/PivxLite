@@ -1,41 +1,41 @@
-PIVX Core
+PIVXL Core
 =============
 
 Setup
 ---------------------
-[PIVX Core](http://pivx.org/wallet) is the original PIVX client and it builds the backbone of the network. However, it downloads and stores the entire history of PIVX transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[PIVXL Core](http://pivxl.org/wallet) is the original PIVXL client and it builds the backbone of the network. However, it downloads and stores the entire history of PIVXL transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run PIVX Core on your native platform.
+The following are some helpful notes on how to run PIVXL Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/pivx-qt` (GUI) or
-- `bin/pivxd` (headless)
+- `bin/pivxl-qt` (GUI) or
+- `bin/pivxlld` (headless)
 
-If this is the first time running PIVX Core (since v5.0.0), you'll need to install the sapling params by running the included `install-params.sh` script, which copies the two params files to `$HOME/.pivx-params`
+If this is the first time running PIVXL Core (since v5.0.0), you'll need to install the sapling params by running the included `install-params.sh` script, which copies the two params files to `$HOME/.pivxl-params`
 
 ### Windows
 
-Unpack the files into a directory, and then run pivx-qt.exe.
+Unpack the files into a directory, and then run pivxl-qt.exe.
 
 ### macOS
 
-Drag PIVX-Qt to your applications folder, and then run PIVX-Qt.
+Drag PIVXL-Qt to your applications folder, and then run PIVXL-Qt.
 
 ### Need Help?
 
-* See the documentation at the [PIVX Wiki](https://github.com/PIVX-Project/PIVX/wiki)
+* See the documentation at the [PIVXL Wiki](https://github.com/PIVXL-Project/PIVXL/wiki)
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [PIVX Forum](http://forum.pivx.org/).
-* Join our Discord server [Discord Server](https://discord.pivx.org)
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [PIVXL Forum](http://forum.pivxl.org/).
+* Join our Discord server [Discord Server](https://discord.pivxl.org)
 
 Building
 ---------------------
-The following are developer notes on how to build PIVX Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build PIVXL Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -45,21 +45,21 @@ The following are developer notes on how to build PIVX Core on your native platf
 
 Development
 ---------------------
-The PIVX repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The PIVXL repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://www.fuzzbawls.pw/pivx/doxygen/)
+- [Source Code Documentation (External Link)](https://www.fuzzbawls.pw/pivxl/doxygen/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [PIVX](http://forum.pivx.org/) forum.
-* Join the [PIVX Discord](https://discord.pivx.org).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [PIVXL](http://forum.pivxl.org/) forum.
+* Join the [PIVXL Discord](https://discord.pivxl.org).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

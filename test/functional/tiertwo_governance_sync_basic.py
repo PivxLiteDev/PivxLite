@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The PIVX developers
+# Copyright (c) 2020 The PIVXL developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
@@ -101,7 +101,7 @@ class MasternodeGovernanceBasicTest(PivxTier2TestFramework):
         # Prepare the proposal
         self.log.info("preparing budget proposal..")
         firstProposalName = "super-cool"
-        firstProposalLink = "https://forum.pivx.org/t/test-proposal"
+        firstProposalLink = "https://forum.pivxl.org/t/test-proposal"
         firstProposalCycles = 2
         firstProposalAddress = self.miner.getnewaddress()
         firstProposalAmountPerCycle = 300

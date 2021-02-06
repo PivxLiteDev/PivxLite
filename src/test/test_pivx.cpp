@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2013 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2017-2020 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #define BOOST_TEST_MODULE Pivx Test Suite
 
-#include "test/test_pivx.h"
+#include "test/test_pivxl.h"
 
 #include "guiinterface.h"
 #include "net_processing.h"
@@ -47,7 +47,7 @@ BasicTestingSetup::~BasicTestingSetup()
 TestingSetup::TestingSetup()
 {
         ClearDatadirCache();
-        pathTemp = GetTempPath() / strprintf("test_pivx_%lu_%i", (unsigned long)GetTime(), (int)(InsecureRandRange(100000)));
+        pathTemp = GetTempPath() / strprintf("test_pivxl_%lu_%i", (unsigned long)GetTime(), (int)(InsecureRandRange(100000)));
         fs::create_directories(pathTemp);
         gArgs.ForceSetArg("-datadir", pathTemp.string());
         // Ideally we'd move all the RPC tests to the functional testing framework

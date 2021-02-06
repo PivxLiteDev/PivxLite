@@ -1,4 +1,4 @@
-name: CI Actions for PIVX
+name: CI Actions for PIVXL
 
 on: [push, pull_request]
 jobs:
@@ -233,7 +233,7 @@ jobs:
       CCACHE_DIR: ${{ github.workspace }}/.ccache
       CCACHE_SIZE: 500M
       CCACHE_COMPRESS: 1
-      PARAMS_DIR: ${{ github.workspace }}/.pivx-params
+      PARAMS_DIR: ${{ github.workspace }}/.pivxl-params
       WINEDEBUG: fixme-all
       BOOST_TEST_RANDOM: 1${{ github.run_id }}
     defaults:
@@ -355,7 +355,7 @@ jobs:
         with:
           path: |
             .ccache
-            .pivx-params
+            .pivxl-params
           key: ${{ matrix.config.name }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
           restore-keys: |
             ${{ matrix.config.name }}-ccache-
@@ -410,7 +410,7 @@ jobs:
           make distdir VERSION=${{ matrix.config.host }}
           echo ::endgroup::
 
-          cd pivx-${{ matrix.config.host }}
+          cd pivxl-${{ matrix.config.host }}
 
           echo ::group::Configure
           ./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL ${{ matrix.config.BITCOIN_CONFIG }} $PARAMS_FLAGS || ( cat config.log && false)

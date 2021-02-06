@@ -87,7 +87,7 @@ background-color:transparent
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>0.00 pivx</string>
+         <string>0.00 pivxl</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -113,7 +113,7 @@ background-color:transparent
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>0.00 pivx</string>
+         <string>0.00 pivxl</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

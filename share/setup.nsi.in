@@ -6,10 +6,10 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define COMPANY "@PACKAGE_NAME@ project"
-!define URL https://www.pivx.org
+!define URL https://www.pivxl.org
 
 # MUI Symbol Definitions
-!define MUI_ICON "@abs_top_srcdir@/share/pixmaps/pivx.ico"
+!define MUI_ICON "@abs_top_srcdir@/share/pixmaps/pivxl.ico"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "@abs_top_srcdir@/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
@@ -80,7 +80,7 @@ Section -Main SEC0000
     File @abs_top_srcdir@/release/@BITCOIN_CLI_NAME@@EXEEXT@
     SetOutPath $INSTDIR\doc
     File /r @abs_top_srcdir@/doc\*.*
-    SetOutPath $APPDATA\PIVXParams
+    SetOutPath $APPDATA\PIVXLParams
     File @abs_top_srcdir@/params/sapling-output.params
     File @abs_top_srcdir@/params/sapling-spend.params
     SetOutPath $INSTDIR

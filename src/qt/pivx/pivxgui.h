@@ -1,12 +1,12 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_CORE_NEW_GUI_PIVXGUI_H
-#define PIVX_CORE_NEW_GUI_PIVXGUI_H
+#ifndef PIVXL_CORE_NEW_GUI_PIVXLGUI_H
+#define PIVXL_CORE_NEW_GUI_PIVXLGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/pivx-config.h"
+#include "config/pivxl-config.h"
 #endif
 
 #include <QMainWindow>
@@ -14,17 +14,17 @@
 #include <QSystemTrayIcon>
 #include <QLabel>
 
-#include "qt/pivx/navmenuwidget.h"
-#include "qt/pivx/topbar.h"
-#include "qt/pivx/dashboardwidget.h"
-#include "qt/pivx/send.h"
-#include "qt/pivx/receivewidget.h"
-#include "qt/pivx/addresseswidget.h"
-#include "qt/pivx/coldstakingwidget.h"
-#include "qt/pivx/masternodeswidget.h"
-#include "qt/pivx/snackbar.h"
-#include "qt/pivx/settings/settingswidget.h"
-#include "qt/pivx/settings/settingsfaqwidget.h"
+#include "qt/pivxl/navmenuwidget.h"
+#include "qt/pivxl/topbar.h"
+#include "qt/pivxl/dashboardwidget.h"
+#include "qt/pivxl/send.h"
+#include "qt/pivxl/receivewidget.h"
+#include "qt/pivxl/addresseswidget.h"
+#include "qt/pivxl/coldstakingwidget.h"
+#include "qt/pivxl/masternodeswidget.h"
+#include "qt/pivxl/snackbar.h"
+#include "qt/pivxl/settings/settingswidget.h"
+#include "qt/pivxl/settings/settingsfaqwidget.h"
 #include "qt/rpcconsole.h"
 
 
@@ -35,18 +35,18 @@ class WalletModel;
 
 
 /**
-  PIVX GUI main class. This class represents the main window of the PIVX UI. It communicates with both the client and
+  PIVXL GUI main class. This class represents the main window of the PIVXL UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
-class PIVXGUI : public QMainWindow
+class PIVXLGUI : public QMainWindow
 {
     Q_OBJECT
 
 public:
     static const QString DEFAULT_WALLET;
 
-    explicit PIVXGUI(const NetworkStyle* networkStyle, QWidget* parent = 0);
-    ~PIVXGUI();
+    explicit PIVXLGUI(const NetworkStyle* networkStyle, QWidget* parent = 0);
+    ~PIVXLGUI();
 
     /** Set the client model.
         The client model represents the part of the core that communicates with the P2P network, and is wallet-agnostic.
@@ -190,4 +190,4 @@ Q_SIGNALS:
 };
 
 
-#endif //PIVX_CORE_NEW_GUI_PIVXGUI_H
+#endif //PIVXL_CORE_NEW_GUI_PIVXLGUI_H

@@ -1,9 +1,9 @@
-// Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_LEGACY_ZPOS_H
-#define PIVX_LEGACY_ZPOS_H
+#ifndef PIVXL_LEGACY_ZPOS_H
+#define PIVXL_LEGACY_ZPOS_H
 
 #include "stakeinput.h"
 #include "txdb.h"
@@ -31,4 +31,4 @@ public:
     virtual bool ContextCheck(int nHeight, uint32_t nTime) override;
 };
 
-#endif //PIVX_LEGACY_ZPOS_H
+#endif //PIVXL_LEGACY_ZPOS_H

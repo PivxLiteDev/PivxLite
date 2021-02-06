@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,14 +6,14 @@
 #define TOPBAR_H
 
 #include <QWidget>
-#include "qt/pivx/pwidget.h"
-#include "qt/pivx/lockunlock.h"
+#include "qt/pivxl/pwidget.h"
+#include "qt/pivxl/lockunlock.h"
 #include "amount.h"
 #include <QTimer>
 #include <QProgressBar>
 
 class BalanceBubble;
-class PIVXGUI;
+class PIVXLGUI;
 class WalletModel;
 class ClientModel;
 
@@ -26,7 +26,7 @@ class TopBar : public PWidget
     Q_OBJECT
 
 public:
-    explicit TopBar(PIVXGUI* _mainWindow, QWidget *parent = nullptr);
+    explicit TopBar(PIVXLGUI* _mainWindow, QWidget *parent = nullptr);
     ~TopBar();
 
     void showTop();

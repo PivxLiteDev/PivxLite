@@ -1,16 +1,16 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/send.h"
-#include "qt/pivx/forms/ui_send.h"
-#include "qt/pivx/addnewcontactdialog.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/sendchangeaddressdialog.h"
-#include "qt/pivx/optionbutton.h"
-#include "qt/pivx/sendconfirmdialog.h"
-#include "qt/pivx/guitransactionsutils.h"
-#include "qt/pivx/loadingdialog.h"
+#include "qt/pivxl/send.h"
+#include "qt/pivxl/forms/ui_send.h"
+#include "qt/pivxl/addnewcontactdialog.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/sendchangeaddressdialog.h"
+#include "qt/pivxl/optionbutton.h"
+#include "qt/pivxl/sendconfirmdialog.h"
+#include "qt/pivxl/guitransactionsutils.h"
+#include "qt/pivxl/loadingdialog.h"
 #include "clientmodel.h"
 #include "optionsmodel.h"
 #include "operationresult.h"
@@ -21,7 +21,7 @@
 
 #define REQUEST_PREPARE_TX 1
 
-SendWidget::SendWidget(PIVXGUI* parent) :
+SendWidget::SendWidget(PIVXLGUI* parent) :
     PWidget(parent),
     ui(new Ui::send),
     coinIcon(new QPushButton())

@@ -1,14 +1,14 @@
-// Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ADDRESSHOLDER_H
-#define PIVX_ADDRESSHOLDER_H
+#ifndef PIVXL_ADDRESSHOLDER_H
+#define PIVXL_ADDRESSHOLDER_H
 
 #include <QWidget>
 #include <QColor>
-#include "qt/pivx/myaddressrow.h"
-#include "qt/pivx/furlistrow.h"
+#include "qt/pivxl/myaddressrow.h"
+#include "qt/pivxl/furlistrow.h"
 #include "guiutil.h"
 
 
@@ -38,4 +38,4 @@ public:
 };
 
 
-#endif //PIVX_ADDRESSHOLDER_H
+#endif //PIVXL_ADDRESSHOLDER_H

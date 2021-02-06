@@ -1,18 +1,18 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/sendmultirow.h"
-#include "qt/pivx/forms/ui_sendmultirow.h"
+#include "qt/pivxl/sendmultirow.h"
+#include "qt/pivxl/forms/ui_sendmultirow.h"
 
 #include "optionsmodel.h"
 #include "addresstablemodel.h"
 #include "guiutil.h"
 #include "bitcoinunits.h"
-#include "qt/pivx/sendmemodialog.h"
-#include "qt/pivx/qtutils.h"
+#include "qt/pivxl/sendmemodialog.h"
+#include "qt/pivxl/qtutils.h"
 
-SendMultiRow::SendMultiRow(PIVXGUI* _window, PWidget *parent) :
+SendMultiRow::SendMultiRow(PIVXLGUI* _window, PWidget *parent) :
     PWidget(_window, parent),
     ui(new Ui::SendMultiRow),
     iconNumber(new QPushButton())

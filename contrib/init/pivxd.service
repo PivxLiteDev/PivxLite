@@ -5,19 +5,19 @@
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/pivx/pivx.conf
+# /etc/pivxl/pivxl.conf
 
 [Unit]
-Description=PIVX daemon
+Description=PIVXL daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/pivxd -daemon -conf=/etc/pivx/pivx.conf -pid=/run/pivxd/pivxd.pid
-# Creates /run/pivxd owned by pivx
-RuntimeDirectory=pivxd
-User=pivx
+ExecStart=/usr/bin/pivxlld -daemon -conf=/etc/pivxl/pivxl.conf -pid=/run/pivxlld/pivxlld.pid
+# Creates /run/pivxlld owned by pivxl
+RuntimeDirectory=pivxlld
+User=pivxl
 Type=forking
-PIDFile=/run/pivxd/pivxd.pid
+PIDFile=/run/pivxlld/pivxlld.pid
 Restart=on-failure
 
 # Hardening measures

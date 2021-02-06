@@ -1,8 +1,8 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/mnmodel.h"
+#include "qt/pivxl/mnmodel.h"
 
 #include "activemasternode.h"
 #include "masternode-sync.h"

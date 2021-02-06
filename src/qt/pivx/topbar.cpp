@@ -1,17 +1,17 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/topbar.h"
-#include "qt/pivx/forms/ui_topbar.h"
-#include "qt/pivx/lockunlock.h"
-#include "qt/pivx/qtutils.h"
-#include "qt/pivx/receivedialog.h"
-#include "qt/pivx/loadingdialog.h"
+#include "qt/pivxl/topbar.h"
+#include "qt/pivxl/forms/ui_topbar.h"
+#include "qt/pivxl/lockunlock.h"
+#include "qt/pivxl/qtutils.h"
+#include "qt/pivxl/receivedialog.h"
+#include "qt/pivxl/loadingdialog.h"
 #include "askpassphrasedialog.h"
 
 #include "bitcoinunits.h"
-#include "qt/pivx/balancebubble.h"
+#include "qt/pivxl/balancebubble.h"
 #include "clientmodel.h"
 #include "qt/guiconstants.h"
 #include "qt/guiutil.h"
@@ -51,7 +51,7 @@ public:
     }
 };
 
-TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
+TopBar::TopBar(PIVXLGUI* _mainWindow, QWidget *parent) :
     PWidget(_mainWindow, parent),
     ui(new Ui::TopBar)
 {
@@ -600,7 +600,7 @@ void TopBar::loadWalletModel()
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
     // Ask for passphrase if needed
     connect(walletModel, &WalletModel::requireUnlock, this, &TopBar::unlockWallet);
-    // update the display unit, to not use the default ("PIVX")
+    // update the display unit, to not use the default ("PIVXL")
     updateDisplayUnit();
 
     refreshStatus();

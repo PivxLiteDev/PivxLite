@@ -1,9 +1,9 @@
-// Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/pivx/splash.h"
-#include "qt/pivx/forms/ui_splash.h"
+#include "qt/pivxl/splash.h"
+#include "qt/pivxl/forms/ui_splash.h"
 #include "QFile"
 
 #include "init.h"
@@ -27,7 +27,7 @@ Splash::Splash(const NetworkStyle* networkStyle) :
     QWidget(nullptr), ui(new Ui::Splash)
 {
     ui->setupUi(this);
-    QString titleText = tr("PIVX Core");
+    QString titleText = tr("PIVXL Core");
     QString titleAddText = networkStyle->getTitleAddText();
     setWindowTitle(titleText + " " + titleAddText);
 

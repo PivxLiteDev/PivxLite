@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,19 +8,19 @@
 #include <QWidget>
 #include <QPushButton>
 
-#include "qt/pivx/pwidget.h"
-#include "qt/pivx/contactsdropdown.h"
-#include "qt/pivx/sendmultirow.h"
-#include "qt/pivx/sendcustomfeedialog.h"
+#include "qt/pivxl/pwidget.h"
+#include "qt/pivxl/contactsdropdown.h"
+#include "qt/pivxl/sendmultirow.h"
+#include "qt/pivxl/sendcustomfeedialog.h"
 #include "walletmodel.h"
 #include "coincontroldialog.h"
-#include "qt/pivx/tooltipmenu.h"
+#include "qt/pivxl/tooltipmenu.h"
 
 #include <atomic>
 
 static const int MAX_SEND_POPUP_ENTRIES = 8;
 
-class PIVXGUI;
+class PIVXLGUI;
 class ClientModel;
 class OperationResult;
 class WalletModel;
@@ -36,7 +36,7 @@ class SendWidget : public PWidget
     Q_OBJECT
 
 public:
-    explicit SendWidget(PIVXGUI* parent);
+    explicit SendWidget(PIVXLGUI* parent);
     ~SendWidget();
 
     void addEntry();

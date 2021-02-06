@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2017 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2017-2020 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_POLICY_FEERATE_H
-#define PIVX_POLICY_FEERATE_H
+#ifndef PIVXL_POLICY_FEERATE_H
+#define PIVXL_POLICY_FEERATE_H
 
 #include "amount.h"
 #include "serialize.h"
@@ -46,4 +46,4 @@ public:
     }
 };
 
-#endif //  PIVX_POLICY_FEERATE_H
+#endif //  PIVXL_POLICY_FEERATE_H

@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2015-2019 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
@@ -22,8 +22,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called PIVX (http://www.pivx.org),
- * which enables instant payments to anyone, anywhere in the world. PIVX uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called PIVXL (http://www.pivxl.org),
+ * which enables instant payments to anyone, anywhere in the world. PIVXL uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -56,7 +56,7 @@ bool AppInit(int argc, char* argv[])
     //
     // Parameters
     //
-    // If Qt is used, parameters/pivx.conf are parsed in qt/pivx.cpp's main()
+    // If Qt is used, parameters/pivxl.conf are parsed in qt/pivxl.cpp's main()
     gArgs.ParseParameters(argc, argv);
 
     // Process help and version before taking care about datadir
@@ -67,7 +67,7 @@ bool AppInit(int argc, char* argv[])
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  pivxd [options]                     " + _("Start Pivx Core Daemon") + "\n";
+                        "  pivxlld [options]                     " + _("Start Pivx Core Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -111,7 +111,7 @@ bool AppInit(int argc, char* argv[])
 #ifndef WIN32
         fDaemon = gArgs.GetBoolArg("-daemon", false);
         if (fDaemon) {
-            fprintf(stdout, "PIVX server starting\n");
+            fprintf(stdout, "PIVXL server starting\n");
 
             // Daemonize
             pid_t pid = fork();
@@ -156,7 +156,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect pivxd signal handlers
+    // Connect pivxlld signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);

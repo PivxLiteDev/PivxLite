@@ -1,11 +1,11 @@
-// Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ADDNEWCONTACTDIALOG_H
 #define ADDNEWCONTACTDIALOG_H
 
-#include "qt/pivx/focuseddialog.h"
+#include "qt/pivxl/focuseddialog.h"
 
 namespace Ui {
 class AddNewContactDialog;

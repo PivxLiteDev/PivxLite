@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_KEY_IO_H
-#define PIVX_KEY_IO_H
+#ifndef PIVXL_KEY_IO_H
+#define PIVXL_KEY_IO_H
 
 #include "chainparams.h"
 #include "key.h"
@@ -28,4 +28,4 @@ namespace KeyIO {
 
 }
 
-#endif //PIVX_KEY_IO_H
+#endif //PIVXL_KEY_IO_H

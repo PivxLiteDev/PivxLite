@@ -878,7 +878,7 @@ stake on your behalf, while you keep the keys securely offline.</string>
   <customwidget>
    <class>OptionButton</class>
    <extends>QWidget</extends>
-   <header>qt/pivx/optionbutton.h</header>
+   <header>qt/pivxl/optionbutton.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
