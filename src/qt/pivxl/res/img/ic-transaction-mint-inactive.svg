@@ -1,13 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="ic-transaction-mint" width="24" height="24" viewBox="0 0 24 24">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
     <defs>
         <style type="text/css">
-            .cls-1{fill:#B6B6B6}.cls-2{fill:none}
+            .cls-1{opacity:.7}.cls-2{fill:#fff}.cls-3{fill:none}
         </style>
     </defs>
-    <g id="Group_8823" data-name="Group 8823">
-        <path id="Path_18880" d="M8 12a4 4 0 1 0 4-4 4 4 0 0 0-4 4zm6 0a2 2 0 1 1-2-2 2 2 0 0 1 2 2z" class="cls-1" data-name="Path 18880"/>
-        <path id="Path_18881" d="M7 8H5.092A7.987 7.987 0 0 1 20 12h2A9.988 9.988 0 0 0 4 6.025V5H2v5h5z" class="cls-1" data-name="Path 18881"/>
-        <path id="Path_18882" d="M17 16h1.91A7.988 7.988 0 0 1 4 12H2a9.988 9.988 0 0 0 18 5.976V19h2v-5h-5z" class="cls-1" data-name="Path 18882"/>
+    <g id="ic_mint" class="cls-1">
+        <g id="Group_9004" data-name="Group 9004">
+            <path id="Path_18964" d="M6 5h12v2.586l-.793-.793-1.414 1.414L19 11.414l3.207-3.207-1.414-1.414-.793.793V3H4v7h2z" class="cls-2" data-name="Path 18964"/>
+            <path id="Path_18965" d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm0 6a2 2 0 1 1 2-2 2 2 0 0 1-2 2z" class="cls-2" data-name="Path 18965"/>
+            <path id="Path_18966" d="M18 19H6v-2.586l.793.793 1.414-1.414L5 12.586l-3.207 3.207 1.414 1.414.793-.793V21h16v-7h-2z" class="cls-2" data-name="Path 18966"/>
+        </g>
+        <path id="Rectangle_4647" d="M0 0h24v24H0z" class="cls-3" data-name="Rectangle 4647"/>
     </g>
-    <path id="Rectangle_4408" d="M0 0h24v24H0z" class="cls-2" data-name="Rectangle 4408"/>
 </svg>
