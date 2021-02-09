@@ -7,7 +7,7 @@ PIVXL Core integration/staging repository
 
 ## What is PIVXL?
 
-PIVXL is an open source community-driven cryptocurrency, focused on five main aspects:
+Pivx Lite is an open source community-driven cryptocurrency, focused on five main aspects:
 
 (1) User Data Protection: Through the use of SHIELD, a zk-SNARKs based privacy protocol.
 
@@ -19,7 +19,7 @@ PIVXL is an open source community-driven cryptocurrency, focused on five main as
 
 (5) Ease of Use: PIVXL is determined to offer the best possible graphical interface for a core node/wallet. A full featured graphical product for new and advanced users.
 
-A lot more information and specs at [PIVXL.org](https://www.pivxl.org/). Join the community at [PIVXL Discord](https://discordapp.com/invite/jzqVsJd).
+A lot more information and specs at [pivxlite.com](http://www.pivxlite.com). Join the community at [PIVXL Discord](https://discordapp.com/invite/jzqVsJd).
 
 ## License
 PIVXL Core is released under the terms of the MIT license. See [COPYING](https://github.com/PIVXL-Project/PIVXL/blob/master/COPYING) for more information or see https://opensource.org/licenses/MIT.
