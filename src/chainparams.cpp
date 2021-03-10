@@ -213,8 +213,8 @@ public:
         nDefaultPort = 8233;
 
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("pivxllite.com", "seedhost1.pivxllite.com"));     // Primary DNS Seeder
-        vSeeds.push_back(CDNSSeedData("pivxllite.com", "seedhost2.pivxllite.com"));    // Secondary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("pivxlite.com", "seedhost1.pivxlite.com"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("pivxlite.com", "seedhost2.pivxlite.com"));    // Secondary DNS Seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 58);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
