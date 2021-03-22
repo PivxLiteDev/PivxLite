@@ -792,7 +792,7 @@ CAmount GetBlockValue(int nHeight)
         return 250000 * COIN;
     }
     // Mainnet/Testnet block reward reduction schedule
-    const int nLast = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight;
+    const int nLast = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight - 1;
     int64_t nSubsidy = 0;
 
     if (nHeight <= nLast && nHeight >= 0) {
@@ -807,7 +807,7 @@ CAmount GetBlockValue(int nHeight)
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
 {
     int64_t ret = 0;
-    if (nHeight > Params().GetConsensus().vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight) {
+    if (nHeight >= Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight) {
         ret = blockValue * 0.70; // 70% to masternodes
     }
     return ret;
