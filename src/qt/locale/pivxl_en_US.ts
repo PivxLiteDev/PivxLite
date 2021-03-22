@@ -4077,7 +4077,7 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            &lt;a style='color: #b088ff' href='https://discord.gg/c26QuZw'&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
-                           &lt;a style='color: #b088ff' href='https://PIVXL.freshdesk.com'&gt;
+                           &lt;a style='color: #b088ff' href='pivxlite@protonmail.com'&gt;
                            our Freshdesk support site&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
@@ -4087,7 +4087,7 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            &lt;a style='color: #b088ff' href='https://discord.gg/c26QuZw'&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
-                           &lt;a style='color: #b088ff' href='https://PIVXL.freshdesk.com'&gt;
+                           &lt;a style='color: #b088ff' href='pivxlite@protonmail.com'&gt;
                            our Freshdesk support site&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>

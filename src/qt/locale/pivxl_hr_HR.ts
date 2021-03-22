@@ -4067,7 +4067,7 @@ vodjenje Masternode-ova za stvaranje i glasanje o prijedlozima.
                            &lt;a style='color: #b088ff' href='https://discord.gg/c26QuZw'&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
-                           &lt;a style='color: #b088ff' href='https://PIVXL.freshdesk.com'&gt;
+                           &lt;a style='color: #b088ff' href='pivxlite@protonmail.com'&gt;
                            our Freshdesk support site&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
@@ -4077,7 +4077,7 @@ Imamo korisničku podršku u većini naših službenih chat grupa, na primjer
 &lt;a style='color: #b088ff' href='https://discord.gg/c26QuZw'&gt;
 #support na Discordu&lt;/a&gt;.
 Možete i podnijeti zahtjev, a to možete
-&lt;a style='color: #b088ff' href='https://PIVXL.freshdesk.com'&gt;
+&lt;a style='color: #b088ff' href='pivxlite@protonmail.com'&gt;
 na našoj Freshdesk stranici za podršku&lt;/a&gt;.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
