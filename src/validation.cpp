@@ -333,7 +333,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
 
     // If v5 is active, bye bye zerocoin
     if (fSaplingActive && hasTxZerocoins) {
-        return state.DoS(100, error("%s : v5 upgrade enforced, zerocoin disabled", __func__));
+        return state.DoS(100, error("%s : v2 upgrade enforced, zerocoin disabled", __func__));
     }
 
     // Check transaction
@@ -1550,7 +1550,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
         // If v5 is active, bye bye zerocoin
         if (isV5UpgradeEnforced && tx.ContainsZerocoins()) {
-            return state.DoS(100, error("%s : v5 upgrade enforced, zerocoin disabled", __func__));
+            return state.DoS(100, error("%s : v2 upgrade enforced, zerocoin disabled", __func__));
         }
 
         if (tx.HasZerocoinMintOutputs()) {

@@ -3432,8 +3432,8 @@ Möchten Sie ohne Memo fortfahren?
 </translation>
     </message>
     <message>
-        <source>Cannot perform shielded operations, v5 upgrade isn't being enforced yet!</source>
-        <translation>Kann keine abgeschirmten Operationen durchführen, das Upgrade auf v5 wurde noch nicht vollzogen!</translation>
+        <source>Cannot perform shielded operations, v2 upgrade isn't being enforced yet!</source>
+        <translation>Kann keine abgeschirmten Operationen durchführen, das Upgrade auf v2 wurde noch nicht vollzogen!</translation>
     </message>
     <message>
         <source>Sapling Protocol temporarily in maintenance. Shielded transactions disabled (SPORK 20)</source>

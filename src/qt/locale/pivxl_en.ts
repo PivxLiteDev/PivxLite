@@ -4289,7 +4289,7 @@ Do you wish to proceed without memo?
         <location line="+31"/>
         <location line="+273"/>
         <location line="+92"/>
-        <source>Cannot perform shielded operations, v5 upgrade isn&apos;t being enforced yet!</source>
+        <source>Cannot perform shielded operations, v2 upgrade isn&apos;t being enforced yet!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

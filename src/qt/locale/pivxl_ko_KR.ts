@@ -3242,8 +3242,8 @@ Do you wish to proceed without memo?
 </translation>
     </message>
     <message>
-        <source>Cannot perform shielded operations, v5 upgrade isn't being enforced yet!</source>
-        <translation>현재 Shield 전송이 불가합니다. 아직 네트워크의 v5 업그레이드가 완료되지 않았습니다.</translation>
+        <source>Cannot perform shielded operations, v2 upgrade isn't being enforced yet!</source>
+        <translation>현재 Shield 전송이 불가합니다. 아직 네트워크의 v2 업그레이드가 완료되지 않았습니다.</translation>
     </message>
     <message>
         <source>Sapling Protocol temporarily in maintenance. Shielded transactions disabled (SPORK 20)</source>

@@ -397,7 +397,7 @@ void SendWidget::ProcessSend(QList<SendCoinsRecipient>& recipients, bool hasShie
     bool isShieldedTx = hasShieldedOutput || !isTransparent;
     if (isShieldedTx) {
         if (!walletModel->isSaplingEnforced()) {
-            inform(tr("Cannot perform shielded operations, v5 upgrade isn't being enforced yet!"));
+            inform(tr("Cannot perform shielded operations, v2 upgrade isn't being enforced yet!"));
             return;
         }
 
@@ -670,7 +670,7 @@ void SendWidget::onCoinControlClicked()
 void SendWidget::onShieldCoinsClicked()
 {
     if (!walletModel->isSaplingEnforced()) {
-        inform(tr("Cannot perform shielded operations, v5 upgrade isn't being enforced yet!"));
+        inform(tr("Cannot perform shielded operations, v2 upgrade isn't being enforced yet!"));
         return;
     }
 
@@ -762,7 +762,7 @@ void SendWidget::onPIVSelected(bool _isTransparent)
 
     if (!isTransparent && !walletModel->isSaplingEnforced()) {
         ui->pushLeft->setChecked(true);
-        inform(tr("Cannot perform shielded operations, v5 upgrade isn't being enforced yet!"));
+        inform(tr("Cannot perform shielded operations, v2 upgrade isn't being enforced yet!"));
         return;
     }
 

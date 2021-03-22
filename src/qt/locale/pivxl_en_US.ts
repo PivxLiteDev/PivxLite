@@ -3451,8 +3451,8 @@ Do you wish to proceed without memo?
 </translation>
     </message>
     <message>
-        <source>Cannot perform shielded operations, v5 upgrade isn't being enforced yet!</source>
-        <translation>Cannot perform shielded operations, v5 upgrade isn't being enforced yet!</translation>
+        <source>Cannot perform shielded operations, v2 upgrade isn't being enforced yet!</source>
+        <translation>Cannot perform shielded operations, v2 upgrade isn't being enforced yet!</translation>
     </message>
     <message>
         <source>Sapling Protocol temporarily in maintenance. Shielded transactions disabled (SPORK 20)</source>
