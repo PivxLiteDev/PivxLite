@@ -4040,7 +4040,7 @@ PIVXL nutzt einen Proof of Stake (PoS) Konsensalgorithmus, der es den Besitzern 
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.PIVXL.org'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/c26QuZw'&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
                            &lt;a style='color: #b088ff' href='https://PIVXL.freshdesk.com'&gt;
@@ -4050,7 +4050,7 @@ PIVXL nutzt einen Proof of Stake (PoS) Konsensalgorithmus, der es den Besitzern 
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
-&lt;a style='color: #b088ff' href='https://discord.PIVXL.org'&gt;
+&lt;a style='color: #b088ff' href='https://discord.gg/c26QuZw'&gt;
 #support in Discord&lt;/a&gt;
 Wenn Sie bevorzugen, uns ein Ticket zu schicken, besuchen Sie
 &lt;a style='color: #b088ff' href='https://PIVXL.freshdesk.com'&gt;

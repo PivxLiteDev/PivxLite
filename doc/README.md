@@ -31,7 +31,7 @@ Drag PIVXL-Qt to your applications folder, and then run PIVXL-Qt.
 * See the documentation at the [PIVXL Wiki](https://github.com/PIVXL-Project/PIVXL/wiki)
 for help and more information.
 * Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [PIVXL Forum](http://forum.pivxl.org/).
-* Join our Discord server [Discord Server](https://discord.pivxl.org)
+* Join our Discord server [Discord Server](https://discord.gg/c26QuZw)
 
 Building
 ---------------------
@@ -59,7 +59,7 @@ The PIVXL repo's [root README](/README.md) contains relevant information on the 
 
 ### Resources
 * Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [PIVXL](http://forum.pivxl.org/) forum.
-* Join the [PIVXL Discord](https://discord.pivxl.org).
+* Join the [PIVXL Discord](https://discord.gg/c26QuZw).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
