@@ -36,6 +36,7 @@ public Q_SLOTS:
    void setSection(Section _section);
 private Q_SLOTS:
     void onFaqClicked(const QWidget* const widget);
+    void openLink();
 private:
     Ui::SettingsFaqWidget *ui;
     Section section = INTRO;

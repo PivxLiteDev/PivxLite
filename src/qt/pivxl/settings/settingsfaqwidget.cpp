@@ -6,6 +6,7 @@
 #include "qt/pivxl/settings/forms/ui_settingsfaqwidget.h"
 #include <QScrollBar>
 #include <QMetaObject>
+#include <QDesktopServices>
 #include "qt/pivxl/qtutils.h"
 
 SettingsFaqWidget::SettingsFaqWidget(PIVXLGUI *parent) :
@@ -80,9 +81,15 @@ SettingsFaqWidget::SettingsFaqWidget(PIVXLGUI *parent) :
     connect(ui->pushButton_Support, &QPushButton::clicked, [this](){onFaqClicked(ui->widget_Support);});
     connect(ui->pushButton_Masternode, &QPushButton::clicked, [this](){onFaqClicked(ui->widget_Masternode);});
     connect(ui->pushButton_MNController, &QPushButton::clicked, [this](){onFaqClicked(ui->widget_MNController);});
+    connect(ui->pushButtonWebLink, &QPushButton::clicked, this, &SettingsFaqWidget::openLink);
 
     if (parent)
         connect(parent, &PIVXLGUI::windowResizeEvent, this, &SettingsFaqWidget::windowResizeEvent);
+}
+
+void SettingsFaqWidget::openLink()
+{
+    QDesktopServices::openUrl(QUrl(ui->pushButtonWebLink->text()));
 }
 
 void SettingsFaqWidget::showEvent(QShowEvent *event)
