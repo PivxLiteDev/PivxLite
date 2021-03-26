@@ -793,11 +793,15 @@ CAmount GetBlockValue(int nHeight)
     }
     // Mainnet/Testnet block reward reduction schedule
     const int nLast = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight - 1;
+    const int nRewardHalvingHeight = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_HALF_REWARD].nActivationHeight;
     int64_t nSubsidy = 0;
 
     if (nHeight <= nLast && nHeight >= 0) {
         nSubsidy = 15536 * COIN;
-    } else {
+    } else if (nHeight > nRewardHalvingHeight){
+        nSubsidy = 2 * COIN;
+    }
+    else {
         nSubsidy = 4 * COIN;
     }
 
