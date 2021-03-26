@@ -82,6 +82,7 @@ SettingsFaqWidget::SettingsFaqWidget(PIVXLGUI *parent) :
     connect(ui->pushButton_Masternode, &QPushButton::clicked, [this](){onFaqClicked(ui->widget_Masternode);});
     connect(ui->pushButton_MNController, &QPushButton::clicked, [this](){onFaqClicked(ui->widget_MNController);});
     connect(ui->pushButtonWebLink, &QPushButton::clicked, this, &SettingsFaqWidget::openLink);
+    ui->pushButtonWebLink->setCursor(QCursor(Qt::PointingHandCursor));
 
     if (parent)
         connect(parent, &PIVXLGUI::windowResizeEvent, this, &SettingsFaqWidget::windowResizeEvent);
