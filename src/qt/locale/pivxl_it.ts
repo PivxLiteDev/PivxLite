@@ -3884,7 +3884,7 @@ per vedere e spendere i saldi sulla rete.
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            Abbiamo canali di supporto nella maggior parte dei nostri gruppi di chat ufficiali, ad esempio
-                           &lt;a style='color: #b088ff' href='https://Discord.PIVXL.com'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/c26QuZw'&gt;
                            #support nel nostro Discord&lt;/a&gt;.
                            Se preferisci aprire un ticket, puoi farlo su
                            &lt;a style='color: #b088ff' href='pivxlite@protonmail.com'&gt;
