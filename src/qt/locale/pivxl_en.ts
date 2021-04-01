@@ -5021,8 +5021,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://discord.gg/c26QuZw&apos;&gt;
                            #support in our Discord&lt;/a&gt;.
                            If you prefer to submit a ticket, You can do so at
-                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://pivxlite@protonmail.com&apos;&gt;
-                           our Freshdesk support site&lt;/a&gt;.
+                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;pivxlite@protonmail.com&apos;&gt;
+                           pivxlite@protonmail.com&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation type="unfinished"></translation>
