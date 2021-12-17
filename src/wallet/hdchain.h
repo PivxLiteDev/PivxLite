@@ -1,4 +1,5 @@
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,21 +36,14 @@ public:
     uint32_t nInternalChainCounter{0};
     uint32_t nStakingChainCounter{0};
     // Chain counter type
-    uint8_t chainType;
+    uint8_t chainType{HDChain::ChainCounterType::Standard};
 
     CHDChain(const uint8_t& _chainType = HDChain::ChainCounterType::Standard) : chainType(_chainType) { SetNull(); }
 
-    ADD_SERIALIZE_METHODS;
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
+    SERIALIZE_METHODS(CHDChain, obj)
     {
-        READWRITE(nVersion);
-        READWRITE(seed_id);
-        READWRITE(nExternalChainCounter);
-        READWRITE(nInternalChainCounter);
-        READWRITE(nStakingChainCounter);
-        if (nVersion == 1) chainType = HDChain::ChainCounterType::Standard;
-        else READWRITE(chainType);
+        READWRITE(obj.nVersion, obj.seed_id, obj.nExternalChainCounter, obj.nInternalChainCounter, obj.nStakingChainCounter);
+        if (obj.nVersion > 1) READWRITE(obj.chainType);
     }
 
     bool SetNull();

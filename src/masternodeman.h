@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,16 +8,15 @@
 #define MASTERNODEMAN_H
 
 #include "activemasternode.h"
-#include "base58.h"
 #include "cyclingvector.h"
 #include "key.h"
+#include "key_io.h"
 #include "masternode.h"
 #include "net.h"
 #include "sync.h"
-#include "util.h"
+#include "util/system.h"
 
-#define MASTERNODES_DUMP_SECONDS (15 * 60)
-#define MASTERNODES_DSEG_SECONDS (3 * 60 * 60)
+#define MASTERNODES_REQUEST_SECONDS (60 * 60) // One hour.
 
 /** Maximum number of block hashes to cache */
 static const unsigned int CACHED_BLOCK_HASHES = 200;
@@ -53,8 +53,6 @@ public:
     ReadResult Read(CMasternodeMan& mnodemanToLoad);
 };
 
-//
-typedef std::shared_ptr<CMasternode> MasternodeRef;
 
 class CMasternodeMan
 {
@@ -85,6 +83,9 @@ private:
     int ProcessMNPing(CNode* pfrom, CMasternodePing& mnp);
     int ProcessMessageInner(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
 
+    // Relay a MN
+    void BroadcastInvMN(CMasternode* mn, CNode* pfrom);
+
 public:
     // Keep track of all broadcasts I've seen
     std::map<uint256, CMasternodeBroadcast> mapSeenMasternodeBroadcast;
@@ -95,20 +96,17 @@ public:
     // TODO: Remove this from serialization
     int64_t nDsqCount;
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
+    SERIALIZE_METHODS(CMasternodeMan, obj)
     {
-        LOCK(cs);
-        READWRITE(mapMasternodes);
-        READWRITE(mAskedUsForMasternodeList);
-        READWRITE(mWeAskedForMasternodeList);
-        READWRITE(mWeAskedForMasternodeListEntry);
-        READWRITE(nDsqCount);
+        LOCK(obj.cs);
+        READWRITE(obj.mapMasternodes);
+        READWRITE(obj.mAskedUsForMasternodeList);
+        READWRITE(obj.mWeAskedForMasternodeList);
+        READWRITE(obj.mWeAskedForMasternodeListEntry);
+        READWRITE(obj.nDsqCount);
 
-        READWRITE(mapSeenMasternodeBroadcast);
-        READWRITE(mapSeenMasternodePing);
+        READWRITE(obj.mapSeenMasternodeBroadcast);
+        READWRITE(obj.mapSeenMasternodePing);
     }
 
     CMasternodeMan();
@@ -133,7 +131,7 @@ public:
     /// Count the number of nodes with a specific proto version for each network. Return the total.
     int CountNetworks(int& ipv4, int& ipv6, int& onion) const;
 
-    void DsegUpdate(CNode* pnode);
+    bool RequestMnList(CNode* pnode);
 
     /// Find an entry
     CMasternode* Find(const COutPoint& collateralOut);
@@ -144,17 +142,17 @@ public:
     void CheckSpentCollaterals(const std::vector<CTransactionRef>& vtx);
 
     /// Find an entry in the masternode list that is next to be paid
-    const CMasternode* GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount) const;
+    MasternodeRef GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount, const CBlockIndex* pChainTip = nullptr) const;
 
-    /// Get the current winner for this block
-    const CMasternode* GetCurrentMasterNode(int mod = 1, int64_t nBlockHeight = 0, int minProtocol = 0) const;
+    /// Get the winner for this block hash
+    MasternodeRef GetCurrentMasterNode(const uint256& hash) const;
 
     /// vector of pairs <masternode winner, height>
     std::vector<std::pair<MasternodeRef, int>> GetMnScores(int nLast) const;
 
     // Retrieve the known masternodes ordered by scoring without checking them. (Only used for listmasternodes RPC call)
     std::vector<std::pair<int64_t, MasternodeRef>> GetMasternodeRanks(int nBlockHeight) const;
-    int GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight, int minProtocol = 0, bool fOnlyActive = true) const;
+    int GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight) const;
 
     void ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
 
@@ -169,7 +167,7 @@ public:
     void Remove(const COutPoint& collateralOut);
 
     /// Update masternode list and maps using provided CMasternodeBroadcast
-    void UpdateMasternodeList(CMasternodeBroadcast mnb);
+    void UpdateMasternodeList(CMasternodeBroadcast& mnb);
 
     /// Get the time a masternode was last paid
     int64_t GetLastPaid(const MasternodeRef& mn, const CBlockIndex* BlockReading) const;

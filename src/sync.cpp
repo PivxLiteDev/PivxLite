@@ -1,18 +1,20 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "sync.h"
 
-#include <memory>
-#include <set>
-
-#include "util.h"
+#include "logging.h"
 #include "utilstrencodings.h"
 #include "util/threadnames.h"
 
 #include <stdio.h>
+
+#include <map>
+#include <memory>
+#include <set>
 
 #ifdef DEBUG_LOCKCONTENTION
 #if !defined(HAVE_THREAD_LOCAL)

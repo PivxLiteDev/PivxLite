@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 
 # Search for and use ccache if available to speed up build times
 find_program(CCACHE_PROGRAM ccache)
@@ -11,12 +11,12 @@ if(CCACHE_PROGRAM)
 endif()
 
 # Search for the cargo and rustc compilers required to build libzcashrust
-find_program(CARGO_PROGRAM cargo REQUIRED)
+find_program(CARGO_PROGRAM cargo REQUIRED HINTS ~/.cargo/bin)
 if(CARGO_PROGRAM)
     message(STATUS "Found cargo: ${CARGO_PROGRAM}")
 endif()
 
-find_program(RUSTC_PROGRAM rustc REQUIRED)
+find_program(RUSTC_PROGRAM rustc REQUIRED HINTS ~/.cargo/bin)
 if(RUSTC_PROGRAM)
     message(STATUS "Found rustc: ${RUSTC_PROGRAM}")
 endif()
@@ -25,8 +25,8 @@ project(PIVXL)
 
 set(BDB_VER "4.8.30")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/contrib/cmake")
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11 ")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++14 ")
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -38,11 +38,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(ENV{target} "Mac")
     add_definitions("-DMAC_OSX")
     list(APPEND CMAKE_PREFIX_PATH /usr/local/opt/qt5)
-    list(APPEND CMAKE_PREFIX_PATH /usr/local/opt/openssl@1.1)
     list(APPEND CMAKE_PREFIX_PATH /usr/local/Cellar/berkeley-db@4)
-    #set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@1.1/")
-    #set(ENV{CPPFLAGS} "-I${OPENSSL_ROOT_DIR}/include")
-    #set(ENV{LDFLAGS} "-L${OPENSSL_ROOT_DIR}/lib")
     set(BerkeleyDB_ROOT_DIR "/usr/local/Cellar/berkeley-db@4/${BDB_VER}/")
     set(Boost_USE_MULTITHREADED ON)
     set(Boost_NO_BOOST_CMAKE ON)
@@ -54,7 +50,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         message(STATUS "Compiling on WSL")
         set(ENV{DISPLAY} ":0")
         set(ENV{LIBGL_ALWAYS_INDIRECT} 1)
-        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/$ENV{USER}/pivxl-run)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/$ENV{USER}/pivx-run)
         message(WARNING "WSL Runtime support requires VcXsrv to be installed and running")
     else()
         message(STATUS "Compiling on Linux")
@@ -77,27 +73,14 @@ if(BerkeleyDB_FOUND)
     endif()
 endif()
 
-find_package(OpenSSL REQUIRED)
-if(OPENSSL_FOUND)
-    message(STATUS "Found OpenSSL (${OPENSSL_VERSION}): ${OPENSSL_LIBRARIES}")
-    if(OPENSSL_VERSION VERSION_GREATER_EQUAL 1.1)
-        message(STATUS "Found unsupported OpenSSL version!")
-        set(SSL_CONFIGURE_FLAGS "--with-unsupported-ssl")
-    endif()
-endif()
-
 find_package(LibEvent REQUIRED)
 
-find_package(GMP)
-if(GMP_FOUND)
-else()
-    message(WARNING "GMP not found, falling back to OpenSSL for bignum!")
-    set(BIGNUM_CONFIGURE_FLAGS "--with-zerocoin-bignum=openssl")
-endif()
+find_package(GMP REQUIRED)
 
 find_package(ZMQ)
 find_package(Miniupnp)
-find_package(Boost COMPONENTS system filesystem thread program_options REQUIRED)
+find_package(NAT-PMP)
+find_package(Boost COMPONENTS system filesystem thread REQUIRED)
 find_package(Sodium REQUIRED)
 
 # run autogen.sh if missing header files from configure on Linux/Mac
@@ -110,12 +93,20 @@ else()
 endif()
 
 # run configure if pivxl_config.h doesn't exist
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/pivxl-config.h")
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/pivx-config.h")
 else()
     execute_process(
-        COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure ${CONFIGSITE} ${BDB_CONFIGURE_FLAGS} ${BIGNUM_CONFIGURE_FLAGS} ${SSL_CONFIGURE_FLAGS}
+        COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure ${CONFIGSITE} ${BDB_CONFIGURE_FLAGS} ${BIGNUM_CONFIGURE_FLAGS}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
+endif()
+
+# error out if configure fails
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config/pivx-config.h")
+else()
+    execute_process(COMMAND cat config.log WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    message(FATAL_ERROR "configure script didn't finish properly see config.log output above")
+
 endif()
 add_definitions(-DHAVE_CONFIG_H)
 
@@ -157,6 +148,9 @@ set(LEVELDB_BUILD_BENCHMARKS OFF CACHE BOOL "Build LevelDB's benchmarks" FORCE)
 set(LEVELDB_INSTALL OFF CACHE BOOL "Install LevelDB's header and library" FORCE)
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/leveldb)
 
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/chiabls)
+FetchContent_GetProperties(relic)
+
 file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 file(GLOB CRYPTO_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/crypto/*.h)
 file(GLOB PRIMITIVE_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/*.h)
@@ -168,6 +162,8 @@ file(GLOB CONSENSUS_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/consensus/*.h)
 file(GLOB CTAES_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/crypto/ctaes/*.h)
 file(GLOB ZRUST_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/rust/include/*.h)
 file(GLOB SAPLING_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/sapling/*.h)
+file(GLOB IMMER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/immer/*.h)
+file(GLOB EVO_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/evo/*.h)
 
 source_group("BitcoinHeaders" FILES
         ${HEADERS}
@@ -181,6 +177,8 @@ source_group("BitcoinHeaders" FILES
         ${CTAES_HEADERS}
         ${ZRUST_HEADERS}
         ${SAPLING_HEADERS}
+        ${IMMER_HEADERS}
+        ${EVO_HEADERS}
         ./src/support/cleanse.h
         )
 
@@ -191,14 +189,20 @@ set(SERVER_SOURCES
         ./src/blocksignature.cpp
         ./src/chain.cpp
         ./src/checkpoints.cpp
+        ./src/consensus/tx_verify.cpp
+        ./src/flatfile.cpp
         ./src/httprpc.cpp
         ./src/httpserver.cpp
+        ./src/indirectmap.h
         ./src/init.cpp
-        ./src/interface/wallet.cpp
+        ./src/interfaces/handler.cpp
+        ./src/interfaces/wallet.cpp
         ./src/dbwrapper.cpp
         ./src/legacy/validation_zerocoin_legacy.cpp
+        ./src/mapport.cpp
         ./src/merkleblock.cpp
         ./src/miner.cpp
+        ./src/blockassembler.cpp
         ./src/net.cpp
         ./src/net_processing.cpp
         ./src/noui.cpp
@@ -213,6 +217,7 @@ set(SERVER_SOURCES
         ./src/rpc/misc.cpp
         ./src/rpc/net.cpp
         ./src/rpc/rawtransaction.cpp
+        ./src/rpc/rpcevo.cpp
         ./src/rpc/server.cpp
         ./src/script/sigcache.cpp
         ./src/script/ismine.cpp
@@ -220,9 +225,9 @@ set(SERVER_SOURCES
         ./src/timedata.cpp
         ./src/torcontrol.cpp
         ./src/sapling/sapling_txdb.cpp
+        ./src/sapling/sapling_validation.cpp
         ./src/txdb.cpp
         ./src/txmempool.cpp
-        ./src/sapling/sapling_validation.cpp
         ./src/validation.cpp
         ./src/validationinterface.cpp
         ./src/zpivchain.cpp
@@ -236,7 +241,10 @@ target_include_directories(SERVER_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
     ${CMAKE_CURRENT_SOURCE_DIR}/src/rust/include
-    ${ZMQ_INCLUDE_DIR} ${LIBEVENT_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${BerkeleyDB_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/chiabls/src
+    ${relic_SOURCE_DIR}/include
+    ${relic_BINARY_DIR}/include
+    ${ZMQ_INCLUDE_DIR} ${LIBEVENT_INCLUDE_DIR} ${BerkeleyDB_INCLUDE_DIRS}
     )
 
 if(ZMQ_FOUND)
@@ -246,42 +254,28 @@ if(ZMQ_FOUND)
         ./src/zmq/zmqpublishnotifier.cpp
     )
     add_library(ZMQ_A STATIC ${BitcoinHeaders} ${ZMQ_SOURCES} ${ZMQ_LIB})
-    target_include_directories(ZMQ_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src ${ZMQ_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
+    target_include_directories(ZMQ_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src ${ZMQ_INCLUDE_DIR})
     target_compile_definitions(ZMQ_A PUBLIC "-DZMQ_STATIC")
 endif()
 
 set(WALLET_SOURCES
-        ./src/activemasternode.cpp
         ./src/bip38.cpp
         ./src/wallet/db.cpp
         ./src/addressbook.cpp
         ./src/crypter.cpp
-        ./src/budget/budgetdb.cpp
-        ./src/budget/budgetmanager.cpp
-        ./src/budget/budgetproposal.cpp
-        ./src/budget/budgetvote.cpp
-        ./src/budget/finalizedbudget.cpp
-        ./src/budget/finalizedbudgetvote.cpp
-        ./src/masternode.cpp
-        ./src/masternode-payments.cpp
-        ./src/masternode-sync.cpp
-        ./src/tiertwo_networksync.cpp
-        ./src/masternodeconfig.cpp
-        ./src/masternodeman.cpp
-        ./src/messagesigner.cpp
-        ./src/zpiv/mintpool.cpp
         ./src/wallet/hdchain.cpp
         ./src/wallet/rpcdump.cpp
-        ./src/zpiv/deterministicmint.cpp
-        ./src/zpiv/zerocoin.cpp
+        ./src/wallet/fees.cpp
+        ./src/wallet/init.cpp
         ./src/wallet/scriptpubkeyman.cpp
         ./src/wallet/rpcwallet.cpp
         ./src/kernel.cpp
         ./src/legacy/stakemodifier.cpp
         ./src/wallet/wallet.cpp
         ./src/wallet/walletdb.cpp
-        ./src/zpiv/zpivmodule.cpp
-        ./src/zpiv/zpos.cpp
+        ./src/wallet/walletutil.cpp
+        ./src/zpivxl/zpivmodule.cpp
+        ./src/zpivxl/zpos.cpp
         ./src/stakeinput.cpp
         )
 add_library(WALLET_A STATIC ${BitcoinHeaders} ${WALLET_SOURCES})
@@ -289,7 +283,6 @@ target_include_directories(WALLET_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/secp256k1/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
-        ${OPENSSL_INCLUDE_DIR}
         ${BerkeleyDB_INCLUDE_DIRS}
         )
 
@@ -298,6 +291,7 @@ set(BITCOIN_CRYPTO_SOURCES
         ./src/crypto/sha1.cpp
         ./src/crypto/sha256.cpp
         ./src/crypto/sha512.cpp
+        ./src/crypto/sha3.cpp
         ./src/crypto/chacha20.cpp
         ./src/crypto/hmac_sha256.cpp
         ./src/crypto/rfc6979_hmac_sha256.cpp
@@ -330,10 +324,9 @@ set(BITCOIN_CRYPTO_SOURCES
         ./src/crypto/sph_types.h
         )
 add_library(BITCOIN_CRYPTO_A STATIC ${BITCOIN_CRYPTO_SOURCES})
-target_include_directories(BITCOIN_CRYPTO_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src ${OPENSSL_INCLUDE_DIR})
+target_include_directories(BITCOIN_CRYPTO_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 set(ZEROCOIN_SOURCES
-        ./src/libzerocoin/Accumulator.h
         ./src/libzerocoin/bignum.h
         ./src/libzerocoin/bignum.cpp
         ./src/libzerocoin/Coin.h
@@ -345,7 +338,6 @@ set(ZEROCOIN_SOURCES
         ./src/libzerocoin/Params.h
         ./src/libzerocoin/SpendType.h
         ./src/libzerocoin/ZerocoinDefines.h
-        ./src/libzerocoin/Accumulator.cpp
         ./src/libzerocoin/Coin.cpp
         ./src/libzerocoin/CoinRandomnessSchnorrSignature.cpp
         ./src/libzerocoin/Denominations.cpp
@@ -353,45 +345,52 @@ set(ZEROCOIN_SOURCES
         ./src/libzerocoin/ParamGeneration.cpp
         ./src/libzerocoin/Params.cpp
         )
-if(GMP_FOUND)
-    list(APPEND ZEROCOIN_SOURCES ./src/libzerocoin/bignum_gmp.cpp)
-else()
-    list(APPEND ZEROCOIN_SOURCES ./src/libzerocoin/bignum_openssl.cpp)
-endif()
 add_library(ZEROCOIN_A STATIC ${ZEROCOIN_SOURCES})
-target_include_directories(ZEROCOIN_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${OPENSSL_INCLUDE_DIR}
-        )
+target_include_directories(ZEROCOIN_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 set(COMMON_SOURCES
-        ./src/allocators.cpp
+        ./src/activemasternode.cpp
         ./src/base58.cpp
         ./src/bip38.cpp
+        ./src/budget/budgetdb.cpp
+        ./src/budget/budgetmanager.cpp
+        ./src/budget/budgetproposal.cpp
+        ./src/budget/budgetvote.cpp
+        ./src/budget/finalizedbudget.cpp
+        ./src/budget/finalizedbudgetvote.cpp
         ./src/consensus/params.cpp
         ./src/consensus/upgrades.cpp
         ./src/chainparams.cpp
         ./src/coins.cpp
         ./src/key_io.cpp
         ./src/compressor.cpp
-        ./src/tiertwo/specialtx_validation.cpp
+        ./src/evo/deterministicmns.cpp
+        ./src/evo/evonotificationinterface.cpp
+        ./src/evo/evodb.cpp
+        ./src/evo/providertx.cpp
+        ./src/evo/specialtx.cpp
         ./src/consensus/merkle.cpp
-        ./src/consensus/tx_verify.cpp
         ./src/consensus/zerocoin_verify.cpp
         ./src/primitives/block.cpp
-        ./src/zpiv/deterministicmint.cpp
         ./src/primitives/transaction.cpp
-        ./src/zpiv/zerocoin.cpp
         ./src/core_read.cpp
         ./src/core_write.cpp
         ./src/hash.cpp
         ./src/invalid.cpp
         ./src/key.cpp
         ./src/keystore.cpp
+        ./src/masternode.cpp
+        ./src/masternode-payments.cpp
+        ./src/masternode-sync.cpp
+        ./src/masternodeconfig.cpp
+        ./src/masternodeman.cpp
+        ./src/messagesigner.cpp
         ./src/netaddress.cpp
         ./src/netbase.cpp
         ./src/policy/feerate.cpp
         ./src/protocol.cpp
         ./src/pubkey.cpp
+        ./src/saltedhasher.cpp
         ./src/scheduler.cpp
         ./src/script/interpreter.cpp
         ./src/script/script.cpp
@@ -400,6 +399,7 @@ set(COMMON_SOURCES
         ./src/script/script_error.cpp
         ./src/spork.cpp
         ./src/sporkdb.cpp
+        ./src/tiertwo_networksync.cpp
         ./src/warnings.cpp
         )
 add_library(COMMON_A STATIC ${BitcoinHeaders} ${COMMON_SOURCES})
@@ -407,12 +407,13 @@ target_include_directories(COMMON_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/secp256k1/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
-        ${OPENSSL_INCLUDE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/chiabls/src
+        ${relic_SOURCE_DIR}/include
+        ${relic_BINARY_DIR}/include
         ${BerkeleyDB_INCLUDE_DIRS}
         )
 
 set(UTIL_SOURCES
-        ./src/allocators.cpp
         ./src/compat/strnlen.cpp
         ./src/compat/glibc_sanity.cpp
         ./src/compat/glibcxx_sanity.cpp
@@ -421,24 +422,26 @@ set(UTIL_SOURCES
         ./src/fs.cpp
         ./src/logging.cpp
         ./src/random.cpp
+        ./src/randomenv.cpp
         ./src/rpc/protocol.cpp
         ./src/sync.cpp
         ./src/threadinterrupt.cpp
-        ./src/blob_uint256.cpp
         ./src/arith_uint256.cpp
         ./src/uint256.cpp
+        ./src/util/asmap.cpp
         ./src/util/threadnames.cpp
-        ./src/util.cpp
+        ./src/util/blockstatecatcher.h
+        ./src/util/system.cpp
         ./src/utilstrencodings.cpp
         ./src/utilmoneystr.cpp
         ./src/utiltime.cpp
+        ./src/support/lockedpool.cpp
         ./src/support/cleanse.cpp
         )
 add_library(UTIL_A STATIC ${BitcoinHeaders} ${UTIL_SOURCES})
 target_include_directories(UTIL_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/rust/include
-        ${OPENSSL_INCLUDE_DIR}
         )
 
 set(CLI_A_SOURCES ./src/rpc/client.cpp)
@@ -462,7 +465,6 @@ set(SAPLING_SOURCES
         ./src/sapling/incrementalmerkletree.cpp
         ./src/sapling/transaction_builder.cpp
         ./src/sapling/saplingscriptpubkeyman.cpp
-        ./src/sapling/proof.cpp
         ./src/sapling/sapling_operation.cpp
         )
 
@@ -471,7 +473,6 @@ target_include_directories(SAPLING_A PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/sapling
         ${CMAKE_CURRENT_SOURCE_DIR}/src/rust/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/univalue/include
-        ${OPENSSL_INCLUDE_DIR}
         ${BerkeleyDB_INCLUDE_DIRS}
         )
 
@@ -483,61 +484,67 @@ link_directories(
 
 link_directories(${CMAKE_BINARY_DIR})
 
-set(pivxl-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-cli.cpp)
+set(pivx-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-cli.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND pivxl-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-cli-res.rc)
+    list(APPEND pivx-cli_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-cli-res.rc)
 endif()
-add_executable(pivxl-cli ${pivxl-cli_SOURCES})
-add_dependencies(pivxl-cli libunivalue libzcashrust)
-target_link_libraries(pivxl-cli
+add_executable(pivx-cli ${pivx-cli_SOURCES})
+add_dependencies(pivx-cli libunivalue libzcashrust bls)
+target_link_libraries(pivx-cli
         CLI_A
         univalue
         UTIL_A
         BITCOIN_CRYPTO_A
         SAPLING_A
         rustzcash
-        ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} -ldl pthread
+        bls
+        ${Boost_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} -ldl pthread
         )
 if($ENV{target} MATCHES "Windows")
-    target_link_libraries(pivxl-cli ${WINDOWS_LDADD})
+    target_link_libraries(pivx-cli ${WINDOWS_LDADD})
+endif()
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(pivx-cli "-framework Cocoa")
 endif()
 
-set(pivxl-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-tx.cpp)
+set(pivx-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-tx.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND pivxl-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxl-tx-res.rc)
+    list(APPEND pivx-tx_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivx-tx-res.rc)
 endif()
-add_executable(pivxl-tx ${pivxl-tx_SOURCES})
-add_dependencies(pivxl-tx libunivalue libsecp256k1 libzcashrust)
-target_link_libraries(pivxl-tx
+add_executable(pivx-tx ${pivx-tx_SOURCES})
+add_dependencies(pivx-tx libunivalue libsecp256k1 libzcashrust bls)
+target_link_libraries(pivx-tx
         univalue
         COMMON_A
         ZEROCOIN_A
         UTIL_A
         BITCOIN_CRYPTO_A
         secp256k1
+        bls
         SAPLING_A
         rustzcash
-        ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} -ldl pthread
+        ${Boost_LIBRARIES} ${LIBEVENT_LIB} ${sodium_LIBRARY_RELEASE} ${GMP_LIBRARY} -ldl pthread
         )
 if($ENV{target} MATCHES "Windows")
-    target_link_libraries(pivxl-tx ${WINDOWS_LDADD})
+    target_link_libraries(pivx-tx ${WINDOWS_LDADD})
 endif()
-if(GMP_FOUND)
-    target_link_libraries(pivxl-tx ${GMP_LIBRARY})
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(pivx-tx "-framework Cocoa")
 endif()
 
-set(pivxld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxld.cpp)
+set(pivxd_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxd.cpp)
 if($ENV{target} MATCHES "Windows")
-    list(APPEND pivxld_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxld-res.rc)
+    list(APPEND pivxd_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/pivxd-res.rc)
 endif()
-add_executable(pivxld ${pivxld_SOURCES} ${BitcoinHeaders})
-add_dependencies(pivxld libunivalue libsecp256k1 libzcashrust leveldb crc32c)
-target_include_directories(pivxld PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
+add_executable(pivxd ${pivxd_SOURCES} ${BitcoinHeaders})
+add_dependencies(pivxd libunivalue libsecp256k1 libzcashrust leveldb crc32c bls)
+target_include_directories(pivxd PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src/leveldb/helpers/memenv
-        ${LIBEVENT_INCLUDE_DIR})
-target_link_libraries(pivxld
+        ${LIBEVENT_INCLUDE_DIR}
+        ${GMP_INCLUDE_DIR})
+target_link_libraries(pivxd
         pthread
         SERVER_A
         WALLET_A
@@ -550,32 +557,33 @@ target_link_libraries(pivxld
         leveldb
         crc32c
         secp256k1
+        bls
         rustzcash
-        ${BerkeleyDB_LIBRARIES} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${LIBEVENT_LIB} pthread
+        ${BerkeleyDB_LIBRARIES} ${Boost_LIBRARIES} ${LIBEVENT_LIB} ${GMP_LIBRARY} pthread
         )
 if($ENV{target} MATCHES "Windows")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wstack-protector -fstack-protector-all -fPIE -pipe -O2 -pthread -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -pie --static")
-    target_link_libraries(pivxld ${WINDOWS_LDADD})
-endif()
-if(GMP_FOUND)
-    target_link_libraries(pivxld ${GMP_LIBRARY})
-    target_include_directories(pivxld PUBLIC ${GMP_INCLUDE_DIR})
+    target_link_libraries(pivxd ${WINDOWS_LDADD})
 endif()
 if(ZMQ_FOUND)
-    target_link_libraries(pivxld ZMQ_A ${ZMQ_LIB})
-    target_include_directories(pivxld PUBLIC ${ZMQ_INCLUDE_DIR})
+    target_link_libraries(pivxd ZMQ_A ${ZMQ_LIB})
+    target_include_directories(pivxd PUBLIC ${ZMQ_INCLUDE_DIR})
 endif()
 if(MINIUPNP_FOUND)
-    target_compile_definitions(pivxld PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
-    target_link_libraries(pivxld ${MINIUPNP_LIBRARY})
-    target_include_directories(pivxld PUBLIC ${MINIUPNP_INCLUDE_DIR})
+    target_compile_definitions(pivxd PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
+    target_link_libraries(pivxd ${MINIUPNP_LIBRARY})
+    target_include_directories(pivxd PUBLIC ${MINIUPNP_INCLUDE_DIR})
+endif()
+if(NAT-PMP_FOUND)
+    target_link_libraries(pivxd ${NAT-PMP_LIBRARY})
+    target_include_directories(pivxd PUBLIC ${NAT-PMP_INCLUDE_DIR})
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(pivxld "-framework Cocoa")
+    target_link_libraries(pivxd "-framework Cocoa")
 endif()
 
-target_link_libraries(pivxld ${sodium_LIBRARY_RELEASE} -ldl -lpthread)
+target_link_libraries(pivxd ${sodium_LIBRARY_RELEASE} -ldl -lpthread)
 
 add_subdirectory(src/qt)
 add_subdirectory(src/test)

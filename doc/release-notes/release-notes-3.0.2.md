@@ -1,4 +1,4 @@
-PIVXL Core version 3.0.2 is now available from:
+PIVXL version 3.0.2 is now available from:
 
   <https://github.com/pivxl-project/pivxl/releases>
 
@@ -12,7 +12,7 @@ Please report bugs using the issue tracker at github:
 Recommended Update
 ==============
 
-PIVXL Core v3.0.2 is a recommended, semi-mandatory update for all users. This release contains transaction creation bug fixes for zPIVXL spends, automint calculation adjustments, and other various updates/fixes.
+PIVXL v3.0.2 is a recommended, semi-mandatory update for all users. This release contains transaction creation bug fixes for zPIVXL spends, automint calculation adjustments, and other various updates/fixes.
 
 zPIVXL spending requires this update.
 
@@ -24,7 +24,7 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-PIVXL Core is extensively tested on multiple operating systems using
+PIVXL is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -32,7 +32,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-PIVXL Core should also work on most other Unix-like systems but is not
+PIVXL should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 ### :exclamation::exclamation::exclamation: MacOS 10.13 High Sierra :exclamation::exclamation::exclamation:
@@ -45,9 +45,9 @@ Notable Changes
 
 Auto Wallet Backup
 ---------------------
-In addition to the automatic wallet backup that is done at each start of the client, a new automatic backup function has been added that will, by default, create a backup of the wallet file during each zPIVXL mint operation (zPIVXL spends which re-mint their change are also included in this). This functionality is controlled by the `-backupzpiv` command-line option, which defaults to `1` (enabled, auto-backup).
+In addition to the automatic wallet backup that is done at each start of the client, a new automatic backup function has been added that will, by default, create a backup of the wallet file during each zPIVXL mint operation (zPIVXL spends which re-mint their change are also included in this). This functionality is controlled by the `-backupzpivxl` command-line option, which defaults to `1` (enabled, auto-backup).
 
-Users that wish to prevent this behavior (not recommended) can pass `-backupzpiv=0` at the command-line when starting the client, or add `backupzpiv=0` to their `pivxl.conf` file.
+Users that wish to prevent this behavior (not recommended) can pass `-backupzpivxl=0` at the command-line when starting the client, or add `backupzpivxl=0` to their `pivxl.conf` file.
 
 zPIVXL Automint Calculations
 ---------------------
@@ -90,13 +90,13 @@ git merge commit are mentioned.
 
 ### P2P Protocol and Network Code
 - #286 `85c0f53` [Main] Change sporkDB from smart ptr to ptr. (presstab)
-- #292 `feadab4` Additional checks for double spending of zPiv serials. (presstab)
+- #292 `feadab4` Additional checks for double spending of zPivxl serials. (presstab)
 
 ### Wallet
 - #271 `5e9a086` [Wallet] Remove unused member wallet in UnlockContext inner class (Jon Spock)
-- #279 `e734010` Add -backupzpiv startup flag. (presstab)
-- #280 `fdc182d` [Wallet] Fix zPiv spending errors. (presstab)
-- #282 `310f216` [Wallet] Count pending zPiv balance for automint. (presstab)
+- #279 `e734010` Add -backupzpivxl startup flag. (presstab)
+- #280 `fdc182d` [Wallet] Fix zPivxl spending errors. (presstab)
+- #282 `310f216` [Wallet] Count pending zPivxl balance for automint. (presstab)
 - #290 `004d7b6` Include both pending and mature zerocoins for automint calculations (presstab)
 
 ### GUI
@@ -105,7 +105,7 @@ git merge commit are mentioned.
 - #270 `bd2328e` [Qt] Make lock icon clickable to toggle wallet lock state (Fuzzbawls)
 - #273 `f31136e` [Qt] Fix UI tab order and shortcuts (Mrs-X)
 - #287 `74a1c3c` [Qt] Don't allow the Esc key to close the privacy tab (Fuzzbawls)
-- #291 `cb314e6` [Qt] zPiv control quantity/amount fixes (rejectedpromise)
+- #291 `cb314e6` [Qt] zPivxl control quantity/amount fixes (rejectedpromise)
 
 ### Miscellaneous
 - #266 `2d97b54` [Scripts] Fix location for aarch64 outputs in gitian-build.sh (Fuzzbawls)

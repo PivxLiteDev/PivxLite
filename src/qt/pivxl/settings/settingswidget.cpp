@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +10,6 @@
 #include "optionsmodel.h"
 #include "clientmodel.h"
 #include "utilitydialog.h"
-#include "wallet/wallet.h"
 #include <QScrollBar>
 #include <QDataWidgetMapper>
 
@@ -40,7 +40,6 @@ SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
 
     setCssProperty(ui->pushButtonFile, "btn-settings-check");
     setCssProperty(ui->pushButtonFile2, "btn-settings-options");
-    setCssProperty(ui->pushButtonFile3, "btn-settings-options");
     setCssProperty(ui->pushButtonExportCsv, "btn-settings-options");
 
     setCssProperty(ui->pushButtonConfiguration, "btn-settings-check");
@@ -63,7 +62,6 @@ SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
 
     options = {
         ui->pushButtonFile2,
-        ui->pushButtonFile3,
         ui->pushButtonExportCsv,
         ui->pushButtonOptions1,
         ui->pushButtonOptions2,
@@ -75,9 +73,6 @@ SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
         ui->pushButtonTools2,
         ui->pushButtonTools5,
     };
-
-    /* disable multisend for now */
-    ui->pushButtonFile3->setVisible(false);
 
     menus.insert(ui->pushButtonFile, ui->fileButtonsWidget);
     menus.insert(ui->pushButtonConfiguration, ui->configurationButtonsWidget);
@@ -93,7 +88,6 @@ SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
     settingsWalletOptionsWidget = new SettingsWalletOptionsWidget(window, this);
     settingsMainOptionsWidget = new SettingsMainOptionsWidget(window, this);
     settingsDisplayOptionsWidget = new SettingsDisplayOptionsWidget(window, this);
-    //settingsMultisendWidget = new SettingsMultisendWidget(this); // no visible for now
     settingsInformationWidget = new SettingsInformationWidget(window, this);
     settingsConsoleWidget = new SettingsConsoleWidget(window, this);
 
@@ -105,7 +99,6 @@ SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
     ui->stackedWidgetContainer->addWidget(settingsWalletOptionsWidget);
     ui->stackedWidgetContainer->addWidget(settingsMainOptionsWidget);
     ui->stackedWidgetContainer->addWidget(settingsDisplayOptionsWidget);
-    //ui->stackedWidgetContainer->addWidget(settingsMultisendWidget);
     ui->stackedWidgetContainer->addWidget(settingsInformationWidget);
     ui->stackedWidgetContainer->addWidget(settingsConsoleWidget);
     ui->stackedWidgetContainer->setCurrentWidget(settingsBackupWallet);
@@ -113,7 +106,6 @@ SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
     // File Section
     connect(ui->pushButtonFile, &QPushButton::clicked, this, &SettingsWidget::onFileClicked);
     connect(ui->pushButtonFile2, &QPushButton::clicked, this, &SettingsWidget::onBackupWalletClicked);
-    connect(ui->pushButtonFile3, &QPushButton::clicked, this, &SettingsWidget::onMultisendClicked);
     connect(ui->pushButtonExportCsv, &QPushButton::clicked, this, &SettingsWidget::onExportCSVClicked);
 
     // Options
@@ -148,9 +140,6 @@ SettingsWidget::SettingsWidget(PIVXLGUI* parent) :
     connect(settingsExportCsvWidget, &SettingsExportCSV::message,this, &SettingsWidget::message);
     connect(settingsExportCsvWidget, &SettingsExportCSV::showHide, this, &SettingsWidget::showHide);
     connect(settingsExportCsvWidget, &SettingsExportCSV::execDialog, this, &SettingsWidget::execDialog);
-    // no visible for now
-    //connect(settingsMultisendWidget, &SettingsMultisendWidget::showHide, this, &SettingsWidget::showHide);
-    //connect(settingsMultisendWidget, &SettingsMultisendWidget::message, this, &SettingsWidget::message);
     connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::message, this, &SettingsWidget::message);
     connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::message, this, &SettingsWidget::message);
     connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::message, this, &SettingsWidget::message);
@@ -211,8 +200,9 @@ void SettingsWidget::loadWalletModel()
     this->settingsExportCsvWidget->setWalletModel(this->walletModel);
     this->settingsSingMessageWidgets->setWalletModel(this->walletModel);
     this->settingsBitToolWidget->setWalletModel(this->walletModel);
-    //this->settingsMultisendWidget->setWalletModel(this->walletModel); no visible for now
     this->settingsDisplayOptionsWidget->setWalletModel(this->walletModel);
+    this->settingsWalletOptionsWidget->setWalletModel(this->walletModel);
+    this->settingsInformationWidget->setWalletModel(this->walletModel);
 }
 
 void SettingsWidget::onResetAction()
@@ -230,15 +220,16 @@ void SettingsWidget::onResetAction()
 
 void SettingsWidget::onSaveOptionsClicked()
 {
+    // Save settings that are stored inside the wallet only
+    if (!settingsWalletOptionsWidget->saveWalletOnlyOptions()) {
+        return;
+    }
+
+    // Save port mapping settings
+    settingsWalletOptionsWidget->saveMapPortOptions();
+
     if (mapper->submit()) {
         OptionsModel* optionsModel = this->clientModel->getOptionsModel();
-        if (optionsModel->isSSTChanged() && !optionsModel->isSSTValid()) {
-            const double stakeSplitMinimum = optionsModel->getSSTMinimum();
-            settingsWalletOptionsWidget->setSpinBoxStakeSplitThreshold(stakeSplitMinimum);
-            inform(tr("Stake Split too low, it shall be either >= %1 or equal to 0 (to disable stake splitting)").arg(stakeSplitMinimum));
-            return;
-        }
-        pwalletMain->MarkDirty();
         if (optionsModel->isRestartRequired()) {
             bool fAcceptRestart = openStandardDialog(tr("Restart required"), tr("Your wallet needs to be restarted to apply the changes\n"), tr("Restart Now"), tr("Restart Later"));
 
@@ -310,12 +301,6 @@ void SettingsWidget::onBipToolClicked()
 {
     ui->stackedWidgetContainer->setCurrentWidget(settingsBitToolWidget);
     selectOption(ui->pushButtonConfiguration3);
-}
-
-void SettingsWidget::onMultisendClicked()
-{
-    ui->stackedWidgetContainer->setCurrentWidget(settingsMultisendWidget);
-    selectOption(ui->pushButtonFile3);
 }
 
 void SettingsWidget::onExportCSVClicked()
@@ -422,6 +407,7 @@ void SettingsWidget::onDiscardChanges()
             return;
         clientModel->getOptionsModel()->refreshDataView();
     }
+    settingsWalletOptionsWidget->discardWalletOnlyOptions();
 }
 
 void SettingsWidget::setMapper()

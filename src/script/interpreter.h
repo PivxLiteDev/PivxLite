@@ -7,17 +7,13 @@
 #ifndef BITCOIN_SCRIPT_INTERPRETER_H
 #define BITCOIN_SCRIPT_INTERPRETER_H
 
-#include "script_error.h"
 #include "primitives/transaction.h"
+#include "script_error.h"
+#include "uint256.h"
 
 #include <vector>
 #include <stdint.h>
 #include <string>
-
-class CPubKey;
-class CScript;
-class CTransaction;
-class uint256;
 
 /** Special case nIn for signing Sapling txs. */
 const unsigned int NOT_AN_INPUT = UINT_MAX;
@@ -111,7 +107,7 @@ public:
          return false;
     }
 
-    virtual bool CheckColdStake(const CScript& script) const
+    virtual bool CheckColdStake(bool fAllowLastOutputFree, const CScript& prevoutScript, std::vector<valtype>& stack, unsigned int flags, ScriptError* error) const
     {
          return false;
     }
@@ -136,9 +132,7 @@ public:
 
     bool CheckSig(const std::vector<unsigned char>& scriptSig, const std::vector<unsigned char>& vchPubKey, const CScript& scriptCode, SigVersion sigversion) const override ;
     bool CheckLockTime(const CScriptNum& nLockTime) const override;
-    bool CheckColdStake(const CScript& script) const override {
-        return txTo->CheckColdStake(script);
-    }
+    bool CheckColdStake(bool fAllowLastOutputFree, const CScript& prevoutScript, std::vector<valtype>& stack, unsigned int flags, ScriptError* serror) const override;
 };
 
 class MutableTransactionSignatureChecker : public TransactionSignatureChecker

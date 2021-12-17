@@ -1,5 +1,6 @@
 // Copyright (c) 2016-2020 The ZCash developers
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,7 +17,7 @@ namespace SaplingValidation {
 /** Context-independent validity checks */
 // Note: for v3+, if the tx has no shielded data, this method returns true.
 // Note2: This function only performs shielded data related checks, it does NOT checks regular inputs and outputs.
-bool CheckTransaction(const CTransaction& tx, CValidationState& state, CAmount& nValueOut, bool fIsSaplingActive);
+bool CheckTransaction(const CTransaction& tx, CValidationState& state, CAmount& nValueOut);
 bool CheckTransactionWithoutProofVerification(const CTransaction& tx, CValidationState &state, CAmount& nValueOut);
 
 /** Check a transaction contextually against a set of consensus rules */

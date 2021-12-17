@@ -1,5 +1,6 @@
 // Copyright (c) 2016-2020 The Zcash developers
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
@@ -12,18 +13,6 @@
 #include <array>
 
 static const std::string T_SECRET_REGTEST = "cND2ZvtabDbJ1gucx9GWH6XT9kgTAqfb6cotPt5Q5CyxVDhid2EN";
-
-const Consensus::Params& RegtestActivateSapling() {
-    SelectParams(CBaseChainParams::REGTEST);
-    UpdateNetworkUpgradeParameters(Consensus::UPGRADE_V5_0, Consensus::NetworkUpgrade::ALWAYS_ACTIVE);
-    g_IsSaplingActive = true;
-    return Params().GetConsensus();
-}
-
-void RegtestDeactivateSapling() {
-    UpdateNetworkUpgradeParameters(Consensus::UPGRADE_V5_0, Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT);
-    g_IsSaplingActive = false;
-}
 
 libzcash::SaplingExtendedSpendingKey GetTestMasterSaplingSpendingKey() {
     std::vector<unsigned char, secure_allocator<unsigned char>> rawSeed(32);
@@ -43,6 +32,11 @@ CKey AddTestCKeyToKeyStore(CBasicKeyStore& keyStore, bool genNewKey) {
     CKey tsk = CreateCkey(genNewKey);
     keyStore.AddKey(tsk);
     return tsk;
+}
+
+CKey AddTestCKeyToWallet(CWallet& wallet, bool genNewKey) {
+    LOCK(wallet.cs_wallet);
+    return AddTestCKeyToKeyStore(wallet, genNewKey);
 }
 
 TestSaplingNote GetTestSaplingNote(const libzcash::SaplingPaymentAddress& pa, CAmount value) {
@@ -76,19 +70,19 @@ CWalletTx GetValidSaplingReceive(const Consensus::Params& consensusParams,
     }
 
     CTransaction tx = builder.Build().GetTxOrThrow();
-    CWalletTx wtx {pwalletIn, tx};
+    CWalletTx wtx {pwalletIn, MakeTransactionRef(tx)};
     return wtx;
 }
 
 // Two dummy input (to trick coinbase check), one or many shielded outputs
 CWalletTx GetValidSaplingReceive(const Consensus::Params& consensusParams,
-                                 CBasicKeyStore& keyStoreFrom,
+                                 CWallet& keyStoreFrom,
                                  CAmount inputAmount,
                                  std::vector<ShieldedDestination> vDest,
                                  bool genNewKey,
                                  const CWallet* pwalletIn) {
     // From taddr
-    CKey tsk = AddTestCKeyToKeyStore(keyStoreFrom, genNewKey);
+    CKey tsk = AddTestCKeyToWallet(keyStoreFrom, genNewKey);
     auto scriptPubKey = GetScriptForDestination(tsk.GetPubKey().GetID());
 
     // Two equal dummy inputs to by-pass the coinbase check.
@@ -99,7 +93,7 @@ CWalletTx GetValidSaplingReceive(const Consensus::Params& consensusParams,
 
 // Single input, single shielded output
 CWalletTx GetValidSaplingReceive(const Consensus::Params& consensusParams,
-                                 CBasicKeyStore& keyStore,
+                                 CWallet& keyStore,
                                  const libzcash::SaplingExtendedSpendingKey &sk,
                                  CAmount value,
                                  bool genNewKey,

@@ -1,4 +1,5 @@
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
@@ -19,6 +20,18 @@ struct TxValues
     CAmount target{0};
 };
 
+SaplingOperation::SaplingOperation(const Consensus::Params& consensusParams, int nHeight, CWallet* _wallet) :
+    wallet(_wallet),
+    txBuilder(consensusParams, nHeight, _wallet)
+{
+    assert (wallet != nullptr);
+};
+
+SaplingOperation::~SaplingOperation()
+{
+    delete tkeyChange;
+}
+
 OperationResult SaplingOperation::checkTxValues(TxValues& txValues, bool isFromtAddress, bool isFromShielded)
 {
     assert(!isFromtAddress || txValues.shieldedInTotal == 0);
@@ -36,13 +49,14 @@ OperationResult SaplingOperation::checkTxValues(TxValues& txValues, bool isFromt
     return OperationResult(true);
 }
 
-OperationResult loadKeysFromShieldedFrom(const libzcash::SaplingPaymentAddress &addr,
+OperationResult loadKeysFromShieldedFrom(const CWallet* pwallet,
+                                         const libzcash::SaplingPaymentAddress &addr,
                                          libzcash::SaplingExpandedSpendingKey& expskOut,
                                          uint256& ovkOut)
 {
     // Get spending key for address
     libzcash::SaplingExtendedSpendingKey sk;
-    if (!pwalletMain->GetSaplingExtendedSpendingKey(addr, sk)) {
+    if (!pwallet->GetSaplingExtendedSpendingKey(addr, sk)) {
         return errorOut("Spending key not in the wallet");
     }
     expskOut = sk.expsk;
@@ -54,10 +68,11 @@ TxValues calculateTarget(const std::vector<SendManyRecipient>& recipients, const
 {
     TxValues txValues;
     for (const SendManyRecipient &t : recipients) {
-        if (t.IsTransparent())
-            txValues.transOutTotal += t.transparentRecipient->nValue;
-        else
-            txValues.shieldedOutTotal += t.shieldedRecipient->amount;
+        if (t.IsTransparent()) {
+            txValues.transOutTotal += t.getAmount();
+        } else {
+            txValues.shieldedOutTotal += t.getAmount();
+        }
     }
     txValues.target = txValues.shieldedOutTotal + txValues.transOutTotal + fee;
     return txValues;
@@ -110,11 +125,17 @@ OperationResult SaplingOperation::build()
         return errorOut("Minconf cannot be zero when sending from shielded address");
     }
 
+    // Check outputs to subtract fee from
+    unsigned int nSubtractFeeFromAmount = 0;
+    for (const SendManyRecipient& rec : recipients) {
+        if (rec.IsSubtractFee()) nSubtractFeeFromAmount++;
+    }
+
     CAmount nFeeRet = (fee > 0 ? fee : minRelayTxFee.GetFeePerK());
     int tries = 0;
     while (true) {
         // First calculate target values
-        TxValues txValues = calculateTarget(recipients, nFeeRet);
+        TxValues txValues = calculateTarget(recipients, nSubtractFeeFromAmount == 0 ? nFeeRet : 0);
         OperationResult result(false);
         uint256 ovk;
         if (isFromShielded) {
@@ -126,20 +147,31 @@ OperationResult SaplingOperation::build()
             // Get the common OVK for recovering t->shield outputs.
             // If not already databased, a new one will be generated from the HD seed.
             // It is safe to do it here, as the wallet is unlocked.
-            ovk = pwalletMain->GetSaplingScriptPubKeyMan()->getCommonOVK();
+            ovk = wallet->GetSaplingScriptPubKeyMan()->getCommonOVK();
         }
 
         // Add outputs
+        bool fFirst = true;
         for (const SendManyRecipient &t : recipients) {
+            CAmount amount = t.getAmount();
+            // Subtract from fee calculation
+            if (t.IsSubtractFee()) {
+                // Subtract fee equally from each selected recipient
+                amount -= nFeeRet / nSubtractFeeFromAmount;
+                if (fFirst) {
+                    // first receiver pays the remainder not divisible by output count
+                    fFirst = false;
+                    amount -= nFeeRet % nSubtractFeeFromAmount;
+                }
+            }
+            // Append output
             if (t.IsTransparent()) {
-                txBuilder.AddTransparentOutput(*t.transparentRecipient);
+                txBuilder.AddTransparentOutput(CTxOut(amount, t.getScript()));
             } else {
-                const auto& address = t.shieldedRecipient->address;
-                const CAmount& amount = t.shieldedRecipient->amount;
-                const std::string& memo = t.shieldedRecipient->memo;
+                const auto& address = t.getSapPaymentAddr();
                 assert(IsValidPaymentAddress(address));
                 std::array<unsigned char, ZC_MEMO_SIZE> vMemo = {};
-                if (!(result = GetMemoFromString(memo, vMemo)))
+                if (!(result = GetMemoFromString(t.getMemo(), vMemo)))
                     return result;
                 txBuilder.AddSaplingOutput(ovk, address, amount, vMemo);
             }
@@ -158,7 +190,7 @@ OperationResult SaplingOperation::build()
         // Set change address if we are using transparent funds
         if (isFromtAddress) {
             if (!tkeyChange) {
-                tkeyChange = new CReserveKey(pwalletMain);
+                tkeyChange = new CReserveKey(wallet);
             }
             CPubKey vchPubKey;
             if (!tkeyChange->GetReservedKey(vchPubKey, true)) {
@@ -177,12 +209,11 @@ OperationResult SaplingOperation::build()
         if (!opTx) {
             return errorOut("Failed to build transaction: " + txResult.GetError());
         }
-        finalTx = *opTx;
 
         // Now check fee
-        bool isShielded = finalTx.IsShieldedTx();
-        const CAmount& nFeeNeeded = isShielded ? GetShieldedTxMinFee(finalTx) :
-                                                 GetMinRelayFee(finalTx.GetTotalSize(), false);
+        bool isShielded = opTx->IsShieldedTx();
+        const CAmount& nFeeNeeded = isShielded ? GetShieldedTxMinFee(*opTx) :
+                                                 GetMinRelayFee(opTx->GetTotalSize());
         if (nFeeNeeded <= nFeeRet) {
             // Check that the fee is not too high.
             CAmount nMaxFee = nFeeNeeded * (isShielded ? 100 : 10000);
@@ -222,19 +253,18 @@ OperationResult SaplingOperation::build()
     if (!opTx) {
         return errorOut("Failed to build transaction: " + txResult.GetError());
     }
-    finalTx = *opTx;
+    finalTx = MakeTransactionRef(*opTx);
     return OperationResult(true);
 }
 
 OperationResult SaplingOperation::send(std::string& retTxHash)
 {
-    CWalletTx wtx(pwalletMain, finalTx);
-    const CWallet::CommitResult& res = pwalletMain->CommitTransaction(wtx, tkeyChange, g_connman.get());
+    const CWallet::CommitResult& res = wallet->CommitTransaction(finalTx, tkeyChange, g_connman.get());
     if (res.status != CWallet::CommitStatus::OK) {
         return errorOut(res.ToString());
     }
 
-    retTxHash = finalTx.GetHash().ToString();
+    retTxHash = finalTx->GetHash().ToString();
     return OperationResult(true);
 }
 
@@ -273,10 +303,10 @@ OperationResult SaplingOperation::loadUtxos(TxValues& txValues)
         std::vector<COutput> selectedUTXOInputs;
         CAmount nSelectedValue = 0;
         for (const auto& outpoint : vCoins) {
-            const auto* tx = pwalletMain->GetWalletTx(outpoint.outPoint.hash);
+            const auto* tx = wallet->GetWalletTx(outpoint.outPoint.hash);
             if (!tx) continue;
-            nSelectedValue += tx->vout[outpoint.outPoint.n].nValue;
-            selectedUTXOInputs.emplace_back(tx, outpoint.outPoint.n, 0, true, true);
+            nSelectedValue += tx->tx->vout[outpoint.outPoint.n].nValue;
+            selectedUTXOInputs.emplace_back(tx, outpoint.outPoint.n, 0, true, true, true);
         }
         return loadUtxos(txValues, selectedUTXOInputs, nSelectedValue);
     }
@@ -286,12 +316,11 @@ OperationResult SaplingOperation::loadUtxos(TxValues& txValues)
     if (fromAddress.isFromTAddress()) destinations.insert(fromAddress.fromTaddr);
     CWallet::AvailableCoinsFilter coinsFilter(fIncludeDelegated,
                                               false,
-                                              ALL_COINS,
                                               true,
                                               true,
                                               &destinations,
                                               mindepth);
-    if (!pwalletMain->AvailableCoins(&transInputs, nullptr, coinsFilter)) {
+    if (!wallet->AvailableCoins(&transInputs, nullptr, coinsFilter)) {
         return errorOut("Insufficient funds, no available UTXO to spend");
     }
 
@@ -303,13 +332,13 @@ OperationResult SaplingOperation::loadUtxos(TxValues& txValues)
     // Final step, append utxo to the transaction
 
     // Get dust threshold
-    CAmount dustThreshold = GetDustThreshold(minRelayTxFee);
+    CAmount dustThreshold = GetDustThreshold(dustRelayFee);
     CAmount dustChange = -1;
 
     CAmount selectedUTXOAmount = 0;
     std::vector<COutput> selectedTInputs;
     for (const COutput& t : transInputs) {
-        const auto& outPoint = t.tx->vout[t.i];
+        const auto& outPoint = t.tx->tx->vout[t.i];
         selectedUTXOAmount += outPoint.nValue;
         selectedTInputs.emplace_back(t);
         if (selectedUTXOAmount >= txValues.target) {
@@ -343,7 +372,7 @@ OperationResult SaplingOperation::loadUtxos(TxValues& txValues, const std::vecto
 
     // update the transaction with these inputs
     for (const auto& t : transInputs) {
-        const auto& outPoint = t.tx->vout[t.i];
+        const auto& outPoint = t.tx->tx->vout[t.i];
         txBuilder.AddTransparentInput(COutPoint(t.tx->GetHash(), t.i), outPoint.scriptPubKey, outPoint.nValue);
     }
     return OperationResult(true);
@@ -355,10 +384,12 @@ OperationResult SaplingOperation::loadUtxos(TxValues& txValues, const std::vecto
  * recover it from the note (now that we have the spending key).
  */
 enum CacheCheckResult {OK, SPENT, INVALID};
-static CacheCheckResult CheckCachedNote(const SaplingNoteEntry& t, const libzcash::SaplingExpandedSpendingKey& expsk)
+static CacheCheckResult CheckCachedNote(CWallet* pwallet,
+                                        const SaplingNoteEntry& t,
+                                        const libzcash::SaplingExpandedSpendingKey& expsk)
 {
-    auto sspkm = pwalletMain->GetSaplingScriptPubKeyMan();
-    CWalletTx& prevTx = pwalletMain->mapWallet.at(t.op.hash);
+    auto sspkm = pwallet->GetSaplingScriptPubKeyMan();
+    CWalletTx& prevTx = pwallet->mapWallet.at(t.op.hash);
     SaplingNoteData& nd = prevTx.mapSaplingNoteData.at(t.op);
     if (nd.witnesses.empty()) {
         return CacheCheckResult::INVALID;
@@ -374,13 +405,13 @@ static CacheCheckResult CheckCachedNote(const SaplingNoteEntry& t, const libzcas
             LogPrintf("ERROR: Unable to recover nullifier for note %s.\n", noteStr);
             return CacheCheckResult::INVALID;
         }
-        WITH_LOCK(pwalletMain->cs_wallet, sspkm->UpdateSaplingNullifierNoteMap(nd, t.op, nf));
+        WITH_LOCK(pwallet->cs_wallet, sspkm->UpdateSaplingNullifierNoteMap(nd, t.op, nf));
         // re-check the spent status
         if (sspkm->IsSaplingSpent(*(nd.nullifier))) {
             LogPrintf("Removed note %s as it appears to be already spent.\n", noteStr);
             prevTx.MarkDirty();
-            CWalletDB(pwalletMain->strWalletFile, "r+").WriteTx(prevTx);
-            pwalletMain->NotifyTransactionChanged(pwalletMain, t.op.hash, CT_UPDATED);
+            CWalletDB(pwallet->GetDBHandle(), "r+").WriteTx(prevTx);
+            pwallet->NotifyTransactionChanged(pwallet, t.op.hash, CT_UPDATED);
             return CacheCheckResult::SPENT;
         }
     }
@@ -390,7 +421,7 @@ static CacheCheckResult CheckCachedNote(const SaplingNoteEntry& t, const libzcas
 OperationResult SaplingOperation::loadUnspentNotes(TxValues& txValues, uint256& ovk)
 {
     shieldedInputs.clear();
-    auto sspkm = pwalletMain->GetSaplingScriptPubKeyMan();
+    auto sspkm = wallet->GetSaplingScriptPubKeyMan();
     // if we already have selected the notes, let's directly set them.
     bool hasCoinControl = coinControl && coinControl->HasSelected();
     if (hasCoinControl) {
@@ -433,18 +464,18 @@ OperationResult SaplingOperation::loadUnspentNotes(TxValues& txValues, uint256& 
     std::vector<libzcash::SaplingNote> notes;
     std::vector<libzcash::SaplingExpandedSpendingKey> spendingKeys;
     txValues.shieldedInTotal = 0;
-    CAmount dustThreshold = GetShieldedDustThreshold(minRelayTxFee);
+    CAmount dustThreshold = GetShieldedDustThreshold(dustRelayFee);
     CAmount dustChange = -1;
     for (const auto& t : shieldedInputs) {
         // Get the spending key for the address.
         libzcash::SaplingExpandedSpendingKey expsk;
         uint256 ovkIn;
-        auto resLoadKeys = loadKeysFromShieldedFrom(t.address, expsk, ovkIn);
+        auto resLoadKeys = loadKeysFromShieldedFrom(wallet, t.address, expsk, ovkIn);
         if (!resLoadKeys) return resLoadKeys;
 
         // If the noteData is not properly cached, for whatever reason,
         // try to update it here, now that we have the spending key.
-        CacheCheckResult res = CheckCachedNote(t, expsk);
+        CacheCheckResult res = CheckCachedNote(wallet, t, expsk);
         if (res == CacheCheckResult::INVALID) {
             // This should never happen. User would be forced to zap.
             LogPrintf("ERROR: Witness/Nullifier invalid for note %s. Restart with --zapwallettxes\n", t.op.ToString());
@@ -483,7 +514,7 @@ OperationResult SaplingOperation::loadUnspentNotes(TxValues& txValues, uint256& 
     // Fetch Sapling anchor and witnesses
     uint256 anchor;
     std::vector<boost::optional<SaplingWitness>> witnesses;
-    pwalletMain->GetSaplingScriptPubKeyMan()->GetSaplingNoteWitnesses(ops, witnesses, anchor);
+    wallet->GetSaplingScriptPubKeyMan()->GetSaplingNoteWitnesses(ops, witnesses, anchor);
 
     // Add Sapling spends
     for (size_t i = 0; i < notes.size(); i++) {
@@ -531,15 +562,15 @@ OperationResult CheckTransactionSize(std::vector<SendManyRecipient>& recipients,
             nTransparentOuts++;
             continue;
         }
-        if (IsValidPaymentAddress(t.shieldedRecipient->address)) {
+        if (IsValidPaymentAddress(t.getSapPaymentAddr())) {
             mtx.sapData->vShieldedOutput.emplace_back();
         } else {
             return errorOut(strprintf("invalid recipient shielded address %s",
-                    KeyIO::EncodePaymentAddress(t.shieldedRecipient->address)));
+                    KeyIO::EncodePaymentAddress(t.getSapPaymentAddr())));
         }
     }
     CTransaction tx(mtx);
-    size_t txsize = GetSerializeSize(tx, SER_NETWORK, tx.nVersion) + CTXOUT_REGULAR_SIZE * nTransparentOuts;
+    size_t txsize = tx.GetTotalSize() + CTXOUT_REGULAR_SIZE * nTransparentOuts;
     if (fromTaddr) {
         txsize += CTXIN_SPEND_DUST_SIZE;
         txsize += CTXOUT_REGULAR_SIZE;      // There will probably be taddr change

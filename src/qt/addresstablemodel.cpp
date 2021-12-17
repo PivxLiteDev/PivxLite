@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +11,7 @@
 #include "guiutil.h"
 #include "walletmodel.h"
 
-#include "base58.h"
+#include "key_io.h"
 #include "wallet/wallet.h"
 #include "askpassphrasedialog.h"
 
@@ -46,14 +47,19 @@ struct AddressTableEntry {
     };
 
     Type type;
-    QString label;
-    QString address;
-    QString pubcoin;
-    uint creationTime;
+    QString label{};
+    QString address{};
+    QString pubcoin{};
+    uint creationTime{0};
 
-    AddressTableEntry() {}
-    AddressTableEntry(Type type, const QString &pubcoin):    type(type), pubcoin(pubcoin) {}
-    AddressTableEntry(Type type, const QString& label, const QString& address, const uint _creationTime) : type(type), label(label), address(address), creationTime(_creationTime) {}
+    AddressTableEntry() = delete;   // need to specify a type
+    AddressTableEntry(Type _type, const QString& _pubcoin):    type(_type), pubcoin(_pubcoin) {}
+    AddressTableEntry(Type _type, const QString& _label, const QString& _address, const uint _creationTime) :
+        type(_type),
+        label(_label),
+        address(_address),
+        creationTime(_creationTime)
+    {}
 };
 
 struct AddressTableEntryLessThan {
@@ -127,7 +133,7 @@ static QString translateTypeToString(AddressTableEntry::Type type)
 class AddressTablePriv
 {
 public:
-    CWallet* wallet;
+    CWallet* wallet{nullptr};
     QList<AddressTableEntry> cachedAddressTable;
     int sendNum = 0;
     int recvNum = 0;
@@ -293,8 +299,9 @@ public:
     int sizeSend() { return sendNum; }
     int sizeRecv() { return recvNum; }
     int sizeDell() { return dellNum; }
-    int SizeColdSend() { return coldSendNum; }
+    int sizeColdSend() { return coldSendNum; }
     int sizeShieldedSend() { return shieldedSendNum; }
+    int sizeSendAll() { return sizeSend() + sizeColdSend() + sizeShieldedSend(); }
 
     AddressTableEntry* index(int idx)
     {
@@ -333,8 +340,9 @@ int AddressTableModel::columnCount(const QModelIndex& parent) const
 int AddressTableModel::sizeSend() const { return priv->sizeSend(); }
 int AddressTableModel::sizeRecv() const { return priv->sizeRecv(); }
 int AddressTableModel::sizeDell() const { return priv->sizeDell(); }
-int AddressTableModel::sizeColdSend() const { return priv->SizeColdSend(); }
+int AddressTableModel::sizeColdSend() const { return priv->sizeColdSend(); }
 int AddressTableModel::sizeShieldedSend() const { return priv->sizeShieldedSend(); }
+int AddressTableModel::sizeSendAll() const { return priv->sizeSendAll(); }
 
 QVariant AddressTableModel::data(const QModelIndex& index, int role) const
 {
@@ -483,7 +491,7 @@ void AddressTableModel::updateEntry(const QString& address,
     const QString& purpose,
     int status)
 {
-    // Update address book model from Pivx core
+    // Update address book model from Pivxl core
     priv->updateEntry(address, label, isMine, purpose, status);
 }
 
@@ -626,18 +634,9 @@ QString AddressTableModel::getAddressToShow(bool isShielded) const
     }
 
     // For some reason we don't have any address in our address book, let's create one
-    PairResult res(false);
-    QString addressStr;
-    if (!isShielded) {
-        Destination newAddress;
-        res = walletModel->getNewAddress(newAddress, "Default");
-        if (res.result) {
-            addressStr = QString::fromStdString(newAddress.ToString());
-        }
-    } else {
-        res = walletModel->getNewShieldedAddress(addressStr, "default shielded");
-    }
-    return addressStr;
+    CallResult<Destination> res = !isShielded ? walletModel->getNewAddress("Default") :
+            walletModel->getNewShieldedAddress("default shielded");
+    return (res) ? QString::fromStdString(res.getObjResult()->ToString()) : "";;
 }
 
 void AddressTableModel::emitDataChanged(int idx)

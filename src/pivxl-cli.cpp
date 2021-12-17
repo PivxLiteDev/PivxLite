@@ -1,19 +1,25 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin developers
+// Copyright (c) 2009-2021 The Bitcoin developers
 // Copyright (c) 2009-2015 The Dash developers
-// Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2015-2021 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#if defined(HAVE_CONFIG_H)
+#include "config/pivxl-config.h"
+#endif
 
 #include "chainparamsbase.h"
 #include "clientversion.h"
 #include "fs.h"
 #include "rpc/client.h"
 #include "rpc/protocol.h"
-#include "util.h"
+#include "util/system.h"
 #include "utilstrencodings.h"
 
 #include <stdio.h>
+#include <tuple>
 
 #include <event2/event.h>
 #include <event2/http.h>
@@ -23,24 +29,27 @@
 #include <univalue.h>
 
 static const char DEFAULT_RPCCONNECT[] = "127.0.0.1";
+static const bool DEFAULT_NAMED=false;
 static const int DEFAULT_HTTP_CLIENT_TIMEOUT=900;
 
 std::string HelpMessageCli()
 {
+    const auto defaultBaseParams = CreateBaseChainParams(CBaseChainParams::MAIN);
+    const auto testnetBaseParams = CreateBaseChainParams(CBaseChainParams::TESTNET);
     std::string strUsage;
-    strUsage += HelpMessageGroup(_("Options:"));
-    strUsage += HelpMessageOpt("-?", _("This help message"));
-    strUsage += HelpMessageOpt("-conf=<file>", strprintf(_("Specify configuration file (default: %s)"), PIVXL_CONF_FILENAME));
-    strUsage += HelpMessageOpt("-datadir=<dir>", _("Specify data directory"));
-    strUsage += HelpMessageOpt("-testnet", _("Use the test network"));
-    strUsage += HelpMessageOpt("-regtest", _("Enter regression test mode, which uses a special chain in which blocks can be "
-                                             "solved instantly. This is intended for regression testing tools and app development."));
-    strUsage += HelpMessageOpt("-rpcconnect=<ip>", strprintf(_("Send commands to node running on <ip> (default: %s)"), DEFAULT_RPCCONNECT));
-    strUsage += HelpMessageOpt("-rpcport=<port>", strprintf(_("Connect to JSON-RPC on <port> (default: %u or testnet: %u)"), 51473, 51475));
-    strUsage += HelpMessageOpt("-rpcwait", _("Wait for RPC server to start"));
-    strUsage += HelpMessageOpt("-rpcuser=<user>", _("Username for JSON-RPC connections"));
-    strUsage += HelpMessageOpt("-rpcpassword=<pw>", _("Password for JSON-RPC connections"));
-    strUsage += HelpMessageOpt("-rpcclienttimeout=<n>", strprintf(_("Timeout during HTTP requests (default: %d)"), DEFAULT_HTTP_CLIENT_TIMEOUT));
+    strUsage += HelpMessageGroup("Options:");
+    strUsage += HelpMessageOpt("-?", "This help message");
+    strUsage += HelpMessageOpt("-conf=<file>", strprintf("Specify configuration file (default: %s)", PIVXL_CONF_FILENAME));
+    strUsage += HelpMessageOpt("-datadir=<dir>", "Specify data directory");
+    AppendParamsHelpMessages(strUsage);
+    strUsage += HelpMessageOpt("-named", strprintf("Pass named instead of positional arguments (default: %s)", DEFAULT_NAMED));
+    strUsage += HelpMessageOpt("-rpcconnect=<ip>", strprintf("Send commands to node running on <ip> (default: %s)", DEFAULT_RPCCONNECT));
+    strUsage += HelpMessageOpt("-rpcport=<port>", strprintf("Listen for JSON-RPC connections on <port> (default: %u or testnet: %u)", defaultBaseParams->RPCPort(), testnetBaseParams->RPCPort()));
+    strUsage += HelpMessageOpt("-rpcwait", "Wait for RPC server to start");
+    strUsage += HelpMessageOpt("-rpcuser=<user>", "Username for JSON-RPC connections");
+    strUsage += HelpMessageOpt("-rpcpassword=<pw>", "Password for JSON-RPC connections");
+    strUsage += HelpMessageOpt("-rpcclienttimeout=<n>", strprintf("Timeout in seconds during HTTP requests, or 0 for no timeout. (default: %d)", DEFAULT_HTTP_CLIENT_TIMEOUT));
+    strUsage += HelpMessageOpt("-rpcwallet=<walletname>", "Send RPC for non-default wallet on RPC server (needs to exactly match corresponding -wallet option passed to pivxld)");
 
     return strUsage;
 }
@@ -69,13 +78,13 @@ static bool AppInitRPC(int argc, char* argv[])
     //
     gArgs.ParseParameters(argc, argv);
     if (argc < 2 || gArgs.IsArgSet("-?") || gArgs.IsArgSet("-h") || gArgs.IsArgSet("-help") || gArgs.IsArgSet("-version")) {
-        std::string strUsage = _("PIVXL Core RPC client version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = PACKAGE_NAME " RPC client version " + FormatFullVersion() + "\n";
         if (!gArgs.IsArgSet("-version")) {
-            strUsage += "\n" + _("Usage:") + "\n" +
-                        "  pivxl-cli [options] <command> [params]  " + _("Send command to PIVXL Core") + "\n" +
-                        "  pivxl-cli [options] help                " + _("List commands") + "\n" +
-                        "  pivxl-cli [options] help <command>      " + _("Get help for a command") + "\n";
-
+            strUsage += "\n"
+                        "Usage:  pivxl-cli [options] <command> [params]  Send command to " PACKAGE_NAME "\n"
+                        "or:     pivxl-cli [options] -named <command> [name=value]... Send command to " PACKAGE_NAME " (with named arguments)\n"
+                        "or:     pivxl-cli [options] help                List commands\n"
+                        "or:     pivxl-cli [options] help <command>      Get help for a command\n";
             strUsage += "\n" + HelpMessageCli();
         }
 
@@ -87,14 +96,16 @@ static bool AppInitRPC(int argc, char* argv[])
         return false;
     }
     try {
-        gArgs.ReadConfigFile();
+        gArgs.ReadConfigFile(gArgs.GetArg("-conf", PIVXL_CONF_FILENAME));
     } catch (const std::exception& e) {
         fprintf(stderr, "Error reading configuration file: %s\n", e.what());
         return false;
     }
     // Check for -testnet or -regtest parameter (BaseParams() calls are only valid after this clause)
-    if (!SelectBaseParamsFromCommandLine()) {
-        fprintf(stderr, "Error: Invalid combination of -regtest and -testnet.\n");
+    try {
+        SelectBaseParams(gArgs.GetChainName());
+    } catch(const std::exception& e) {
+        fprintf(stderr, "Error: %s\n", e.what());
         return false;
     }
     if (gArgs.GetBoolArg("-rpcssl", false))
@@ -166,7 +177,7 @@ UniValue CallRPC(const std::string& strMethod, const UniValue& params)
         if (!GetAuthCookie(&strRPCUserColonPass)) {
             throw std::runtime_error(strprintf(
                  _("Could not locate RPC credentials. No authentication cookie could be found, and no rpcpassword is set in the configuration file (%s)"),
-                    GetConfigFile().string().c_str()));
+                    GetConfigFile(gArgs.GetArg("-conf", PIVXL_CONF_FILENAME)).string().c_str()));
 
         }
     } else {
@@ -185,7 +196,19 @@ UniValue CallRPC(const std::string& strMethod, const UniValue& params)
     assert(output_buffer);
     evbuffer_add(output_buffer, strRequest.data(), strRequest.size());
 
-    int r = evhttp_make_request(evcon, req, EVHTTP_REQ_POST, "/");
+    // check if we should use a special wallet endpoint
+    std::string endpoint = "/";
+    if (!gArgs.GetArgs("-rpcwallet").empty()) {
+        std::string walletName = gArgs.GetArg("-rpcwallet", "");
+        char* encodedURI = evhttp_uriencode(walletName.c_str(), walletName.size(), false);
+        if (encodedURI) {
+            endpoint = "/wallet/"+ std::string(encodedURI);
+            free(encodedURI);
+        } else {
+            throw CConnectionFailed("uri-encode failed");
+        }
+    }
+    int r = evhttp_make_request(evcon, req, EVHTTP_REQ_POST, endpoint.c_str());
     if (r != 0) {
         evhttp_connection_free(evcon);
         event_base_free(base);
@@ -234,7 +257,12 @@ int CommandLineRPC(int argc, char* argv[])
 
         // Parameters default to strings
         std::vector<std::string> strParams(&argv[2], &argv[argc]);
-        UniValue params = RPCConvertValues(strMethod, strParams);
+        UniValue params;
+        if(gArgs.GetBoolArg("-named", DEFAULT_NAMED)) {
+            params = RPCConvertNamedValues(strMethod, strParams);
+        } else {
+            params = RPCConvertValues(strMethod, strParams);
+        }
 
         // Execute and handle connection failures with -rpcwait
         const bool fWait = gArgs.GetBoolArg("-rpcwait", false);
@@ -253,6 +281,18 @@ int CommandLineRPC(int argc, char* argv[])
                         throw CConnectionFailed("server in warmup");
                     strPrint = "error: " + error.write();
                     nRet = abs(code);
+                    if (error.isObject()) {
+                        UniValue errCode = find_value(error, "code");
+                        UniValue errMsg  = find_value(error, "message");
+                        strPrint = errCode.isNull() ? "" : "error code: "+errCode.getValStr()+"\n";
+
+                        if (errMsg.isStr())
+                            strPrint += "error message:\n"+errMsg.get_str();
+
+                        if (errCode.isNum() && errCode.get_int() == RPC_WALLET_NOT_SPECIFIED) {
+                            strPrint += "\nTry adding \"-rpcwallet=<filename>\" option to pivxl-cli command line.";
+                        }
+                    }
                 } else {
                     // Result
                     if (result.isNull())
@@ -289,6 +329,10 @@ int CommandLineRPC(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
+#ifdef WIN32
+    util::WinCmdLineArgs winArgs;
+    std::tie(argc, argv) = winArgs.get();
+#endif
     SetupEnvironment();
     if (!SetupNetworking()) {
         fprintf(stderr, "Error: Initializing networking failed\n");

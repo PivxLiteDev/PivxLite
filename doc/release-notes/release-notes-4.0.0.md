@@ -1,4 +1,4 @@
-PIVXL Core version *v4.0.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
+PIVXL version *v4.0.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
@@ -8,7 +8,7 @@ Please report bugs using the issue tracker at github: <https://github.com/pivxl-
 Mandatory Update
 ==============
 
-PIVXL Core v4.0.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will need to update their clients before enforcement of this update goes into effect.
+PIVXL v4.0.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will need to update their clients before enforcement of this update goes into effect.
 
 Update enforcement is currently scheduled to go into effect at the following time:
 
@@ -27,13 +27,13 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-PIVXL Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
+PIVXL is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support), No attempt is made to prevent installing or running the software on Windows XP, you can still do so at your own risk but be aware that there are known instabilities and issues. Please do not report issues about Windows XP to the issue tracker.
 
-Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). PIVXL Core software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
+Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). PIVXL software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
 
-PIVXL Core should also work on most other Unix-like systems but is not frequently tested on them.
+PIVXL should also work on most other Unix-like systems but is not frequently tested on them.
 
 
 Notable Changes
@@ -116,7 +116,7 @@ Layer 2 network messages (MN, Budget, Spork, etc) are now signed based on the ha
 Two new SPORKS are introduced, `SPORK_17` ([#PR975](https://github.com/PIVXL-Project/PIVXL/pull/975)) and `SPORK_18` ([#PR995](https://github.com/PIVXL-Project/PIVXL/pull/995)).<br>
 `SPORK_17` (off by default) is used to activate the [Cold Staking](#cold-staking) protocol. When this spork is off, no cold-staked block is accepted by the network and new delegations are rejected, but coin-owners are still able to spend previously created pay-to-cold-stake delegations.
 
-`SPORK_18` (off by default) is used to switch between Version 3 and [Version 4 Public Spends](#v1-zpiv-spending-public-spends-version-4). When this spork is active, only version 4 spends are accepted by the network. When it's not, only version 3 spends are accepted.
+`SPORK_18` (off by default) is used to switch between Version 3 and [Version 4 Public Spends](#v1-zpivxl-spending-public-spends-version-4). When this spork is active, only version 4 spends are accepted by the network. When it's not, only version 3 spends are accepted.
 
 RPC Changes
 --------------
@@ -164,7 +164,7 @@ Arguments:
 1. "account"        (string, optional) The account name for the address to be linked to. if not provided, the default account "" is used. It can also be set to the empty string "" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.
 
 Result:
-"pivxladdress"    (string) The new pivxl address
+"pivxaddress"    (string) The new pivxl address
 ```
 
 `delegatestake` sends a cold staking delegation transaction:
@@ -238,7 +238,7 @@ Result:
          "reqSigs" : n,            (numeric) The required sigs
          "type" : "pubkeyhash",  (string) The type, eg 'pubkeyhash'
          "addresses" : [           (json array of string)
-           "pivxladdress"        (string) pivxl address
+           "pivxaddress"        (string) pivxl address
            ,...
          ]
        }

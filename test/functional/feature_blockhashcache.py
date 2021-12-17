@@ -3,18 +3,22 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import PivxTestFramework
-from test_framework.util import (
-    assert_equal,
-)
 import random
 from time import sleep
 
-class BlockHashCacheTest(PivxTestFramework):
+from test_framework.test_framework import PivxlTestFramework
+from test_framework.util import (
+    assert_equal,
+)
+
+
+class BlockHashCacheTest(PivxlTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
+        # This test can go up to block 400 (2 * CACHE_SIZE). Delay POS activation
+        self.extra_args = [['-nuparams=PoS:401', '-nuparams=PIVXL_v3.4:402']]
 
     def log_title(self):
         title = "*** Starting %s ***" % self.__class__.__name__
@@ -50,7 +54,7 @@ class BlockHashCacheTest(PivxTestFramework):
         self.log.info("Block %d correctly cached (overwriting genesis hash)" % CACHE_SIZE)
 
         # Mine a random number of blocks between 1 and CACHE_SIZE-1
-        x = random.randint(1, CACHE_SIZE)
+        x = random.randint(1, CACHE_SIZE - 1)
         self.log.info("Mining %d more blocks..." % x)
         for i in range(x):
             vBlocks.append(self.node.generate(1)[0])
@@ -100,7 +104,6 @@ class BlockHashCacheTest(PivxTestFramework):
         self.start_nodes()
         assert_equal(self.node.getcachedblockhashes(), cache)
         self.log.info("All good.")
-
 
 
 if __name__ == '__main__':

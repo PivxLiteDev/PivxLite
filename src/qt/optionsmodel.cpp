@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,12 +14,12 @@
 #include "bitcoinunits.h"
 #include "guiutil.h"
 
-#include "amount.h"
 #include "init.h"
+#include "mapport.h"
 #include "net.h"
 #include "netbase.h"
 #include "txdb.h" // for -dbcache defaults
-#include "util.h"
+#include "util/system.h"
 
 #ifdef ENABLE_WALLET
 #include "masternodeconfig.h"
@@ -26,7 +27,7 @@
 #include "wallet/walletdb.h"
 #endif
 
-#include <QNetworkProxy>
+#include <QDebug>
 #include <QStringList>
 
 OptionsModel::OptionsModel(QObject* parent) : QAbstractListModel(parent)
@@ -47,7 +48,6 @@ void OptionsModel::Init()
 
     // Ensure restart flag is unset on client startup
     setRestartRequired(false);
-    setSSTChanged(false);
 
     // These are Qt-only settings:
 
@@ -105,9 +105,22 @@ void OptionsModel::setMainDefaultOptions(QSettings& settings, bool reset)
     // If gArgs.SoftSetArg() or gArgs.SoftSetBoolArg() return false we were overridden
     // by command-line and show this in the UI.
     // Main
-    if (!settings.contains("nDatabaseCache") || reset)
-        settings.setValue("nDatabaseCache", (qint64)nDefaultDbCache);
-    if (!gArgs.SoftSetArg("-dbcache", settings.value("nDatabaseCache").toString().toStdString()))
+
+    // Default database cache is bumped from the original 100 MiB value.
+    // If we still have the old setting "nDatabaseCache" then:
+    // - if the value is equal to the old default (100 MiB), update the new setting "nDatabaseCache2"
+    //   to the new default value (300 MiB)
+    // - if the value is different, then copy it to "nDatabaseCache2"
+    // - remove the old setting
+    if (settings.contains("nDatabaseCache")) {
+        qint64 saved_dbcache = settings.value("nDatabaseCache").toLongLong();
+        settings.setValue("nDatabaseCache2", saved_dbcache != 100 ? saved_dbcache : (qint64)nDefaultDbCache);
+        settings.remove("nDatabaseCache");
+    }
+
+    if (!settings.contains("nDatabaseCache2") || reset)
+        settings.setValue("nDatabaseCache2", (qint64)nDefaultDbCache);
+    if (!gArgs.SoftSetArg("-dbcache", settings.value("nDatabaseCache2").toString().toStdString()))
         addOverriddenOption("-dbcache");
 
     if (!settings.contains("nThreadsScriptVerif") || reset)
@@ -127,8 +140,6 @@ void OptionsModel::setWalletDefaultOptions(QSettings& settings, bool reset)
     if (!gArgs.SoftSetBoolArg("-spendzeroconfchange", settings.value("bSpendZeroConfChange").toBool()))
         addOverriddenOption("-spendzeroconfchange");
     if (reset) {
-        setStakeSplitThreshold(CWallet::DEFAULT_STAKE_SPLIT_THRESHOLD);
-        setUseCustomFee(false);
         refreshDataView();
     }
 }
@@ -139,6 +150,11 @@ void OptionsModel::setNetworkDefaultOptions(QSettings& settings, bool reset)
         settings.setValue("fUseUPnP", DEFAULT_UPNP);
     if (!gArgs.SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool()))
         addOverriddenOption("-upnp");
+
+    if (!settings.contains("fUseNatpmp") || reset )
+        settings.setValue("fUseNatpmp", DEFAULT_NATPMP);
+    if (!gArgs.SoftSetBoolArg("-natpmp", settings.value("fUseNatpmp").toBool()))
+        addOverriddenOption("-natpmp");
 
     if (!settings.contains("fListen") || reset)
         settings.setValue("fListen", DEFAULT_LISTEN);
@@ -191,8 +207,8 @@ void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset)
     if (!gArgs.SoftSetArg("-lang", settings.value("language").toString().toStdString()))
         addOverriddenOption("-lang");
 
-    if (settings.contains("nAnonymizePivxAmount") || reset)
-        gArgs.SoftSetArg("-anonymizepivxlamount", settings.value("nAnonymizePivxAmount").toString().toStdString());
+    if (settings.contains("nAnonymizePivxlAmount") || reset)
+        gArgs.SoftSetArg("-anonymizepivxamount", settings.value("nAnonymizePivxlAmount").toString().toStdString());
 
     if (!settings.contains("strThirdPartyTxUrls") || reset)
         settings.setValue("strThirdPartyTxUrls", "");
@@ -238,7 +254,13 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("fUseUPnP");
 #else
             return false;
-#endif
+#endif // USE_UPNP
+        case MapPortNatpmp:
+#ifdef USE_NATPMP
+            return settings.value("fUseNatpmp");
+#else
+            return false;
+#endif // USE_NATPMP
         case MinimizeOnClose:
             return fMinimizeOnClose;
 
@@ -247,12 +269,12 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("fUseProxy", false);
         case ProxyIP: {
             // contains IP at index 0 and port at index 1
-            QStringList strlIpPort = settings.value("addrProxy").toString().split(":", QString::SkipEmptyParts);
+            QStringList strlIpPort = GUIUtil::SplitSkipEmptyParts(settings.value("addrProxy").toString(), ":");
             return strlIpPort.at(0);
         }
         case ProxyPort: {
             // contains IP at index 0 and port at index 1
-            QStringList strlIpPort = settings.value("addrProxy").toString().split(":", QString::SkipEmptyParts);
+            QStringList strlIpPort = GUIUtil::SplitSkipEmptyParts(settings.value("addrProxy").toString(), ":");
             return strlIpPort.at(1);
         }
 
@@ -261,16 +283,6 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("bSpendZeroConfChange");
         case ShowMasternodesTab:
             return settings.value("fShowMasternodesTab");
-        case StakeSplitThreshold:
-        {
-            // Return CAmount/qlonglong as double
-            const CAmount nStakeSplitThreshold = (pwalletMain) ? pwalletMain->nStakeSplitThreshold : CWallet::DEFAULT_STAKE_SPLIT_THRESHOLD;
-            return QVariant(static_cast<double>(nStakeSplitThreshold / static_cast<double>(COIN)));
-        }
-        case fUseCustomFee:
-            return QVariant((pwalletMain) ? pwalletMain->fUseCustomFee : false);
-        case nCustomFee:
-            return QVariant(static_cast<qlonglong>((pwalletMain) ? pwalletMain->nCustomFee : CWallet::GetRequiredFee(1000)));
 #endif
         case DisplayUnit:
             return nDisplayUnit;
@@ -287,7 +299,7 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
         case ShowColdStakingScreen:
             return showColdStakingScreen;
         case DatabaseCache:
-            return settings.value("nDatabaseCache");
+            return settings.value("nDatabaseCache2");
         case ThreadsScriptVerif:
             return settings.value("nThreadsScriptVerif");
         case HideCharts:
@@ -321,12 +333,9 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             break;
         case MapPortUPnP: // core option - can be changed on-the-fly
             settings.setValue("fUseUPnP", value.toBool());
-            if (value.toBool()) {
-                StartMapPort();
-            } else {
-                InterruptMapPort();
-                StopMapPort();
-            }
+            break;
+        case MapPortNatpmp: // core option - can be changed on-the-fly
+            settings.setValue("fUseNatpmp", value.toBool());
             break;
         case MinimizeOnClose:
             fMinimizeOnClose = value.toBool();
@@ -342,7 +351,7 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             break;
         case ProxyIP: {
             // contains current IP at index 0 and current port at index 1
-            QStringList strlIpPort = settings.value("addrProxy").toString().split(":", QString::SkipEmptyParts);
+            QStringList strlIpPort = GUIUtil::SplitSkipEmptyParts(settings.value("addrProxy").toString(), ":");
             // if that key doesn't exist or has a changed IP
             if (!settings.contains("addrProxy") || strlIpPort.at(0) != value.toString()) {
                 // construct new value from new IP and current port
@@ -353,7 +362,7 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
         } break;
         case ProxyPort: {
             // contains current IP at index 0 and current port at index 1
-            QStringList strlIpPort = settings.value("addrProxy").toString().split(":", QString::SkipEmptyParts);
+            QStringList strlIpPort = GUIUtil::SplitSkipEmptyParts(settings.value("addrProxy").toString(), ":");
             // if that key doesn't exist or has a changed port
             if (!settings.contains("addrProxy") || strlIpPort.at(1) != value.toString()) {
                 // construct new value from current IP and new port
@@ -375,18 +384,7 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
                 setRestartRequired(true);
             }
             break;
-        case fUseCustomFee:
-            setUseCustomFee(value.toBool());
-            break;
-        case nCustomFee:
-            setCustomFeeValue(value.toLongLong());
-            break;
 #endif
-        case StakeSplitThreshold:
-            // Write double as qlonglong/CAmount
-            setStakeSplitThreshold(static_cast<CAmount>(value.toDouble() * COIN));
-            setSSTChanged(true);
-            break;
         case DisplayUnit:
             setDisplayUnit(value);
             break;
@@ -440,8 +438,8 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             Q_EMIT showHideColdStakingScreen(this->showColdStakingScreen);
             break;
         case DatabaseCache:
-            if (settings.value("nDatabaseCache") != value) {
-                settings.setValue("nDatabaseCache", value);
+            if (settings.value("nDatabaseCache2") != value) {
+                settings.setValue("nDatabaseCache2", value);
                 setRestartRequired(true);
             }
             break;
@@ -478,81 +476,6 @@ void OptionsModel::setDisplayUnit(const QVariant& value)
     }
 }
 
-/* Update StakeSplitThreshold's value in wallet */
-void OptionsModel::setStakeSplitThreshold(const CAmount nStakeSplitThreshold)
-{
-    if (pwalletMain && pwalletMain->nStakeSplitThreshold != nStakeSplitThreshold) {
-        CWalletDB walletdb(pwalletMain->strWalletFile);
-        LOCK(pwalletMain->cs_wallet);
-        {
-            pwalletMain->nStakeSplitThreshold = nStakeSplitThreshold;
-            if (pwalletMain->fFileBacked)
-                walletdb.WriteStakeSplitThreshold(nStakeSplitThreshold);
-        }
-    }
-}
-
-/* returns default minimum value for stake split threshold as doulbe */
-double OptionsModel::getSSTMinimum() const
-{
-    return static_cast<double>(CWallet::minStakeSplitThreshold / COIN);
-}
-
-/* Verify that StakeSplitThreshold's value is either 0 or above the min. Else reset */
-bool OptionsModel::isSSTValid()
-{
-    if (pwalletMain && pwalletMain->nStakeSplitThreshold &&
-            pwalletMain->nStakeSplitThreshold < CWallet::minStakeSplitThreshold) {
-        setStakeSplitThreshold(CWallet::minStakeSplitThreshold);
-        return false;
-    }
-    return true;
-}
-
-/* Update Custom Fee value in wallet */
-void OptionsModel::setUseCustomFee(bool fUse)
-{
-    if (pwalletMain && pwalletMain->fUseCustomFee != fUse) {
-        CWalletDB walletdb(pwalletMain->strWalletFile);
-        {
-            LOCK(pwalletMain->cs_wallet);
-            pwalletMain->fUseCustomFee = fUse;
-            if (pwalletMain->fFileBacked)
-                walletdb.WriteUseCustomFee(fUse);
-        }
-    }
-}
-
-void OptionsModel::setCustomFeeValue(const CAmount& value)
-{
-    if (pwalletMain && pwalletMain->nCustomFee != value) {
-        CWalletDB walletdb(pwalletMain->strWalletFile);
-        {
-            LOCK(pwalletMain->cs_wallet);
-            pwalletMain->nCustomFee = value;
-            if (pwalletMain->fFileBacked)
-                walletdb.WriteCustomFeeValue(value);
-        }
-    }
-}
-
-bool OptionsModel::getProxySettings(QNetworkProxy& proxy) const
-{
-    // Directly query current base proxy, because
-    // GUI settings can be overridden with -proxy.
-    proxyType curProxy;
-    if (GetProxy(NET_IPV4, curProxy)) {
-        proxy.setType(QNetworkProxy::Socks5Proxy);
-        proxy.setHostName(QString::fromStdString(curProxy.proxy.ToStringIP()));
-        proxy.setPort(curProxy.proxy.GetPort());
-
-        return true;
-    } else
-        proxy.setType(QNetworkProxy::NoProxy);
-
-    return false;
-}
-
 void OptionsModel::setRestartRequired(bool fRequired)
 {
     QSettings settings;
@@ -563,16 +486,4 @@ bool OptionsModel::isRestartRequired()
 {
     QSettings settings;
     return settings.value("fRestartRequired", false).toBool();
-}
-
-void OptionsModel::setSSTChanged(bool fChanged)
-{
-    QSettings settings;
-    return settings.setValue("fSSTChanged", fChanged);
-}
-
-bool OptionsModel::isSSTChanged()
-{
-    QSettings settings;
-    return settings.value("fSSTChanged", false).toBool();
 }

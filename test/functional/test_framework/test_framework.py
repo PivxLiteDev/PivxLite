@@ -38,6 +38,7 @@ from .script import (
     OP_CHECKSIG,
 )
 from .test_node import TestNode
+from .mininode import NetworkThread
 from .util import (
     MAX_NODES,
     PortSeed,
@@ -47,20 +48,20 @@ from .util import (
     connect_nodes,
     connect_nodes_clique,
     disconnect_nodes,
+    get_collateral_vout,
     Decimal,
     DEFAULT_FEE,
     get_datadir_path,
     hex_str_to_bytes,
     bytes_to_hex_str,
     initialize_datadir,
+    is_coin_locked_by,
+    create_new_dmn,
     p2p_port,
     set_node_times,
     SPORK_ACTIVATION_TIME,
     SPORK_DEACTIVATION_TIME,
-    sync_blocks,
-    sync_mempools,
-    vZC_DENOMS,
-    wait_until,
+    satoshi_round
 )
 
 class TestStatus(Enum):
@@ -75,7 +76,7 @@ TEST_EXIT_SKIPPED = 77
 TMPDIR_PREFIX = "pivxl_func_test_"
 
 
-class PivxTestFramework():
+class PivxlTestFramework():
     """Base class for a pivxl test script.
 
     Individual pivxl test scripts should subclass this class and override the set_test_params() and run_test() methods.
@@ -95,8 +96,11 @@ class PivxTestFramework():
         """Sets test framework defaults. Do not override this method. Instead, override the set_test_params() method"""
         self.setup_clean_chain = False
         self.nodes = []
+        self.network_thread = None
         self.mocktime = 0
+        self.rpc_timewait = 600  # Wait for up to 600 seconds for the RPC server to respond
         self.supports_cli = False
+        self.bind_to_localhost_only = True
         self.set_test_params()
 
         assert hasattr(self, "num_nodes"), "Test must set self.num_nodes in set_test_params()"
@@ -106,9 +110,9 @@ class PivxTestFramework():
 
         parser = optparse.OptionParser(usage="%prog [options]")
         parser.add_option("--nocleanup", dest="nocleanup", default=False, action="store_true",
-                          help="Leave pivxlds and test.* datadir on exit or error")
+                          help="Leave pivxds and test.* datadir on exit or error")
         parser.add_option("--noshutdown", dest="noshutdown", default=False, action="store_true",
-                          help="Don't stop pivxlds after the test execution")
+                          help="Don't stop pivxds after the test execution")
         parser.add_option("--srcdir", dest="srcdir", default=os.path.normpath(os.path.dirname(os.path.realpath(__file__))+"/../../../src"),
                           help="Source directory containing pivxld/pivxl-cli (default: %default)")
         parser.add_option("--cachedir", dest="cachedir", default=os.path.normpath(os.path.dirname(os.path.realpath(__file__)) + "/../../cache"),
@@ -153,6 +157,10 @@ class PivxTestFramework():
             self.options.tmpdir = tempfile.mkdtemp(prefix=TMPDIR_PREFIX)
         self._start_logging()
 
+        self.log.debug('Setting up network thread')
+        self.network_thread = NetworkThread()
+        self.network_thread.start()
+
         success = TestStatus.FAILED
 
         try:
@@ -163,24 +171,26 @@ class PivxTestFramework():
             time.sleep(5)
             self.run_test()
             success = TestStatus.PASSED
-        except JSONRPCException as e:
+        except JSONRPCException:
             self.log.exception("JSONRPC error")
         except SkipTest as e:
             self.log.warning("Test Skipped: %s" % e.message)
             success = TestStatus.SKIPPED
-        except AssertionError as e:
+        except AssertionError:
             self.log.exception("Assertion failed")
-        except KeyError as e:
+        except KeyError:
             self.log.exception("Key error")
-        except Exception as e:
+        except Exception:
             self.log.exception("Unexpected exception caught during testing")
-        except KeyboardInterrupt as e:
+        except KeyboardInterrupt:
             self.log.warning("Exiting after keyboard interrupt")
 
         if success == TestStatus.FAILED and self.options.pdbonfailure:
             print("Testcase failed. Attaching python debugger. Enter ? for help")
             pdb.set_trace()
 
+        self.log.debug('Closing down network thread')
+        self.network_thread.close()
         if not self.options.noshutdown:
             self.log.info("Stopping nodes")
             if self.nodes:
@@ -188,7 +198,7 @@ class PivxTestFramework():
         else:
             for node in self.nodes:
                 node.cleanup_on_exit = False
-            self.log.info("Note: pivxlds were not stopped and may still be running")
+            self.log.info("Note: pivxds were not stopped and may still be running")
 
         if not self.options.nocleanup and not self.options.noshutdown and success != TestStatus.FAILED:
             self.log.info("Cleaning up")
@@ -261,9 +271,12 @@ class PivxTestFramework():
 
     # Public helper methods. These can be accessed by the subclass test scripts.
 
-    def add_nodes(self, num_nodes, extra_args=None, rpchost=None, timewait=None, binary=None):
+    def add_nodes(self, num_nodes, extra_args=None, *, rpchost=None, binary=None):
         """Instantiate TestNode objects"""
-
+        if self.bind_to_localhost_only:
+            extra_confs = [["bind=127.0.0.1"]] * num_nodes
+        else:
+            extra_confs = [[]] * num_nodes
         if extra_args is None:
             extra_args = [[]] * num_nodes
         # Check wallet version
@@ -273,10 +286,11 @@ class PivxTestFramework():
             self.log.info("Running test with legacy (pre-HD) wallet")
         if binary is None:
             binary = [None] * num_nodes
+            assert_equal(len(extra_confs), num_nodes)
         assert_equal(len(extra_args), num_nodes)
         assert_equal(len(binary), num_nodes)
         for i in range(num_nodes):
-            self.nodes.append(TestNode(i, self.options.tmpdir, extra_args[i], rpchost, timewait=timewait, binary=binary[i], stderr=None, mocktime=self.mocktime, coverage_dir=self.options.coveragedir, use_cli=self.options.usecli))
+            self.nodes.append(TestNode(i, self.options.tmpdir, rpchost=rpchost, timewait=self.rpc_timewait, binary=binary[i], stderr=None, mocktime=self.mocktime, coverage_dir=self.options.coveragedir, extra_conf=extra_confs[i], extra_args=extra_args[i], use_cli=self.options.usecli))
 
     def start_node(self, i, *args, **kwargs):
         """Start a pivxld"""
@@ -292,7 +306,7 @@ class PivxTestFramework():
             coverage.write_all_rpc_commands(self.options.coveragedir, node.rpc)
 
     def start_nodes(self, extra_args=None, *args, **kwargs):
-        """Start multiple pivxlds"""
+        """Start multiple pivxds"""
 
         if extra_args is None:
             extra_args = [None] * self.num_nodes
@@ -334,27 +348,6 @@ class PivxTestFramework():
         self.stop_node(i)
         self.start_node(i, extra_args)
 
-    def assert_start_raises_init_error(self, i, extra_args=None, expected_msg=None, *args, **kwargs):
-        with tempfile.SpooledTemporaryFile(max_size=2**16) as log_stderr:
-            try:
-                self.start_node(i, extra_args, stderr=log_stderr, *args, **kwargs)
-                self.stop_node(i)
-            except Exception as e:
-                assert 'pivxld exited' in str(e)  # node must have shutdown
-                self.nodes[i].running = False
-                self.nodes[i].process = None
-                if expected_msg is not None:
-                    log_stderr.seek(0)
-                    stderr = log_stderr.read().decode('utf-8')
-                    if expected_msg not in stderr:
-                        raise AssertionError("Expected error \"" + expected_msg + "\" not found in:\n" + stderr)
-            else:
-                if expected_msg is None:
-                    assert_msg = "pivxld should have exited with an error"
-                else:
-                    assert_msg = "pivxld should have exited with expected error " + expected_msg
-                raise AssertionError(assert_msg)
-
     def wait_for_node_exit(self, i, timeout):
         self.nodes[i].process.wait(timeout)
 
@@ -364,7 +357,8 @@ class PivxTestFramework():
         """
         disconnect_nodes(self.nodes[1], 2)
         disconnect_nodes(self.nodes[2], 1)
-        self.sync_all([self.nodes[:2], self.nodes[2:]])
+        self.sync_all(self.nodes[:2])
+        self.sync_all(self.nodes[2:])
 
     def join_network(self):
         """
@@ -373,13 +367,52 @@ class PivxTestFramework():
         connect_nodes(self.nodes[1], 2)
         self.sync_all()
 
-    def sync_all(self, node_groups=None):
-        if not node_groups:
-            node_groups = [self.nodes]
+    def sync_blocks(self, nodes=None, wait=1, timeout=60):
+        """
+        Wait until everybody has the same tip.
+        sync_blocks needs to be called with an rpc_connections set that has least
+        one node already synced to the latest, stable tip, otherwise there's a
+        chance it might return before all nodes are stably synced.
+        """
+        rpc_connections = nodes or self.nodes
+        stop_time = time.time() + timeout
+        while time.time() <= stop_time:
+            best_hash = [x.getbestblockhash() for x in rpc_connections]
+            if best_hash.count(best_hash[0]) == len(rpc_connections):
+                return
+            # Check that each peer has at least one connection
+            assert (all([len(x.getpeerinfo()) for x in rpc_connections]))
+            time.sleep(wait)
+        raise AssertionError("Block sync timed out after {}s:{}".format(
+            timeout,
+            "".join("\n  {!r}".format(b) for b in best_hash),
+        ))
 
-        for group in node_groups:
-            sync_blocks(group)
-            sync_mempools(group)
+    def sync_mempools(self, nodes=None, wait=1, timeout=60, flush_scheduler=True):
+        """
+        Wait until everybody has the same transactions in their memory
+        pools
+        """
+        rpc_connections = nodes or self.nodes
+        stop_time = time.time() + timeout
+        while time.time() <= stop_time:
+            pool = [set(r.getrawmempool()) for r in rpc_connections]
+            if pool.count(pool[0]) == len(rpc_connections):
+                if flush_scheduler:
+                    for r in rpc_connections:
+                        r.syncwithvalidationinterfacequeue()
+                return
+            # Check that each peer has at least one connection
+            assert (all([len(x.getpeerinfo()) for x in rpc_connections]))
+            time.sleep(wait)
+        raise AssertionError("Mempool sync timed out after {}s:{}".format(
+            timeout,
+            "".join("\n  {!r}".format(m) for m in pool),
+        ))
+
+    def sync_all(self, nodes=None):
+        self.sync_blocks(nodes)
+        self.sync_mempools(nodes)
 
     def enable_mocktime(self):
         """Enable mocktime for the script.
@@ -410,7 +443,7 @@ class PivxTestFramework():
         ll = int(self.options.loglevel) if self.options.loglevel.isdigit() else self.options.loglevel.upper()
         ch.setLevel(ll)
         # Format logs the same as pivxld's debug.log with microprecision (so log files can be concatenated and sorted)
-        formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d000 %(name)s (%(levelname)s): %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d000Z %(name)s (%(levelname)s): %(message)s', datefmt='%Y-%m-%dT%H:%M:%S')
         formatter.converter = time.gmtime
         fh.setFormatter(formatter)
         ch.setFormatter(formatter)
@@ -450,7 +483,7 @@ class PivxTestFramework():
             node_0_datadir = os.path.join(get_datadir_path(cachedir, 0), "regtest")
             for i in range(from_num, MAX_NODES):
                 node_i_datadir = os.path.join(get_datadir_path(cachedir, i), "regtest")
-                for subdir in ["blocks", "chainstate", "sporks", "zerocoin"]:
+                for subdir in ["blocks", "chainstate", "evodb", "sporks", "zerocoin"]:
                     copy_and_overwrite(os.path.join(node_0_datadir, subdir),
                                     os.path.join(node_i_datadir, subdir))
                 initialize_datadir(cachedir, i)  # Overwrite port/rpcport in pivxl.conf
@@ -470,7 +503,7 @@ class PivxTestFramework():
 
             for i in range(MAX_NODES):
                 for entry in os.listdir(cache_path(i)):
-                    if entry not in ['wallet.dat', 'chainstate', 'blocks', 'sporks', 'zerocoin', 'backups']:
+                    if entry not in ['wallet.dat', 'chainstate', 'blocks', 'sporks', 'evodb', 'zerocoin', 'backups', "wallets"]:
                         os.remove(cache_path(i, entry))
 
         def clean_cache_dir():
@@ -499,11 +532,11 @@ class PivxTestFramework():
                 if i == 0:
                     # Add .incomplete flagfile
                     # (removed at the end during clean_cache_subdir)
-                    open(os.path.join(datadir, ".incomplete"), 'a').close()
+                    open(os.path.join(datadir, ".incomplete"), 'a', encoding="utf8").close()
                 args = [os.getenv("BITCOIND", "pivxld"), "-spendzeroconfchange=1", "-server", "-keypool=1",
                         "-datadir=" + datadir, "-discover=0"]
                 self.nodes.append(
-                    TestNode(i, ddir, extra_args=[], rpchost=None, timewait=None, binary=None, stderr=None,
+                    TestNode(i, ddir, extra_conf=["bind=127.0.0.1"], extra_args=[], rpchost=None, timewait=self.rpc_timewait, binary=None, stderr=None,
                              mocktime=self.mocktime, coverage_dir=None))
                 self.nodes[i].args = args
                 self.start_node(i)
@@ -525,7 +558,7 @@ class PivxTestFramework():
             clean_cache_subdir(ddir)
 
         def generate_pow_cache():
-            ### POW Cache ###
+            # POW Cache
             # Create a 200-block-long chain; each of the 4 first nodes
             # gets 25 mature blocks and 25 immature.
             # Note: To preserve compatibility with older versions of
@@ -534,7 +567,7 @@ class PivxTestFramework():
             # blocks are created with timestamps 1 minutes apart
             # starting from 331 minutes in the past
 
-            # Create cache directories, run pivxlds:
+            # Create cache directories, run pivxds:
             create_cachedir(powcachedir)
             self.log.info("Creating 'PoW-chain': 200 blocks")
             start_nodes_from_dir(powcachedir, 4)
@@ -550,7 +583,7 @@ class PivxTestFramework():
                         self.nodes[peer].generate(1)
                         block_time += 60
                     # Must sync before next peer starts generating blocks
-                    sync_blocks(self.nodes)
+                    self.sync_blocks()
 
             # Shut them down, and clean up cache directories:
             self.log.info("Stopping nodes")
@@ -586,9 +619,7 @@ class PivxTestFramework():
         for i in range(self.num_nodes):
             initialize_datadir(self.options.tmpdir, i)
 
-
-    ### PIVXL Specific TestFramework ###
-    ###################################
+    # PIVXL Specific TestFramework
     def init_dummy_key(self):
         self.DUMMY_KEY = CECKey()
         self.DUMMY_KEY.set_secretbytes(hash256(pack('<I', 0xffff)))
@@ -712,7 +743,7 @@ class PivxTestFramework():
             # replace coinstake output script
             coinstakeTx_unsigned.vout[1].scriptPubKey = CScript([block_sig_key.get_pubkey(), OP_CHECKSIG])
         else:
-            if privKeyWIF == None:
+            if privKeyWIF is None:
                 # Use pk of the input. Ask sk from rpc_conn
                 rawtx = rpc_conn.getrawtransaction('{:064x}'.format(prevout.hash), True)
                 privKeyWIF = rpc_conn.dumpprivkey(rawtx["vout"][prevout.n]["scriptPubKey"]["addresses"][0])
@@ -1008,16 +1039,17 @@ class PivxTestFramework():
 
     def send_pings(self, mnodes):
         for node in mnodes:
-            sent = node.mnping()["sent"]
-            if sent != "YES" and "Too early to send Masternode Ping" not in sent:
-                raise AssertionError("Unable to send ping: \"sent\" = %s" % sent)
+            try:
+                node.mnping()["sent"]
+            except:
+                pass
             time.sleep(1)
 
 
     def stake_and_sync(self, node_id, num_blocks):
         for i in range(num_blocks):
             self.mocktime = self.generate_pos(node_id, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         time.sleep(1)
 
 
@@ -1028,6 +1060,68 @@ class PivxTestFramework():
             if len(with_ping_mns) > 0:
                 self.send_pings(with_ping_mns)
 
+    # !TODO: remove after obsoleting legacy system
+    def setupDMN(self,
+                 mnOwner,
+                 miner,
+                 mnRemotePos,
+                 strType,           # "fund"|"internal"|"external"
+                 outpoint=None):    # COutPoint, only for "external"
+        self.log.info("Creating%s proRegTx for deterministic masternode..." % (
+                      " and funding" if strType == "fFund" else ""))
+        collateralAdd = mnOwner.getnewaddress("dmn")
+        ipport = "127.0.0.1:" + str(p2p_port(mnRemotePos))
+        ownerAdd = mnOwner.getnewaddress("dmn_owner")
+        operatorAdd = mnOwner.getnewaddress("dmn_operator")
+        operatorKey = mnOwner.dumpprivkey(operatorAdd)
+        votingAdd = mnOwner.getnewaddress("dmn_voting")
+        if strType == "fund":
+            # send to the owner the collateral tx cost + some dust for the ProReg and fee
+            fundingTxId = miner.sendtoaddress(collateralAdd, Decimal('101'))
+            # confirm and verify reception
+            self.stake_and_sync(self.nodes.index(miner), 1)
+            assert_greater_than(mnOwner.getrawtransaction(fundingTxId, 1)["confirmations"], 0)
+            # create and send the ProRegTx funding the collateral
+            proTxId = mnOwner.protx_register_fund(collateralAdd, ipport, ownerAdd,
+                                                  operatorAdd, votingAdd, collateralAdd)
+        elif strType == "internal":
+            mnOwner.getnewaddress("dust")
+            # send to the owner the collateral tx cost + some dust for the ProReg and fee
+            collateralTxId = miner.sendtoaddress(collateralAdd, Decimal('100'))
+            miner.sendtoaddress(collateralAdd, Decimal('1'))
+            # confirm and verify reception
+            self.stake_and_sync(self.nodes.index(miner), 1)
+            json_tx = mnOwner.getrawtransaction(collateralTxId, True)
+            collateralTxId_n = -1
+            for o in json_tx["vout"]:
+                if o["value"] == Decimal('100'):
+                    collateralTxId_n = o["n"]
+                    break
+            assert_greater_than(collateralTxId_n, -1)
+            assert_greater_than(json_tx["confirmations"], 0)
+            proTxId = mnOwner.protx_register(collateralTxId, collateralTxId_n, ipport, ownerAdd,
+                                             operatorAdd, votingAdd, collateralAdd)
+        elif strType == "external":
+            self.log.info("Setting up ProRegTx with collateral externally-signed...")
+            # send the tx from the miner
+            payoutAdd = mnOwner.getnewaddress("payout")
+            register_res = miner.protx_register_prepare(outpoint.hash, outpoint.n, ipport, ownerAdd,
+                                                        operatorAdd, votingAdd, payoutAdd)
+            self.log.info("ProTx prepared")
+            message_to_sign = register_res["signMessage"]
+            collateralAdd = register_res["collateralAddress"]
+            signature = mnOwner.signmessage(collateralAdd, message_to_sign)
+            self.log.info("ProTx signed")
+            proTxId = miner.protx_register_submit(register_res["tx"], signature)
+        else:
+            raise Exception("Type %s not available" % strType)
+
+        self.sync_mempools([mnOwner, miner])
+        # confirm and verify inclusion in list
+        self.stake_and_sync(self.nodes.index(miner), 1)
+        assert_greater_than(self.nodes[mnRemotePos].getrawtransaction(proTxId, 1)["confirmations"], 0)
+        assert proTxId in self.nodes[mnRemotePos].protx_list(False)
+        return proTxId, operatorKey
 
     def setupMasternode(self,
                         mnOwner,
@@ -1039,62 +1133,212 @@ class PivxTestFramework():
         self.log.info("adding balance to the mn owner for " + masternodeAlias + "..")
         mnAddress = mnOwner.getnewaddress(masternodeAlias)
         # send to the owner the collateral tx cost
-        collateralTxId = miner.sendtoaddress(mnAddress, Decimal('10000'))
+        collateralTxId = miner.sendtoaddress(mnAddress, Decimal('100'))
         # confirm and verify reception
         self.stake_and_sync(self.nodes.index(miner), 1)
-        assert_equal(mnOwner.getbalance(), Decimal('10000'))
-        assert_greater_than(mnOwner.getrawtransaction(collateralTxId, 1)["confirmations"], 0)
-
-        self.log.info("all good, creating masternode " + masternodeAlias + "..")
-
-        # get the collateral output using the RPC command
-        mnCollateralOutput = mnOwner.getmasternodeoutputs()[0]
-        assert_equal(mnCollateralOutput["txhash"], collateralTxId)
-        mnCollateralOutputIndex = mnCollateralOutput["outputidx"]
-
-        self.log.info("collateral accepted for "+ masternodeAlias +". Updating masternode.conf...")
-
-        # verify collateral confirmed
-        confData = masternodeAlias + " 127.0.0.1:" + str(p2p_port(mnRemotePos)) + " " + str(masternodePrivKey) + " " + str(mnCollateralOutput["txhash"]) + " " + str(mnCollateralOutputIndex)
-        destinationDirPath = mnOwnerDirPath
-        destPath = os.path.join(destinationDirPath, "masternode.conf")
-        with open(destPath, "a+") as file_object:
+        json_tx = mnOwner.getrawtransaction(collateralTxId, True)
+        collateralTxId_n = -1
+        for o in json_tx["vout"]:
+            if o["value"] == Decimal('100'):
+                collateralTxId_n = o["n"]
+                break
+        assert_greater_than(collateralTxId_n, -1)
+        assert_greater_than(json_tx["confirmations"], 0)
+        # update masternode file
+        self.log.info("collateral accepted for " + masternodeAlias + ". Updating masternode.conf...")
+        confData = "%s 127.0.0.1:%d %s %s %d" % (masternodeAlias,
+                                                 p2p_port(mnRemotePos),
+                                                 masternodePrivKey,
+                                                 collateralTxId,
+                                                 collateralTxId_n)
+        destPath = os.path.join(mnOwnerDirPath, "masternode.conf")
+        with open(destPath, "a+", encoding="utf8") as file_object:
             file_object.write("\n")
             file_object.write(confData)
 
-        # return the collateral id
-        return collateralTxId
+        # lock collateral
+        mnOwner.lockunspent(False, [{"txid": collateralTxId, "vout": collateralTxId_n}])
 
-### ------------------------------------------------------
+        # return the collateral outpoint
+        return COutPoint(collateralTxId, collateralTxId_n)
 
-class ComparisonTestFramework(PivxTestFramework):
-    """Test framework for doing p2p comparison testing
+    # ----- DMN setup ------
+    def connect_to_all(self, nodePos):
+        for i in range(self.num_nodes):
+            if i != nodePos and self.nodes[i] is not None:
+                connect_nodes(self.nodes[i], nodePos)
 
-    Sets up some pivxld binaries:
-    - 1 binary: test binary
-    - 2 binaries: 1 test binary, 1 ref binary
-    - n>2 binaries: 1 test binary, n-1 ref binaries"""
+    def assert_equal_for_all(self, expected, func_name, *args):
+        def not_found():
+            raise Exception("function %s not found!" % func_name)
 
-    def set_test_params(self):
-        self.num_nodes = 2
-        self.setup_clean_chain = True
+        assert_equal([getattr(x, func_name, not_found)(*args) for x in self.nodes],
+                     [expected] * self.num_nodes)
 
-    def add_options(self, parser):
-        parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("BITCOIND", "pivxld"),
-                          help="pivxld binary to test")
-        parser.add_option("--refbinary", dest="refbinary",
-                          default=os.getenv("BITCOIND", "pivxld"),
-                          help="pivxld binary to use for reference nodes (if any)")
+    """
+    Create a ProReg tx, which has the collateral as one of its outputs
+    """
+    def protx_register_fund(self, miner, controller, dmn, collateral_addr, op_rew=None):
+        # send to the owner the collateral tx + some dust for the ProReg and fee
+        funding_txid = miner.sendtoaddress(collateral_addr, Decimal('101'))
+        # confirm and verify reception
+        miner.generate(1)
+        self.sync_blocks([miner, controller])
+        assert_greater_than(controller.getrawtransaction(funding_txid, True)["confirmations"], 0)
+        # create and send the ProRegTx funding the collateral
+        if op_rew is None:
+            dmn.proTx = controller.protx_register_fund(collateral_addr, dmn.ipport, dmn.owner,
+                                                       dmn.operator, dmn.voting, dmn.payee)
+        else:
+            dmn.proTx = controller.protx_register_fund(collateral_addr, dmn.ipport, dmn.owner,
+                                                       dmn.operator, dmn.voting, dmn.payee,
+                                                       op_rew["reward"], op_rew["address"])
+        dmn.collateral = COutPoint(int(dmn.proTx, 16),
+                                   get_collateral_vout(controller.getrawtransaction(dmn.proTx, True)))
 
-    def setup_network(self):
-        extra_args = [['-whitelist=127.0.0.1']] * self.num_nodes
-        if hasattr(self, "extra_args"):
-            extra_args = self.extra_args
-        self.add_nodes(self.num_nodes, extra_args,
-                       binary=[self.options.testbinary] +
-                       [self.options.refbinary] * (self.num_nodes - 1))
-        self.start_nodes()
+    """
+    Create a ProReg tx, which references an 100 PIVXL UTXO as collateral.
+    The controller node owns the collateral and creates the ProReg tx.
+    """
+    def protx_register(self, miner, controller, dmn, collateral_addr):
+        # send to the owner the exact collateral tx amount
+        funding_txid = miner.sendtoaddress(collateral_addr, Decimal('100'))
+        # send another output to be used for the fee of the proReg tx
+        miner.sendtoaddress(collateral_addr, Decimal('1'))
+        # confirm and verify reception
+        miner.generate(1)
+        self.sync_blocks([miner, controller])
+        json_tx = controller.getrawtransaction(funding_txid, True)
+        assert_greater_than(json_tx["confirmations"], 0)
+        # create and send the ProRegTx
+        dmn.collateral = COutPoint(int(funding_txid, 16), get_collateral_vout(json_tx))
+        dmn.proTx = controller.protx_register(funding_txid, dmn.collateral.n, dmn.ipport, dmn.owner,
+                                              dmn.operator, dmn.voting, dmn.payee)
+
+    """
+    Create a ProReg tx, referencing a collateral signed externally (eg. HW wallets).
+    Here the controller node owns the collateral (and signs), but the miner creates the ProReg tx.
+    """
+    def protx_register_ext(self, miner, controller, dmn, outpoint, fSubmit):
+        # send to the owner the collateral tx if the outpoint is not specified
+        if outpoint is None:
+            funding_txid = miner.sendtoaddress(controller.getnewaddress("collateral"), Decimal('100'))
+            # confirm and verify reception
+            miner.generate(1)
+            self.sync_blocks([miner, controller])
+            json_tx = controller.getrawtransaction(funding_txid, True)
+            assert_greater_than(json_tx["confirmations"], 0)
+            outpoint = COutPoint(int(funding_txid, 16), get_collateral_vout(json_tx))
+        dmn.collateral = outpoint
+        # Prepare the message to be signed externally by the owner of the collateral (the controller)
+        reg_tx = miner.protx_register_prepare("%064x" % outpoint.hash, outpoint.n, dmn.ipport, dmn.owner,
+                                              dmn.operator, dmn.voting, dmn.payee)
+        sig = controller.signmessage(reg_tx["collateralAddress"], reg_tx["signMessage"])
+        if fSubmit:
+            dmn.proTx = miner.protx_register_submit(reg_tx["tx"], sig)
+        else:
+            return reg_tx["tx"], sig
+
+    """ Create and register new deterministic masternode
+    :param   idx:              (int) index of the (remote) node in self.nodes
+             miner_idx:        (int) index of the miner in self.nodes
+             controller_idx:   (int) index of the controller in self.nodes
+             strType:          (string) "fund"|"internal"|"external"
+             payout_addr:      (string) payee address. If not specified, reuse the collateral address.
+             outpoint:         (COutPoint) collateral outpoint to be used with "external".
+                                 It must be owned by the controller (proTx is sent from the miner).
+                                 If not provided, a new utxo is created, sending it from the miner.
+             op_addr_and_key:  (list of strings) List with two entries, operator address (0) and private key (1).
+                                 If not provided, a new address-key pair is generated.
+    :return: dmn:              (Masternode) the deterministic masternode object
+    """
+    def register_new_dmn(self, idx, miner_idx, controller_idx, strType,
+                         payout_addr=None, outpoint=None, op_addr_and_key=None):
+        # Prepare remote node
+        assert idx != miner_idx
+        assert idx != controller_idx
+        miner_node = self.nodes[miner_idx]
+        controller_node = self.nodes[controller_idx]
+        mn_node = self.nodes[idx]
+
+        # Generate ip and addresses/keys
+        collateral_addr = controller_node.getnewaddress("mncollateral-%d" % idx)
+        if payout_addr is None:
+            payout_addr = collateral_addr
+        dmn = create_new_dmn(idx, controller_node, payout_addr, op_addr_and_key)
+
+        # Create ProRegTx
+        self.log.info("Creating%s proRegTx for deterministic masternode idx=%d..." % (
+            " and funding" if strType == "fund" else "", idx))
+        if strType == "fund":
+            self.protx_register_fund(miner_node, controller_node, dmn, collateral_addr)
+        elif strType == "internal":
+            self.protx_register(miner_node, controller_node, dmn, collateral_addr)
+        elif strType == "external":
+            self.protx_register_ext(miner_node, controller_node, dmn, outpoint, True)
+        else:
+            raise Exception("Type %s not available" % strType)
+        time.sleep(1)
+        self.sync_mempools([miner_node, controller_node])
+
+        # confirm and verify inclusion in list
+        miner_node.generate(1)
+        self.sync_blocks()
+        json_tx = mn_node.getrawtransaction(dmn.proTx, 1)
+        assert_greater_than(json_tx["confirmations"], 0)
+        assert dmn.proTx in mn_node.protx_list(False)
+
+        # check coin locking
+        assert is_coin_locked_by(controller_node, dmn.collateral)
+
+        # check json payload against local dmn object
+        self.check_proreg_payload(dmn, json_tx)
+
+        return dmn
+
+    def check_mn_list_on_node(self, idx, mns):
+        self.nodes[idx].syncwithvalidationinterfacequeue()
+        mnlist = self.nodes[idx].listmasternodes()
+        if len(mnlist) != len(mns):
+            mnlist_l = [[x['proTxHash'], x['dmnstate']['service']] for x in mnlist]
+            mns_l = [[x.proTx, x.ipport] for x in mns]
+            strErr = ""
+            for x in [x for x in mnlist_l if x not in mns_l]:
+                strErr += "Mn %s is not expected\n" % str(x)
+            for x in [x for x in mns_l if x not in mnlist_l]:
+                strErr += "Expect Mn %s not found\n" % str(x)
+            raise Exception("Invalid mn list on node %d:\n%s" % (idx, strErr))
+        protxs = {x["proTxHash"]: x for x in mnlist}
+        for mn in mns:
+            if mn.proTx not in protxs:
+                raise Exception("ProTx for mn %d (%s) not found in the list of node %d" % (mn.idx, mn.proTx, idx))
+            mn2 = protxs[mn.proTx]
+            collateral = mn.collateral.to_json()
+            assert_equal(mn.owner, mn2["dmnstate"]["ownerAddress"])
+            assert_equal(mn.operator, mn2["dmnstate"]["operatorAddress"])
+            assert_equal(mn.voting, mn2["dmnstate"]["votingAddress"])
+            assert_equal(mn.ipport, mn2["dmnstate"]["service"])
+            assert_equal(mn.payee, mn2["dmnstate"]["payoutAddress"])
+            assert_equal(collateral["txid"], mn2["collateralHash"])
+            assert_equal(collateral["vout"], mn2["collateralIndex"])
+
+    def check_proreg_payload(self, dmn, json_tx):
+        assert "payload" in json_tx
+        # null hash if funding collateral
+        collateral_hash = 0 if int(json_tx["txid"], 16) == dmn.collateral.hash \
+                            else dmn.collateral.hash
+        pl = json_tx["payload"]
+        assert_equal(pl["version"], 1)
+        assert_equal(pl["collateralHash"], "%064x" % collateral_hash)
+        assert_equal(pl["collateralIndex"], dmn.collateral.n)
+        assert_equal(pl["service"], dmn.ipport)
+        assert_equal(pl["ownerAddress"], dmn.owner)
+        assert_equal(pl["votingAddress"], dmn.voting)
+        assert_equal(pl["operatorAddress"], dmn.operator)
+        assert_equal(pl["payoutAddress"], dmn.payee)
+
+
+# ------------------------------------------------------
 
 class SkipTest(Exception):
     """This exception is raised to skip a test"""
@@ -1103,19 +1347,14 @@ class SkipTest(Exception):
 
 
 '''
-PivxTestFramework extensions
+PivxlTestFramework extensions
 '''
-
-class PivxTier2TestFramework(PivxTestFramework):
+# !TODO: remove after obsoleting legacy system
+class PivxlTier2TestFramework(PivxlTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
-        self.num_nodes = 5
-        self.extra_args = [[],
-                           ["-listen", "-externalip=127.0.0.1"],
-                           [],
-                           ["-listen", "-externalip=127.0.0.1"],
-                           ["-sporkkey=932HEevBSujW2ud7RfB1YF91AFygbBRQj3de3LyaCRqNzKKgWXi"]]
+        self.num_nodes = 6
         self.enable_mocktime()
 
         self.ownerOnePos = 0
@@ -1123,6 +1362,12 @@ class PivxTier2TestFramework(PivxTestFramework):
         self.ownerTwoPos = 2
         self.remoteTwoPos = 3
         self.minerPos = 4
+        self.remoteDMN1Pos = 5
+
+        self.extra_args = [["-nuparams=v5_shield:249", "-nuparams=v6_evo:250", "-whitelist=127.0.0.1"]] * self.num_nodes
+        for i in [self.remoteOnePos, self.remoteTwoPos, self.remoteDMN1Pos]:
+            self.extra_args[i] += ["-listen", "-externalip=127.0.0.1"]
+        self.extra_args[self.minerPos].append("-sporkkey=932HEevBSujW2ud7RfB1YF91AFygbBRQj3de3LyaCRqNzKKgWXi")
 
         self.masternodeOneAlias = "mnOne"
         self.masternodeTwoAlias = "mntwo"
@@ -1130,22 +1375,25 @@ class PivxTier2TestFramework(PivxTestFramework):
         self.mnOnePrivkey = "9247iC59poZmqBYt9iDh9wDam6v9S1rW5XekjLGyPnDhrDkP4AK"
         self.mnTwoPrivkey = "92Hkebp3RHdDidGZ7ARgS4orxJAGyFUPDXNqtsYsiwho1HGVRbF"
 
-        # Updated in setup_2_masternodes_network() to be called at the start of run_test
+        # Updated in setup_3_masternodes_network() to be called at the start of run_test
         self.ownerOne = None        # self.nodes[self.ownerOnePos]
         self.remoteOne = None       # self.nodes[self.remoteOnePos]
         self.ownerTwo = None        # self.nodes[self.ownerTwoPos]
         self.remoteTwo = None       # self.nodes[self.remoteTwoPos]
         self.miner = None           # self.nodes[self.minerPos]
-        self.mnOneTxHash = ""
-        self.mnTwoTxHash = ""
+        self.remoteDMN1 = None       # self.nodes[self.remoteDMN1Pos]
+        self.mnOneCollateral = COutPoint()
+        self.mnTwoCollateral = COutPoint()
+        self.proRegTx1 = None       # hash of provider-register-tx
 
 
     def send_3_pings(self):
+        mns = [self.remoteOne, self.remoteTwo]
         self.advance_mocktime(30)
-        self.send_pings([self.remoteOne, self.remoteTwo])
-        self.stake(1, [self.remoteOne, self.remoteTwo])
+        self.send_pings(mns)
+        self.stake(1, mns)
         self.advance_mocktime(30)
-        self.send_pings([self.remoteOne, self.remoteTwo])
+        self.send_pings(mns)
         time.sleep(2)
 
     def stake(self, num_blocks, with_ping_mns=[]):
@@ -1154,12 +1402,12 @@ class PivxTier2TestFramework(PivxTestFramework):
     def controller_start_all_masternodes(self):
         self.controller_start_masternode(self.ownerOne, self.masternodeOneAlias)
         self.controller_start_masternode(self.ownerTwo, self.masternodeTwoAlias)
-        self.wait_until_mn_preenabled(self.mnOneTxHash, 40)
-        self.wait_until_mn_preenabled(self.mnTwoTxHash, 40)
+        self.wait_until_mn_preenabled(self.mnOneCollateral.hash, 40)
+        self.wait_until_mn_preenabled(self.mnTwoCollateral.hash, 40)
         self.log.info("masternodes started, waiting until both get enabled..")
         self.send_3_pings()
-        self.wait_until_mn_enabled(self.mnOneTxHash, 120, [self.remoteOne, self.remoteTwo])
-        self.wait_until_mn_enabled(self.mnTwoTxHash, 120, [self.remoteOne, self.remoteTwo])
+        self.wait_until_mn_enabled(self.mnOneCollateral.hash, 120, [self.remoteOne, self.remoteTwo])
+        self.wait_until_mn_enabled(self.mnTwoCollateral.hash, 120, [self.remoteOne, self.remoteTwo])
         self.log.info("masternodes enabled and running properly!")
 
     def advance_mocktime_and_stake(self, secs_to_add):
@@ -1167,26 +1415,27 @@ class PivxTier2TestFramework(PivxTestFramework):
         self.mocktime = self.generate_pos(self.minerPos, self.mocktime)
         time.sleep(2)
 
-    def setup_2_masternodes_network(self):
+    def setup_3_masternodes_network(self):
         self.ownerOne = self.nodes[self.ownerOnePos]
         self.remoteOne = self.nodes[self.remoteOnePos]
         self.ownerTwo = self.nodes[self.ownerTwoPos]
         self.remoteTwo = self.nodes[self.remoteTwoPos]
         self.miner = self.nodes[self.minerPos]
-        ownerOneDir = os.path.join(self.options.tmpdir, "node0")
-        ownerTwoDir = os.path.join(self.options.tmpdir, "node2")
+        self.remoteDMN1 = self.nodes[self.remoteDMN1Pos]
+        ownerOneDir = os.path.join(self.options.tmpdir, "node%d" % self.ownerOnePos)
+        ownerTwoDir = os.path.join(self.options.tmpdir, "node%d" % self.ownerTwoPos)
 
-        self.log.info("generating 259 blocks..")
+        self.log.info("generating 256 blocks..")
         # First mine 250 PoW blocks
         for i in range(250):
             self.mocktime = self.generate_pow(self.minerPos, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         # Then start staking
-        self.stake(9)
+        self.stake(6)
 
         self.log.info("masternodes setup..")
         # setup first masternode node, corresponding to nodeOne
-        self.mnOneTxHash = self.setupMasternode(
+        self.mnOneCollateral = self.setupMasternode(
             self.ownerOne,
             self.miner,
             self.masternodeOneAlias,
@@ -1194,13 +1443,20 @@ class PivxTier2TestFramework(PivxTestFramework):
             self.remoteOnePos,
             self.mnOnePrivkey)
         # setup second masternode node, corresponding to nodeTwo
-        self.mnTwoTxHash = self.setupMasternode(
+        self.mnTwoCollateral = self.setupMasternode(
             self.ownerTwo,
             self.miner,
             self.masternodeTwoAlias,
             os.path.join(ownerTwoDir, "regtest"),
             self.remoteTwoPos,
             self.mnTwoPrivkey)
+        # setup deterministic masternode
+        self.proRegTx1, self.dmn1Privkey = self.setupDMN(
+            self.ownerOne,
+            self.miner,
+            self.remoteDMN1Pos,
+            "fund"
+        )
 
         self.log.info("masternodes setup completed, initializing them..")
 
@@ -1212,6 +1468,7 @@ class PivxTier2TestFramework(PivxTestFramework):
         remoteTwoPort = p2p_port(self.remoteTwoPos)
         self.remoteOne.initmasternode(self.mnOnePrivkey, "127.0.0.1:"+str(remoteOnePort))
         self.remoteTwo.initmasternode(self.mnTwoPrivkey, "127.0.0.1:"+str(remoteTwoPort))
+        self.remoteDMN1.initmasternode(self.dmn1Privkey, "", True)
 
         # wait until mnsync complete on all nodes
         self.stake(1)
@@ -1220,3 +1477,16 @@ class PivxTier2TestFramework(PivxTestFramework):
 
         # Now everything is set, can start both masternodes
         self.controller_start_all_masternodes()
+
+    def spend_collateral(self, mnOwner, collateralOutpoint, miner):
+        send_value = satoshi_round(100 - 0.001)
+        inputs = [{'txid': collateralOutpoint.hash, 'vout': collateralOutpoint.n}]
+        outputs = {}
+        outputs[mnOwner.getnewaddress()] = float(send_value)
+        rawtx = mnOwner.createrawtransaction(inputs, outputs)
+        signedtx = mnOwner.signrawtransaction(rawtx)
+        txid = miner.sendrawtransaction(signedtx['hex'])
+        self.sync_mempools()
+        self.log.info("Collateral spent in %s" % txid)
+        self.send_pings([self.remoteTwo])
+        self.stake(1, [self.remoteTwo])

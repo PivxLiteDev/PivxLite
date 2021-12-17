@@ -1,4 +1,5 @@
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
@@ -44,12 +45,12 @@ void BalanceBubble::showEvent(QShowEvent *event)
 {
     QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
     this->setGraphicsEffect(eff);
-    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
-    a->setDuration(400);
-    a->setStartValue(0.1);
-    a->setEndValue(1);
-    a->setEasingCurve(QEasingCurve::InBack);
-    a->start(QPropertyAnimation::DeleteWhenStopped);
+    QPropertyAnimation *anim = new QPropertyAnimation(eff,"opacity");
+    anim->setDuration(400);
+    anim->setStartValue(0);
+    anim->setEndValue(1);
+    anim->setEasingCurve(QEasingCurve::Linear);
+    anim->start(QPropertyAnimation::DeleteWhenStopped);
 
     if (!hideTimer) hideTimer = new QTimer(this);
     connect(hideTimer, &QTimer::timeout, this, &BalanceBubble::hideTimeout);

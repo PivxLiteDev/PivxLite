@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +12,6 @@
 #include <QFile>
 #include <QGraphicsDropShadowEffect>
 #include <QListView>
-#include <QStyle>
 
 Qt::Modifier SHORT_KEY
 #ifdef Q_OS_MAC
@@ -100,7 +100,7 @@ bool openDialogWithOpaqueBackgroundFullScreen(QDialog* widget, PIVXLGUI* gui)
     return res;
 }
 
-QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
+QPixmap encodeToQr(const QString& str, QString& errorStr, const QColor& qrColor)
 {
     if (!str.isEmpty()) {
         // limit URI length
@@ -113,12 +113,12 @@ QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
                 errorStr = "Error encoding URI into QR Code.";
                 return QPixmap();
             }
-            QImage myImage = QImage(code->width + 8, code->width + 8, QImage::Format_RGB32);
+            QImage myImage = QImage(code->width + 2, code->width + 2, QImage::Format_RGB32);
             myImage.fill(0xffffff);
             unsigned char* p = code->data;
             for (int y = 0; y < code->width; y++) {
                 for (int x = 0; x < code->width; x++) {
-                    myImage.setPixel(x + 4, y + 4, ((*p & 1) ? qrColor.rgb() : 0xffffff));
+                    myImage.setPixel(x + 1, y + 1, ((*p & 1) ? qrColor.rgb() : 0xffffff));
                     p++;
                 }
             }
@@ -230,35 +230,25 @@ void updateStyle(QWidget* widget)
 
 QColor getRowColor(bool isLightTheme, bool isHovered, bool isSelected)
 {
-    if (isLightTheme) {
-        if (isSelected) {
-            return QColor("#25b088ff");
-        } else if (isHovered) {
-            return QColor("#25bababa");
-        } else {
-            return QColor("#ffffff");
-        }
+    if (isSelected) {
+        return QColor("#25b088ff");
+    } else if (isHovered) {
+        return QColor("#25bababa");
     } else {
-        if (isSelected) {
-            return QColor("#25b088ff");
-        } else if (isHovered) {
-            return QColor("#25bababa");
-        } else {
-            return QColor("#0f0b16");
-        }
+        return isLightTheme ? QColor("#ffffff") : QColor("#0f0b16");
     }
 }
 
 void initComboBox(QComboBox* combo, QLineEdit* lineEdit, QString cssClass)
 {
-    setCssProperty(combo, cssClass);
+    setCssProperty(combo, std::move(cssClass));
     combo->setEditable(true);
     if (lineEdit) {
         lineEdit->setReadOnly(true);
         lineEdit->setAlignment(Qt::AlignRight);
         combo->setLineEdit(lineEdit);
     }
-    combo->setStyleSheet("selection-background-color:transparent; selection-color:transparent;");
+    combo->setStyleSheet("selection-background-color:transparent;");
     combo->setView(new QListView());
 }
 
@@ -284,7 +274,7 @@ void initCssEditLine(QLineEdit* edit, bool isDialog)
     else
         setCssEditLine(edit, true, false);
     setShadow(edit);
-    edit->setAttribute(Qt::WA_MacShowFocusRect, 0);
+    edit->setAttribute(Qt::WA_MacShowFocusRect, false);
 }
 
 void setCssEditLine(QLineEdit* edit, bool isValid, bool forceUpdate)
@@ -339,14 +329,14 @@ void setCssSubtitleScreen(QWidget* wid)
     setCssProperty(wid, "text-subtitle", false);
 }
 
-void setCssProperty(std::initializer_list<QWidget*> args, QString value)
+void setCssProperty(std::initializer_list<QWidget*> args, const QString& value)
 {
     for (QWidget* w : args) {
         setCssProperty(w, value);
     }
 }
 
-void setCssProperty(QWidget* wid, QString value, bool forceUpdate)
+void setCssProperty(QWidget* wid, const QString& value, bool forceUpdate)
 {
     wid->setProperty("cssClass", value);
     forceUpdateStyle(wid, forceUpdate);

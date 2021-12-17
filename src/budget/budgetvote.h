@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +18,7 @@
 class CBudgetVote : public CSignedMessage
 {
 public:
-    enum VoteDirection {
+    enum VoteDirection : uint32_t {
         VOTE_ABSTAIN = 0,
         VOTE_YES = 1,
         VOTE_NO = 2
@@ -50,7 +51,7 @@ public:
     // override CSignedMessage functions
     uint256 GetSignatureHash() const override { return GetHash(); }
     std::string GetStrMessage() const override;
-    const CTxIn GetVin() const override { return vin; };
+    CTxIn GetVin() const { return vin; };
 
     UniValue ToJSON() const;
 
@@ -64,25 +65,7 @@ public:
     void SetTime(const int64_t& _nTime) { nTime = _nTime; }
     void SetValid(bool _fValid) { fValid = _fValid; }
 
-    ADD_SERIALIZE_METHODS;
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
-    {
-        READWRITE(vin);
-        READWRITE(nProposalHash);
-        int nVoteInt = (int) nVote;
-        READWRITE(nVoteInt);
-        if (ser_action.ForRead())
-            nVote = (VoteDirection) nVoteInt;
-        READWRITE(nTime);
-        READWRITE(vchSig);
-        try
-        {
-            READWRITE(nMessVersion);
-        } catch (...) {
-            nMessVersion = MessageVersion::MESS_VER_STRMESS;
-        }
-    }
+    SERIALIZE_METHODS(CBudgetVote, obj) { READWRITE(obj.vin, obj.nProposalHash, Using<CustomUintFormatter<4>>(obj.nVote), obj.nTime, obj.vchSig, obj.nMessVersion); }
 };
 
 #endif // BUDGET_VOTE_H

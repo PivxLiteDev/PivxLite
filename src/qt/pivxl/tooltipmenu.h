@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -39,6 +40,7 @@ public:
     void setDeleteBtnVisible(bool visible);
     void setEditBtnVisible(bool visible);
     void setLastBtnVisible(bool visible);
+    void setLastBtnCheckable(bool checkable, bool isChecked);
 
 Q_SIGNALS:
     void onDeleteClicked();

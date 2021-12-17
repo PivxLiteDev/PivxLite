@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -44,7 +45,7 @@ uint256 CFinalizedBudgetVote::GetHash() const
 UniValue CFinalizedBudgetVote::ToJSON() const
 {
     UniValue bObj(UniValue::VOBJ);
-    bObj.pushKV("nHash", vin.prevout.GetHash().ToString());
+    bObj.pushKV("nHash", GetHash().ToString());
     bObj.pushKV("nTime", (int64_t) nTime);
     bObj.pushKV("fValid", fValid);
     return bObj;

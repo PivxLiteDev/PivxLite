@@ -33,7 +33,7 @@ Source22:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/doc/
 
 #selinux
 Source30:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/contrib/rpm/pivxl.te
-# Source31 - what about pivxl-tx and bench_pivxl ???
+# Source31 - what about pivxl-tx and bench_pivx ???
 Source31:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/contrib/rpm/pivxl.fc
 Source32:	https://raw.githubusercontent.com/pivxl-project/pivxl/v%{version}/contrib/rpm/pivxl.if
 
@@ -56,7 +56,7 @@ Patch0:		pivxl-0.12.0-libressl.patch
 %description
 Bitcoin is a digital cryptographic currency that uses peer-to-peer technology to
 operate with no central authority or banks; managing transactions and the
-issuing of pivxls is carried out collectively by the network.
+issuing of pivxs is carried out collectively by the network.
 
 %if %{_buildqt}
 %package core
@@ -81,7 +81,7 @@ BuildRequires:	%{_bindir}/convert
 %description core
 Bitcoin is a digital cryptographic currency that uses peer-to-peer technology to
 operate with no central authority or banks; managing transactions and the
-issuing of pivxls is carried out collectively by the network.
+issuing of pivxs is carried out collectively by the network.
 
 This package contains the Qt based graphical client and node. If you are looking
 to run a Bitcoin wallet, this is probably the package you want.
@@ -93,7 +93,7 @@ Summary:	Bitcoin shared libraries
 Group:		System Environment/Libraries
 
 %description libs
-This package provides the pivxlconsensus shared libraries. These libraries
+This package provides the pivxconsensus shared libraries. These libraries
 may be used by third party software to provide consensus verification
 functionality.
 
@@ -106,7 +106,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 This package contains the header files and static library for the
-pivxlconsensus shared library. If you are developing or compiling software
+pivxconsensus shared library. If you are developing or compiling software
 that wants to link against that library, then you need this package installed.
 
 Most people do not need this package installed.
@@ -143,7 +143,7 @@ pivxl-core daemon.
 
 The pivxl-cli utility allows you to communicate and control a pivxl daemon
 over RPC, the pivxl-tx utility allows you to create a custom transaction, and
-the bench_pivxl utility can be used to perform some benchmarks.
+the bench_pivx utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the pivxl-server package.
 
@@ -247,16 +247,16 @@ install -D -p share/pixmaps/pivxl.ico %{buildroot}%{_datadir}/pixmaps/pivxl.ico
 install -p share/pixmaps/nsis-header.bmp %{buildroot}%{_datadir}/pixmaps/
 install -p share/pixmaps/nsis-wizard.bmp %{buildroot}%{_datadir}/pixmaps/
 install -p %{SOURCE100} %{buildroot}%{_datadir}/pixmaps/pivxl.svg
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivxl16.png -w16 -h16
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivxl32.png -w32 -h32
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivxl64.png -w64 -h64
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivxl128.png -w128 -h128
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivxl256.png -w256 -h256
-%{_bindir}/convert -resize 16x16 %{buildroot}%{_datadir}/pixmaps/pivxl256.png %{buildroot}%{_datadir}/pixmaps/pivxl16.xpm
-%{_bindir}/convert -resize 32x32 %{buildroot}%{_datadir}/pixmaps/pivxl256.png %{buildroot}%{_datadir}/pixmaps/pivxl32.xpm
-%{_bindir}/convert -resize 64x64 %{buildroot}%{_datadir}/pixmaps/pivxl256.png %{buildroot}%{_datadir}/pixmaps/pivxl64.xpm
-%{_bindir}/convert -resize 128x128 %{buildroot}%{_datadir}/pixmaps/pivxl256.png %{buildroot}%{_datadir}/pixmaps/pivxl128.xpm
-%{_bindir}/convert %{buildroot}%{_datadir}/pixmaps/pivxl256.png %{buildroot}%{_datadir}/pixmaps/pivxl256.xpm
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx16.png -w16 -h16
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx32.png -w32 -h32
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx64.png -w64 -h64
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx128.png -w128 -h128
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx256.png -w256 -h256
+%{_bindir}/convert -resize 16x16 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx16.xpm
+%{_bindir}/convert -resize 32x32 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx32.xpm
+%{_bindir}/convert -resize 64x64 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx64.xpm
+%{_bindir}/convert -resize 128x128 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx128.xpm
+%{_bindir}/convert %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx256.xpm
 touch %{buildroot}%{_datadir}/pixmaps/*.png -r %{SOURCE100}
 touch %{buildroot}%{_datadir}/pixmaps/*.xpm -r %{SOURCE100}
 
@@ -272,7 +272,7 @@ Comment[tr]=Bitcoin, eşten eşe kriptografik sanal para birimi
 Exec=pivxl-qt %u
 Terminal=false
 Type=Application
-Icon=pivxl128
+Icon=pivx128
 MimeType=x-scheme-handler/pivxl;
 Categories=Office;Finance;
 EOF
@@ -422,7 +422,7 @@ rm -rf %{buildroot}
 %doc COPYING pivxl.conf.example doc/README.md
 %attr(0755,root,root) %{_bindir}/pivxl-cli
 %attr(0755,root,root) %{_bindir}/pivxl-tx
-%attr(0755,root,root) %{_bindir}/bench_pivxl
+%attr(0755,root,root) %{_bindir}/bench_pivx
 %attr(0644,root,root) %{_mandir}/man1/pivxl-cli.1*
 
 

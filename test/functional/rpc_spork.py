@@ -2,15 +2,14 @@
 # Copyright (c) 2019-2020 The PIVX developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-# -*- coding: utf-8 -*-
 
 from time import sleep
 
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import PivxlTestFramework
 from test_framework.util import set_node_times, assert_equal
 
 
-class PIVXL_RPCSporkTest(PivxTestFramework):
+class PIVXL_RPCSporkTest(PivxlTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

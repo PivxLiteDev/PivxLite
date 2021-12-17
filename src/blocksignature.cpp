@@ -1,11 +1,12 @@
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "blocksignature.h"
 
 #include "script/standard.h"
-#include "zpivchain.h"
+#include "zpivxlchain.h"
 
 bool SignBlockWithKey(CBlock& block, const CKey& key)
 {
@@ -40,7 +41,7 @@ bool SignBlock(CBlock& block, const CKeyStore& keystore)
     return SignBlockWithKey(block, key);
 }
 
-bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
+bool CheckBlockSignature(const CBlock& block)
 {
     if (block.IsProofOfWork())
         return block.vchBlockSig.empty();
@@ -64,13 +65,6 @@ bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
         if (!Solver(txout.scriptPubKey, whichType, vSolutions))
             return false;
 
-        if (!enableP2PKH) {
-            // Before v5 activation, P2PKH was always failing.
-            if (whichType == TX_PUBKEYHASH) {
-                return false;
-            }
-        }
-
         if (whichType == TX_PUBKEY) {
             valtype& vchPubKey = vSolutions[0];
             pubkey = CPubKey(vchPubKey);
@@ -83,14 +77,17 @@ bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
                 // p2pk scriptsig only contains the signature and p2pkh scriptpubkey only contain the hash.
                 return false;
             } else {
-                int start = 1 + (int) *txin.scriptSig.begin(); // skip sig
+                unsigned int start = 1 + (unsigned int) *txin.scriptSig.begin(); // skip sig
+                if (start >= txin.scriptSig.size() - 1) return false;
                 pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());
             }
         } else if (whichType == TX_COLDSTAKE) {
             // pick the public key from the P2CS input
             const CTxIn& txin = block.vtx[1]->vin[0];
-            int start = 1 + (int) *txin.scriptSig.begin(); // skip sig
+            unsigned int start = 1 + (unsigned int) *txin.scriptSig.begin(); // skip sig
+            if (start >= txin.scriptSig.size() - 1) return false;
             start += 1 + (int) *(txin.scriptSig.begin()+start); // skip flag
+            if (start >= txin.scriptSig.size() - 1) return false;
             pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());
         }
     }

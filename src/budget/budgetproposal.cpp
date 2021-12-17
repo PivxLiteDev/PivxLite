@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -58,7 +59,7 @@ bool CBudgetProposal::ParseBroadcast(CDataStream& broadcast)
         broadcast >> nBlockStart;
         broadcast >> nBlockEnd;
         broadcast >> nAmount;
-        broadcast >> *(CScriptBase*)(&address);
+        broadcast >> address;
         broadcast >> nFeeTXHash;
     } catch (std::exception& e) {
         return error("Unable to deserialize proposal broadcast: %s", e.what());
@@ -215,11 +216,11 @@ bool CBudgetProposal::IsPassing(int nBlockStartBudget, int nBlockEndBudget, int 
 bool CBudgetProposal::AddOrUpdateVote(const CBudgetVote& vote, std::string& strError)
 {
     std::string strAction = "New vote inserted:";
-    const uint256& hash = vote.GetVin().prevout.GetHash();
+    const COutPoint& mnId = vote.GetVin().prevout;
     const int64_t voteTime = vote.GetTime();
 
-    if (mapVotes.count(hash)) {
-        const int64_t& oldTime = mapVotes[hash].GetTime();
+    if (mapVotes.count(mnId)) {
+        const int64_t& oldTime = mapVotes[mnId].GetTime();
         if (oldTime > voteTime) {
             strError = strprintf("new vote older than existing vote - %s\n", vote.GetHash().ToString());
             LogPrint(BCLog::MNBUDGET, "%s: %s\n", __func__, strError);
@@ -240,7 +241,7 @@ bool CBudgetProposal::AddOrUpdateVote(const CBudgetVote& vote, std::string& strE
         return false;
     }
 
-    mapVotes[hash] = vote;
+    mapVotes[mnId] = vote;
     LogPrint(BCLog::MNBUDGET, "%s: %s %s\n", __func__, strAction.c_str(), vote.GetHash().ToString().c_str());
 
     return true;
@@ -265,20 +266,6 @@ void CBudgetProposal::SetSynced(bool synced)
             vote.SetSynced(false);
         }
     }
-}
-
-// If masternode voted for a proposal, but is now invalid -- remove the vote
-void CBudgetProposal::CleanAndRemove()
-{
-    LogPrint(BCLog::MNBUDGET, "Cleaning budget votes for %s. Before: YES=%d, NO=%d\n", GetName(), GetYeas(), GetNays());
-    std::map<uint256, CBudgetVote>::iterator it = mapVotes.begin();
-
-    while (it != mapVotes.end()) {
-        CMasternode* pmn = mnodeman.Find(it->second.GetVin().prevout);
-        (*it).second.SetValid(pmn != nullptr);
-        ++it;
-    }
-    LogPrint(BCLog::MNBUDGET, "Cleaned budget votes for %s. After: YES=%d, NO=%d\n", GetName(), GetYeas(), GetNays());
 }
 
 double CBudgetProposal::GetRatio() const
@@ -306,7 +293,7 @@ std::vector<uint256> CBudgetProposal::GetVotesHashes() const
 {
     std::vector<uint256> vRet;
     for (const auto& it: mapVotes) {
-        vRet.push_back(it.first);
+        vRet.push_back(it.second.GetHash());
     }
     return vRet;
 }
@@ -352,7 +339,7 @@ CDataStream CBudgetProposal::GetBroadcast() const
     broadcast << nBlockStart;
     broadcast << nBlockEnd;
     broadcast << nAmount;
-    broadcast << *(CScriptBase*)(&address);
+    broadcast << address;
     broadcast << nFeeTXHash;
     return broadcast;
 }

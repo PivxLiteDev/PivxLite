@@ -1,4 +1,4 @@
-PIVXL Core version 3.0.5 is now available from:
+PIVXL version 3.0.5 is now available from:
 
   <https://github.com/pivxl-project/pivxl/releases>
 
@@ -13,7 +13,7 @@ Please report bugs using the issue tracker at github:
 Mandatory Update
 ==============
 
-PIVXL Core v3.0.5 is a mandatory update for all users. This release contains various updates/fixes pertaining to the zPIVXL protocol, supply tracking, block transmission and relaying, as well as usability and quality-of-life updates to the GUI. Users are required to update before block `908000` which is when the accumulators will be refactored. Shortly after that block, zPIVXL transactions will be enabled. **When zPIVXL is enabled, autominting will also be enabled.** If you would like to disable automatic conversion of 10% of your PIVXL balance to zPIVXL, then you will need to add `enablezeromint=0` to your `pivxl.conf` file. For information about where to find your pivxl.conf you can visit this link from [PIVXL Support](https://pivxl.freshdesk.com/support/solutions/articles/30000004664-where-are-my-wallet-dat-blockchain-and-configuration-conf-files-located-).
+PIVXL v3.0.5 is a mandatory update for all users. This release contains various updates/fixes pertaining to the zPIVXL protocol, supply tracking, block transmission and relaying, as well as usability and quality-of-life updates to the GUI. Users are required to update before block `908000` which is when the accumulators will be refactored. Shortly after that block, zPIVXL transactions will be enabled. **When zPIVXL is enabled, autominting will also be enabled.** If you would like to disable automatic conversion of 10% of your PIVXL balance to zPIVXL, then you will need to add `enablezeromint=0` to your `pivxl.conf` file. For information about where to find your pivxl.conf you can visit this link from [PIVXL Support](https://pivxl.freshdesk.com/support/solutions/articles/30000004664-where-are-my-wallet-dat-blockchain-and-configuration-conf-files-located-).
 
 Users will have a grace period to update their clients before versions prior to this release are no longer allowed to connect to this (and future) version(s).
 
@@ -27,7 +27,7 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-PIVXL Core is extensively tested on multiple operating systems using
+PIVXL is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -35,7 +35,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-PIVXL Core should also work on most other Unix-like systems but is not
+PIVXL should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 ### :exclamation::exclamation::exclamation: MacOS 10.13 High Sierra :exclamation::exclamation::exclamation:
@@ -52,11 +52,11 @@ The zPIVXL accumulator code has undergone a major refactor. Accumulators are one
 
 libzerocoin Exploit Fix
 ---------------------
-zPIVXL relies on a 3rd party library called libzerocoin. All currencies that utilize the zerocoin protocol use libzerocoin, and many of those currencies have been exposed to an exploit which allowed for the creation of multiple zero-knowledge spending proofs for one single zerocoin mint. The PIVXL developers were able properly identify the exploit, track down any fraudulent spending proofs, link the fraudulent spending proofs with their one valid proof that they were mutated from, and remove any mints from the accumulators that were derived from the invalid spends.
+zPIVXL relies on a 3rd party library called libzerocoin. All currencies that utilize the zerocoin protocol use libzerocoin, and many of those currencies have been exposed to an exploit which allowed for the creation of multiple zero-knowledge spending proofs for one single zerocoin mint. The PIVX developers were able properly identify the exploit, track down any fraudulent spending proofs, link the fraudulent spending proofs with their one valid proof that they were mutated from, and remove any mints from the accumulators that were derived from the invalid spends. 
 
 zPIVXL Maintenance Mode Spork
 ---------------------
-Handling the above noted libzerocoin exploit required the PIVXL team to immediately release a patched wallet to as many users as possible which rejected bad spends and also disabled all zPIVXL transactions in general. The process of releasing a patched wallet in such a small time frame is frustrating and difficult for all members of the PIVXL team and especially users of PIVXL. The PIVXL developers have added a new spork which allows for zPIVXL transacting to be turned on/off without having to release a patched wallet. This will allow much smoother operation if any problems occur in the future, and should also allow exchanges and 3rd party services to continue to operate even if zPIVXL is in maintenance mode.
+Handling the above noted libzerocoin exploit required the PIVXL team to immediately release a patched wallet to as many users as possible which rejected bad spends and also disabled all zPIVXL transactions in general. The process of releasing a patched wallet in such a small time frame is frustrating and difficult for all members of the PIVXL team and especially users of PIVXL. The PIVX developers have added a new spork which allows for zPIVXL transacting to be turned on/off without having to release a patched wallet. This will allow much smoother operation if any problems occur in the future, and should also allow exchanges and 3rd party services to continue to operate even if zPIVXL is in maintenance mode.
 
 Money Supply Indexing
 ---------------------
@@ -85,7 +85,7 @@ git merge commit are mentioned.
 
 ### Wallet
 - #308 `bd8a982` [Minting] Clear mempool after invalid block from miner (presstab)
-- #316 `ed192cf` [Minting] Better filtering of zPiv serials in miner. (presstab)
+- #316 `ed192cf` [Minting] Better filtering of zPivxl serials in miner. (presstab)
 
 ### GUI
 - #278 `46f4960` [QT] Multisignature GUI (rejectedpromise)

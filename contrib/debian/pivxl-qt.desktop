@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=PIVXL Core
+Name=PIVXL
 Comment=PIVXL P2P Cryptocurrency
 Comment[fr]=PIVXL, monnaie virtuelle cryptographique pair à pair
 Comment[tr]=PIVXL, eşten eşe kriptografik sanal para birimi
 Exec=pivxl-qt %u
 Terminal=false
 Type=Application
-Icon=pivxl128
+Icon=pivx128
 MimeType=x-scheme-handler/pivxl;
 Categories=Office;Finance;
-StartupWMClass=Pivx-qt
+StartupWMClass=Pivxl-qt

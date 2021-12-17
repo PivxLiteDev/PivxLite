@@ -519,7 +519,7 @@
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>Amount of PIVXL and zPIVXL staked.</string>
+               <string>Amount of staking rewards received.</string>
               </property>
              </widget>
             </item>
@@ -565,7 +565,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="labelAmountPiv">
+           <widget class="QLabel" name="labelAmountPivxl">
             <property name="text">
              <string notr="true">0 PIVXL</string>
             </property>
@@ -575,7 +575,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="labelAmountZpiv">
+           <widget class="QLabel" name="labelAmountZpivxl">
             <property name="text">
              <string notr="true">0 zPIVXL</string>
             </property>
@@ -673,7 +673,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelSquarePiv">
+                 <widget class="QLabel" name="labelSquarePivxl">
                   <property name="minimumSize">
                    <size>
                     <width>14</width>
@@ -692,7 +692,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelPiv">
+                 <widget class="QLabel" name="labelPivxl">
                   <property name="text">
                    <string notr="true">PIVXL</string>
                   </property>
@@ -715,7 +715,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelSquarezPiv">
+                 <widget class="QLabel" name="labelSquarezPivxl">
                   <property name="minimumSize">
                    <size>
                     <width>14</width>
@@ -734,7 +734,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelZpiv">
+                 <widget class="QLabel" name="labelZpivxl">
                   <property name="text">
                    <string notr="true">zPIVXL</string>
                   </property>

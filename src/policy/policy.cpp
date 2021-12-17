@@ -9,18 +9,20 @@
 
 #include "consensus/tx_verify.h" // for IsFinal()
 #include "tinyformat.h"
-#include "util.h"
+#include "util/system.h"
 #include "utilstrencodings.h"
 #include "validation.h"
 
 
 bool fIsBareMultisigStd = DEFAULT_PERMIT_BAREMULTISIG;
 
-CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFee)
+CFeeRate dustRelayFee = CFeeRate(DUST_RELAY_TX_FEE);
+
+CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
 {
     // "Dust" is defined in terms of dustRelayFee,
     // which has units satoshis-per-kilobyte.
-    // If you'd pay more than 1/3 in fees
+    // If you'd pay more in fees than the value of the output
     // to spend something, then we consider it dust.
     // A typical spendable txout is 34 bytes big, and will
     // need a CTxIn of at least 148 bytes to spend:
@@ -29,28 +31,28 @@ CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFee)
     if (txout.scriptPubKey.IsUnspendable())
         return 0;
 
-    size_t nSize = GetSerializeSize(txout, SER_DISK, 0);
+    size_t nSize = GetSerializeSize(txout, 0);
     nSize += (32 + 4 + 1 + 107 + 4); // the 148 mentioned above
-    return 3 * dustRelayFee.GetFee(nSize);
+    return dustRelayFeeIn.GetFee(nSize);
 }
 
-CAmount GetDustThreshold(const CFeeRate& dustRelayFee)
+CAmount GetDustThreshold(const CFeeRate& dustRelayFeeIn)
 {
     // return the dust threshold for a typical 34 bytes output
-    return 3 * dustRelayFee.GetFee(182);
+    return dustRelayFeeIn.GetFee(182);
 }
 
-bool IsDust(const CTxOut& txout, const CFeeRate& dustRelayFee)
+bool IsDust(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
 {
-    return (txout.nValue < GetDustThreshold(txout, dustRelayFee));
+    return (txout.nValue < GetDustThreshold(txout, dustRelayFeeIn));
 }
 
-CAmount GetShieldedDustThreshold(const CFeeRate& dustRelayFee)
+CAmount GetShieldedDustThreshold(const CFeeRate& dustRelayFeeIn)
 {
     unsigned int K = DEFAULT_SHIELDEDTXFEE_K;   // Fixed (100) for now
-    return 3 * K * dustRelayFee.GetFee(SPENDDESCRIPTION_SIZE +
-                                       CTXOUT_REGULAR_SIZE +
-                                       BINDINGSIG_SIZE);
+    return K * dustRelayFeeIn.GetFee(SPENDDESCRIPTION_SIZE +
+                                     CTXOUT_REGULAR_SIZE +
+                                     BINDINGSIG_SIZE);
 }
 
 /**
@@ -95,12 +97,12 @@ bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType)
     return whichType != TX_NONSTANDARD;
 }
 
-bool IsStandardTx(const CTransaction& tx, int nBlockHeight, std::string& reason)
+bool IsStandardTx(const CTransactionRef& tx, int nBlockHeight, std::string& reason)
 {
     AssertLockHeld(cs_main);
     if (!Params().GetConsensus().NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_V5_0)) {
         // Before v5, all txes with version other than STANDARD_VERSION (1) are considered non-standard
-        if (tx.nVersion != CTransaction::TxVersion::LEGACY) {
+        if (tx->nVersion != CTransaction::TxVersion::LEGACY) {
             reason = "version";
             return false;
         }
@@ -133,15 +135,15 @@ bool IsStandardTx(const CTransaction& tx, int nBlockHeight, std::string& reason)
     // almost as much to process as they cost the sender in fees, because
     // computing signature hashes is O(ninputs*txsize). Limiting transactions
     // to MAX_STANDARD_TX_SIZE mitigates CPU exhaustion attacks.
-    unsigned int sz = tx.GetTotalSize();
-    unsigned int nMaxSize = tx.IsShieldedTx() ? MAX_TX_SIZE_AFTER_SAPLING :
-            tx.ContainsZerocoins() ? MAX_ZEROCOIN_TX_SIZE : MAX_STANDARD_TX_SIZE;
+    unsigned int sz = tx->GetTotalSize();
+    unsigned int nMaxSize = tx->IsShieldedTx() ? MAX_TX_SIZE_AFTER_SAPLING :
+            tx->ContainsZerocoins() ? MAX_ZEROCOIN_TX_SIZE : MAX_STANDARD_TX_SIZE;
     if (sz >= nMaxSize) {
         reason = "tx-size";
         return false;
     }
 
-    for (const CTxIn& txin : tx.vin) {
+    for (const CTxIn& txin : tx->vin) {
         if (txin.IsZerocoinSpend() || txin.IsZerocoinPublicSpend())
             continue;
         // Biggest 'standard' txin is a 15-of-15 P2SH multisig with compressed
@@ -163,7 +165,7 @@ bool IsStandardTx(const CTransaction& tx, int nBlockHeight, std::string& reason)
 
     unsigned int nDataOut = 0;
     txnouttype whichType;
-    for (const CTxOut& txout : tx.vout) {
+    for (const CTxOut& txout : tx->vout) {
         if (!::IsStandard(txout.scriptPubKey, whichType)) {
             reason = "scriptpubkey";
             return false;
@@ -174,7 +176,7 @@ bool IsStandardTx(const CTransaction& tx, int nBlockHeight, std::string& reason)
         else if ((whichType == TX_MULTISIG) && (!fIsBareMultisigStd)) {
             reason = "bare-multisig";
             return false;
-        } else if (IsDust(txout, ::minRelayTxFee)) {
+        } else if (IsDust(txout, dustRelayFee)) {
             reason = "dust";
             return false;
         }

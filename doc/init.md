@@ -124,7 +124,7 @@ use old versions of Upstart and do not supply the start-stop-daemon utility.
 Copy pivxld.init to /etc/init.d/pivxld. Test by running `service pivxld start`.
 
 Using this script, you can adjust the path and flags to the pivxld program by
-setting the pivxld and FLAGS environment variables in the file
+setting the PIVXD and FLAGS environment variables in the file
 /etc/sysconfig/pivxld. You can also use the DAEMONOPTS environment variable here.
 
 ### macOS

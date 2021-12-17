@@ -62,6 +62,7 @@
         <file alias="ic-arrow-white-right">pivxl/res/img/ic-arrow-white-right.svg</file>
         <file alias="ic-check-active">pivxl/res/img/ic-check-active.svg</file>
         <file alias="ic-check-box">pivxl/res/img/ic-check-box.svg</file>
+        <file alias="ic-check-box-light">pivxl/res/img/ic-check-box-light.svg</file>
         <file alias="ic-check-box-liliac-indeterminate">pivxl/res/img/ic-check-box-liliac-indeterminate.svg</file>
         <file alias="ic-check-connect-off">pivxl/res/img/ic-check-connect-off.svg</file>
         <file alias="ic-check-connect">pivxl/res/img/ic-check-connect.svg</file>
@@ -91,8 +92,8 @@
         <file alias="ic-clear-purple">pivxl/res/img/ic-clear-purple.svg</file>
         <file alias="ic-close-white">pivxl/res/img/ic-close-white.svg</file>
         <file alias="ic-close">pivxl/res/img/ic-close.svg</file>
-        <file alias="ic-coin-piv">pivxl/res/img/ic-coin-piv.svg</file>
-        <file alias="ic-coin-zpiv">pivxl/res/img/ic-coin-zpiv.svg</file>
+        <file alias="ic-coin-pivxl">pivxl/res/img/ic-coin-pivxl.png</file>
+        <file alias="ic-coin-zpivxl">pivxl/res/img/ic-coin-zpivxl.svg</file>
         <file alias="ic-combo-box">pivxl/res/img/ic-combo-box.svg</file>
         <file alias="ic-connect">pivxl/res/img/ic-connect.svg</file>
         <file alias="ic-copy-liliac">pivxl/res/img/ic-copy-liliac.svg</file>
@@ -181,7 +182,7 @@
         <file alias="img-empty-staking-off">pivxl/res/img/img-empty-staking-off.svg</file>
         <file alias="img-empty-staking-on">pivxl/res/img/img-empty-staking-on.svg</file>
         <file alias="img-empty-transactions">pivxl/res/img/img-empty-transactions.svg</file>
-        <file alias="img-nav-logo">pivxl/res/img/img-nav-logo.svg</file>
+        <file alias="img-nav-logo">pivxl/res/img/img-nav-logo.png</file>
         <file alias="img-qr">pivxl/res/img/img-qr.svg</file>
         <file alias="ic-contact-arrow-down">pivxl/res/img/ic-contact-arrow-down.svg</file>
         <file alias="ic-contact-arrow-down-white">pivxl/res/img/ic-contact-arrow-down-white.svg</file>
@@ -189,7 +190,7 @@
         <file alias="ic-arrow-drop-up-purple">pivxl/res/img/ic-arrow-drop-up-purple.svg</file>
         <file alias="bg-welcome-2x">pivxl/res/img/bg-welcome@2x.jpg</file>
         <file alias="bg-welcome-3x">pivxl/res/img/bg-welcome@3x.jpg</file>
-        <file alias="img-logo-pivxl">pivxl/res/img/img-logo-pivxl.svg</file>
+        <file alias="img-logo-pivxl">pivxl/res/img/img-logo-pivxl.png</file>
         <file alias="bg-welcome-svg">pivxl/res/img/bg-welcome.svg</file>
         <file alias="bg-welcome-container">pivxl/res/img/bg-welcome-container.svg</file>
         <file alias="bg-welcome">pivxl/res/img/bg-welcome.png</file>

@@ -1,8 +1,8 @@
 # Copyright (c) 2018-2019 The Ion developers
-# Copyright (c) 2019 The PIVX developers
-name: pivxl-core
+# Copyright (c) 2019 The PIVXL developers
+name: pivx-core
 base: core18
-version: 4.3.99
+version: 5.3.3
 summary:   PIVXL (Private – Instant – Verified – Transaction)
 description: |
   PIVXL is an MIT licensed,
@@ -11,68 +11,68 @@ description: |
   Zero Knowledge cryptography proofs for industry-leading
   transaction anonymity.
 
-  - [Download](https://pivxl.org/wp-content/uploads/2018/10/PIVXL-White.pdf) PIVXL White Paper PDF
+  - [Download](https://pivx.org/wp-content/uploads/2018/10/PIVXL-White.pdf) PIVXL White Paper PDF
 grade: devel
 confinement: strict
 
 apps:
   daemon:
-    command: pivxld
+    command: pivxd
     plugs: [network, network-bind, home, removable-media]
-    desktop: pivxld.desktop
+    desktop: pivxd.desktop
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   daemon-testnet:
-    command: pivxld --testnet
+    command: pivxd --testnet
     plugs: [network, network-bind, home, removable-media]
-    desktop: pivxld_testnet.desktop
+    desktop: pivxd_testnet.desktop
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   qt:
-    command: desktop-launch pivxl-qt
+    command: desktop-launch pivx-qt
     plugs: [network, network-bind, network-status, unity7, desktop, desktop-legacy, wayland, x11, mir, opengl, home, gsettings, removable-media, screen-inhibit-control, pulseaudio, media-hub]
-    desktop: pivxl-qt.desktop
+    desktop: pivx-qt.desktop
     environment:
       QT_XKB_CONFIG_ROOT: $SNAP_USER_DATA:$SNAP/usr/share:$QT_XKB_CONFIG_ROOT
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   qt-testnet:
-    command: desktop-launch pivxl-qt --testnet
+    command: desktop-launch pivx-qt --testnet
     plugs: [network, network-bind, network-status, unity7, desktop, desktop-legacy, wayland, x11, mir, opengl, home, gsettings, removable-media, screen-inhibit-control, pulseaudio, media-hub]
-    desktop: pivxl-qt_testnet.desktop
+    desktop: pivx-qt_testnet.desktop
     environment:
       QT_XKB_CONFIG_ROOT: $SNAP_USER_DATA:$SNAP/usr/share:$QT_XKB_CONFIG_ROOT
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   cli:
-    command: pivxl-cli
+    command: pivx-cli
     plugs: [network, network-bind, home, removable-media]
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   cli-testnet:
-    command: pivxl-cli --testnet
+    command: pivx-cli --testnet
     plugs: [network, network-bind, home, removable-media]
     environment:
       XDG_DATA_DIRS: $SNAP_USER_DATA:$SNAP/usr/share:$XDG_DATA_DIRS
       HOME: $SNAP_USER_COMMON
   tx:
-    command: pivxl-tx
+    command: pivx-tx
     plugs: [home]
   test:
-    command: test_pivxl
+    command: test_pivx
     plugs: [home]
   testqt:
-    command: test_pivxl-qt
+    command: test_pivx-qt
     plugs: [home]
 
 layout:
-  /usr/share/pivxl/sapling-spend.params:
-    bind-file: $SNAP/share/pivxl/sapling-spend.params
-  /usr/share/pivxl/sapling-output.params:
-    bind-file: $SNAP/share/pivxl/sapling-output.params
+  /usr/share/pivx/sapling-spend.params:
+    bind-file: $SNAP/share/pivx/sapling-spend.params
+  /usr/share/pivx/sapling-output.params:
+    bind-file: $SNAP/share/pivx/sapling-output.params
 
 parts:
 
@@ -105,7 +105,7 @@ parts:
       - xdg-user-dirs
       - fcitx-frontend-qt5
 
-  pivxl-core:
+  pivx-core:
     source: https://github.com/PIVXL-Project/PIVXL
     source-type: git
     source-tag: master
@@ -118,7 +118,7 @@ parts:
       #    project is called ioncore because ion exists already as package. For anybody
       #    offering non official release and using own SNAP, this variable should be used
       #    default value is "false", to enable it, use your projects binary prefix
-      OVERRIDEBINPREFIX="pivxl"
+      OVERRIDEBINPREFIX="pivx"
       OVERRIDEDATADIR="false"
       OVERRIDECONF="${OVERRIDEDATADIR}"
       COPYCONF=0    # copy example config into users data folder, 1 = enabled
@@ -227,7 +227,7 @@ parts:
       echo "INSTALLATION OF ${BINPREF}-${SNAPCRAFT_PROJECT_VERSION}" # run make install with a prefix where to install
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
       make install prefix=${SNAPCRAFT_PART_INSTALL}
-      install -m 0644 -D -T $SNAPCRAFT_PART_BUILD/src/qt/res/icons/bitcoin.png $SNAPCRAFT_PART_INSTALL/share/pixmaps/pivxl.png
+      install -m 0644 -D -T $SNAPCRAFT_PART_BUILD/src/qt/res/icons/bitcoin.png $SNAPCRAFT_PART_INSTALL/share/pixmaps/pivx.png
       install -m 0644 -D -T $SNAPCRAFT_PART_BUILD/src/qt/res/icons/bitcoin_testnet.png $SNAPCRAFT_PART_INSTALL/share/pixmaps/pivxl_testnet.png
       echo "-----------------------------------------------"
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
@@ -262,7 +262,7 @@ parts:
       fi
       echo "-----------------------------------------------"
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
-      echo "CONFIG FILE" # create .pivxl folder and copy example config - !!!warning!!!: do not copy as pivxl.conf
+      echo "CONFIG FILE" # create .pivx folder and copy example config - !!!warning!!!: do not copy as pivx.conf
       echo "+++++++++++++++++++++++++++++++++++++++++++++++"
       mkdir -p ${SNAP_USER_COMMON}/.${DATADIR}
       if [ $COPYCONF = 1 ]; then
@@ -311,13 +311,13 @@ parts:
       - python3
       - help2man
       - doxygen
-      - libssl-dev
       - libgmp-dev
       - libevent-dev
       - libboost-all-dev
       - libsodium-dev
       - cargo
       - libminiupnpc-dev
+      - libnatpmp-dev
       - libzmq3-dev
       - libqt5gui5
       - libqt5core5a
@@ -346,7 +346,6 @@ parts:
       - ca-certificates
       - libboost-chrono1.65.1
       - libboost-filesystem1.65.1
-      - libboost-program-options1.65.1
       - libboost-system1.65.1
       - libboost-test1.65.1
       - libboost-thread1.65.1
@@ -354,6 +353,7 @@ parts:
       - libevent-2.1-6
       - libevent-pthreads-2.1-6
       - libminiupnpc10
+      - libnatpmp1
       - libnorm1
       - libpgm-5.2-0
       - libprotobuf10

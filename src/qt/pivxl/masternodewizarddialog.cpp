@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,25 +7,35 @@
 #include "qt/pivxl/forms/ui_masternodewizarddialog.h"
 
 #include "activemasternode.h"
+#include "clientmodel.h"
+#include "key_io.h"
 #include "optionsmodel.h"
-#include "pairresult.h"
 #include "qt/pivxl/mnmodel.h"
 #include "qt/pivxl/guitransactionsutils.h"
 #include "qt/pivxl/qtutils.h"
+#include "qt/walletmodeltransaction.h"
 
 #include <QFile>
 #include <QIntValidator>
 #include <QHostAddress>
 #include <QRegularExpression>
-#include <QRegularExpressionValidator>
 
-MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *parent) :
+static inline QString formatParagraph(const QString& str) {
+    return "<p align=\"justify\" style=\"text-align:center;\">" + str + "</p>";
+}
+
+static inline QString formatHtmlContent(const QString& str) {
+    return "<html><body>" + str + "</body></html>";
+}
+
+MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel* model, ClientModel* _clientModel, QWidget *parent) :
     FocusedDialog(parent),
     ui(new Ui::MasterNodeWizardDialog),
     icConfirm1(new QPushButton()),
     icConfirm3(new QPushButton()),
     icConfirm4(new QPushButton()),
-    walletModel(model)
+    walletModel(model),
+    clientModel(_clientModel)
 {
     ui->setupUi(this);
 
@@ -49,9 +60,20 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     setCssProperty(ui->labelMessage1a, "text-main-grey");
     setCssProperty(ui->labelMessage1b, "text-main-purple");
 
+    QString collateralAmountStr = GUIUtil::formatBalance(clientModel->getMNCollateralRequiredAmount());
+    ui->labelMessage1a->setText(formatHtmlContent(
+                formatParagraph(tr("To create a PIVXL Masternode you must dedicate %1 (the unit of PIVXL) "
+                        "to the network (however, these coins are still yours and will never leave your possession).").arg(collateralAmountStr)) +
+                formatParagraph(tr("You can deactivate the node and unlock the coins at any time."))));
+
     // Frame 3
     setCssProperty(ui->labelTitle3, "text-title-dialog");
     setCssProperty(ui->labelMessage3, "text-main-grey");
+
+    ui->labelMessage3->setText(formatHtmlContent(
+                formatParagraph(tr("A transaction of %1 will be made").arg(collateralAmountStr)) +
+                formatParagraph(tr("to a new empty address in your wallet.")) +
+                formatParagraph(tr("The Address is labeled under the master node's name."))));
 
     initCssEditLine(ui->lineEditName);
     // MN alias must not contain spaces or "#" character
@@ -70,7 +92,7 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     if (walletModel->isRegTestNetwork()) {
         ui->lineEditPort->setText("51476");
     } else if (walletModel->isTestNetwork()) {
-        ui->lineEditPort->setText("18233");
+        ui->lineEditPort->setText("51474");
     } else {
         ui->lineEditPort->setText("8233");
     }
@@ -191,7 +213,7 @@ bool MasterNodeWizardDialog::createMN()
     // create the mn key
     CKey secret;
     secret.MakeNewKey(false);
-    std::string mnKeyString = EncodeSecret(secret);
+    std::string mnKeyString = KeyIO::EncodeSecret(secret);
 
     // Look for a valid collateral utxo
     COutPoint collateralOut;
@@ -199,20 +221,18 @@ bool MasterNodeWizardDialog::createMN()
     // If not found create a new collateral tx
     if (!walletModel->getMNCollateralCandidate(collateralOut)) {
         // New receive address
-        Destination dest;
-        PairResult r = walletModel->getNewAddress(dest, alias);
-
-        if (!r.result) {
+        auto r = walletModel->getNewAddress(alias);
+        if (!r) {
             // generate address fail
-            inform(tr(r.status->c_str()));
+            inform(tr(r.getError().c_str()));
             return false;
         }
 
         // const QString& addr, const QString& label, const CAmount& amount, const QString& message
         SendCoinsRecipient sendCoinsRecipient(
-                QString::fromStdString(dest.ToString()),
+                QString::fromStdString(r.getObjResult()->ToString()),
                 QString::fromStdString(alias),
-                CAmount(10000) * COIN,
+                clientModel->getMNCollateralRequiredAmount(),
                 "");
 
         // Send the 10 tx to one of your address
@@ -257,12 +277,12 @@ bool MasterNodeWizardDialog::createMN()
         }
 
         // look for the tx index of the collateral
-        CWalletTx* walletTx = currentTransaction.getTransaction();
+        CTransactionRef walletTx = currentTransaction.getTransaction();
         std::string txID = walletTx->GetHash().GetHex();
         int indexOut = -1;
         for (int i=0; i < (int)walletTx->vout.size(); i++) {
-            CTxOut& out = walletTx->vout[i];
-            if (out.nValue == Params().GetConsensus().nMasternodeCollateral) {
+            const CTxOut& out = walletTx->vout[i];
+            if (out.nValue == clientModel->getMNCollateralRequiredAmount()) {
                 indexOut = i;
                 break;
             }
@@ -290,7 +310,7 @@ bool MasterNodeWizardDialog::createMN()
     }
 
     fs::path pathMasternodeConfigFile = GetMasternodeConfigFile();
-    fs::ifstream streamConfig(pathMasternodeConfigFile);
+    fsbridge::ifstream streamConfig(pathMasternodeConfigFile);
 
     if (!streamConfig.good()) {
         returnStr = tr("Invalid masternode.conf file");

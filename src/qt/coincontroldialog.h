@@ -1,5 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -65,13 +66,14 @@ public:
     void clearPayAmounts();
     void addPayAmount(const CAmount& amount, bool isShieldedRecipient);
     void setSelectionType(bool isTransparent) { fSelectTransparent = isTransparent; }
+    bool hasModel() { return model; }
 
-    CCoinControl* coinControl;
+    CCoinControl* coinControl{nullptr};
 
 private:
-    Ui::CoinControlDialog* ui;
-    SnackBar *snackBar = nullptr;
-    WalletModel* model;
+    Ui::CoinControlDialog* ui{nullptr};
+    SnackBar *snackBar{nullptr};
+    WalletModel* model{nullptr};
     int sortColumn;
     Qt::SortOrder sortOrder;
     bool forDelegation;
@@ -83,11 +85,11 @@ private:
     // whether should show available utxo or notes.
     bool fSelectTransparent{true};
 
-    QMenu* contextMenu;
-    QTreeWidgetItem* contextMenuItem;
-    QAction* copyTransactionHashAction;
-    QAction* lockAction;
-    QAction* unlockAction;
+    QMenu* contextMenu{nullptr};
+    QTreeWidgetItem* contextMenuItem{nullptr};
+    QAction* copyTransactionHashAction{nullptr};
+    QAction* lockAction{nullptr};
+    QAction* unlockAction{nullptr};
 
     void updatePushButtonSelectAll(bool checked);
     void sortView(int, Qt::SortOrder);

@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The PIVXL Core developers
+# Copyright (c) 2020 The PIVX developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import PivxTestFramework
+from decimal import Decimal
+
+from test_framework.test_framework import PivxlTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
-    sync_mempools,
 )
 
-from decimal import Decimal
 
 # Test mempool interaction with Sapling transactions
-class SaplingMempoolTest(PivxTestFramework):
+class SaplingMempoolTest(PivxlTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2
@@ -53,7 +53,7 @@ class SaplingMempoolTest(PivxTestFramework):
 
         # Miner receives tx_B and accepts it in the mempool
         assert (txid_B in alice.getrawmempool())
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         assert(txid_B in miner.getrawmempool())
         self.log.info("tx_B accepted in the memory pool.")
 
@@ -87,7 +87,7 @@ class SaplingMempoolTest(PivxTestFramework):
         txid_C = alice.sendrawtransaction(txC_hex)
 
         # Miner receives tx_C and accepts it in the mempool
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         assert(txid_C in miner.getrawmempool())
         self.log.info("tx_C accepted in the memory pool.")
 

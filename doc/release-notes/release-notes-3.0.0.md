@@ -1,4 +1,4 @@
-PIVXL Core version 3.0.0 is now available from:
+PIVXL version 3.0.0 is now available from:
 
   <https://github.com/pivxl-project/pivxl/releases>
 
@@ -12,7 +12,7 @@ Please report bugs using the issue tracker at github:
 Mandatory Update
 ==============
 
-PIVXL Core v3.0.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will have a grace period of one week to update their clients before enforcement of this update is enabled.
+PIVXL v3.0.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will have a grace period of one week to update their clients before enforcement of this update is enabled.
 
 Users updating from a previous version after the 13th of October will require a full resync of their local blockchain from either the P2P network or by way of the bootstrap.
 
@@ -24,7 +24,7 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-PIVXL Core is extensively tested on multiple operating systems using
+PIVXL is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -32,7 +32,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-PIVXL Core should also work on most other Unix-like systems but is not
+PIVXL should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 ### :exclamation::exclamation::exclamation: MacOS 10.13 High Sierra :exclamation::exclamation::exclamation:
@@ -58,7 +58,7 @@ Other implementations of the zerocoin protocol only allow for spending of one de
 The PIVXL zerocoin implementation is structured in such a way that denominations aren't needed to be known by the average user.
 
 ### Fees
-zPiv transactions require more computation and disk space than typical PIVXL transactions, and as such require a higher transaction fee in order to prevent network spam. Fees are only charged when minting zPiv, each minted denomination is charged a flat rate of 0.01 Piv. zPiv spends are not charged a transaction fee unless the change is minted into zPiv, see the *Minting Change* section for details on fees for zPiv spends with minted change.
+zPivxl transactions require more computation and disk space than typical PIVXL transactions, and as such require a higher transaction fee in order to prevent network spam. Fees are only charged when minting zPivxl, each minted denomination is charged a flat rate of 0.01 Pivxl. zPivxl spends are not charged a transaction fee unless the change is minted into zPivxl, see the *Minting Change* section for details on fees for zPivxl spends with minted change.
 
 ### Converting PIVXL to zPIVXL (*zPIVXL Mint*)
 **GUI** - Conversion from PIVXL to zPIVXL can be done using the `Privacy Dialog` in the QT wallet. Enter the amount of PIVXL you would like to convert and click `Mint Zerocoin`.
@@ -95,11 +95,11 @@ Similar to the concept of Coin Control in the QT wallet, zPIVXL Control allows u
 Tor Service Integration Improvements
 ---------------------
 
-Integrating with Tor is now easier than ever! Starting with Tor version 0.2.7.1 it is possible, through Tor's control socket API, to create and destroy 'ephemeral' hidden services programmatically. PIVXL Core has been updated to make use of this.
+Integrating with Tor is now easier than ever! Starting with Tor version 0.2.7.1 it is possible, through Tor's control socket API, to create and destroy 'ephemeral' hidden services programmatically. PIVXL has been updated to make use of this.
 
-This means that if Tor is running (and proper authorization is available), PIVXL Core automatically creates a hidden service to listen on, without manual configuration. PIVXL Core will also use Tor automatically to connect to other .onion nodes if the control socket can be successfully opened. This will positively affect the number of available .onion nodes and their usage.
+This means that if Tor is running (and proper authorization is available), PIVXL automatically creates a hidden service to listen on, without manual configuration. PIVXL will also use Tor automatically to connect to other .onion nodes if the control socket can be successfully opened. This will positively affect the number of available .onion nodes and their usage.
 
-This new feature is enabled by default if PIVXL Core is listening, and a connection to Tor can be made. It can be configured with the `-listenonion`, `-torcontrol` and `-torpassword` settings. To show verbose debugging information, pass `-debug=tor`.
+This new feature is enabled by default if PIVXL is listening, and a connection to Tor can be made. It can be configured with the `-listenonion`, `-torcontrol` and `-torpassword` settings. To show verbose debugging information, pass `-debug=tor`.
 
 3.0.0 Change log
 =================

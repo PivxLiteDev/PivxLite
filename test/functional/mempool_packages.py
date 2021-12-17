@@ -3,17 +3,14 @@
 # Copyright (c) 2020 The PIVX developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
+"""Test descendant package tracking code"""
 
-# Test descendant package tracking code
-
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import PivxlTestFramework
 from test_framework.util import (
     assert_equal,
     Decimal,
     ROUND_DOWN,
     JSONRPCException,
-    sync_blocks,
-    sync_mempools
 )
 
 def satoshi_round(amount):
@@ -22,10 +19,10 @@ def satoshi_round(amount):
 MAX_ANCESTORS = 25
 MAX_DESCENDANTS = 25
 
-class MempoolPackagesTest(PivxTestFramework):
+class MempoolPackagesTest(PivxlTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
-        self.extra_args = [["-maxorphantx=1000", "-relaypriority=0"], ["-maxorphantx=1000", "-relaypriority=0", "-limitancestorcount=5"]]
+        self.extra_args = [["-maxorphantx=1000"], ["-maxorphantx=1000", "-limitancestorcount=5"]]
 
     # Build a transaction that spends parent_txid:vout
     # Return amount sent
@@ -69,16 +66,49 @@ class MempoolPackagesTest(PivxTestFramework):
         for x in reversed(chain):
             assert_equal(mempool[x]['descendantcount'], descendant_count)
             descendant_fees += mempool[x]['fee']
+            assert_equal(mempool[x]['modifiedfee'], mempool[x]['fee'])
             assert_equal(mempool[x]['descendantfees'], SATOSHIS*descendant_fees)
             descendant_size += mempool[x]['size']
             assert_equal(mempool[x]['descendantsize'], descendant_size)
             descendant_count += 1
 
+        # Check that descendant modified fees includes fee deltas from
+        # prioritisetransaction
+        self.nodes[0].prioritisetransaction(chain[-1], 1000)
+        mempool = self.nodes[0].getrawmempool(True)
+
+        descendant_fees = 0
+        for x in reversed(chain):
+            descendant_fees += mempool[x]['fee']
+            assert_equal(mempool[x]['descendantfees'], SATOSHIS*descendant_fees+1000)
+
         # Adding one more transaction on to the chain should fail.
         try:
             self.chain_transaction(self.nodes[0],txid, vout, value, fee, 1)
-        except JSONRPCException as e:
+        except JSONRPCException:
             self.log.info("too-long-ancestor-chain successfully rejected")
+
+        # Check that prioritising a tx before it's added to the mempool works
+        # First clear the mempool by mining a block.
+        self.nodes[0].generate(1)
+        self.sync_blocks()
+        assert_equal(len(self.nodes[0].getrawmempool()), 0)
+        # Prioritise a transaction that has been mined, then add it back to the
+        # mempool by using invalidateblock.
+        self.nodes[0].prioritisetransaction(chain[-1], 2000)
+        self.nodes[0].invalidateblock(self.nodes[0].getbestblockhash())
+        # Keep node1's tip synced with node0
+        self.nodes[1].invalidateblock(self.nodes[1].getbestblockhash())
+
+        # Now check that the transaction is in the mempool, with the right modified fee
+        mempool = self.nodes[0].getrawmempool(True)
+
+        descendant_fees = 0
+        for x in reversed(chain):
+            descendant_fees += mempool[x]['fee']
+            if (x == chain[-1]):
+                assert_equal(mempool[x]['modifiedfee'], mempool[x]['fee']+satoshi_round(0.00002))
+            assert_equal(mempool[x]['descendantfees'], SATOSHIS*descendant_fees+2000)
 
         # TODO: check that node1's mempool is as expected
 
@@ -117,7 +147,7 @@ class MempoolPackagesTest(PivxTestFramework):
         # Test reorg handling
         # First, the basics:
         self.nodes[0].generate(1)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         self.nodes[1].invalidateblock(self.nodes[0].getbestblockhash())
         self.nodes[1].reconsiderblock(self.nodes[0].getbestblockhash())
 
@@ -172,12 +202,12 @@ class MempoolPackagesTest(PivxTestFramework):
         rawtx = self.nodes[0].createrawtransaction(inputs, outputs)
         signedtx = self.nodes[0].signrawtransaction(rawtx)
         txid = self.nodes[0].sendrawtransaction(signedtx['hex'])
-        sync_mempools(self.nodes)
+        self.sync_mempools()
 
         # Now try to disconnect the tip on each node...
         self.nodes[1].invalidateblock(self.nodes[1].getbestblockhash())
         self.nodes[0].invalidateblock(self.nodes[0].getbestblockhash())
-        sync_blocks(self.nodes)
+        self.sync_blocks()
 
 if __name__ == '__main__':
     MempoolPackagesTest().main()

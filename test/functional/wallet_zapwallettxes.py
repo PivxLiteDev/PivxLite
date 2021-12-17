@@ -14,14 +14,14 @@
   transactions are still available, but that the unconfirmed transaction has
   been zapped.
 """
-from test_framework.test_framework import PivxTestFramework
+
+from test_framework.test_framework import PivxlTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
-    sync_mempools,
 )
 
-class ZapWalletTXesTest (PivxTestFramework):
+class ZapWalletTXesTest (PivxlTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -44,7 +44,7 @@ class ZapWalletTXesTest (PivxTestFramework):
 
         # This transaction will not be confirmed
         txid2 = self.nodes[0].sendtoaddress(self.nodes[1].getnewaddress(), 20)
-        sync_mempools(self.nodes, wait=.1)
+        self.sync_mempools(wait=.1)
 
         # Confirmed and unconfirmed transactions are now in the wallet.
         assert_equal(self.nodes[0].gettransaction(txid1)['txid'], txid1)

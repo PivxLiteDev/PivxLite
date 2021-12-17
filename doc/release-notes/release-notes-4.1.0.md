@@ -1,4 +1,4 @@
-PIVXL Core version *4.1.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
+PIVXL version *4.1.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
@@ -19,13 +19,13 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-PIVXL Core is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
+PIVXL is extensively tested on multiple operating systems using the Linux kernel, macOS 10.10+, and Windows 7 and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support), No attempt is made to prevent installing or running the software on Windows XP, you can still do so at your own risk but be aware that there are known instabilities and issues. Please do not report issues about Windows XP to the issue tracker.
 
-Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). PIVXL Core software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
+Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). PIVXL software starting with v3.2.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
 
-PIVXL Core should also work on most other Unix-like systems but is not frequently tested on them.
+PIVXL should also work on most other Unix-like systems but is not frequently tested on them.
 
 
 Notable Changes
@@ -147,9 +147,9 @@ Functional Changes
 ### zPIVXL Backup Removed
 
 Automatic zPIVXL backup has been disabled. Thus, the following configuration options have been removed  (either as entries in the pivxl.conf file or as startup flags):
-- `autozpivbackup`
-- `backupzpiv`
-- `zpivbackuppath`
+- `autozpivxlbackup`
+- `backupzpivxl`
+- `zpivxlbackuppath`
 
 ### Stake-Split threshold
 
@@ -177,7 +177,7 @@ RPC Changes
 
 - "CoinStake" JSON object in `getblock` output is removed, and replaced with the strings "stakeModifier" and "hashProofOfStake"
 - "obfcompat" JSON field in `getmasternodecount` output is removed as it is/was redundant with the `enabled` field.
-- "moneysupply" and "zpivSupply" attributes in `getblock` output are removed.
+- "moneysupply" and "zpivxlSupply" attributes in `getblock` output are removed.
 - "isPublicSpend" boolean (optional) input parameter is removed from the following commands:
   - `createrawzerocoinspend`
   - `spendzerocoin`
@@ -344,7 +344,7 @@ Detailed release notes follow. For convenience in locating the code changes and 
  - #1356 `d6298c5fa0` [Wallet][GUI] Set default stake-split threshold to 500 (random-zebra)
  - #1369 `bb9b762bb1` [Wallet] Fix staking balance calculation (random-zebra)
  - #1373 `5d004d514c` [Wallet] Remove reserve balance (random-zebra)
- - #1382 `df2db0d5c6` [Wallet] Don't initialize zpivwallet on first run (Fuzzbawls)
+ - #1382 `df2db0d5c6` [Wallet] Don't initialize zpivxlwallet on first run (Fuzzbawls)
  - #1401 `e1585f7609` [Wallet][Bug] Fix ScriptPubKeyMan::CanGetAddresses (random-zebra)
  - #1411 `3c34c34fd1` [Wallet][Bug] Fix ScriptPubKeyMan::CanGenerateKeys (random-zebra)
  - #1458 `8d8050fa6d` [Wallet][Bug] Fix min depth requirement for stake inputs in AvailableCoins (random-zebra)
@@ -446,7 +446,7 @@ Detailed release notes follow. For convenience in locating the code changes and 
  - #1281 `a293072cdb` [Trivial][Cleanup] Remove extra checks before GetBlocksToMaturity (random-zebra)
  - #1282 `76f29fccf3` [Trivial][Cleanup] Add IsRegTestNet() function in chainparams (random-zebra)
  - #1290 `2ceeb2cca0` [zPIVXL][Cleanup] Zerocoin Cleanup 1: remove Accumulators values (random-zebra)
- - #1291 `16d7dac5f7` [zPIVXL][Cleanup] Zerocoin Cleanup 2: remove CZPivStake class (random-zebra)
+ - #1291 `16d7dac5f7` [zPIVXL][Cleanup] Zerocoin Cleanup 2: remove CZPivxlStake class (random-zebra)
  - #1293 `28e0048b3e` [zPIVXL][Cleanup] Zerocoin Cleanup 3: remove old ZK proofs (random-zebra)
  - #1314 `185194bd7e` [zPIVXL][Cleanup] Zerocoin Cleanup 4: further wallet cleaning (random-zebra)
  - #1322 `5bd387e18d` [zPIVXL][Cleanup] Zerocoin Cleanup 5: further main.cpp cleaning (random-zebra)

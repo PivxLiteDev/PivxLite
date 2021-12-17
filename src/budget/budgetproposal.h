@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,6 +16,8 @@ static const CAmount BUDGET_FEE_TX_OLD = (50 * COIN);
 static const CAmount BUDGET_FEE_TX = (5 * COIN);
 static const int64_t BUDGET_VOTE_UPDATE_MIN = 60 * 60;
 
+class CBudgetManager;
+
 //
 // Budget Proposal : Contains the masternode votes for each budget
 //
@@ -22,6 +25,7 @@ static const int64_t BUDGET_VOTE_UPDATE_MIN = 60 * 60;
 class CBudgetProposal
 {
 private:
+    friend class CBudgetManager;
     CAmount nAllotted;
     bool fValid;
     std::string strInvalid;
@@ -34,7 +38,7 @@ private:
     bool CheckAddress();
 
 protected:
-    std::map<uint256, CBudgetVote> mapVotes;
+    std::map<COutPoint, CBudgetVote> mapVotes;
     std::string strProposalName;
     std::string strURL;
     int nBlockStart;
@@ -90,8 +94,6 @@ public:
     void SetAllotted(CAmount nAllottedIn) { nAllotted = nAllottedIn; }
     CAmount GetAllotted() const { return nAllotted; }
 
-    void CleanAndRemove();
-
     uint256 GetHash() const
     {
         CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
@@ -105,19 +107,17 @@ public:
     }
 
     // Serialization for local DB
-    ADD_SERIALIZE_METHODS;
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
+    SERIALIZE_METHODS(CBudgetProposal, obj)
     {
-        READWRITE(LIMITED_STRING(strProposalName, 20));
-        READWRITE(LIMITED_STRING(strURL, 64));
-        READWRITE(nBlockStart);
-        READWRITE(nBlockEnd);
-        READWRITE(nAmount);
-        READWRITE(*(CScriptBase*)(&address));
-        READWRITE(nFeeTXHash);
-        READWRITE(nTime);
-        READWRITE(mapVotes);
+        READWRITE(LIMITED_STRING(obj.strProposalName, 20));
+        READWRITE(LIMITED_STRING(obj.strURL, 64));
+        READWRITE(obj.nBlockStart);
+        READWRITE(obj.nBlockEnd);
+        READWRITE(obj.nAmount);
+        READWRITE(obj.address);
+        READWRITE(obj.nFeeTXHash);
+        READWRITE(obj.nTime);
+        READWRITE(obj.mapVotes);
     }
 
     // Serialization for network messages.
@@ -126,13 +126,17 @@ public:
     void Relay();
 
     // compare proposals by proposal hash
-    inline bool operator>(const CBudgetProposal& other) const { return GetHash() > other.GetHash(); }
+    inline bool operator>(const CBudgetProposal& other) const
+    {
+        return UintToArith256(GetHash()) > UintToArith256(other.GetHash());
+    }
+    //
     // compare proposals pointers by net yes count (solve tie with feeHash)
     static inline bool PtrHigherYes(CBudgetProposal* a, CBudgetProposal* b)
     {
         const int netYes_a = a->GetYeas() - a->GetNays();
         const int netYes_b = b->GetYeas() - b->GetNays();
-        if (netYes_a == netYes_b) return a->GetFeeTXHash() > b->GetFeeTXHash();
+        if (netYes_a == netYes_b) return UintToArith256(a->GetFeeTXHash()) > UintToArith256(b->GetFeeTXHash());
         return netYes_a > netYes_b;
     }
 

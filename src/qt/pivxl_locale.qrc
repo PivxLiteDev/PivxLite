@@ -4,7 +4,6 @@
         <file alias="en">locale/pivxl_en.qm</file>
         <file alias="en_US">locale/pivxl_en_US.qm</file>
         <file alias="es">locale/pivxl_es.qm</file>
-        <file alias="es_ES">locale/pivxl_es_ES.qm</file>
         <file alias="fr_FR">locale/pivxl_fr_FR.qm</file>
         <file alias="hr_HR">locale/pivxl_hr_HR.qm</file>
         <file alias="it">locale/pivxl_it.qm</file>
@@ -12,7 +11,5 @@
         <file alias="nl">locale/pivxl_nl.qm</file>
         <file alias="pl">locale/pivxl_pl.qm</file>
         <file alias="ru">locale/pivxl_ru.qm</file>
-        <file alias="tr">locale/pivxl_tr.qm</file>
-        <file alias="zh_CN">locale/pivxl_zh_CN.qm</file>
     </qresource>
 </RCC>

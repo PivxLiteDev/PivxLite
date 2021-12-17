@@ -1,10 +1,11 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "util.h"
-#include "test/test_pivxl.h"
+#include "util/system.h"
+#include "test/test_pivx.h"
 
 #include <string>
 #include <vector>
@@ -28,7 +29,7 @@ static void ResetArgs(const std::string& strArg)
     for (std::string& s : vecArg)
         vecChar.push_back(s.c_str());
 
-    gArgs.ParseParameters(vecChar.size(), &vecChar[0]);
+    gArgs.ParseParameters(vecChar.size(), vecChar.data());
 }
 
 BOOST_AUTO_TEST_CASE(boolarg)

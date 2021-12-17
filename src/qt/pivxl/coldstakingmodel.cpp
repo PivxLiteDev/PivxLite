@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,7 +33,7 @@ void ColdStakingModel::refresh()
     cachedAmount = 0;
     // First get all of the p2cs utxo inside the wallet
     std::vector<COutput> utxoList;
-    pwalletMain->GetAvailableP2CSCoins(utxoList);
+    model->getAvailableP2CSCoins(utxoList);
 
     if (!utxoList.empty()) {
         // Loop over each COutput into a CSDelegation
@@ -40,7 +41,7 @@ void ColdStakingModel::refresh()
 
             const auto *wtx = utxo.tx;
             const QString txId = QString::fromStdString(wtx->GetHash().GetHex());
-            const CTxOut& out = wtx->vout[utxo.i];
+            const CTxOut& out = wtx->tx->vout[utxo.i];
 
             // First parse the cs delegation
             CSDelegation delegation;
@@ -72,7 +73,7 @@ void ColdStakingModel::refresh()
     }
 }
 
-bool ColdStakingModel::parseCSDelegation(const CTxOut& out, CSDelegation& ret, const QString& txId, const int& utxoIndex)
+bool ColdStakingModel::parseCSDelegation(const CTxOut& out, CSDelegation& ret, const QString& txId, const int utxoIndex)
 {
     txnouttype type;
     std::vector<CTxDestination> addresses;

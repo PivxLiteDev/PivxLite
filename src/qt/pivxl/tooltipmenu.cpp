@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,6 +39,12 @@ void TooltipMenu::setCopyBtnText(QString btnText){
 void TooltipMenu::setLastBtnText(QString btnText, int minHeight){
     ui->btnLast->setText(btnText);
     ui->btnLast->setMinimumHeight(minHeight);
+}
+
+void TooltipMenu::setLastBtnCheckable(bool checkable, bool isChecked)
+{
+    ui->btnLast->setCheckable(checkable);
+    ui->btnLast->setChecked(isChecked);
 }
 
 void TooltipMenu::setCopyBtnVisible(bool visible){

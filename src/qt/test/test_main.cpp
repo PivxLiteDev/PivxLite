@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,18 +9,12 @@
 #include "config/pivxl-config.h"
 #endif
 
-#include "util.h"
+#include "util/system.h"
 #include "uritests.h"
-
-#ifdef ENABLE_WALLET
-#include "paymentservertests.h"
-#endif
 
 #include <QCoreApplication>
 #include <QObject>
 #include <QTest>
-
-#include <openssl/ssl.h>
 
 #if defined(QT_STATICPLUGIN)
 #include <QtPlugin>
@@ -46,18 +41,11 @@ int main(int argc, char *argv[])
     // Don't remove this, it's needed to access
     // QCoreApplication:: in the tests
     QCoreApplication app(argc, argv);
-    app.setApplicationName("Pivx-Qt-test");
-
-    SSL_library_init();
+    app.setApplicationName("Pivxl-Qt-test");
 
     URITests test1;
     if (QTest::qExec(&test1) != 0)
         fInvalid = true;
-#ifdef ENABLE_WALLET
-    PaymentServerTests test2;
-    if (QTest::qExec(&test2) != 0)
-        fInvalid = true;
-#endif
 
     return fInvalid;
 }

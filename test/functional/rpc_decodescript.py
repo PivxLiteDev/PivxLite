@@ -4,12 +4,13 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test decoding scripts via decodescript RPC command."""
 
-from test_framework.test_framework import PivxTestFramework
-from test_framework.util import *
-from test_framework.mininode import *
 from io import BytesIO
 
-class DecodeScriptTest(PivxTestFramework):
+from test_framework.messages import CTransaction
+from test_framework.test_framework import PivxlTestFramework
+from test_framework.util import assert_equal, bytes_to_hex_str, hex_str_to_bytes
+
+class DecodeScriptTest(PivxlTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

@@ -108,7 +108,7 @@
              <number>0</number>
             </property>
             <item alignment="Qt::AlignTop">
-             <widget class="QLabel" name="labelAmountTopPiv">
+             <widget class="QLabel" name="labelAmountTopPivxl">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -187,7 +187,7 @@ border:none;</string>
              </spacer>
             </item>
             <item alignment="Qt::AlignTop">
-             <widget class="QLabel" name="labelAmountTopShieldedPiv">
+             <widget class="QLabel" name="labelAmountTopShieldedPivxl">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -472,7 +472,7 @@ border:none;</string>
               </layout>
              </item>
              <item>
-              <widget class="QLabel" name="labelAmountPiv">
+              <widget class="QLabel" name="labelAmountPivxl">
                <property name="text">
                 <string notr="true">480.0685 PIVXL</string>
                </property>
@@ -527,7 +527,7 @@ border:none;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelPendingPiv">
+                  <widget class="QLabel" name="labelPendingPivxl">
                    <property name="text">
                     <string notr="true">6.943 PIVXL</string>
                    </property>
@@ -581,7 +581,7 @@ border:none;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelImmaturePiv">
+                  <widget class="QLabel" name="labelImmaturePivxl">
                    <property name="text">
                     <string notr="true">10 PIVXL</string>
                    </property>

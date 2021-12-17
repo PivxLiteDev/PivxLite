@@ -3,11 +3,14 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test pivxl-cli"""
-from test_framework.test_framework import PivxTestFramework
-from test_framework.util import assert_equal, assert_raises_process_error, get_auth_cookie
+
 import time
 
-class TestBitcoinCli(PivxTestFramework):
+from test_framework.test_framework import PivxlTestFramework
+from test_framework.util import assert_equal, get_auth_cookie
+
+
+class TestBitcoinCli(PivxlTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

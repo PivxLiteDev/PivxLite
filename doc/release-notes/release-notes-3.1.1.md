@@ -1,4 +1,4 @@
-PIVXL Core version *3.1.1* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
+PIVXL version *3.1.1* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
 
 This is a new minor version release, including various bug fixes and performance improvements, as well as updated translations.
 
@@ -7,7 +7,7 @@ Please report bugs using the issue tracker at github: <https://github.com/pivxl-
 Non-Mandatory Update
 ==============
 
-PIVXL Core v3.1.1 is a non-mandatory update to address bugs and introduce minor enhancements that do not require a network change.
+PIVXL v3.1.1 is a non-mandatory update to address bugs and introduce minor enhancements that do not require a network change.
 
 How to Upgrade
 ==============
@@ -18,7 +18,7 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-PIVXL Core is extensively tested on multiple operating systems using
+PIVXL is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -26,7 +26,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-PIVXL Core should also work on most other Unix-like systems but is not
+PIVXL should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 ### :exclamation::exclamation::exclamation: MacOS 10.13 High Sierra :exclamation::exclamation::exclamation:
@@ -57,7 +57,7 @@ User Experience
 
 Fixes a display issue introduced with a previous change. This was a "display only" issue, all your coins were there all the time.
 
-### Show progress percent for zpiv reindex operations
+### Show progress percent for zpivxl reindex operations
 
 When starting the wallet with `-reindexaccumulators` and/or `-reindexzerocoin`, these operations can take a considerable time to complete depending on system hardware. A progress percent on the splash screen is now shown for these processes to avoid confusion in thinking that the wallet has frozen.
 
@@ -121,7 +121,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
  - #580 `c296b7572` Fixed Multisend dialog to show settings properly (SHTDJ)
  - #598 `f0d894253` [GUI] Fix wrongly displayed balance on Overview tab (Mrs-X)
  - #600 `217433561` [GUI] Only enable/disable PrivacyDialog zPIVXL elements if needed. (presstab)
- - #612 `6dd752cb5` [Qt] Show progress percent for zpiv reindex operations (Fuzzbawls)
+ - #612 `6dd752cb5` [Qt] Show progress percent for zpivxl reindex operations (Fuzzbawls)
  - #626 `9b6a42ba0` [Qt] Add Tor service icon to status bar (Fuzzbawls)
  - #629 `14e125795` [Qt] Remove useless help button from QT dialogs (windows) (warrows)
  - #646 `c66b7b632` [Qt] Periodic translation update (Fuzzbawls)

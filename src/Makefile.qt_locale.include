@@ -3,13 +3,10 @@ QT_TS = \
   qt/locale/pivxl_en.ts \
   qt/locale/pivxl_en_US.ts \
   qt/locale/pivxl_es.ts \
-  qt/locale/pivxl_es_ES.ts \
   qt/locale/pivxl_fr_FR.ts \
   qt/locale/pivxl_hr_HR.ts \
   qt/locale/pivxl_it.ts \
   qt/locale/pivxl_ko_KR.ts \
   qt/locale/pivxl_nl.ts \
   qt/locale/pivxl_pl.ts \
-  qt/locale/pivxl_ru.ts \
-  qt/locale/pivxl_tr.ts \
-  qt/locale/pivxl_zh_CN.ts
+  qt/locale/pivxl_ru.ts

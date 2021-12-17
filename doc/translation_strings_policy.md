@@ -1,7 +1,7 @@
 Translation Strings Policy
 ===========================
 
-This document provides guidelines for internationalization of the PIVXL Core software.
+This document provides guidelines for internationalization of the PIVXL software.
 
 How to translate?
 ------------------

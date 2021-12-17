@@ -3,19 +3,17 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
-from test_framework.test_framework import PivxTestFramework
+import time
 
+from test_framework.test_framework import PivxlTestFramework
 from test_framework.util import (
     assert_greater_than,
     assert_greater_than_or_equal,
     assert_equal,
     Decimal,
     satoshi_round,
-    sync_blocks,
-    sync_mempools,
 )
 
-import time
 
 def timed(f):
   start = time.time()
@@ -25,7 +23,7 @@ def timed(f):
 
 MAX_SHIELDED_BLOCKSIZE = 750000
 
-class SaplingFillBlockTest(PivxTestFramework):
+class SaplingFillBlockTest(PivxlTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2
@@ -53,7 +51,7 @@ class SaplingFillBlockTest(PivxTestFramework):
 
     def check_mempool(self, miner, txids):
         self.log.info("Checking mempool...")
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         mempool_info = miner.getmempoolinfo()
         assert_equal(mempool_info['size'], len(txids))
         mempool_bytes = mempool_info['bytes']
@@ -77,6 +75,7 @@ class SaplingFillBlockTest(PivxTestFramework):
             txids.append(node.shieldsendmany(from_address, shield_to))
             if (i + 1) % 200 == 0:
                 self.log.info("...%d Transactions created..." % (i + 1))
+                self.sync_mempools()
         return txids
 
 
@@ -86,10 +85,10 @@ class SaplingFillBlockTest(PivxTestFramework):
         # First mine 300 blocks
         self.log.info("Generating 300 blocks...")
         miner.generate(300)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         assert_equal(self.nodes[0].getblockchaininfo()['upgrades']['v5 shield']['status'], 'active')
 
-        ## -- First check that the miner never produces blocks with more than 750kB of shielded txes
+        # -- First check that the miner never produces blocks with more than 750kB of shielded txes
 
         # Split 10 utxos (of 250 PIVXL each) in 1000 new utxos of ~2.5 PIVXL each (to alice)
         UTXOS_TO_SPLIT = 10
@@ -98,7 +97,7 @@ class SaplingFillBlockTest(PivxTestFramework):
         txids = self.utxo_splitter(miner, UTXOS_TO_SPLIT, alice)
         assert_equal(len(txids), UTXOS_TO_SPLIT)
         miner.generate(2)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         new_utxos = alice.listunspent()
         assert_equal(len(new_utxos), UTXOS_TO_SHIELD)
 

@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +13,9 @@
 #include "uint256.h"
 #include "wallet/wallet.h"
 
-MNModel::MNModel(QObject *parent) : QAbstractTableModel(parent)
+MNModel::MNModel(QObject *parent, WalletModel* _model) :
+    QAbstractTableModel(parent),
+    walletModel(_model)
 {
     updateMNList();
 }
@@ -22,11 +25,11 @@ void MNModel::updateMNList()
     int end = nodes.size();
     nodes.clear();
     collateralTxAccepted.clear();
-    for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+    for (const CMasternodeConfig::CMasternodeEntry& mne : masternodeConfig.getEntries()) {
         int nIndex;
         if (!mne.castOutputIndex(nIndex))
             continue;
-        uint256 txHash(mne.getTxHash());
+        const uint256& txHash = uint256S(mne.getTxHash());
         CTxIn txIn(txHash, uint32_t(nIndex));
         CMasternode* pmn = mnodeman.Find(txIn.prevout);
         if (!pmn) {
@@ -34,16 +37,8 @@ void MNModel::updateMNList()
             pmn->vin = txIn;
         }
         nodes.insert(QString::fromStdString(mne.getAlias()), std::make_pair(QString::fromStdString(mne.getIp()), pmn));
-        if (pwalletMain) {
-            bool txAccepted = false;
-            {
-                LOCK2(cs_main, pwalletMain->cs_wallet);
-                const CWalletTx *walletTx = pwalletMain->GetWalletTx(txHash);
-                if (walletTx && walletTx->GetDepthInMainChain() >= MasternodeCollateralMinConf()) {
-                    txAccepted = true;
-                }
-            }
-            collateralTxAccepted.insert(mne.getTxHash(), txAccepted);
+        if (walletModel) {
+            collateralTxAccepted.insert(mne.getTxHash(), walletModel->getWalletTxDepth(txHash) >= MasternodeCollateralMinConf());
         }
     }
     Q_EMIT dataChanged(index(0, 0, QModelIndex()), index(end, 5, QModelIndex()) );
@@ -102,26 +97,17 @@ QVariant MNModel::data(const QModelIndex &index, int role) const
                 return QString::fromStdString(status);
             }
             case PRIV_KEY: {
-                for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
-                    if (mne.getTxHash().compare(rec->vin.prevout.hash.GetHex()) == 0) {
-                        return QString::fromStdString(mne.getPrivKey());
+                if (isAvailable) {
+                    for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+                        if (mne.getTxHash().compare(rec->vin.prevout.hash.GetHex()) == 0) {
+                            return QString::fromStdString(mne.getPrivKey());
+                        }
                     }
                 }
                 return "Not available";
             }
             case WAS_COLLATERAL_ACCEPTED:{
-                if (!isAvailable) return false;
-                std::string txHash = rec->vin.prevout.hash.GetHex();
-                if (!collateralTxAccepted.value(txHash)) {
-                    bool txAccepted = false;
-                    {
-                        LOCK2(cs_main, pwalletMain->cs_wallet);
-                        const CWalletTx *walletTx = pwalletMain->GetWalletTx(rec->vin.prevout.hash);
-                        txAccepted = walletTx && walletTx->GetDepthInMainChain() > 0;
-                    }
-                    return txAccepted;
-                }
-                return true;
+                return isAvailable && collateralTxAccepted.value(rec->vin.prevout.hash.GetHex());
             }
         }
     }

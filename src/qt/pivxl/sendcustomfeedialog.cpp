@@ -1,13 +1,15 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "qt/pivxl/sendcustomfeedialog.h"
 #include "qt/pivxl/forms/ui_sendcustomfeedialog.h"
 #include "qt/pivxl/qtutils.h"
-#include "walletmodel.h"
+#include "qt/walletmodel.h"
 #include "optionsmodel.h"
 #include "guiutil.h"
+#include "wallet/fees.h"
 #include <QListView>
 #include <QComboBox>
 
@@ -123,11 +125,19 @@ void SendCustomFeeDialog::accept()
     // Check insane fee
     const CAmount insaneFee = ::minRelayTxFee.GetFeePerK() * 10000;
     if (customFee >= insaneFee) {
+        ui->lineEditCustomFee->setText(BitcoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), insaneFee - GetRequiredFee(1000)));
         inform(tr("Fee too high. Must be below: %1").arg(
                 BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), insaneFee)));
-    } else if (customFee < CWallet::GetRequiredFee(1000)) {
+    } else if (customFee < GetRequiredFee(1000)) {
+        CAmount nFee = 0;
+        if (walletModel->hasWalletCustomFee()) {
+            walletModel->getWalletCustomFee(nFee);
+        } else {
+            nFee = GetRequiredFee(1000);
+        }
+        ui->lineEditCustomFee->setText(BitcoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), nFee));
         inform(tr("Fee too low. Must be at least: %1").arg(
-                BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), CWallet::GetRequiredFee(1000))));
+                BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), GetRequiredFee(1000))));
     } else {
         walletModel->setWalletCustomFee(fUseCustomFee, customFee);
         QDialog::accept();

@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=PIVXL Core
+Comment=PIVXL Core QT main network
+GenericName=PIVXL Digital Currency QT client main network
+Exec=pivxl-core.qt %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/share/pixmaps/pivxl.png
+MimeType=x-scheme-handler/pivxl;
+Categories=X-Office;X-Finance;
+Keywords=internet;pivxl;zpivxl;pivxl;core;wallet;qt;main;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0

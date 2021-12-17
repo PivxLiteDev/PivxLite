@@ -2,63 +2,35 @@
 # Copyright (c) 2019-2020 The PIVX developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-# -*- coding: utf-8 -*-
 
+from decimal import Decimal
 from io import BytesIO
 from time import sleep
 
 from test_framework.messages import CTransaction, CTxIn, CTxOut, COIN, COutPoint
-from test_framework.mininode import network_thread_start
-from test_framework.pivxl_node import PivxTestNode
 from test_framework.script import CScript, OP_CHECKSIG
-from test_framework.test_framework import PivxTestFramework
+from test_framework.test_framework import PivxlTestFramework
 from test_framework.util import (
     assert_equal,
     assert_greater_than,
     assert_raises_rpc_error,
-    p2p_port,
     bytes_to_hex_str,
     set_node_times,
-    sync_blocks,
-    sync_mempools,
 )
-
-from decimal import Decimal
 
 # filter utxos based on first 5 bytes of scriptPubKey
 def getDelegatedUtxos(utxos):
-    return [x for x in utxos if x["scriptPubKey"][:10] == '76a97b63d1']
+    return [x for x in utxos if x["scriptPubKey"][:10] == '76a97b63d1' or x["scriptPubKey"][:10] == '76a97b63d2']
 
 
-class PIVXL_ColdStakingTest(PivxTestFramework):
+class PIVXL_ColdStakingTest(PivxlTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 3
-        self.extra_args = [['-nuparams=v5_shield:201']] * self.num_nodes
+        # whitelist all peers to speed up tx relay / mempool sync
+        self.extra_args = [['-nuparams=v5_shield:201', "-whitelist=127.0.0.1"]] * self.num_nodes
         self.extra_args[0].append('-sporkkey=932HEevBSujW2ud7RfB1YF91AFygbBRQj3de3LyaCRqNzKKgWXi')
-
-    def setup_chain(self):
-        # Start with PoW cache: 200 blocks
-        self.log.info("Initializing test directory " + self.options.tmpdir)
-        self._initialize_chain()
         self.enable_mocktime()
-
-    def init_test(self):
-        title = "*** Starting %s ***" % self.__class__.__name__
-        underline = "-" * len(title)
-        self.log.info("\n\n%s\n%s\n%s\n", title, underline, self.description)
-        self.DEFAULT_FEE = 0.05
-        # Setup the p2p connections and start up the network thread.
-        self.test_nodes = []
-        for i in range(self.num_nodes):
-            self.test_nodes.append(PivxTestNode())
-            self.test_nodes[i].peer_connect('127.0.0.1', p2p_port(i))
-
-        network_thread_start()  # Start up network handling in another thread
-
-        # Let the test nodes get in sync
-        for i in range(self.num_nodes):
-            self.test_nodes[i].wait_for_verack()
 
     def setColdStakingEnforcement(self, fEnable=True):
         sporkName = "SPORK_19_COLDSTAKING_MAINTENANCE"
@@ -79,11 +51,12 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         # verify from node[1]
         return not self.is_spork_active(1, "SPORK_19_COLDSTAKING_MAINTENANCE")
 
-
-
     def run_test(self):
         self.description = "Performs tests on the Cold Staking P2CS implementation"
-        self.init_test()
+        title = "*** Starting %s ***" % self.__class__.__name__
+        underline = "-" * len(title)
+        self.log.info("\n\n%s\n%s\n%s\n", title, underline, self.description)
+        self.DEFAULT_FEE = 0.05
         NUM_OF_INPUTS = 20
         INPUT_VALUE = 249
 
@@ -102,7 +75,7 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         for peer in [0, 2]:
             for j in range(25):
                 self.mocktime = self.generate_pow(peer, self.mocktime)
-            sync_blocks(self.nodes)
+            self.sync_blocks()
 
         # 2) node[1] sends his entire balance (50 mature rewards) to node[2]
         #  - node[2] stakes a block - node[1] locks the change
@@ -112,9 +85,9 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         assert_equal(self.nodes[1].getbalance(), 50 * 250)
         txid = self.nodes[1].sendtoaddress(self.nodes[2].getnewaddress(), (50 * 250 - 0.01))
         assert (txid is not None)
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         # lock the change output (so it's not used as stake input in generate_pos)
         for x in self.nodes[1].listunspent():
             assert (self.nodes[1].lockunspent(False, [{"txid": x['txid'], "vout": x['vout']}]))
@@ -127,8 +100,8 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
                                                              "amount": Decimal('250.00')}], 1)
         self.sync_all()
         for i in range(6):
-            self.mocktime = self.generate_pow(0, self.mocktime)
-        sync_blocks(self.nodes)
+            self.mocktime = self.generate_pos(0, self.mocktime)
+        self.sync_blocks()
         assert_equal(self.nodes[0].getshieldbalance(), 250)
 
         # 3) nodes[0] generates a owner address
@@ -183,19 +156,19 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         self.log.info("Now creating %d real stake-delegation txes..." % NUM_OF_INPUTS)
         for i in range(NUM_OF_INPUTS-1):
             res = self.nodes[0].delegatestake(staker_address, INPUT_VALUE, owner_address)
-            assert(res != None and res["txid"] != None and res["txid"] != "")
+            assert(res is not None and res["txid"] is not None and res["txid"] != "")
             assert_equal(res["owner_address"], owner_address)
             assert_equal(res["staker_address"], staker_address)
         # delegate  the shielded balance
         res = self.nodes[0].delegatestake(staker_address, INPUT_VALUE, owner_address, False, False, True)
-        assert (res != None and res["txid"] != None and res["txid"] != "")
+        assert (res is not None and res["txid"] is not None and res["txid"] != "")
         assert_equal(res["owner_address"], owner_address)
         assert_equal(res["staker_address"], staker_address)
         fee = self.nodes[0].viewshieldtransaction(res["txid"])['fee']
         # sync and mine 2 blocks
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         self.log.info("%d Txes created." % NUM_OF_INPUTS)
         # check balances:
         self.expected_balance = NUM_OF_INPUTS * INPUT_VALUE
@@ -213,11 +186,11 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         assert_equal(len(delegated_utxos), len(self.nodes[0].listcoldutxos()))
         u = delegated_utxos[0]
         txhash = self.spendUTXOwithNode(u, 0)
-        assert(txhash != None)
+        assert(txhash is not None)
         self.log.info("Good. Owner was able to spend - tx: %s" % str(txhash))
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         # check tx
         self.check_tx_in_chain(0, txhash)
         self.check_tx_in_chain(1, txhash)
@@ -251,7 +224,7 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
                                 self.spendUTXOwithNode, u, 1)
         self.log.info("Good. Cold staker was NOT able to spend (failed OP_CHECKCOLDSTAKEVERIFY)")
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
 
         # 9) check that the staker can use the coins to stake a block with internal miner.
         # --------------------------------------------------------------------------------
@@ -264,7 +237,7 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         self.log.info("Block %s submitted" % newblockhash)
 
         # Verify that nodes[0] accepts it
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         assert_equal(self.nodes[0].getblockcount(), self.nodes[1].getblockcount())
         assert_equal(newblockhash, self.nodes[0].getbestblockhash())
         self.log.info("Great. Cold-staked block was accepted!")
@@ -292,7 +265,7 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         assert_equal(new_block.hash, self.nodes[1].getbestblockhash())
 
         # Verify that nodes[0] accepts it
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         assert_equal(self.nodes[0].getblockcount(), self.nodes[1].getblockcount())
         assert_equal(new_block.hash, self.nodes[0].getbestblockhash())
         self.log.info("Great. Cold-staked block was accepted!")
@@ -321,7 +294,7 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         assert("rejected" in ret)
 
         # Verify that nodes[0] rejects it
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         assert_raises_rpc_error(-5, "Block not found", self.nodes[0].getblock, new_block.hash)
         self.log.info("Great. Malicious cold-staked block was NOT accepted!")
         self.checkBalances()
@@ -342,10 +315,10 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         # Try to submit the block
         ret = self.nodes[1].submitblock(bytes_to_hex_str(new_block.serialize()))
         self.log.info("Block %s submitted." % new_block.hash)
-        assert_equal(ret, "bad-p2cs-outs")
+        assert ret in ["bad-p2cs-outs", "rejected"]
 
         # Verify that nodes[0] rejects it
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         assert_raises_rpc_error(-5, "Block not found", self.nodes[0].getblock, new_block.hash)
         self.log.info("Great. Malicious cold-staked block was NOT accepted!")
         self.checkBalances()
@@ -355,28 +328,28 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         # ----------------------------------------------------------------------------------------
         self.log.info("Let's void the contracts.")
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         print("*** 13 ***")
         self.log.info("Cancel the stake delegation spending the delegated utxos...")
         delegated_utxos = getDelegatedUtxos(self.nodes[0].listunspent())
         # remove one utxo to spend later
         final_spend = delegated_utxos.pop()
         txhash = self.spendUTXOsWithNode(delegated_utxos, 0)
-        assert(txhash != None)
+        assert(txhash is not None)
         self.log.info("Good. Owner was able to void the stake delegations - tx: %s" % str(txhash))
-        sync_mempools(self.nodes)
+        self.sync_blocks()
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
 
         # deactivate SPORK 17 and check that the owner can still spend the last utxo
         self.setColdStakingEnforcement(False)
         assert (not self.isColdStakingEnforced())
         txhash = self.spendUTXOsWithNode([final_spend], 0)
-        assert(txhash != None)
+        assert(txhash is not None)
         self.log.info("Good. Owner was able to void a stake delegation (with SPORK 17 disabled) - tx: %s" % str(txhash))
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         # check tx
         self.check_tx_in_chain(0, txhash)
         self.check_tx_in_chain(1, txhash)
@@ -403,17 +376,17 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
             for peer in [0, 2]:
                 for j in range(25):
                     self.mocktime = self.generate_pos(peer, self.mocktime)
-                sync_blocks(self.nodes)
+                self.sync_blocks()
         self.expected_balance = self.expected_immature_balance
         self.expected_immature_balance = 0
         self.checkBalances()
         delegated_utxos = getDelegatedUtxos(self.nodes[0].listunspent())
         txhash = self.spendUTXOsWithNode(delegated_utxos, 0)
-        assert (txhash != None)
+        assert (txhash is not None)
         self.log.info("Good. Owner was able to spend the cold staked coins - tx: %s" % str(txhash))
-        sync_mempools(self.nodes)
+        self.sync_mempools()
         self.mocktime = self.generate_pos(2, self.mocktime)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         # check tx
         self.check_tx_in_chain(0, txhash)
         self.check_tx_in_chain(1, txhash)
@@ -423,6 +396,7 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
 
     def checkBalances(self):
         w_info = self.nodes[0].getwalletinfo()
+        assert_equal(self.nodes[0].getblockcount(), w_info['last_processed_block'])
         self.log.info("OWNER - Delegated %f / Cold %f   [%f / %f]" % (
             float(w_info["delegated_balance"]), w_info["cold_staking_balance"],
             float(w_info["immature_delegated_balance"]), w_info["immature_cold_staking_balance"]))
@@ -430,6 +404,7 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         assert_equal(float(w_info["immature_delegated_balance"]), self.expected_immature_balance)
         assert_equal(float(w_info["cold_staking_balance"]), 0)
         w_info = self.nodes[1].getwalletinfo()
+        assert_equal(self.nodes[1].getblockcount(), w_info['last_processed_block'])
         self.log.info("STAKER - Delegated %f / Cold %f   [%f / %f]" % (
             float(w_info["delegated_balance"]), w_info["cold_staking_balance"],
             float(w_info["immature_delegated_balance"]), w_info["immature_cold_staking_balance"]))
@@ -479,9 +454,6 @@ class PIVXL_ColdStakingTest(PivxTestFramework):
         block.hashMerkleRoot = block.calc_merkle_root()
         block.rehash()
         block.re_sign_block()
-
-
-
 
 
 if __name__ == '__main__':

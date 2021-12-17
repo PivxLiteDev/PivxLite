@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -81,9 +82,9 @@ TxDetailDialog::TxDetailDialog(QWidget *parent, bool _isConfirmDialog, const QSt
     connect(ui->pushOutputs, &QPushButton::clicked, this, &TxDetailDialog::onOutputsClicked);
 }
 
-void TxDetailDialog::setInputsType(const CWalletTx* _tx)
+void TxDetailDialog::setInputsType(CTransactionRef tx)
 {
-    if (_tx->sapData && _tx->sapData->vShieldedSpend.empty()) {
+    if (tx->sapData && tx->sapData->vShieldedSpend.empty()) {
         ui->labelTitlePrevTx->setText(tr("Previous Transaction"));
         ui->labelOutputIndex->setText(tr("Output Index"));
     } else {
@@ -110,11 +111,11 @@ void TxDetailDialog::setData(WalletModel *_model, const QModelIndex &index)
         ui->textId->setTextInteractionFlags(Qt::TextSelectableByMouse);
         // future: subdivide shielded and transparent by type and
         // do not show send xxx recipients for txes with a single output + change (show the address directly).
-        if (_tx->vout.size() == 1 || (_tx->sapData && _tx->sapData->vShieldedOutput.size() == 1)) {
+        if (_tx->tx->vout.size() == 1 || (_tx->tx->sapData && _tx->tx->sapData->vShieldedOutput.size() == 1)) {
             ui->textSendLabel->setText((address.size() < 40) ? address : address.left(20) + "..." + address.right(20));
         } else {
-            ui->textSendLabel->setText(QString::number(_tx->vout.size() +
-                (_tx->sapData ? _tx->sapData->vShieldedOutput.size() : 0)) + " recipients");
+            ui->textSendLabel->setText(QString::number(_tx->tx->vout.size() +
+                (_tx->tx->sapData ? _tx->tx->sapData->vShieldedOutput.size() : 0)) + " recipients");
         }
         ui->textSend->setVisible(false);
         isShieldedToShieldedRecv = rec->type == TransactionRecord::Type::RecvWithShieldedAddress;
@@ -126,8 +127,8 @@ void TxDetailDialog::setData(WalletModel *_model, const QModelIndex &index)
             shieldedInputsExtraMsg = " shielded";
         }
 
-        setInputsType(_tx);
-        int inputsSize = (_tx->sapData && !_tx->sapData->vShieldedSpend.empty()) ? _tx->sapData->vShieldedSpend.size() : _tx->vin.size();
+        setInputsType(_tx->tx);
+        int inputsSize = (_tx->tx->sapData && !_tx->tx->sapData->vShieldedSpend.empty()) ? _tx->tx->sapData->vShieldedSpend.size() : _tx->tx->vin.size();
         ui->textInputs->setText(QString::number(inputsSize) + shieldedInputsExtraMsg);
         ui->textConfirmations->setText(QString::number(rec->status.depth));
         ui->textDate->setText(GUIUtil::dateTimeStrWithSeconds(date));
@@ -183,16 +184,20 @@ void TxDetailDialog::setData(WalletModel *_model, WalletModelTransaction* _tx)
     this->model = _model;
     this->tx = _tx;
     CAmount txFee = tx->getTransactionFee();
-    CAmount totalAmount = tx->getTotalTransactionAmount() + txFee;
 
     // inputs label
-    CWalletTx* walletTx = tx->getTransaction();
+    CTransactionRef walletTx = tx->getTransaction();
     setInputsType(walletTx);
 
+    CAmount totalAmount = tx->getTotalTransactionAmount();
+    if (tx->subtractFeeFromRecipents() == 0) totalAmount += txFee;
+
     ui->textAmount->setText(BitcoinUnits::formatWithUnit(nDisplayUnit, totalAmount, false, BitcoinUnits::separatorAlways) + " (Fee included)");
-    int nRecipients = tx->getRecipients().size();
+
+    const QList<SendCoinsRecipient>& recipients = tx->getRecipients();
+    int nRecipients = recipients.size();
     if (nRecipients == 1) {
-        const SendCoinsRecipient& recipient = tx->getRecipients().at(0);
+        const SendCoinsRecipient& recipient = recipients.at(0);
         if (recipient.isP2CS) {
             ui->labelSend->setText(tr("Delegating to"));
         }
@@ -260,7 +265,7 @@ void TxDetailDialog::onInputsClicked()
         if (!inputsLoaded) {
             inputsLoaded = true;
             if (showGrid) {
-                const CWalletTx* walletTx = (this->tx) ? this->tx->getTransaction() : model->getTx(this->txHash);
+                CTransactionRef walletTx = (this->tx) ? this->tx->getTransaction() : model->getTx(this->txHash)->tx;
                 if (walletTx) {
                     if (walletTx->sapData && walletTx->sapData->vShieldedSpend.empty()) {
                         // transparent inputs
@@ -277,7 +282,7 @@ void TxDetailDialog::onInputsClicked()
                         ui->gridInputs->setMinimumHeight(50 + (50 * walletTx->sapData->vShieldedSpend.size()));
                         bool fInfoAvailable = false;
                         for (int i = 0; i < (int) walletTx->sapData->vShieldedSpend.size(); ++i) {
-                            Optional<QString> opAddr = model->getShieldedAddressFromSpendDesc(walletTx, i);
+                            Optional<QString> opAddr = model->getShieldedAddressFromSpendDesc(walletTx->GetHash(), i);
                             if (opAddr) {
                                 QString addr = *opAddr;
                                 loadInputs(addr.left(18) + "..." + addr.right(18),
@@ -325,11 +330,14 @@ void TxDetailDialog::onOutputsClicked()
             // If the there is a model tx, then this is a confirmation dialog
             if (tx) {
                 const QList<SendCoinsRecipient>& recipients = tx->getRecipients();
+                unsigned int sffa = tx->subtractFeeFromRecipents();
+                CAmount rcp_fee = (sffa > 0) ? (tx->getTransactionFee() / sffa) : 0;
                 for (int i = 0; i < recipients.size(); ++i) {
                     const auto& recipient = recipients[i];
+                    CAmount rcp_amt = recipient.amount - (recipient.fSubtractFee ? rcp_fee : 0);
                     int charsSize = recipient.isShieldedAddr ? 18 : 16;
                     QString labelRes = recipient.address.left(charsSize) + "..." + recipient.address.right(charsSize);
-                    appendOutput(layoutGrid, i, labelRes, recipient.amount, nDisplayUnit);
+                    appendOutput(layoutGrid, i, labelRes, rcp_amt, nDisplayUnit);
                 }
             } else {
                 // Tx detail dialog
@@ -338,7 +346,7 @@ void TxDetailDialog::onOutputsClicked()
 
                 // transparent recipients
                 int i = 0;
-                for (const CTxOut& out : walletTx->vout) {
+                for (const CTxOut& out : walletTx->tx->vout) {
                     QString labelRes;
                     CTxDestination dest;
                     bool isCsAddress = out.scriptPubKey.IsPayToColdStaking();
@@ -354,8 +362,8 @@ void TxDetailDialog::onOutputsClicked()
                 }
 
                 // shielded recipients
-                if (walletTx->sapData) {
-                    for (int j = 0; j < (int) walletTx->sapData->vShieldedOutput.size(); ++j) {
+                if (walletTx->tx->sapData) {
+                    for (int j = 0; j < (int) walletTx->tx->sapData->vShieldedOutput.size(); ++j) {
                         const SaplingOutPoint op(walletTx->GetHash(), j);
                         // TODO: This only works for txs that are stored, not for when this is a confirmation dialog..
                         if (walletTx->mapSaplingNoteData.find(op) == walletTx->mapSaplingNoteData.end()) {
@@ -363,12 +371,8 @@ void TxDetailDialog::onOutputsClicked()
                         }
                         // Obtain the noteData to get the cached amount value
                         SaplingNoteData noteData = walletTx->mapSaplingNoteData.at(op);
-                        Optional<libzcash::SaplingPaymentAddress> opAddr =
-                                pwalletMain->GetSaplingScriptPubKeyMan()->GetOutPointAddress(*walletTx, op);
-
-                        QString labelRes = opAddr ? QString::fromStdString(Standard::EncodeDestination(*opAddr)) : "";
-                        labelRes = labelRes.left(18) + "..." + labelRes.right(18);
-                        appendOutput(layoutGrid, i, labelRes, *noteData.amount, nDisplayUnit);
+                        const QString& addrStr = model->getSaplingAddressString(walletTx, op);
+                        appendOutput(layoutGrid, i, addrStr, *noteData.amount, nDisplayUnit);
 
                         i++;
                     }

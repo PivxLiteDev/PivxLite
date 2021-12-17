@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -48,6 +49,8 @@ public:
     void run(int type) override;
     void onError(QString error, int type) override;
 
+    void showEvent(QShowEvent *event) override;
+
 public Q_SLOTS:
     void walletSynced(bool sync);
 
@@ -67,7 +70,7 @@ private Q_SLOTS:
     void onCopyOwnerClicked();
     void onAddressCopyClicked();
     void onAddressEditClicked();
-    void onTxArrived(const QString& hash, const bool& isCoinStake, const bool& isCSAnyType);
+    void onTxArrived(const QString& hash, const bool isCoinStake, const bool isCSAnyType);
     void onContactsClicked(bool ownerAdd);
     void clearAll();
     void onLabelClicked();
@@ -101,8 +104,8 @@ private:
     bool isShowingDialog = false;
     bool isChainSync = false;
 
-    bool isContactOwnerSelected;
-    int64_t lastRefreshTime = 0;
+    bool isContactOwnerSelected{false};
+    int64_t lastRefreshTime{0};
     std::atomic<bool> isLoading;
 
     // Cached index
@@ -113,13 +116,13 @@ private:
     AddressTableModel::ColumnIndex sortType = AddressTableModel::Label;
     Qt::SortOrder sortOrder = Qt::AscendingOrder;
 
-    int nDisplayUnit;
+    int nDisplayUnit{0};
 
     void showAddressGenerationDialog(bool isPaymentRequest);
     void onContactsClicked();
     void tryRefreshDelegations();
     bool refreshDelegations();
-    void onLabelClicked(QString dialogTitle, const QModelIndex &index, const bool& isMyColdStakingAddresses);
+    void onLabelClicked(QString dialogTitle, const QModelIndex &index, const bool isMyColdStakingAddresses);
     void updateStakingTotalLabel();
     void sortAddresses();
     void setCoinControlPayAmounts();

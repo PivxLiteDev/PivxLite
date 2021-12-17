@@ -1,4 +1,5 @@
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,39 +22,33 @@ protected:
 public:
     CStakeInput(const CBlockIndex* _pindexFrom) : pindexFrom(_pindexFrom) {}
     virtual ~CStakeInput(){};
-    virtual bool InitFromTxIn(const CTxIn& txin) = 0;
     virtual const CBlockIndex* GetIndexFrom() const = 0;
-    virtual bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = UINT256_ZERO) = 0;
     virtual bool GetTxOutFrom(CTxOut& out) const = 0;
     virtual CAmount GetValue() const = 0;
-    virtual bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal, const bool onlyP2PK) = 0;
     virtual bool IsZPIV() const = 0;
     virtual CDataStream GetUniqueness() const = 0;
-    virtual bool ContextCheck(int nHeight, uint32_t nTime) = 0;
 };
 
 
-class CPivStake : public CStakeInput
+class CPivxlStake : public CStakeInput
 {
 private:
     const CTxOut outputFrom;
     const COutPoint outpointFrom;
 
 public:
-    CPivStake(const CTxOut& _from, const COutPoint& _outPointFrom, const CBlockIndex* _pindexFrom) :
+    CPivxlStake(const CTxOut& _from, const COutPoint& _outPointFrom, const CBlockIndex* _pindexFrom) :
             CStakeInput(_pindexFrom), outputFrom(_from), outpointFrom(_outPointFrom) {}
 
-    static CPivStake* NewPivStake(const CTxIn& txin);
+    static CPivxlStake* NewPivStake(const CTxIn& txin, int nHeight, uint32_t nTime);
 
-    bool InitFromTxIn(const CTxIn& txin) override { return pindexFrom; }
     const CBlockIndex* GetIndexFrom() const override;
     bool GetTxOutFrom(CTxOut& out) const override;
     CAmount GetValue() const override;
     CDataStream GetUniqueness() const override;
-    bool CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut = UINT256_ZERO) override;
-    bool CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal, const bool onlyP2PK) override;
+    CTxIn GetTxIn() const;
+    bool CreateTxOuts(const CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal) const;
     bool IsZPIV() const override { return false; }
-    bool ContextCheck(int nHeight, uint32_t nTime) override;
 };
 
 

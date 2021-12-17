@@ -1,15 +1,15 @@
 // Copyright (c) 2016-2020 The ZCash developers
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
 #include "sapling/sapling_validation.h"
 
 #include "consensus/consensus.h" // for MAX_BLOCK_SIZE_CURRENT
-#include "validation.h" // for MAX_ZEROCOIN_TX_SIZE
 #include "script/interpreter.h" // for SigHash
 #include "consensus/validation.h" // for CValidationState
-#include "util.h" // for error()
+#include "util/system.h" // for error()
 #include "consensus/upgrades.h" // for CurrentEpochBranchId()
 
 #include <librustzcash.h>
@@ -17,7 +17,7 @@
 namespace SaplingValidation {
 
 // Verifies that Shielded txs are properly formed and performs content-independent checks
-bool CheckTransaction(const CTransaction& tx, CValidationState& state, CAmount& nValueOut, bool fIsSaplingActive)
+bool CheckTransaction(const CTransaction& tx, CValidationState& state, CAmount& nValueOut)
 {
     bool hasSaplingData = tx.hasSaplingData();
 
@@ -38,12 +38,6 @@ bool CheckTransaction(const CTransaction& tx, CValidationState& state, CAmount& 
     if (tx.IsCoinStake() || tx.IsCoinBase() || tx.HasZerocoinSpendInputs() || tx.HasZerocoinMintOutputs())
         return state.DoS(100, error("%s: Sapling version with invalid data", __func__),
                          REJECT_INVALID, "bad-txns-invalid-sapling");
-
-    // If the v5 upgrade was not enforced, then let's not perform any check
-    if (!fIsSaplingActive) {
-        return state.DoS(100, error("%s: Sapling not activated", __func__),
-                         REJECT_INVALID, "bad-txns-invalid-sapling-act");
-    }
 
     // Upgrade enforced, basic version rules passing, let's check it
     return CheckTransactionWithoutProofVerification(tx, state, nValueOut);
@@ -139,6 +133,11 @@ bool ContextualCheckTransaction(
     // If Sapling is not active return quickly and don't perform any check here.
     // basic data checks are performed in CheckTransaction which is ALWAYS called before ContextualCheckTransaction.
     if (!chainparams.GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V5_0)) {
+        // If the v5 upgrade was not enforced, then let's not perform any check
+        if (tx.IsShieldedTx()) {
+            return state.DoS(dosLevelConstricting, error("%s: Sapling not activated", __func__),
+                             REJECT_INVALID, "bad-txns-invalid-sapling-act");
+        }
         return true;
     }
 
@@ -206,22 +205,21 @@ bool ContextualCheckTransaction(
                 // as we need to pass over the outputs anyway in order to then
                 // call librustzcash_sapling_final_check().
                 return state.DoS(100, error("%s: Sapling output description invalid", __func__ ),
-                                 REJECT_INVALID, "bad-txns-sapling-output-description-invalid");
+                REJECT_INVALID, "bad-txns-sapling-output-description-invalid");
             }
         }
 
-        if (!librustzcash_sapling_final_check(
-                ctx,
-                tx.sapData->valueBalance,
-                tx.sapData->bindingSig.begin(),
-                dataToBeSigned.begin())) {
-            librustzcash_sapling_verification_ctx_free(ctx);
-            return state.DoS(
+            if (!librustzcash_sapling_final_check(
+                    ctx,
+                    tx.sapData->valueBalance,
+                    tx.sapData->bindingSig.begin(),
+                    dataToBeSigned.begin())) {
+                librustzcash_sapling_verification_ctx_free(ctx);
+                return state.DoS(
                     dosLevelPotentiallyRelaxing,
-                    error("%s: Sapling binding signature invalid", __func__ ),
+                    error("%s: Sapling binding signature invalid", __func__),
                     REJECT_INVALID, "bad-txns-sapling-binding-signature-invalid");
-        }
-
+            }
         librustzcash_sapling_verification_ctx_free(ctx);
     }
     return true;

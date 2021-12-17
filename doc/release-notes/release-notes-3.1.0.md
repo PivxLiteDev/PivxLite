@@ -1,4 +1,4 @@
-PIVXL Core version *3.1.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
+PIVXL version *3.1.0* is now available from:  <https://github.com/pivxl-project/pivxl/releases>
 
 This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
@@ -8,7 +8,7 @@ Please report bugs using the issue tracker at github: <https://github.com/pivxl-
 Mandatory Update
 ==============
 
-PIVXL Core v3.1.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will have a grace period of one week to update their clients before enforcement of this update is enabled.
+PIVXL v3.1.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will have a grace period of one week to update their clients before enforcement of this update is enabled.
 
 Users updating from a previous version after Tuesday, May 8, 2018 12:00:00 AM GMT will require a full resync of their local blockchain from either the P2P network or by way of the bootstrap.
 
@@ -21,7 +21,7 @@ If you are running an older version, shut it down. Wait until it has completely 
 Compatibility
 ==============
 
-PIVXL Core is extensively tested on multiple operating systems using
+PIVXL is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -29,7 +29,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-PIVXL Core should also work on most other Unix-like systems but is not
+PIVXL should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 ### :exclamation::exclamation::exclamation: MacOS 10.13 High Sierra :exclamation::exclamation::exclamation:
@@ -115,7 +115,7 @@ Backup to external devices / locations
 
  The PIVXL wallet can now have user selected directories for automatic backups of the wallet data file (wallet.dat). This can be set by adding the following lines to the pivxl.conf file, found in the PIVXL data directory.
 - backuppath = <directory / full path>
-- zpivbackuppath = <directory / full path>
+- zpivxlbackuppath = <directory / full path>
 - custombackupthreshold = <backup limit>
 Note: System write permissions must be appropriate for the location the wallet is being saved to.
 
@@ -127,7 +127,7 @@ Note: System write permissions must be appropriate for the location the wallet i
 ### Details:
 
 * If path is set to directory, the backup will be named `wallet.dat-<year>-<month>-<day>-<hour>-<minute>-<second>`
-* If zPIVXL backup, auto generated name is `wallet-autozpivbackup.dat-<year>-<month>-<day>-<hour>-<minute>-<second>`
+* If zPIVXL backup, auto generated name is `wallet-autozpivxlbackup.dat-<year>-<month>-<day>-<hour>-<minute>-<second>`
 * If path set to file, backup will be named `<filename>.dat`
 * walletbackupthreshold enables the user to select the maximum count of backup files to be written before overwriting existing backups.
 
@@ -338,7 +338,7 @@ Detailed release notes follow. This overview includes changes that affect behavi
  - #473 `9e2ed8f0f` [Qt] Make toolbar icons bigger (Mrs-X)
  - #462 `c62eabe7b` [Qt] Consistent trx colors for Overview + Transaction tabs (Mrs-X)
  - #472 `b7929bdcf` [Qt] Minor changes and fixes (Mrs-X)
- - #467 `7099831bd` [Qt] Clear PrivacyDialog "zPiv Selected" labels after sending. (presstab)
+ - #467 `7099831bd` [Qt] Clear PrivacyDialog "zPivxl Selected" labels after sending. (presstab)
  - #465 `d8e21774d` [Qt] Added controls to the options dialog for enable or disable auto-minting and set required level (lex-dev3)
  - #464 `59fd7d378` [Qt] setstakesplitthreshold value set in Qt GUI (lex-dev3)
  - #452 `219b68dc9` [Qt] Complete re-design of Qt-wallet (Mrs-X)

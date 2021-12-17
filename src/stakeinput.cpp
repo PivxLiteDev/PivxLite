@@ -1,4 +1,5 @@
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
@@ -6,26 +7,46 @@
 
 #include "chain.h"
 #include "txdb.h"
-#include "zpiv/deterministicmint.h"
 #include "wallet/wallet.h"
 
-CPivStake* CPivStake::NewPivStake(const CTxIn& txin)
+static bool HasStakeMinAgeOrDepth(int nHeight, uint32_t nTime, const CBlockIndex* pindex)
+{
+    const Consensus::Params& consensus = Params().GetConsensus();
+    if (consensus.NetworkUpgradeActive(nHeight + 1, Consensus::UPGRADE_ZC_PUBLIC) &&
+            !consensus.HasStakeMinAgeOrDepth(nHeight, nTime, pindex->nHeight, pindex->nTime)) {
+        return error("%s : min age violation - height=%d - time=%d, nHeightBlockFrom=%d, nTimeBlockFrom=%d",
+                     __func__, nHeight, nTime, pindex->nHeight, pindex->nTime);
+    }
+    return true;
+}
+
+CPivxlStake* CPivxlStake::NewPivStake(const CTxIn& txin, int nHeight, uint32_t nTime)
 {
     if (txin.IsZerocoinSpend()) {
-        error("%s: unable to initialize CPivStake from zerocoin spend", __func__);
+        error("%s: unable to initialize CPivxlStake from zerocoin spend", __func__);
         return nullptr;
     }
 
-    // Find the previous transaction in database
+    // Look for the stake input in the coins cache first
+    const Coin& coin = pcoinsTip->AccessCoin(txin.prevout);
+    if (!coin.IsSpent()) {
+        const CBlockIndex* pindexFrom = mapBlockIndex.at(chainActive[coin.nHeight]->GetBlockHash());
+        // Check that the stake has the required depth/age
+        if (!HasStakeMinAgeOrDepth(nHeight, nTime, pindexFrom)) {
+            return nullptr;
+        }
+        // All good
+        return new CPivxlStake(coin.out, txin.prevout, pindexFrom);
+    }
+
+    // Otherwise find the previous transaction in database
     uint256 hashBlock;
-    CTransaction txPrev;
+    CTransactionRef txPrev;
     if (!GetTransaction(txin.prevout.hash, txPrev, hashBlock, true)) {
         error("%s : INFO: read txPrev failed, tx id prev: %s", __func__, txin.prevout.hash.GetHex());
         return nullptr;
     }
-
     const CBlockIndex* pindexFrom = nullptr;
-    // Find the index of the block of the previous transaction
     if (mapBlockIndex.count(hashBlock)) {
         CBlockIndex* pindex = mapBlockIndex.at(hashBlock);
         if (chainActive.Contains(pindex)) pindexFrom = pindex;
@@ -35,30 +56,31 @@ CPivStake* CPivStake::NewPivStake(const CTxIn& txin)
         error("%s : Failed to find the block index for stake origin", __func__);
         return nullptr;
     }
-
-    return new CPivStake(txPrev.vout[txin.prevout.n],
-                         txin.prevout,
-                         pindexFrom);
+    // Check that the stake has the required depth/age
+    if (!HasStakeMinAgeOrDepth(nHeight, nTime, pindexFrom)) {
+        return nullptr;
+    }
+    // All good
+    return new CPivxlStake(txPrev->vout[txin.prevout.n], txin.prevout, pindexFrom);
 }
 
-bool CPivStake::GetTxOutFrom(CTxOut& out) const
+bool CPivxlStake::GetTxOutFrom(CTxOut& out) const
 {
     out = outputFrom;
     return true;
 }
 
-bool CPivStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
+CTxIn CPivxlStake::GetTxIn() const
 {
-    txIn = CTxIn(outpointFrom.hash, outpointFrom.n);
-    return true;
+    return CTxIn(outpointFrom.hash, outpointFrom.n);
 }
 
-CAmount CPivStake::GetValue() const
+CAmount CPivxlStake::GetValue() const
 {
     return outputFrom.nValue;
 }
 
-bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal, const bool onlyP2PK)
+bool CPivxlStake::CreateTxOuts(const CWallet* pwallet, std::vector<CTxOut>& vout, CAmount nTotal) const
 {
     std::vector<valtype> vSolutions;
     txnouttype whichType;
@@ -69,7 +91,6 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
     if (whichType != TX_PUBKEY && whichType != TX_PUBKEYHASH && whichType != TX_COLDSTAKE)
         return error("%s: type=%d (%s) not supported for scriptPubKeyKernel", __func__, whichType, GetTxnOutputType(whichType));
 
-    CScript scriptPubKey;
     CKey key;
     if (whichType == TX_PUBKEYHASH || whichType == TX_COLDSTAKE) {
         // if P2PKH or P2CS check that we have the input private key
@@ -77,17 +98,7 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
             return error("%s: Unable to get staking private key", __func__);
     }
 
-    // Consensus check: P2PKH block signatures were not accepted before v5 update.
-    // This can be removed after v5.0 enforcement
-    if (whichType == TX_PUBKEYHASH && onlyP2PK) {
-        // convert to P2PK inputs
-        scriptPubKey << key.GetPubKey() << OP_CHECKSIG;
-    } else {
-        // keep the same script
-        scriptPubKey = scriptPubKeyKernel;
-    }
-
-    vout.emplace_back(0, scriptPubKey);
+    vout.emplace_back(0, scriptPubKeyKernel);
 
     // Calculate if we need to split the output
     if (pwallet->nStakeSplitThreshold > 0) {
@@ -99,7 +110,7 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
                 nSplit = txSizeMax;
             for (int i = nSplit; i > 1; i--) {
                 LogPrintf("%s: StakeSplit: nTotal = %d; adding output %d of %d\n", __func__, nTotal, (nSplit-i)+2, nSplit);
-                vout.emplace_back(0, scriptPubKey);
+                vout.emplace_back(0, scriptPubKeyKernel);
             }
         }
     }
@@ -107,7 +118,7 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
     return true;
 }
 
-CDataStream CPivStake::GetUniqueness() const
+CDataStream CPivxlStake::GetUniqueness() const
 {
     //The unique identifier for a PIVXL stake is the outpoint
     CDataStream ss(SER_NETWORK, 0);
@@ -116,30 +127,10 @@ CDataStream CPivStake::GetUniqueness() const
 }
 
 //The block that the UTXO was added to the chain
-const CBlockIndex* CPivStake::GetIndexFrom() const
+const CBlockIndex* CPivxlStake::GetIndexFrom() const
 {
     // Sanity check, pindexFrom is set on the constructor.
-    if (!pindexFrom) throw std::runtime_error("CPivStake: uninitialized pindexFrom");
+    if (!pindexFrom) throw std::runtime_error("CPivxlStake: uninitialized pindexFrom");
     return pindexFrom;
-}
-
-// Verify stake contextual checks
-bool CPivStake::ContextCheck(int nHeight, uint32_t nTime)
-{
-    const Consensus::Params& consensus = Params().GetConsensus();
-    // Get Stake input block time/height
-    const CBlockIndex* pindexFrom = GetIndexFrom();
-    if (!pindexFrom)
-        return error("%s: unable to get previous index for stake input", __func__);
-    const int nHeightBlockFrom = pindexFrom->nHeight;
-    const uint32_t nTimeBlockFrom = pindexFrom->nTime;
-
-    // Check that the stake has the required depth/age
-    if (consensus.NetworkUpgradeActive(nHeight + 1, Consensus::UPGRADE_ZC_PUBLIC) &&
-            !consensus.HasStakeMinAgeOrDepth(nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom))
-        return error("%s : min age violation - height=%d - time=%d, nHeightBlockFrom=%d, nTimeBlockFrom=%d",
-                         __func__, nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom);
-    // All good
-    return true;
 }
 

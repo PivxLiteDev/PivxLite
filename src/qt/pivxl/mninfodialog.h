@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,7 +25,7 @@ public:
 
     bool exportMN = false;
 
-    void setData(QString privKey, QString name, QString address, QString txId, QString outputIndex, QString status);
+    void setData(const QString& _pubKey, const QString& name, const QString& address, const QString& _txId, const QString& outputIndex, const QString& status);
 
 public Q_SLOTS:
     void reject() override;
@@ -37,7 +38,7 @@ private:
     QString txId;
     QString pubKey;
 
-    void copyInform(QString& copyStr, QString message);
+    void copyInform(const QString& copyStr, const QString& message);
 };
 
 #endif // MNINFODIALOG_H

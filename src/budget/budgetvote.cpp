@@ -1,12 +1,13 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "budget/budgetvote.h"
 
-#include "streams.h"
 #include "net.h"
+#include "streams.h"
 
 CBudgetVote::CBudgetVote() :
         CSignedMessage(),
@@ -53,8 +54,8 @@ std::string CBudgetVote::GetStrMessage() const
 UniValue CBudgetVote::ToJSON() const
 {
     UniValue bObj(UniValue::VOBJ);
-    bObj.pushKV("mnId", vin.prevout.hash.ToString());
-    bObj.pushKV("nHash", vin.prevout.GetHash().ToString());
+    bObj.pushKV("mnId", vin.prevout.ToStringShort());
+    bObj.pushKV("nHash", GetHash().ToString());
     bObj.pushKV("Vote", GetVoteString());
     bObj.pushKV("nTime", nTime);
     bObj.pushKV("fValid", fValid);

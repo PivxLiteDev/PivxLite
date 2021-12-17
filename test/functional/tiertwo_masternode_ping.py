@@ -2,27 +2,26 @@
 # Copyright (c) 2020 The PIVX developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://www.opensource.org/licenses/mit-license.php.
+"""
+Test checking masternode ping thread
+Does not use functions of PivxlTier2TestFramework as we don't want to send
+pings on demand. Here, instead, mocktime is disabled, and we just wait with
+time.sleep to verify that masternodes send pings correctly.
+"""
 
-from test_framework.test_framework import PivxTestFramework
+import os
+import time
+
+from test_framework.test_framework import PivxlTestFramework
 from test_framework.util import (
     assert_equal,
     assert_greater_than,
     Decimal,
     p2p_port,
-    sync_blocks,
 )
 
-import os
-import time
 
-"""
-Test checking masternode ping thread
-Does not use functions of PivxTier2TestFramework as we don't want to send
-pings on demand. Here, instead, mocktime is disabled, and we just wait with
-time.sleep to verify that masternodes send pings correctly.
-"""
-
-class MasternodePingTest(PivxTestFramework):
+class MasternodePingTest(PivxlTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -38,18 +37,18 @@ class MasternodePingTest(PivxTestFramework):
 
         self.log.info("generating 141 blocks...")
         miner.generate(141)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
 
         # Create collateral
         self.log.info("funding masternode controller...")
         masternodeAlias = "mnode"
         mnAddress = owner.getnewaddress(masternodeAlias)
-        collateralTxId = miner.sendtoaddress(mnAddress, Decimal('10000'))
+        collateralTxId = miner.sendtoaddress(mnAddress, Decimal('100'))
         miner.generate(2)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         time.sleep(1)
         collateral_rawTx = owner.getrawtransaction(collateralTxId, 1)
-        assert_equal(owner.getbalance(), Decimal('10000'))
+        assert_equal(owner.getbalance(), Decimal('100'))
         assert_greater_than(collateral_rawTx["confirmations"], 0)
 
         # Block time can be up to median time past +1. We might need to wait...
@@ -68,7 +67,7 @@ class MasternodePingTest(PivxTestFramework):
         confData = masternodeAlias + " 127.0.0.1:" + str(p2p_port(2)) + " " + \
                    str(mnPrivkey) +  " " + str(collateralTxId) + " " + str(vout)
         destPath = os.path.join(self.options.tmpdir, "node1", "regtest", "masternode.conf")
-        with open(destPath, "a+") as file_object:
+        with open(destPath, "a+", encoding="utf8") as file_object:
             file_object.write("\n")
             file_object.write(confData)
 
@@ -88,14 +87,14 @@ class MasternodePingTest(PivxTestFramework):
         self.wait_until_mnsync_finished()
         self.log.info("MnSync completed in %d seconds" % (time.time() - start_time))
         miner.generate(1)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         time.sleep(1)
 
         # Send Start message
         self.log.info("sending masternode broadcast...")
         self.controller_start_masternode(owner, masternodeAlias)
         miner.generate(1)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         time.sleep(1)
 
         # Wait until masternode is enabled everywhere (max 180 secs)
@@ -106,7 +105,7 @@ class MasternodePingTest(PivxTestFramework):
         self.log.info("Masternode enabled in %d seconds" % (time.time() - start_time))
         self.log.info("Good. Masternode enabled")
         miner.generate(1)
-        sync_blocks(self.nodes)
+        self.sync_blocks()
         time.sleep(1)
 
         last_seen = [self.get_mn_lastseen(node, collateralTxId) for node in self.nodes]

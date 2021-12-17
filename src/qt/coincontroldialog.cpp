@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,12 +16,11 @@
 #include "optionsmodel.h"
 #include "policy/policy.h"
 #include "txmempool.h"
+#include "wallet/fees.h"
 #include "wallet/wallet.h"
 #include "walletmodel.h"
 
 #include "qt/pivxl/qtutils.h"
-
-#include <boost/assign/list_of.hpp> // for 'map_list_of()'
 
 #include <QApplication>
 #include <QCheckBox>
@@ -29,7 +29,6 @@
 #include <QFlags>
 #include <QIcon>
 #include <QSettings>
-#include <QString>
 #include <QTreeWidget>
 
 
@@ -189,7 +188,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool _forDelegation) : QDi
         ui->treeWidget->setRootIsDecorated(false);
     }
     if (settings.contains("nCoinControlSortColumn") && settings.contains("nCoinControlSortOrder"))
-        sortView(settings.value("nCoinControlSortColumn").toInt(), ((Qt::SortOrder)settings.value("nCoinControlSortOrder").toInt()));
+        sortView(settings.value("nCoinControlSortColumn").toInt(), (static_cast<Qt::SortOrder>(settings.value("nCoinControlSortOrder").toInt())));
 }
 
 CoinControlDialog::~CoinControlDialog()
@@ -242,8 +241,8 @@ void CoinControlDialog::buttonToggleLockClicked()
         for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
             item = ui->treeWidget->topLevelItem(i);
 
-            COutPoint outpt(uint256(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt());
-            if (model->isLockedCoin(uint256(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt())) {
+            COutPoint outpt(uint256S(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt());
+            if (model->isLockedCoin(uint256S(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt())) {
                 model->unlockCoin(outpt);
                 item->setDisabled(false);
                 // restore cold-stake snowflake icon for P2CS which were previously locked
@@ -279,7 +278,7 @@ void CoinControlDialog::showMenu(const QPoint& point)
         // disable some items (like Copy Transaction ID, lock, unlock) for tree roots in context menu
         if (item->text(COLUMN_TXHASH).length() == 64) { // transaction hash is 64 characters (this means its a child node, so its not a parent node in tree mode)
             copyTransactionHashAction->setEnabled(true);
-            if (model->isLockedCoin(uint256(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt())) {
+            if (model->isLockedCoin(uint256S(item->text(COLUMN_TXHASH).toStdString()), item->text(COLUMN_VOUT_INDEX).toUInt())) {
                 lockAction->setEnabled(false);
                 unlockAction->setEnabled(true);
             } else {
@@ -334,7 +333,7 @@ void CoinControlDialog::lockCoin()
     if (contextMenuItem->checkState(COLUMN_CHECKBOX) == Qt::Checked)
         contextMenuItem->setCheckState(COLUMN_CHECKBOX, Qt::Unchecked);
 
-    COutPoint outpt(uint256(contextMenuItem->text(COLUMN_TXHASH).toStdString()), contextMenuItem->text(COLUMN_VOUT_INDEX).toUInt());
+    COutPoint outpt(uint256S(contextMenuItem->text(COLUMN_TXHASH).toStdString()), contextMenuItem->text(COLUMN_VOUT_INDEX).toUInt());
     model->lockCoin(outpt);
     contextMenuItem->setDisabled(true);
     contextMenuItem->setIcon(COLUMN_CHECKBOX, QIcon(":/icons/lock_closed"));
@@ -345,7 +344,7 @@ void CoinControlDialog::lockCoin()
 void CoinControlDialog::unlockCoin()
 {
     if (!fSelectTransparent) return; // todo: implement locked notes
-    COutPoint outpt(uint256(contextMenuItem->text(COLUMN_TXHASH).toStdString()), contextMenuItem->text(COLUMN_VOUT_INDEX).toUInt());
+    COutPoint outpt(uint256S(contextMenuItem->text(COLUMN_TXHASH).toStdString()), contextMenuItem->text(COLUMN_VOUT_INDEX).toUInt());
     model->unlockCoin(outpt);
     contextMenuItem->setDisabled(false);
     // restore cold-stake snowflake icon for P2CS which were previously locked
@@ -449,7 +448,7 @@ void CoinControlDialog::radioListMode(bool checked)
 void CoinControlDialog::viewItemChanged(QTreeWidgetItem* item, int column)
 {
     if (column == COLUMN_CHECKBOX && item->text(COLUMN_TXHASH).length() == 64) { // transaction hash is 64 characters (this means its a child node, so its not a parent node in tree mode)
-        BaseOutPoint outpt(uint256(item->text(COLUMN_TXHASH).toStdString()),
+        BaseOutPoint outpt(uint256S(item->text(COLUMN_TXHASH).toStdString()),
                            item->text(COLUMN_VOUT_INDEX).toUInt(),
                            fSelectTransparent);
         if (item->checkState(COLUMN_CHECKBOX) == Qt::Unchecked)
@@ -480,6 +479,7 @@ void CoinControlDialog::updateLabelLocked()
         } else
             ui->labelLocked->setVisible(false);
     } else {
+        ui->labelLocked->setVisible(false);
         // TODO: implement locked notes functionality inside the wallet..
     }
 }
@@ -537,7 +537,7 @@ TotalAmounts CoinControlDialog::getTotals() const
             if (shieldedOut) nShieldOuts++;
             else nTransOuts++;
             if (a.first > 0 && !t.fDust) {
-                if (a.first < (shieldedOut ? GetShieldedDustThreshold(minRelayTxFee) : GetDustThreshold(minRelayTxFee)))
+                if (a.first < (shieldedOut ? GetShieldedDustThreshold(dustRelayFee) : GetDustThreshold(dustRelayFee)))
                     t.fDust = true;
             }
             t.nBytes += (shieldedOut ? OUTPUTDESCRIPTION_SIZE
@@ -552,9 +552,6 @@ TotalAmounts CoinControlDialog::getTotals() const
             t.nBytes += (GetCompactSize(nShieldIns) + GetCompactSize(nShieldOuts));
         }
 
-        // !TODO: ExtraPayload size for special txes. For now 1 byte for nullopt.
-        t.nBytes += 1;
-
         // nVersion, nType, nLockTime
         t.nBytes += 8;
 
@@ -562,14 +559,14 @@ TotalAmounts CoinControlDialog::getTotals() const
         t.nBytes += (GetCompactSize(nTransIns) +  GetCompactSize(nTransOuts));
 
         // Fee (default K fixed for shielded fee for now)
-        t.nPayFee = GetMinRelayFee(t.nBytes, false) * (isShieldedTx ? DEFAULT_SHIELDEDTXFEE_K : 1);
+        t.nPayFee = GetMinRelayFee(t.nBytes) * (isShieldedTx ? DEFAULT_SHIELDEDTXFEE_K : 1);
 
         if (t.nPayAmount > 0) {
             t.nChange = t.nAmount - t.nPayFee - t.nPayAmount;
 
             // Never create dust outputs; if we would, just add the dust to the fee.
-            CAmount dustThreshold = fSelectTransparent ? GetDustThreshold(minRelayTxFee) :
-                                                         GetShieldedDustThreshold(minRelayTxFee);
+            CAmount dustThreshold = fSelectTransparent ? GetDustThreshold(dustRelayFee)
+                                                       : GetShieldedDustThreshold(dustRelayFee);
             if (t.nChange > 0 && t.nChange < dustThreshold) {
                 t.nPayFee += t.nChange;
                 t.nChange = 0;
@@ -629,28 +626,22 @@ void CoinControlDialog::updateLabels()
     }
 
     // turn labels "red"
-    ui->labelCoinControlBytes->setStyleSheet((t.nBytes >= MAX_FREE_TRANSACTION_CREATE_SIZE) ? "color:red;" : "");     // Bytes >= 1000
     ui->labelCoinControlLowOutput->setStyleSheet((t.fDust) ? "color:red;" : "");                                      // Dust = "yes"
 
     // tool tips
-    QString toolTip1 = tr("This label turns red, if the transaction size is greater than 1000 bytes.") + "<br /><br />";
-    toolTip1 += tr("This means a fee of at least %1 per kB is required.").arg(BitcoinUnits::formatWithUnit(nDisplayUnit, CWallet::GetRequiredFee(1000))) + "<br /><br />";
-    toolTip1 += tr("Can vary +/- 1 byte per input.");
-
     QString toolTip3 = tr("This label turns red, if recipient receives an amount smaller than %1 (transparent) / %2 (shield)."
-            ).arg(BitcoinUnits::formatWithUnit(nDisplayUnit, GetDustThreshold(minRelayTxFee))).arg(BitcoinUnits::formatWithUnit(nDisplayUnit, GetShieldedDustThreshold(minRelayTxFee)));
+            ).arg(BitcoinUnits::formatWithUnit(nDisplayUnit, GetDustThreshold(dustRelayFee))).arg(BitcoinUnits::formatWithUnit(nDisplayUnit, GetShieldedDustThreshold(dustRelayFee)));
 
     // how many satoshis the estimated fee can vary per byte we guess wrong
     double dFeeVary;
     if (payTxFee.GetFeePerK() > 0)
-        dFeeVary = (double)std::max(CWallet::GetRequiredFee(1000), payTxFee.GetFeePerK()) / 1000;
+        dFeeVary = (double)std::max(GetRequiredFee(1000), payTxFee.GetFeePerK()) / 1000;
     else
-        dFeeVary = (double)std::max(CWallet::GetRequiredFee(1000), mempool.estimateSmartFee(nTxConfirmTarget).GetFeePerK()) / 1000;
+        dFeeVary = (double)std::max(GetRequiredFee(1000), mempool.estimateSmartFee(nTxConfirmTarget).GetFeePerK()) / 1000;
     QString toolTip4 = tr("Can vary +/- %1 u%2 per input.").arg(dFeeVary).arg(CURRENCY_UNIT.c_str());
 
     ui->labelCoinControlFee->setToolTip(toolTip4);
     ui->labelCoinControlAfterFee->setToolTip(toolTip4);
-    ui->labelCoinControlBytes->setToolTip(toolTip1);
     ui->labelCoinControlLowOutput->setToolTip(toolTip3);
     ui->labelCoinControlChange->setToolTip(toolTip4);
     ui->labelCoinControlFeeText->setToolTip(ui->labelCoinControlFee->toolTip());
@@ -787,7 +778,14 @@ void CoinControlDialog::updateView()
 
             // address
             itemWalletAddress->setText(COLUMN_ADDRESS, sWalletAddress);
-            itemWalletAddress->setToolTip(COLUMN_ADDRESS, sWalletAddress);
+            if (stakerAddress != nullopt) {
+                itemWalletAddress->setIcon(COLUMN_CONFIRMATIONS, QIcon("://ic-check-cold-staking-off"));
+                QString label = tr("Delegated to %1").arg(*stakerAddress);
+                itemWalletAddress->setToolTip(COLUMN_ADDRESS, label);
+                itemWalletAddress->setToolTip(COLUMN_CONFIRMATIONS, label);
+            } else {
+                itemWalletAddress->setToolTip(COLUMN_ADDRESS, sWalletAddress);
+            }
         }
 
         CAmount nSum = 0;

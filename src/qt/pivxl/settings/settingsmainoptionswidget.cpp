@@ -1,4 +1,5 @@
 // Copyright (c) 2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -51,8 +52,13 @@ SettingsMainOptionsWidget::SettingsMainOptionsWidget(PIVXLGUI* _window, QWidget 
     setCssProperty({ui->labelTitleSizeDb, ui->labelTitleThreads}, "text-main-settings");
 
     // Switch
-    ui->pushSwitchStart->setText(tr("Start PIVXL on system login"));
+    ui->pushSwitchStart->setText(tr("Start %1 on system login").arg(PACKAGE_NAME));
     ui->pushSwitchStart->setProperty("cssClass", "btn-switch");
+
+#ifdef Q_OS_MAC
+    /* hide launch at startup option on macOS */
+    ui->pushSwitchStart->setVisible(false);
+#endif
 
     // Combobox
     ui->databaseCache->setProperty("cssClass", "btn-spin-box");

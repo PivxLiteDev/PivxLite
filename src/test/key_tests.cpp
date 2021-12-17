@@ -1,16 +1,17 @@
 // Copyright (c) 2012-2013 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "key.h"
 
 #include "base58.h"
-#include "script/script.h"
+#include "key_io.h"
 #include "uint256.h"
-#include "util.h"
+#include "util/system.h"
 #include "utilstrencodings.h"
-#include "test_pivxl.h"
+#include "test_pivx.h"
 
 #include <string>
 #include <vector>
@@ -44,7 +45,7 @@ void dumpKeyInfo(uint256 privkey)
 
     for (int nCompressed=0; nCompressed<2; nCompressed++)
     {
-        printf("    * secret (base58): %s\n", EncodeSecret(secret));
+        printf("    * secret (base58): %s\n", KeyIO::EncodeSecret(secret));
         CKey key;
         key.SetSecret(secret, fCompressed);
         std::vector<unsigned char> vchPubKey = key.GetPubKey();
@@ -58,15 +59,15 @@ BOOST_FIXTURE_TEST_SUITE(key_tests, TestingSetup)
 
 BOOST_AUTO_TEST_CASE(key_test1)
 {
-    CKey key1  = DecodeSecret(strSecret1);
+    CKey key1  = KeyIO::DecodeSecret(strSecret1);
     BOOST_CHECK(key1.IsValid() && !key1.IsCompressed());
-    CKey key2  = DecodeSecret(strSecret2);
+    CKey key2  = KeyIO::DecodeSecret(strSecret2);
     BOOST_CHECK(key2.IsValid() && !key2.IsCompressed());
-    CKey key1C = DecodeSecret(strSecret1C);
+    CKey key1C = KeyIO::DecodeSecret(strSecret1C);
     BOOST_CHECK(key1C.IsValid() && key1C.IsCompressed());
-    CKey key2C = DecodeSecret(strSecret2C);
+    CKey key2C = KeyIO::DecodeSecret(strSecret2C);
     BOOST_CHECK(key2C.IsValid() && key2C.IsCompressed());
-    CKey bad_key = DecodeSecret(strAddressBad);
+    CKey bad_key = KeyIO::DecodeSecret(strAddressBad);
     BOOST_CHECK(!bad_key.IsValid());
 
     CPubKey pubkey1  = key1. GetPubKey();

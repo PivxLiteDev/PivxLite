@@ -1,19 +1,18 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "interpreter.h"
 
 #include "consensus/upgrades.h"
-#include "primitives/transaction.h"
 #include "crypto/ripemd160.h"
 #include "crypto/sha1.h"
 #include "crypto/sha256.h"
 #include "pubkey.h"
 #include "script/script.h"
-#include "uint256.h"
 
 
 typedef std::vector<unsigned char> valtype;
@@ -240,10 +239,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 {
     static const CScriptNum bnZero(0);
     static const CScriptNum bnOne(1);
-    static const CScriptNum bnFalse(0);
-    static const CScriptNum bnTrue(1);
     static const valtype vchFalse(0);
-    static const valtype vchZero(0);
     static const valtype vchTrue(1, 1);
 
     CScript::const_iterator pc = script.begin();
@@ -873,7 +869,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
                     int nKeysCount = CScriptNum(stacktop(-i), fRequireMinimal).getint();
-                    if (nKeysCount < 0 || nKeysCount > 20)
+                    if (nKeysCount < 0 || nKeysCount > MAX_PUBKEYS_PER_MULTISIG)
                         return set_error(serror, SCRIPT_ERR_PUBKEY_COUNT);
                     nOpCount += nKeysCount;
                     if (nOpCount > 201)
@@ -962,9 +958,19 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 
                 case OP_CHECKCOLDSTAKEVERIFY:
                 {
-                    // check it is used in a valid cold stake transaction.
-                    if(!checker.CheckColdStake(script)) {
-                        return set_error(serror, SCRIPT_ERR_CHECKCOLDSTAKEVERIFY);
+                    if (!checker.CheckColdStake(false, script, stack, flags, serror)) {
+                        // serror set
+                        return false;
+                    }
+                }
+                break;
+
+                case OP_CHECKCOLDSTAKEVERIFY_LOF:
+                {
+                    // Allow last output script "free"
+                    if (!checker.CheckColdStake(true, script, stack, flags, serror)) {
+                        // serror set
+                        return false;
                     }
                 }
                 break;
@@ -1046,7 +1052,7 @@ public:
         // Serialize the script
         if (nInput != nIn)
             // Blank out other inputs' signatures
-            ::Serialize(s, CScriptBase());
+            ::Serialize(s, CScript());
         else
             SerializeScriptCode(s);
         // Serialize the nSequence
@@ -1242,7 +1248,7 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
             // The prevout may already be contained in hashPrevout, and the nSequence
             // may already be contained in hashSequence.
             ss << txTo.vin[nIn].prevout;
-            ss << static_cast<const CScriptBase&>(scriptCode);
+            ss << scriptCode;
             ss << amount;
             ss << txTo.vin[nIn].nSequence;
         }
@@ -1336,6 +1342,59 @@ bool TransactionSignatureChecker::CheckLockTime(const CScriptNum& nLockTime) con
     if (txTo->vin[nIn].IsFinal())
         return false;
 
+    return true;
+}
+
+bool TransactionSignatureChecker::CheckColdStake(bool fAllowLastOutputFree, const CScript& prevoutScript, std::vector<valtype>& stack, unsigned int flags, ScriptError* serror) const
+{
+    // the stack can contain only <sig> <pk> <pkh> at this point
+    if ((int)stack.size() != 3) {
+        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+    }
+    // check pubkey/signature encoding
+    valtype& vchSig    = stacktop(-3);
+    valtype& vchPubKey = stacktop(-2);
+    if (!CheckSignatureEncoding(vchSig, flags, serror) ||
+            !CheckPubKeyEncoding(vchPubKey, flags, serror)) {
+        // serror is set
+        return false;
+    }
+    // check hash size
+    valtype& vchPubKeyHash = stacktop(-1);
+    if ((int)vchPubKeyHash.size() != 20) {
+        return set_error(serror, SCRIPT_ERR_SCRIPT_SIZE);
+    }
+
+    // check it is used in a valid cold stake transaction.
+    // Transaction must be a coinstake tx
+    if (!txTo->IsCoinStake()) {
+        return set_error(serror, SCRIPT_ERR_CHECKCOLDSTAKEVERIFY);
+    }
+    // There must be one single input
+    if (txTo->vin.size() != 1) {
+        return set_error(serror, SCRIPT_ERR_CHECKCOLDSTAKEVERIFY);
+    }
+    // Since this is a coinstake, it has at least 2 outputs
+    const unsigned int outs = txTo->vout.size();
+    assert(outs >= 2);
+    // All outputs must have the same pubKeyScript, and it must match the script we are spending.
+    // If the coinstake has at least 3 outputs, the last one can be left free, to be used for
+    // budget/masternode payments (before v6.0 enforcement), and is checked in CheckColdstakeFreeOutput().
+    // Here we verify only that input amount goes to the non-free outputs.
+    CAmount outValue{0};
+    for (unsigned int i = 1; i < outs; i++) {
+        if (txTo->vout[i].scriptPubKey != prevoutScript) {
+            // Only the last one can be different (and only when outs >=3 and fAllowLastOutputFree=true)
+            if (!fAllowLastOutputFree || i != outs-1 || outs < 3) {
+                return set_error(serror, SCRIPT_ERR_CHECKCOLDSTAKEVERIFY);
+            }
+        } else {
+            outValue += txTo->vout[i].nValue;
+        }
+    }
+    if (outValue < amount) {
+        return set_error(serror, SCRIPT_ERR_CHECKCOLDSTAKEVERIFY);
+    }
     return true;
 }
 

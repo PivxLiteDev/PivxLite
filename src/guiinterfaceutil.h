@@ -1,4 +1,5 @@
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,6 +7,8 @@
 #define GUIINTERFACEUTIL_H
 
 #include "guiinterface.h"
+#include "tinyformat.h"
+#include "util/system.h"
 
 inline static bool UIError(const std::string &str)
 {

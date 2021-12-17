@@ -1,4 +1,5 @@
-// Copyright (c) 2020 The PIVXL Core developers
+// Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -72,7 +73,7 @@ public:
      * Block height corresponding to the most current witness.
      *
      * When we first create a SaplingNoteData in SaplingScriptPubKeyMan::FindMySaplingNotes, this is set to
-     * -1 as a placeholder. The next time CWallet::ChainTip is called, we can
+     * -1 as a placeholder. The next time CWallet::BlockConnected/CWallet::BlockDisconnected is called, we can
      * determine what height the witness cache for this note is valid for (even
      * if no witnesses were cached), and so can set the correct value in
      * SaplingScriptPubKeyMan::IncrementNoteWitnesses and SaplingScriptPubKeyMan::DecrementNoteWitnesses.
@@ -93,22 +94,19 @@ public:
      */
     Optional<uint256> nullifier;
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
+    SERIALIZE_METHODS(SaplingNoteData, obj)
     {
         int nVersion = s.GetVersion();
         if (!(s.GetType() & SER_GETHASH)) {
             READWRITE(nVersion);
         }
-        READWRITE(ivk);
-        READWRITE(nullifier);
-        READWRITE(witnesses);
-        READWRITE(witnessHeight);
-        READWRITE(amount);
-        READWRITE(address);
-        READWRITE(memo);
+        READWRITE(obj.ivk);
+        READWRITE(obj.nullifier);
+        READWRITE(obj.witnesses);
+        READWRITE(obj.witnessHeight);
+        READWRITE(obj.amount);
+        READWRITE(obj.address);
+        READWRITE(obj.memo);
     }
 
     friend bool operator==(const SaplingNoteData& a, const SaplingNoteData& b) {
@@ -163,9 +161,9 @@ public:
                                 const CBlock* pblock,
                                 SaplingMerkleTree& saplingTree);
     /**
-     * pindex is the old tip being disconnected.
+     * nChainHeight is the old tip height being disconnected.
      */
-    void DecrementNoteWitnesses(const CBlockIndex* pindex);
+    void DecrementNoteWitnesses(int nChainHeight);
 
     /**
      * Update mapSaplingNullifiersToNotes
@@ -297,9 +295,12 @@ public:
                           bool requireSpendingKey=true,
                           bool ignoreLocked=true) const;
 
+    /* Return list of available notes grouped by sapling address. */
+    std::map<libzcash::SaplingPaymentAddress, std::vector<SaplingNoteEntry>> ListNotes() const;
 
     //! Return the address from where the shielded spend is taking the funds from (if possible)
     Optional<libzcash::SaplingPaymentAddress> GetAddressFromInputIfPossible(const CWalletTx* wtx, int index) const;
+    Optional<libzcash::SaplingPaymentAddress> GetAddressFromInputIfPossible(const uint256& txHash, int index) const;
 
     //! Whether the nullifier is from this wallet
     bool IsSaplingNullifierFromMe(const uint256& nullifier) const;

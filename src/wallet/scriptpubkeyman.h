@@ -1,5 +1,6 @@
 // Copyright (c) 2019 The Bitcoin Core developers
 // Copyright (c) 2020 The PIVX developers
+// Copyright (c) 2019-2021 The PIVXL developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,7 +39,7 @@ public:
     bool SetupGeneration(bool newKeypool = true, bool force = false, bool memOnly = false);
 
     /** Upgrades the wallet to the specified version */
-    bool Upgrade(const int& prev_version, std::string& error);
+    bool Upgrade(const int prev_version, std::string& error);
 
     /* Returns true if the wallet can generate new keys */
     bool CanGenerateKeys();

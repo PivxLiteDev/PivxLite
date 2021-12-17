@@ -62,7 +62,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QPushButton[cssClass="img-nav-logo"] {
     qproperty-icon: url("://img-nav-logo");
-    qproperty-iconSize: 49px 60px;
+    qproperty-iconSize: 59px 72px;
 }
 
 *[cssClass="btn-nav-receive"] {
@@ -1825,28 +1825,28 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:20px;
 }
 
-*[cssClass="text-stake-piv"] {
+*[cssClass="text-stake-pivxl"] {
     color:#5c4b7d;
     font-size:16px;
     padding:10px;
     border-bottom: 5px solid #5c4b7d;
 }
 
-*[cssClass="text-stake-piv-disable"] {
+*[cssClass="text-stake-pivxl-disable"] {
     color:#69656F;
     font-size:16px;
     padding:10px;
     border-bottom: 5px solid #69656F;
 }
 
-*[cssClass="text-stake-zpiv"] {
+*[cssClass="text-stake-zpivxlxl"] {
     color:#b088ff;
     font-size:16px;
     padding:10px;
     border-bottom: 5px solid #b088ff;
 }
 
-*[cssClass="text-stake-zpiv-disable"] {
+*[cssClass="text-stake-zpivxlxl-disable"] {
     color:#423E4A;
     font-size:16px;
     padding:10px;
@@ -1858,24 +1858,24 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:16px;
 }
 
-*[cssClass="text-chart-zpiv"] {
+*[cssClass="text-chart-zpivxlxl"] {
     color:#b088ff;
     font-size:16px;
     padding-left:4px;
 }
 
-*[cssClass="text-chart-piv"] {
+*[cssClass="text-chart-pivxl"] {
     color:#5c4b7d;
     font-size:16px;
     padding-left:4px;
 }
 
-*[cssClass="square-chart-zpiv"] {
+*[cssClass="square-chart-zpivxlxl"] {
     background-color:#b088ff;
     border:none;
 }
 
-*[cssClass="square-chart-piv"] {
+*[cssClass="square-chart-pivxl"] {
     background-color:#5c4b7d;
     border:none;
 }
@@ -1944,6 +1944,7 @@ QComboBox[cssClass="btn-combo-chart"] {
     font-size:16px;
     border:1px solid #bababa;
     color: #707070;
+    selection-color:#707070;
     text-align: right;
     border-radius:2px;
 }
@@ -2048,7 +2049,7 @@ QCheckBox {
     color:#FFFFFF;
 }
 
-QCheckBox:checked  {
+QCheckBox:checked {
     spacing: 5px;
     font-size:18px;
     color:#b088ff;
@@ -2081,6 +2082,32 @@ QCheckBox[cssClass="btn-watch-password"]::indicator:unchecked {
 
 QCheckBox[cssClass="btn-watch-password"]::indicator:checked {
     image: url("://ic-watch-password-white");
+}
+
+QCheckBox[cssClass="combo-light"] {
+    spacing: 5px;
+    font-size:18px;
+    color: #807b8a;
+}
+
+QCheckBox[cssClass="combo-light"]:checked {
+    spacing: 5px;
+    font-size:18px;
+    color:#b088ff;
+}
+
+QCheckBox[cssClass="combo-light"]::indicator:unchecked {
+    image: url("://ic-check-box-light");
+}
+
+QCheckBox[cssClass="combo-light"]:hover {
+    spacing: 5px;
+    font-size:18px;
+    color: #bababa;
+}
+
+QCheckBox[cssClass="combo-light"]::indicator:unchecked:hover {
+    image: url("://ic-check-box");
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
@@ -2169,6 +2196,7 @@ QComboBox[cssClass="btn-combo"] {
     font-size:16px;
     border:1px solid #0f0b16;
     color: #707070;
+    selection-color:#707070;
     text-align: right;
 }
 
@@ -2456,18 +2484,18 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 
-*[cssClass="coin-icon-piv"] {
-    qproperty-icon: url("://ic-coin-piv") off,
-    url("://ic-coin-piv") on ;
+*[cssClass="coin-icon-pivxl"] {
+    qproperty-icon: url("://ic-coin-pivxl") off,
+    url("://ic-coin-pivxl") on ;
     qproperty-iconSize: 24px 24px;
     background-color: #FFFFFF;
     border:  2px solid #0f0b16;
     border-radius: 12px;
 }
 
-*[cssClass="coin-icon-zpiv"] {
-    qproperty-icon: url("://ic-coin-zpiv") off,
-    url("://ic-coin-zpiv") on ;
+*[cssClass="coin-icon-zpivxl"] {
+    qproperty-icon: url("://ic-coin-zpivxl") off,
+    url("://ic-coin-zpivxl") on ;
     qproperty-iconSize: 24px 24px;
     background-position:center;
     background-repeat:no-repeat;
@@ -3064,6 +3092,11 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="btn-list-menu"]:hover{
     color: #5c4b7d;
+}
+
+*[cssClass="btn-list-menu"]:checked{
+    font-size:16px;
+    color:#b088ff;
 }
 
 
